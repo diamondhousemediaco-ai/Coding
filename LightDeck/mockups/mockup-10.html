@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightDeck — ON-SET CONTROL</title>
+<style>
+  :root{
+    --bg:#070809;
+    --bg-2:#0c0e10;
+    --panel:#0e1113;
+    --panel-2:#121619;
+    --line:#1c2226;
+    --line-2:#262d33;
+    --txt:#c9d3d0;
+    --txt-dim:#6b7a78;
+    --txt-faint:#454f4d;
+    --grn:#5af2a0;
+    --grn-soft:#3ad889;
+    --grn-dim:#1f7a52;
+    --amber:#e0b15a;
+    --red:#ff5c6c;
+    --mono: ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code","Fira Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1200px 600px at 75% -10%, rgba(90,242,160,.05), transparent 60%),
+      radial-gradient(900px 500px at 0% 110%, rgba(90,242,160,.03), transparent 55%),
+      var(--bg);
+    color:var(--txt);
+    font-family:var(--mono);
+    font-size:13px;
+    line-height:1.45;
+    letter-spacing:.2px;
+    -webkit-font-smoothing:antialiased;
+    padding:22px;
+  }
+  .wrap{max-width:1400px;margin:0 auto}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;align-items:center;gap:16px;
+    padding:0 4px 16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:30px;height:30px;border-radius:8px;
+    background:conic-gradient(from 210deg,#ff4d4d,#ffb84d,#fff24d,#4dff7a,#4dd0ff,#9a4dff,#ff4dce,#ff4d4d);
+    box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 0 18px rgba(120,200,255,.18);
+    position:relative;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:8px;border-radius:50%;
+    background:var(--bg-2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+  .wordmark{font-weight:700;font-size:16px;letter-spacing:1px;color:#eef4f2}
+  .wordmark b{color:var(--grn)}
+  .tagline{font-size:9.5px;letter-spacing:3px;color:var(--txt-dim);margin-top:1px}
+  .topspace{flex:1}
+  .stat{
+    display:flex;flex-direction:column;align-items:flex-end;
+    padding:0 14px;border-left:1px solid var(--line);
+  }
+  .stat .v{color:var(--txt);font-size:13px}
+  .stat .v.on{color:var(--grn)}
+  .stat .k{font-size:9px;letter-spacing:1.5px;color:var(--txt-faint);text-transform:uppercase}
+  .pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 8px var(--grn);margin-right:6px;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* ---------- command palette ---------- */
+  .palette{
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line-2);
+    border-radius:12px;
+    box-shadow:0 24px 60px -24px rgba(0,0,0,.8), 0 0 0 1px rgba(90,242,160,.06), inset 0 1px 0 rgba(255,255,255,.03);
+    overflow:hidden;
+    margin-bottom:18px;
+  }
+  .prompt-row{
+    display:flex;align-items:center;gap:12px;
+    padding:16px 18px;border-bottom:1px solid var(--line);
+  }
+  .chev{color:var(--grn);font-weight:700;font-size:18px;text-shadow:0 0 10px rgba(90,242,160,.5)}
+  .prompt-input{flex:1;display:flex;align-items:center;font-size:16px}
+  .prompt-input .typed{color:#eef4f2}
+  .prompt-input .arg{color:var(--grn)}
+  .caret{display:inline-block;width:9px;height:19px;background:var(--grn);margin-left:3px;vertical-align:middle;box-shadow:0 0 8px var(--grn);animation:blink 1.1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .kbd{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:20px;height:20px;padding:0 6px;
+    background:var(--panel);border:1px solid var(--line-2);border-bottom-color:#0a0c0d;
+    border-radius:5px;color:var(--txt-dim);font-size:11px;
+  }
+  .kbd-group{display:flex;align-items:center;gap:6px;color:var(--txt-faint);font-size:11px}
+
+  .suggest{padding:6px 0}
+  .sg-label{padding:6px 18px 4px;font-size:9.5px;letter-spacing:2px;color:var(--txt-faint);text-transform:uppercase}
+  .sg{
+    display:flex;align-items:center;gap:14px;
+    padding:8px 18px;cursor:default;border-left:2px solid transparent;
+  }
+  .sg.active{background:rgba(90,242,160,.07);border-left-color:var(--grn)}
+  .sg .cmd{color:var(--grn-soft);min-width:210px}
+  .sg.active .cmd{color:var(--grn);text-shadow:0 0 8px rgba(90,242,160,.4)}
+  .sg .desc{color:var(--txt-dim);flex:1}
+  .sg .tag{font-size:10px;color:var(--txt-faint)}
+  .sg .ret{margin-left:auto;color:var(--txt-faint);font-size:11px}
+  .sg.active .ret{color:var(--grn-soft)}
+
+  /* ---------- global controls ---------- */
+  .globals{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-bottom:18px;padding:0 2px;
+  }
+  .gbtn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:9px 15px;border-radius:9px;
+    background:var(--panel);border:1px solid var(--line-2);
+    color:var(--txt);font-family:var(--mono);font-size:12.5px;cursor:pointer;
+    transition:.15s;
+  }
+  .gbtn:hover{border-color:var(--grn-dim);color:#eef4f2}
+  .gbtn .hk{color:var(--txt-faint);font-size:10px;border:1px solid var(--line-2);border-radius:4px;padding:1px 5px}
+  .gbtn.on{border-color:var(--grn-dim);background:rgba(90,242,160,.06)}
+  .gbtn.on .dot{color:var(--grn)}
+  .gbtn.danger:hover{border-color:#5a2630;color:#ffd0d4}
+  .gbtn.danger .dot{color:var(--red)}
+  .master{
+    margin-left:auto;display:flex;align-items:center;gap:12px;
+    padding:8px 16px;border-radius:9px;border:1px solid var(--line-2);background:var(--panel);
+  }
+  .master .lbl{font-size:10px;letter-spacing:1.5px;color:var(--txt-faint);text-transform:uppercase}
+  .mbar{width:170px;height:6px;border-radius:4px;background:#0a0c0d;border:1px solid var(--line);overflow:hidden;position:relative}
+  .mbar > i{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--grn-dim),var(--grn));box-shadow:0 0 10px rgba(90,242,160,.4)}
+  .master .pct{color:var(--grn);min-width:38px;text-align:right}
+
+  /* ---------- fleet table ---------- */
+  .panel-head{
+    display:flex;align-items:center;gap:10px;
+    padding:0 6px 9px;font-size:10px;letter-spacing:2px;color:var(--txt-faint);text-transform:uppercase;
+  }
+  .panel-head .ln{flex:1;height:1px;background:var(--line)}
+
+  .table{
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    background:var(--panel);
+  }
+  .thead,.row{
+    display:grid;
+    grid-template-columns: 26px 240px 130px 1.4fr 96px 120px 150px;
+    align-items:center;
+  }
+  .thead{
+    padding:10px 16px;border-bottom:1px solid var(--line);
+    font-size:9.5px;letter-spacing:1.5px;color:var(--txt-faint);text-transform:uppercase;
+    background:var(--bg-2);
+  }
+  .row{
+    padding:13px 16px;border-bottom:1px solid var(--line);
+    transition:background .15s;
+  }
+  .row:last-child{border-bottom:none}
+  .row:hover{background:rgba(255,255,255,.015)}
+  .row.sel{background:rgba(90,242,160,.05);box-shadow:inset 2px 0 0 var(--grn)}
+  .row.off{opacity:.5}
+  .row.off:hover{opacity:.62}
+
+  .c-state{display:flex;align-items:center}
+  .led{width:8px;height:8px;border-radius:50%}
+  .led.on{background:var(--grn);box-shadow:0 0 8px var(--grn)}
+  .led.off{background:#2a3236;border:1px solid var(--line-2)}
+
+  .c-name .nm{color:#eef4f2;font-size:13px}
+  .c-name .nm .sel-mark{color:var(--grn);margin-right:6px}
+  .c-name .sub{color:var(--txt-faint);font-size:10.5px;margin-top:2px}
+
+  .badge{
+    display:inline-block;font-size:9px;letter-spacing:.5px;padding:2px 7px;border-radius:5px;
+    border:1px solid var(--line-2);color:var(--txt-dim);background:var(--bg-2);
+  }
+  .badge.cct{color:#9fd6c4;border-color:#1d3a31}
+  .badge.day{color:#cdbb8a;border-color:#3a3320}
+  .badge.rgb{color:#d39ad6;border-color:#3a2240;background:linear-gradient(90deg,rgba(255,90,200,.06),rgba(120,160,255,.06))}
+  .badge.staged{color:var(--amber);border-color:#3a3320}
+
+  /* intensity bar (block chars) */
+  .c-int{font-variant-numeric:tabular-nums}
+  .blocks{letter-spacing:-1px;font-size:13px}
+  .blocks .fill{color:var(--grn)}
+  .blocks .empty{color:var(--line-2)}
+  .row.off .blocks .fill{color:var(--txt-faint)}
+  .int-pct{color:var(--txt);margin-left:8px;font-size:11.5px}
+  .row.off .int-pct{color:var(--txt-dim)}
+
+  .c-bright .b-val{color:var(--txt);font-size:12px}
+  .c-bright .b-sub{font-size:10px;color:var(--txt-faint)}
+
+  /* color/temp swatch */
+  .c-color{display:flex;align-items:center;gap:10px}
+  .swatch{width:24px;height:24px;border-radius:6px;border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 0 6px rgba(0,0,0,.4)}
+  .c-color .ctv{color:var(--txt);font-size:12px}
+  .c-color .ctv .u{color:var(--txt-faint)}
+  .c-color .none{color:var(--txt-faint)}
+
+  .c-act{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+  .mini{
+    font-size:10px;padding:3px 8px;border-radius:5px;border:1px solid var(--line-2);
+    color:var(--txt-dim);background:var(--bg-2);cursor:pointer;transition:.15s;
+  }
+  .mini:hover{border-color:var(--grn-dim);color:var(--grn)}
+  .mini.pend{color:var(--amber);border-color:#3a3320;cursor:default}
+  .mini.pend:hover{color:var(--amber);border-color:#3a3320}
+
+  /* ---------- scenes ---------- */
+  .scenes{margin-top:18px}
+  .scene-grid{
+    display:grid;grid-template-columns:repeat(8,1fr);gap:10px;
+  }
+  .scene{
+    border:1px solid var(--line-2);border-radius:10px;padding:12px 12px 11px;
+    background:var(--panel);cursor:pointer;position:relative;overflow:hidden;transition:.15s;
+  }
+  .scene:hover{border-color:var(--grn-dim);transform:translateY(-1px)}
+  .scene .sw{height:30px;border-radius:6px;margin-bottom:9px;border:1px solid rgba(255,255,255,.06)}
+  .scene .nm{font-size:11.5px;color:#eef4f2}
+  .scene .hk{font-size:9px;color:var(--txt-faint);margin-top:3px;letter-spacing:1px}
+
+  /* ---------- footer ---------- */
+  .footer{
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    margin-top:20px;padding:12px 4px 0;border-top:1px solid var(--line);
+    font-size:10.5px;color:var(--txt-faint);
+  }
+  .footer .hint{display:flex;align-items:center;gap:6px}
+  .footer .hint b{color:var(--txt-dim);font-weight:400}
+  .footer .right{margin-left:auto;color:var(--grn-dim)}
+
+  @media (max-width:900px){
+    body{font-size:12px;padding:12px}
+    .thead{display:none}
+    .row{grid-template-columns:1fr 1fr;gap:8px 12px;padding:14px}
+    .c-state{grid-column:1}
+    .c-name{grid-column:1 / span 2}
+    .c-int{grid-column:1}
+    .c-bright{display:none}
+    .c-proto{display:none}
+    .c-color{grid-column:2;justify-content:flex-end}
+    .c-act{grid-column:1 / span 2;justify-content:flex-start}
+    .scene-grid{grid-template-columns:repeat(4,1fr)}
+    .master{margin-left:0;width:100%;justify-content:space-between}
+    .mbar{flex:1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <div class="wordmark">Light<b>Deck</b></div>
+        <div class="tagline">ON-SET CONTROL</div>
+      </div>
+    </div>
+    <div class="topspace"></div>
+    <div class="stat"><span class="v on"><span class="pulse"></span>5 / 8</span><span class="k">fixtures live</span></div>
+    <div class="stat"><span class="v">BT 4.0</span><span class="k">link stable</span></div>
+    <div class="stat"><span class="v">72%</span><span class="k">master</span></div>
+  </div>
+
+  <!-- COMMAND PALETTE -->
+  <div class="palette">
+    <div class="prompt-row">
+      <span class="chev">&gt;</span>
+      <div class="prompt-input">
+        <span class="typed">key&nbsp;</span><span class="arg">90 4750k</span><span class="caret"></span>
+      </div>
+      <div class="kbd-group">
+        <span class="kbd">⌘</span><span class="kbd">K</span>
+        <span style="margin:0 4px;color:var(--txt-faint)">to focus</span>
+      </div>
+    </div>
+    <div class="suggest">
+      <div class="sg-label">Matches · "key"</div>
+      <div class="sg active">
+        <span class="cmd">key 90 4750k</span>
+        <span class="desc">Set <b style="color:var(--txt)">650B Pro · Key</b> → 90% intensity, 4750K</span>
+        <span class="tag">fixture · bi-color</span>
+        <span class="ret">⏎ run</span>
+      </div>
+      <div class="sg">
+        <span class="cmd">key off</span>
+        <span class="desc">Power down Key light</span>
+        <span class="tag">fixture</span>
+        <span class="ret">⏎</span>
+      </div>
+      <div class="sg">
+        <span class="cmd">key solo</span>
+        <span class="desc">Solo Key · blackout all others</span>
+        <span class="tag">scene</span>
+        <span class="ret">⏎</span>
+      </div>
+      <div class="sg-label">Quick actions</div>
+      <div class="sg">
+        <span class="cmd">blackout</span>
+        <span class="desc">Kill all output instantly · hold state</span>
+        <span class="tag">global</span>
+        <span class="ret">⏎</span>
+      </div>
+      <div class="sg">
+        <span class="cmd">scene cop-car</span>
+        <span class="desc">Apply Cop Car preset to RGB fixtures</span>
+        <span class="tag">rgb scene</span>
+        <span class="ret">⏎</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL CONTROLS -->
+  <div class="globals">
+    <button class="gbtn on"><span class="dot">●</span> All On <span class="hk">A</span></button>
+    <button class="gbtn"><span class="dot" style="color:var(--txt-faint)">○</span> All Off <span class="hk">O</span></button>
+    <button class="gbtn danger"><span class="dot">▢</span> Blackout <span class="hk">B</span></button>
+    <div class="master">
+      <span class="lbl">Master</span>
+      <div class="mbar"><i></i></div>
+      <span class="pct">72%</span>
+    </div>
+  </div>
+
+  <!-- FLEET TABLE -->
+  <div class="panel-head"><span>FLEET</span><span class="ln"></span><span>8 fixtures · 5 live · 3 staged</span></div>
+  <div class="table">
+    <div class="thead">
+      <div></div>
+      <div>Fixture</div>
+      <div>Type</div>
+      <div>Intensity</div>
+      <div>Bright</div>
+      <div>Color / CCT</div>
+      <div style="text-align:right">Actions</div>
+    </div>
+
+    <!-- 1 Key (selected) -->
+    <div class="row sel">
+      <div class="c-state"><span class="led on"></span></div>
+      <div class="c-name"><div class="nm"><span class="sel-mark">›</span>650B Pro · Key</div><div class="sub">GVM Pro 650B</div></div>
+      <div><span class="badge cct">BI-COLOR</span></div>
+      <div class="c-int"><span class="blocks"><span class="fill">█████████</span><span class="empty">█</span></span><span class="int-pct">90%</span></div>
+      <div class="c-bright"><div class="b-val">90%</div><div class="b-sub">▲ +5</div></div>
+      <div class="c-color"><span class="swatch" style="background:#fff4e8"></span><span class="ctv">4750<span class="u">K</span></span></div>
+      <div class="c-act"><button class="mini">edit</button><button class="mini">off</button></div>
+    </div>
+
+    <!-- 2 Fill -->
+    <div class="row">
+      <div class="c-state"><span class="led on"></span></div>
+      <div class="c-name"><div class="nm">650B Pro · Fill</div><div class="sub">GVM Pro 650B</div></div>
+      <div><span class="badge cct">BI-COLOR</span></div>
+      <div class="c-int"><span class="blocks"><span class="fill">██████</span><span class="empty">████</span></span><span class="int-pct">60%</span></div>
+      <div class="c-bright"><div class="b-val">60%</div><div class="b-sub">— hold</div></div>
+      <div class="c-color"><span class="swatch" style="background:#fff8ef"></span><span class="ctv">5200<span class="u">K</span></span></div>
+      <div class="c-act"><button class="mini">edit</button><button class="mini">off</button></div>
+    </div>
+
+    <!-- 3 Back -->
+    <div class="row">
+      <div class="c-state"><span class="led on"></span></div>
+      <div class="c-name"><div class="nm">300D · Back</div><div class="sub">GVM 300D</div></div>
+      <div><span class="badge day">DAYLIGHT 5600K</span></div>
+      <div class="c-int"><span class="blocks"><span class="fill">████</span><span class="empty">██████</span></span><span class="int-pct">45%</span></div>
+      <div class="c-bright"><div class="b-val">45%</div><div class="b-sub">fixed CCT</div></div>
+      <div class="c-color"><span class="swatch" style="background:#fbfcff"></span><span class="ctv">5600<span class="u">K</span></span></div>
+      <div class="c-act"><button class="mini">edit</button><button class="mini">off</button></div>
+    </div>
+
+    <!-- 4 Accent -->
+    <div class="row">
+      <div class="c-state"><span class="led on"></span></div>
+      <div class="c-name"><div class="nm">PR150 · Accent</div><div class="sub">GVM PR150</div></div>
+      <div><span class="badge cct">BI-COLOR</span></div>
+      <div class="c-int"><span class="blocks"><span class="fill">█████</span><span class="empty">█████</span></span><span class="int-pct">55%</span></div>
+      <div class="c-bright"><div class="b-val">55%</div><div class="b-sub">— hold</div></div>
+      <div class="c-color"><span class="swatch" style="background:#ffedd6"></span><span class="ctv">4200<span class="u">K</span></span></div>
+      <div class="c-act"><button class="mini">edit</button><button class="mini">off</button></div>
+    </div>
+
+    <!-- 5 FX -->
+    <div class="row">
+      <div class="c-state"><span class="led on"></span></div>
+      <div class="c-name"><div class="nm">PR150R · FX</div><div class="sub">GVM PR150R</div></div>
+      <div><span class="badge rgb">RGB · SCENES</span></div>
+      <div class="c-int"><span class="blocks"><span class="fill">████████</span><span class="empty">██</span></span><span class="int-pct">80%</span></div>
+      <div class="c-bright"><div class="b-val">80%</div><div class="b-sub">▲ +12</div></div>
+      <div class="c-color"><span class="swatch" style="background:hsl(275 85% 60%);box-shadow:0 0 12px hsl(275 85% 55% / .6)"></span><span class="ctv">HUE 275<span class="u">°</span></span></div>
+      <div class="c-act"><button class="mini">edit</button><button class="mini">off</button></div>
+    </div>
+
+    <!-- 6 Soft (off/staged) -->
+    <div class="row off">
+      <div class="c-state"><span class="led off"></span></div>
+      <div class="c-name"><div class="nm">LA600Bi · Soft</div><div class="sub">Godox LITEMONS</div></div>
+      <div><span class="badge cct">BI-COLOR</span></div>
+      <div class="c-int"><span class="blocks"><span class="empty">██████████</span></span><span class="int-pct">—</span></div>
+      <div class="c-bright"><div class="b-val">—</div><div class="b-sub">offline</div></div>
+      <div class="c-color"><span class="badge staged">PROTOCOL PENDING</span></div>
+      <div class="c-act"><button class="mini pend">staged</button></div>
+    </div>
+
+    <!-- 7 Tube L -->
+    <div class="row off">
+      <div class="c-state"><span class="led off"></span></div>
+      <div class="c-name"><div class="nm">K60 · Tube L</div><div class="sub">Viltrox K60</div></div>
+      <div><span class="badge rgb">RGB TUBE · SCENES</span></div>
+      <div class="c-int"><span class="blocks"><span class="empty">██████████</span></span><span class="int-pct">—</span></div>
+      <div class="c-bright"><div class="b-val">—</div><div class="b-sub">offline</div></div>
+      <div class="c-color"><span class="badge staged">PENDING</span></div>
+      <div class="c-act"><button class="mini pend">pending</button></div>
+    </div>
+
+    <!-- 8 Tube R -->
+    <div class="row off">
+      <div class="c-state"><span class="led off"></span></div>
+      <div class="c-name"><div class="nm">K60 · Tube R</div><div class="sub">Viltrox K60</div></div>
+      <div><span class="badge rgb">RGB TUBE · SCENES</span></div>
+      <div class="c-int"><span class="blocks"><span class="empty">██████████</span></span><span class="int-pct">—</span></div>
+      <div class="c-bright"><div class="b-val">—</div><div class="b-sub">offline</div></div>
+      <div class="c-color"><span class="badge staged">PENDING</span></div>
+      <div class="c-act"><button class="mini pend">pending</button></div>
+    </div>
+  </div>
+
+  <!-- SCENES -->
+  <div class="scenes">
+    <div class="panel-head"><span>RGB SCENES</span><span class="ln"></span><span>applies to PR150R · K60 ×2</span></div>
+    <div class="scene-grid">
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#0a1020,#cfe3ff,#5a78ff)"></div><div class="nm">Lightning</div><div class="hk">⌥1</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#ff2b3c,#13204a,#1f6bff)"></div><div class="nm">Cop Car</div><div class="hk">⌥2</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#ff8a2b,#ffcf6b,#7a3a10)"></div><div class="nm">Candle</div><div class="hk">⌥3</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#2b6bff,#9ad0ff,#c8e6ff)"></div><div class="nm">TV</div><div class="hk">⌥4</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#ffd96b,#5a4a1a,#ffe9a8)"></div><div class="nm">Bad Bulb</div><div class="hk">⌥5</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#ff4dce,#7a4dff,#4dd0ff)"></div><div class="nm">Party</div><div class="hk">⌥6</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#ff2bd0,#2bff8a,#2b6bff,#ffd92b)"></div><div class="nm">Disco</div><div class="hk">⌥7</div></div>
+      <div class="scene"><div class="sw" style="background:linear-gradient(120deg,#ffffff,#0a0c0d,#ffffff)"></div><div class="nm">Paparazzi</div><div class="hk">⌥8</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="hint"><span class="kbd">↑</span><span class="kbd">↓</span><b>navigate</b></span>
+    <span class="hint"><span class="kbd">⏎</span><b>run / toggle</b></span>
+    <span class="hint"><span class="kbd">⌘</span><span class="kbd">K</span><b>command palette</b></span>
+    <span class="hint"><span class="kbd">B</span><b>blackout</b></span>
+    <span class="hint"><span class="kbd">/</span><b>filter fleet</b></span>
+    <span class="right">● link ok · 5 live · last cmd 0.4s ago</span>
+  </div>
+
+</div>
+
+<script>
+  // Light flavor only — render is fully static without it.
+  (function(){
+    var input = document.querySelector('.prompt-input');
+    var sgs = Array.prototype.slice.call(document.querySelectorAll('.suggest .sg'));
+    var idx = 0;
+    document.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+        sgs[idx].classList.remove('active');
+        idx = e.key==='ArrowDown' ? (idx+1)%sgs.length : (idx-1+sgs.length)%sgs.length;
+        sgs[idx].classList.add('active');
+        e.preventDefault();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

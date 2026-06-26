@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightDeck — On-Set Control</title>
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --tile:rgba(28,28,32,0.55);
+    --tile-solid:#16161a;
+    --stroke:rgba(255,255,255,0.10);
+    --stroke-strong:rgba(255,255,255,0.16);
+    --txt:#f5f5f7;
+    --txt-2:rgba(235,235,245,0.62);
+    --txt-3:rgba(235,235,245,0.34);
+    --radius:26px;
+    --radius-sm:20px;
+    --blue:#0a84ff;
+    --green:#30d158;
+    --red:#ff453a;
+    --shadow:0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    padding:34px 28px 60px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* ambient backdrop glows for frosted-glass to read against */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(640px 460px at 16% 8%, rgba(255,176,80,0.16), transparent 60%),
+      radial-gradient(720px 520px at 86% 14%, rgba(80,150,255,0.16), transparent 62%),
+      radial-gradient(700px 560px at 72% 96%, rgba(180,90,255,0.14), transparent 60%),
+      radial-gradient(620px 520px at 8% 92%, rgba(40,210,160,0.10), transparent 62%);
+  }
+
+  .wrap{max-width:1400px;margin:0 auto;}
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;align-items:center;gap:18px;
+    margin-bottom:26px;padding:0 4px;
+  }
+  .logo{
+    width:46px;height:46px;border-radius:14px;flex:none;
+    background:conic-gradient(from 90deg,#ff453a,#ff9f0a,#ffd60a,#30d158,#0a84ff,#5e5ce6,#bf5af2,#ff453a);
+    box-shadow:0 6px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.18);
+    position:relative;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:13px;border-radius:50%;
+    background:#0a0a0c;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.10);
+  }
+  .brand h1{font-size:23px;font-weight:700;letter-spacing:-0.02em;line-height:1;}
+  .brand .tag{font-size:10px;font-weight:600;letter-spacing:0.26em;color:var(--txt-3);margin-top:6px;}
+  .hdr-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+  .conn{
+    display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:500;color:var(--txt-2);
+    background:var(--tile);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--stroke);border-radius:30px;padding:9px 16px;
+  }
+  .bt-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue);}
+  .clock{font-size:13px;font-weight:600;color:var(--txt-2);font-variant-numeric:tabular-nums;}
+
+  /* ---------- Bento grid ---------- */
+  .bento{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:118px;
+    gap:14px;
+  }
+  .tile{
+    background:var(--tile);
+    backdrop-filter:blur(34px) saturate(170%);
+    -webkit-backdrop-filter:blur(34px) saturate(170%);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    position:relative;overflow:hidden;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .tile:hover{transform:translateY(-2px);box-shadow:0 18px 50px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08);}
+
+  /* section label */
+  .section-label{
+    grid-column:1/-1;font-size:12px;font-weight:600;letter-spacing:0.14em;
+    color:var(--txt-3);text-transform:uppercase;padding:14px 6px 2px;
+  }
+  .section-label:first-child{padding-top:0;}
+
+  /* ---------- Brightness (vertical fill) tiles ---------- */
+  .light{
+    grid-row:span 3;grid-column:span 1;
+    cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;
+  }
+  .light .fill{
+    position:absolute;left:0;right:0;bottom:0;
+    /* height set inline via --lvl */
+    height:var(--lvl);
+    transition:height .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .light .fill::after{ /* subtle top highlight on fill edge */
+    content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,0.30);
+  }
+  .light .glass{
+    position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0));
+    pointer-events:none;
+  }
+  .light .l-top{position:relative;z-index:2;padding:16px 16px 0;}
+  .light .l-icon{
+    width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.12);margin-bottom:auto;
+    font-size:15px;
+  }
+  .light .l-bot{position:relative;z-index:2;padding:0 16px 16px;}
+  .light .l-name{font-size:14.5px;font-weight:650;letter-spacing:-0.01em;line-height:1.15;}
+  .light .l-model{font-size:11px;font-weight:500;color:var(--txt-2);margin-top:3px;}
+  .light .l-meta{
+    display:flex;align-items:baseline;gap:6px;margin-top:11px;
+  }
+  .light .l-pct{font-size:26px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+  .light .l-cct{font-size:12px;font-weight:600;color:var(--txt-2);margin-left:auto;
+    background:rgba(0,0,0,0.28);padding:4px 9px;border-radius:20px;backdrop-filter:blur(6px);}
+  .light .l-on{
+    position:absolute;top:16px;right:16px;z-index:2;
+    width:46px;height:27px;border-radius:16px;background:rgba(255,255,255,0.16);
+    display:flex;align-items:center;padding:2px;transition:background .2s;
+  }
+  .light .l-on .knob{width:23px;height:23px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,0.4);transition:transform .2s;}
+  .light.on .l-on{background:var(--green);}
+  .light.on .l-on .knob{transform:translateX(19px);}
+
+  /* OFF / pending staged look */
+  .light.off{opacity:0.5;cursor:default;}
+  .light.off .l-icon{opacity:0.7;}
+  .badge-pending{
+    display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:0.12em;
+    color:#ffd60a;background:rgba(255,214,10,0.14);border:1px solid rgba(255,214,10,0.30);
+    padding:3px 8px;border-radius:8px;margin-top:9px;text-transform:uppercase;
+  }
+  .badge-rgb{
+    display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:0.1em;
+    background:conic-gradient(from 0deg,#ff453a,#ffd60a,#30d158,#0a84ff,#bf5af2,#ff453a);
+    color:#fff;padding:3px 8px;border-radius:8px;margin-left:6px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.2);
+  }
+
+  /* ---------- Master tile (wide) ---------- */
+  .master{
+    grid-column:span 4;grid-row:span 2;
+    padding:22px 24px;display:flex;flex-direction:column;
+  }
+  .master .m-head{display:flex;align-items:center;gap:12px;margin-bottom:auto;}
+  .master .m-title{font-size:17px;font-weight:700;letter-spacing:-0.01em;}
+  .master .m-sub{font-size:12px;color:var(--txt-2);margin-top:2px;}
+  .master .m-icon{
+    width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.12);font-size:18px;
+  }
+  .master .m-pct{margin-left:auto;font-size:30px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+  .m-slider{
+    margin-top:18px;height:48px;border-radius:18px;position:relative;overflow:hidden;
+    background:rgba(255,255,255,0.07);border:1px solid var(--stroke);
+  }
+  .m-slider .m-fill{
+    position:absolute;left:0;top:0;bottom:0;width:72%;
+    background:linear-gradient(90deg,rgba(255,255,255,0.85),rgba(255,255,255,0.96));
+    border-radius:18px 0 0 18px;
+  }
+  .m-slider .m-fill::after{content:"";position:absolute;right:0;top:0;bottom:0;width:14px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4));}
+  .m-icon-in{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;color:#000;z-index:2;mix-blend-mode:difference;}
+
+  /* ---------- Global control tiles ---------- */
+  .glob{
+    grid-row:span 1;grid-column:span 1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+    cursor:pointer;text-align:center;
+  }
+  .glob .g-ico{font-size:19px;line-height:1;}
+  .glob .g-lbl{font-size:12.5px;font-weight:600;letter-spacing:-0.01em;}
+  .glob.allon .g-ico{color:var(--green);}
+  .glob.alloff .g-ico{color:var(--txt-2);}
+  .glob.blackout{background:rgba(255,69,58,0.12);border-color:rgba(255,69,58,0.30);}
+  .glob.blackout .g-ico,.glob.blackout .g-lbl{color:#ff6b61;}
+
+  /* ---------- Scenes tile (wide-ish) ---------- */
+  .scenes{
+    grid-column:span 2;grid-row:span 2;padding:18px;display:flex;flex-direction:column;
+  }
+  .scenes .s-head{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
+  .scenes .s-title{font-size:14px;font-weight:700;letter-spacing:-0.01em;}
+  .scenes .s-sub{font-size:11px;color:var(--txt-3);margin-left:auto;}
+  .scene-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex:1;}
+  .scene{
+    border-radius:14px;border:1px solid var(--stroke);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    font-size:10.5px;font-weight:600;color:var(--txt);cursor:pointer;padding:6px 2px;
+    background:rgba(255,255,255,0.04);transition:transform .15s;
+  }
+  .scene:hover{transform:scale(1.04);}
+  .scene .dot{width:18px;height:18px;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);}
+  .scene.sel{border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.10);box-shadow:0 0 0 1px rgba(255,255,255,0.18);}
+
+  footer{margin-top:30px;text-align:center;font-size:11px;color:var(--txt-3);letter-spacing:0.04em;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){
+    .bento{grid-template-columns:repeat(4,1fr);}
+    .master{grid-column:span 4;}
+    .scenes{grid-column:span 2;}
+  }
+  @media (max-width:680px){
+    body{padding:22px 14px 50px;}
+    .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:104px;gap:11px;}
+    .master{grid-column:span 2;}
+    .scenes{grid-column:span 2;}
+    .hdr-right .clock{display:none;}
+    .light .l-pct{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo"></div>
+    <div class="brand">
+      <h1>LightDeck</h1>
+      <div class="tag">ON-SET CONTROL</div>
+    </div>
+    <div class="hdr-right">
+      <div class="conn"><span class="bt-dot"></span>5 of 8 linked</div>
+      <div class="clock" id="clk">19:42</div>
+    </div>
+  </header>
+
+  <div class="bento">
+
+    <div class="section-label">Fixtures · 8</div>
+
+    <!-- 1. 650B Pro Key -->
+    <div class="tile light on" style="--lvl:90%;">
+      <div class="fill" style="background:linear-gradient(180deg,#fff7e6,#ffd98a);"></div>
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">🔆</div></div>
+      <div class="l-bot">
+        <div class="l-name" style="color:#2a1d05;">650B Pro · Key</div>
+        <div class="l-model" style="color:rgba(42,29,5,0.65);">GVM Pro 650B · Bi-Color</div>
+        <div class="l-meta">
+          <div class="l-pct" style="color:#2a1d05;">90<span style="font-size:15px;">%</span></div>
+          <div class="l-cct" style="color:#2a1d05;background:rgba(255,255,255,0.45);">4750K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 650B Pro Fill -->
+    <div class="tile light on" style="--lvl:60%;">
+      <div class="fill" style="background:linear-gradient(180deg,#eef4ff,#cfe0ff);"></div>
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">🔆</div></div>
+      <div class="l-bot">
+        <div class="l-name">650B Pro · Fill</div>
+        <div class="l-model">GVM Pro 650B · Bi-Color</div>
+        <div class="l-meta">
+          <div class="l-pct" style="color:#16223a;">60<span style="font-size:15px;">%</span></div>
+          <div class="l-cct" style="color:#16223a;background:rgba(255,255,255,0.45);">5200K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 300D Back (daylight fixed) -->
+    <div class="tile light on" style="--lvl:45%;">
+      <div class="fill" style="background:linear-gradient(180deg,#f3f8ff,#d6e6ff);"></div>
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">☀️</div></div>
+      <div class="l-bot">
+        <div class="l-name">300D · Back</div>
+        <div class="l-model">GVM 300D · Daylight</div>
+        <div class="l-meta">
+          <div class="l-pct">45<span style="font-size:15px;">%</span></div>
+          <div class="l-cct">5600K · fixed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PR150 Accent -->
+    <div class="tile light on" style="--lvl:55%;">
+      <div class="fill" style="background:linear-gradient(180deg,#fff3df,#ffe2b0);"></div>
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">💡</div></div>
+      <div class="l-bot">
+        <div class="l-name" style="color:#2a200d;">PR150 · Accent</div>
+        <div class="l-model" style="color:rgba(42,32,13,0.65);">GVM PR150 · Bi-Color</div>
+        <div class="l-meta">
+          <div class="l-pct" style="color:#2a200d;">55<span style="font-size:15px;">%</span></div>
+          <div class="l-cct" style="color:#2a200d;background:rgba(255,255,255,0.45);">4200K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. PR150R FX (RGB) -->
+    <div class="tile light on" style="--lvl:80%;">
+      <div class="fill" style="background:linear-gradient(180deg,#c98bff,#7a3dff);"></div>
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">🎨</div></div>
+      <div class="l-bot">
+        <div class="l-name">PR150R · FX</div>
+        <div class="l-model">GVM PR150R · RGB <span class="badge-rgb">RGB</span></div>
+        <div class="l-meta">
+          <div class="l-pct">80<span style="font-size:15px;">%</span></div>
+          <div class="l-cct" style="background:rgba(0,0,0,0.35);">Hue 275°</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. LA600Bi Soft (OFF / pending) -->
+    <div class="tile light off">
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">🟡</div></div>
+      <div class="l-bot">
+        <div class="l-name">LA600Bi · Soft</div>
+        <div class="l-model">Godox LITEMONS · Bi-Color</div>
+        <div class="badge-pending">Protocol pending</div>
+      </div>
+    </div>
+
+    <div class="section-label">Tubes · staged</div>
+
+    <!-- 7. K60 Tube L (OFF / pending) -->
+    <div class="tile light off" style="grid-column:span 1;grid-row:span 2;">
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">🟪</div></div>
+      <div class="l-bot">
+        <div class="l-name">K60 · Tube L</div>
+        <div class="l-model">Viltrox K60 · RGB Tube <span class="badge-rgb">RGB</span></div>
+        <div class="badge-pending">Pending link</div>
+      </div>
+    </div>
+
+    <!-- 8. K60 Tube R (OFF / pending) -->
+    <div class="tile light off" style="grid-column:span 1;grid-row:span 2;">
+      <div class="glass"></div>
+      <div class="l-on"><div class="knob"></div></div>
+      <div class="l-top"><div class="l-icon">🟪</div></div>
+      <div class="l-bot">
+        <div class="l-name">K60 · Tube R</div>
+        <div class="l-model">Viltrox K60 · RGB Tube <span class="badge-rgb">RGB</span></div>
+        <div class="badge-pending">Pending link</div>
+      </div>
+    </div>
+
+    <!-- RGB Scenes -->
+    <div class="tile scenes">
+      <div class="s-head">
+        <div class="l-icon" style="width:28px;height:28px;border-radius:9px;font-size:13px;">✨</div>
+        <div class="s-title">RGB Scenes</div>
+        <div class="s-sub">PR150R · K60</div>
+      </div>
+      <div class="scene-grid">
+        <div class="scene"><span class="dot" style="background:linear-gradient(135deg,#bcd0ff,#fff);"></span>Lightning</div>
+        <div class="scene"><span class="dot" style="background:linear-gradient(135deg,#ff3b30,#0a84ff);"></span>Cop Car</div>
+        <div class="scene"><span class="dot" style="background:linear-gradient(135deg,#ff9f0a,#ff6b00);"></span>Candle</div>
+        <div class="scene"><span class="dot" style="background:linear-gradient(135deg,#7ad0ff,#b07aff);"></span>TV</div>
+        <div class="scene sel"><span class="dot" style="background:linear-gradient(135deg,#fff3b0,#ffd000);"></span>Bad Bulb</div>
+        <div class="scene"><span class="dot" style="background:conic-gradient(#ff453a,#ffd60a,#30d158,#0a84ff,#bf5af2,#ff453a);"></span>Party</div>
+        <div class="scene"><span class="dot" style="background:linear-gradient(135deg,#ff2dce,#5e5ce6);"></span>Disco</div>
+        <div class="scene"><span class="dot" style="background:linear-gradient(135deg,#fff,#cfd6ff);"></span>Paparazzi</div>
+      </div>
+    </div>
+
+    <!-- Master + Globals row -->
+    <div class="section-label">Master &amp; Global</div>
+
+    <div class="tile master">
+      <div class="m-head">
+        <div class="m-icon">🎚️</div>
+        <div>
+          <div class="m-title">Master Brightness</div>
+          <div class="m-sub">Scales all active fixtures</div>
+        </div>
+        <div class="m-pct">72%</div>
+      </div>
+      <div class="m-slider">
+        <div class="m-fill"></div>
+        <div class="m-icon-in">🔆</div>
+      </div>
+    </div>
+
+    <div class="tile glob allon">
+      <div class="g-ico">⏻</div>
+      <div class="g-lbl">All On</div>
+    </div>
+    <div class="tile glob alloff">
+      <div class="g-ico">○</div>
+      <div class="g-lbl">All Off</div>
+    </div>
+    <div class="tile glob allon" style="grid-row:span 1;">
+      <div class="g-ico" style="color:#0a84ff;">🔗</div>
+      <div class="g-lbl">Re-scan BT</div>
+    </div>
+    <div class="tile glob blackout">
+      <div class="g-ico">⏾</div>
+      <div class="g-lbl">Blackout</div>
+    </div>
+
+  </div>
+
+  <footer>LightDeck · 5 fixtures live · 3 staged · Bluetooth LE · ON-SET CONTROL</footer>
+</div>
+
+<script>
+  // light flavor only — render must stand without it
+  (function(){
+    var c=document.getElementById('clk');
+    if(c){function t(){var d=new Date();c.textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}t();setInterval(t,10000);}
+    document.querySelectorAll('.scene').forEach(function(s){
+      s.addEventListener('click',function(){
+        document.querySelectorAll('.scene').forEach(function(x){x.classList.remove('sel');});
+        s.classList.add('sel');
+      });
+    });
+    document.querySelectorAll('.light:not(.off) .l-on').forEach(function(t){
+      t.addEventListener('click',function(e){e.stopPropagation();t.parentElement.classList.toggle('on');});
+    });
+  })();
+</script>
+</body>
+</html>

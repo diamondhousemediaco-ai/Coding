@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightDeck · ON-SET CONTROL</title>
+<style>
+  :root{
+    --bg:#070809;
+    --bg-2:#0c0e11;
+    --panel:#101317;
+    --panel-2:#13171c;
+    --line:#1c2128;
+    --line-2:#262d36;
+    --txt:#d7dde4;
+    --txt-dim:#7e8893;
+    --txt-faint:#525b65;
+    --green:#37d67a;
+    --green-dim:#1c7a47;
+    --amber:#f0a93b;
+    --amber-dim:#7a5418;
+    --cyan:#39c0d8;
+    --red:#ff5d5d;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1200px 600px at 78% -10%, rgba(40,55,70,.10), transparent 60%),
+      var(--bg);
+    color:var(--txt);
+    font-family:var(--sans);
+    font-size:13px;
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:.1px;
+  }
+  .mono{font-family:var(--mono)}
+  .app{
+    display:grid;
+    grid-template-columns:288px 1fr;
+    grid-template-rows:54px 1fr 30px;
+    grid-template-areas:
+      "brand topbar"
+      "sidebar main"
+      "sidebar statusbar";
+    height:100vh;
+    min-height:640px;
+  }
+
+  /* ---------- BRAND ---------- */
+  .brand{
+    grid-area:brand;
+    display:flex;align-items:center;gap:11px;
+    padding:0 18px;
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+    background:var(--bg-2);
+  }
+  .logo{
+    width:26px;height:26px;border-radius:50%;
+    background:conic-gradient(from 0deg,#ff3b3b,#ffb13b,#f5ff3b,#46ff7a,#3bd9ff,#7a4bff,#ff3bd0,#ff3b3b);
+    box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 14px rgba(120,140,255,.25);
+    position:relative;flex:none;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:7px;border-radius:50%;
+    background:var(--bg-2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+  .wordmark{line-height:1}
+  .wordmark b{font-size:16px;font-weight:700;letter-spacing:.4px}
+  .wordmark span{
+    display:block;font-family:var(--mono);font-size:9px;letter-spacing:3px;
+    color:var(--txt-faint);margin-top:3px;
+  }
+
+  /* ---------- TOPBAR (global controls) ---------- */
+  .topbar{
+    grid-area:topbar;
+    display:flex;align-items:center;gap:14px;
+    padding:0 18px;
+    border-bottom:1px solid var(--line);
+    background:var(--bg-2);
+  }
+  .sys{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--txt-dim)}
+  .sys .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .sys b{color:var(--txt);font-weight:600;letter-spacing:.5px}
+  .spacer{flex:1}
+
+  .master{
+    display:flex;align-items:center;gap:10px;
+    padding:6px 12px;border:1px solid var(--line-2);border-radius:7px;
+    background:var(--panel);
+  }
+  .master label{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;color:var(--txt-dim)}
+  .mtrack{
+    width:150px;height:6px;border-radius:4px;position:relative;
+    background:linear-gradient(90deg,#202830,#202830);
+    border:1px solid var(--line-2);
+  }
+  .mfill{position:absolute;inset:0;width:72%;border-radius:4px;
+    background:linear-gradient(90deg,#2a7d52,var(--green));box-shadow:0 0 10px rgba(55,214,122,.4)}
+  .mknob{position:absolute;top:50%;left:72%;transform:translate(-50%,-50%);
+    width:14px;height:14px;border-radius:50%;background:#e8eef4;
+    box-shadow:0 0 0 1px #000,0 2px 6px rgba(0,0,0,.6)}
+  .mval{font-family:var(--mono);font-size:12px;color:var(--txt);min-width:34px;text-align:right}
+
+  .gbtns{display:flex;gap:6px}
+  .btn{
+    font-family:var(--mono);font-size:10px;letter-spacing:1px;
+    padding:7px 12px;border-radius:6px;cursor:pointer;
+    background:var(--panel);border:1px solid var(--line-2);color:var(--txt-dim);
+    transition:.12s;
+  }
+  .btn:hover{border-color:#39424d;color:var(--txt)}
+  .btn.on{color:#bdf0d2;border-color:var(--green-dim);background:rgba(55,214,122,.06)}
+  .btn.off{color:#a9b3bd}
+  .btn.blackout{color:#ffc3c3;border-color:#5e2222;background:rgba(255,93,93,.05)}
+  .btn.blackout:hover{background:rgba(255,93,93,.12);border-color:var(--red)}
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    grid-area:sidebar;
+    border-right:1px solid var(--line);
+    background:var(--bg-2);
+    overflow:auto;
+    display:flex;flex-direction:column;
+  }
+  .side-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 16px 8px;
+    font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--txt-faint);
+  }
+  .side-head .count{color:var(--txt-dim)}
+  .flist{padding:0 8px}
+  .frow{
+    display:grid;grid-template-columns:14px 1fr auto;align-items:center;gap:9px;
+    padding:9px 10px;border-radius:7px;cursor:pointer;
+    border:1px solid transparent;margin-bottom:2px;
+  }
+  .frow:hover{background:var(--panel)}
+  .frow.active{background:var(--panel-2);border-color:var(--line-2)}
+  .frow.staged{opacity:.55}
+  .sdot{width:8px;height:8px;border-radius:50%;justify-self:center}
+  .sdot.link{background:var(--green);box-shadow:0 0 7px var(--green)}
+  .sdot.stage{background:var(--amber);box-shadow:0 0 7px var(--amber)}
+  .frow .nm{min-width:0}
+  .frow .nm b{display:block;font-size:12px;font-weight:600;color:var(--txt);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .frow .nm span{font-family:var(--mono);font-size:9px;color:var(--txt-faint);letter-spacing:.4px}
+  .frow .rd{font-family:var(--mono);font-size:10px;color:var(--txt-dim);text-align:right;white-space:nowrap}
+  .frow.staged .rd{color:var(--amber)}
+
+  .side-foot{margin-top:auto;padding:12px 16px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:9px;color:var(--txt-faint);letter-spacing:.6px;line-height:1.7}
+  .side-foot .ln{display:flex;justify-content:space-between}
+  .side-foot b{color:var(--txt-dim);font-weight:500}
+
+  /* ---------- MAIN ---------- */
+  .main{grid-area:main;overflow:auto;padding:16px 18px 22px;}
+  .main-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+  .main-head h1{font-size:13px;font-weight:600;letter-spacing:.4px}
+  .main-head .sub{font-family:var(--mono);font-size:10px;color:var(--txt-faint);letter-spacing:1px}
+  .legend{margin-left:auto;display:flex;gap:16px;font-family:var(--mono);font-size:9px;
+    letter-spacing:1px;color:var(--txt-dim)}
+  .legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  .legend .l1{background:var(--green);box-shadow:0 0 6px var(--green)}
+  .legend .l2{background:var(--amber);box-shadow:0 0 6px var(--amber)}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+
+  /* ---------- TILE ---------- */
+  .tile{
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:12px 12px 11px;
+    position:relative;
+    overflow:hidden;
+  }
+  .tile::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:var(--green-dim)}
+  .tile.staged{opacity:.62}
+  .tile.staged::before{background:var(--amber-dim)}
+  .tile.staged{border-style:dashed}
+
+  .t-head{display:flex;align-items:flex-start;gap:8px;margin-bottom:11px}
+  .t-led{width:9px;height:9px;border-radius:50%;margin-top:3px;flex:none}
+  .t-led.link{background:var(--green);box-shadow:0 0 8px var(--green)}
+  .t-led.stage{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .t-id{min-width:0;flex:1}
+  .t-id b{display:block;font-size:13px;font-weight:600;letter-spacing:.2px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t-id span{font-family:var(--mono);font-size:9px;color:var(--txt-faint);letter-spacing:.5px}
+  .t-pw{font-family:var(--mono);font-size:9px;letter-spacing:1px;padding:2px 6px;border-radius:4px;
+    border:1px solid var(--green-dim);color:#9fe7bf;background:rgba(55,214,122,.06)}
+  .t-pw.off{border-color:var(--line-2);color:var(--txt-faint);background:transparent}
+
+  /* readout rows */
+  .ro{margin-bottom:9px}
+  .ro-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .ro-lab{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;color:var(--txt-dim)}
+  .ro-val{font-family:var(--mono);font-size:13px;color:var(--txt);font-weight:500}
+  .ro-val.dim{color:var(--txt-faint)}
+  .bar{height:6px;border-radius:3px;background:#181d23;border:1px solid var(--line-2);position:relative;overflow:hidden}
+  .bar i{position:absolute;inset:0;border-radius:3px}
+  .bar .int{background:linear-gradient(90deg,#caa23a,#f3e07a);box-shadow:0 0 8px rgba(243,224,122,.35)}
+  /* CCT gradient track with marker */
+  .cct{height:7px;border-radius:3px;position:relative;border:1px solid var(--line-2);
+    background:linear-gradient(90deg,#ff9b3d 0%,#ffd9a0 30%,#ffffff 55%,#cfe2ff 78%,#7fb0ff 100%)}
+  .cct .mk{position:absolute;top:-3px;width:3px;height:13px;background:#0b0d10;
+    box-shadow:0 0 0 1px #fff,0 0 6px rgba(255,255,255,.5);border-radius:2px;transform:translateX(-50%)}
+  /* hue track */
+  .hue{height:7px;border-radius:3px;border:1px solid var(--line-2);position:relative;
+    background:linear-gradient(90deg,#ff0040,#ff8a00,#f5e600,#37d67a,#22c3ff,#7a4bff,#ff3bd0,#ff0040)}
+  .hue .mk{position:absolute;top:-3px;width:3px;height:13px;background:#0b0d10;
+    box-shadow:0 0 0 1px #fff;border-radius:2px;transform:translateX(-50%)}
+
+  /* signal + sparkline footer */
+  .t-foot{display:flex;align-items:center;justify-content:space-between;
+    margin-top:11px;padding-top:9px;border-top:1px solid var(--line)}
+  .sig{display:flex;align-items:flex-end;gap:2px;height:13px}
+  .sig b{width:3px;border-radius:1px;background:var(--green);display:block}
+  .sig.stage b{background:var(--amber)}
+  .sig.weak b:nth-child(n+4){background:#2a323b}
+  .meta{font-family:var(--mono);font-size:9px;color:var(--txt-faint);letter-spacing:.5px;display:flex;gap:8px}
+  .meta .ok{color:var(--green)}
+  .meta .wait{color:var(--amber)}
+
+  /* sparkline svg */
+  .spark{display:block}
+  .spark path{fill:none;stroke:var(--cyan);stroke-width:1.4;opacity:.85}
+  .spark.amber path{stroke:var(--amber)}
+  .spark .area{fill:url(#sg);stroke:none;opacity:.18}
+
+  /* RGB scene chips for FX tile (spans wider) */
+  .scene-tile{grid-column:span 2}
+  .scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:4px}
+  .scene{font-family:var(--mono);font-size:9px;letter-spacing:.5px;text-align:center;
+    padding:6px 4px;border-radius:5px;border:1px solid var(--line-2);color:var(--txt-dim);
+    background:#13171c;cursor:pointer;transition:.12s}
+  .scene:hover{border-color:#39424d;color:var(--txt)}
+  .scene.act{color:#dfe9ff;border-color:#3a4b7a;background:rgba(90,120,255,.12);
+    box-shadow:0 0 12px rgba(90,120,255,.18)}
+
+  /* ---------- STATUS BAR ---------- */
+  .statusbar{
+    grid-area:statusbar;
+    border-top:1px solid var(--line);
+    background:var(--bg-2);
+    display:flex;align-items:center;gap:18px;
+    padding:0 16px;
+    font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--txt-faint);
+  }
+  .statusbar .seg{display:flex;align-items:center;gap:6px}
+  .statusbar b{color:var(--txt-dim);font-weight:500}
+  .statusbar .ok{color:var(--green)}
+  .statusbar .am{color:var(--amber)}
+  .statusbar .right{margin-left:auto;display:flex;gap:18px}
+
+  @media (max-width:1100px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .scene-tile{grid-column:span 2}
+  }
+  @media (max-width:760px){
+    .app{grid-template-columns:1fr;grid-template-rows:auto auto auto auto auto;
+      grid-template-areas:"brand" "topbar" "sidebar" "main" "statusbar";height:auto}
+    .sidebar{border-right:none;border-bottom:1px solid var(--line);max-height:none}
+    .topbar{flex-wrap:wrap;height:auto;padding:10px 14px;gap:10px}
+    .mtrack{width:110px}
+    .grid{grid-template-columns:1fr}
+    .scene-tile{grid-column:span 1}
+    .brand,.topbar{border-right:none}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- BRAND -->
+  <header class="brand">
+    <div class="logo"></div>
+    <div class="wordmark"><b>LightDeck</b><span>ON-SET CONTROL</span></div>
+  </header>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="sys"><span class="dot"></span><b>BLE HUB</b> · 5 LINKED · 3 STAGED</div>
+    <div class="spacer"></div>
+    <div class="master">
+      <label>MASTER</label>
+      <div class="mtrack"><div class="mfill"></div><div class="mknob"></div></div>
+      <div class="mval">72%</div>
+    </div>
+    <div class="gbtns">
+      <button class="btn on">ALL ON</button>
+      <button class="btn off">ALL OFF</button>
+      <button class="btn blackout">BLACKOUT</button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="side-head"><span>FIXTURE FLEET</span><span class="count">8 NODES</span></div>
+    <nav class="flist">
+      <div class="frow active"><span class="sdot link"></span><div class="nm"><b>650B Pro · Key</b><span>GVM PRO 650B</span></div><div class="rd">90% · 4750K</div></div>
+      <div class="frow"><span class="sdot link"></span><div class="nm"><b>650B Pro · Fill</b><span>GVM PRO 650B</span></div><div class="rd">60% · 5200K</div></div>
+      <div class="frow"><span class="sdot link"></span><div class="nm"><b>300D · Back</b><span>GVM 300D · 5600K</span></div><div class="rd">45%</div></div>
+      <div class="frow"><span class="sdot link"></span><div class="nm"><b>PR150 · Accent</b><span>GVM PR150</span></div><div class="rd">55% · 4200K</div></div>
+      <div class="frow"><span class="sdot link"></span><div class="nm"><b>PR150R · FX</b><span>GVM PR150R · RGB</span></div><div class="rd">80% · H275°</div></div>
+      <div class="frow staged"><span class="sdot stage"></span><div class="nm"><b>LA600Bi · Soft</b><span>GODOX LITEMONS</span></div><div class="rd">STAGED</div></div>
+      <div class="frow staged"><span class="sdot stage"></span><div class="nm"><b>K60 · Tube L</b><span>VILTROX K60 · RGB</span></div><div class="rd">PENDING</div></div>
+      <div class="frow staged"><span class="sdot stage"></span><div class="nm"><b>K60 · Tube R</b><span>VILTROX K60 · RGB</span></div><div class="rd">PENDING</div></div>
+    </nav>
+    <div class="side-foot">
+      <div class="ln"><span>HUB</span><b>LD-HUB / v2.4.1</b></div>
+      <div class="ln"><span>UPLINK</span><b>BLE 5.2 · -58dBm</b></div>
+      <div class="ln"><span>SESSION</span><b>STAGE A · 02:41:17</b></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-head">
+      <h1>Instrument Telemetry</h1>
+      <span class="sub">/ STAGE A · 8 FIXTURES · POLL 4Hz</span>
+      <div class="legend">
+        <span><i class="l1"></i>LINKED</span>
+        <span><i class="l2"></i>STAGED</span>
+      </div>
+    </div>
+
+    <!-- shared SVG defs for sparkline area -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#39c0d8"/><stop offset="1" stop-color="#39c0d8" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="grid">
+
+      <!-- TILE 1 -->
+      <div class="tile">
+        <div class="t-head">
+          <span class="t-led link"></span>
+          <div class="t-id"><b>650B Pro · Key</b><span>GVM PRO 650B · BI 2700–6800K</span></div>
+          <span class="t-pw">ON</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val">90%</span></div>
+          <div class="bar"><i class="int" style="width:90%"></i></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">CCT</span><span class="ro-val">4750K</span></div>
+          <div class="cct"><span class="mk" style="left:50%"></span></div></div>
+        <div class="t-foot">
+          <div class="sig"><b style="height:5px"></b><b style="height:7px"></b><b style="height:9px"></b><b style="height:11px"></b><b style="height:13px"></b></div>
+          <svg class="spark" width="58" height="16" viewBox="0 0 58 16"><path class="area" d="M0,11 6,9 12,10 18,6 24,7 30,4 36,6 42,3 48,5 54,4 58,5 V16 H0 Z"/><path d="M0,11 6,9 12,10 18,6 24,7 30,4 36,6 42,3 48,5 54,4 58,5"/></svg>
+          <div class="meta"><span class="ok">LINK</span><span>-54dB</span></div>
+        </div>
+      </div>
+
+      <!-- TILE 2 -->
+      <div class="tile">
+        <div class="t-head">
+          <span class="t-led link"></span>
+          <div class="t-id"><b>650B Pro · Fill</b><span>GVM PRO 650B · BI 2700–6800K</span></div>
+          <span class="t-pw">ON</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val">60%</span></div>
+          <div class="bar"><i class="int" style="width:60%"></i></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">CCT</span><span class="ro-val">5200K</span></div>
+          <div class="cct"><span class="mk" style="left:61%"></span></div></div>
+        <div class="t-foot">
+          <div class="sig"><b style="height:5px"></b><b style="height:7px"></b><b style="height:9px"></b><b style="height:11px"></b><b style="height:13px"></b></div>
+          <svg class="spark" width="58" height="16" viewBox="0 0 58 16"><path class="area" d="M0,8 6,9 12,7 18,8 24,7 30,9 36,8 42,6 48,8 54,7 58,7 V16 H0 Z"/><path d="M0,8 6,9 12,7 18,8 24,7 30,9 36,8 42,6 48,8 54,7 58,7"/></svg>
+          <div class="meta"><span class="ok">LINK</span><span>-57dB</span></div>
+        </div>
+      </div>
+
+      <!-- TILE 3 -->
+      <div class="tile">
+        <div class="t-head">
+          <span class="t-led link"></span>
+          <div class="t-id"><b>300D · Back</b><span>GVM 300D · DAYLIGHT 5600K</span></div>
+          <span class="t-pw">ON</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val">45%</span></div>
+          <div class="bar"><i class="int" style="width:45%"></i></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">CCT</span><span class="ro-val dim">5600K · FIXED</span></div>
+          <div class="cct" style="opacity:.45"><span class="mk" style="left:78%"></span></div></div>
+        <div class="t-foot">
+          <div class="sig"><b style="height:5px"></b><b style="height:7px"></b><b style="height:9px"></b><b style="height:11px"></b><b style="height:13px"></b></div>
+          <svg class="spark" width="58" height="16" viewBox="0 0 58 16"><path class="area" d="M0,10 6,10 12,9 18,10 24,11 30,10 36,9 42,10 48,9 54,10 58,9 V16 H0 Z"/><path d="M0,10 6,10 12,9 18,10 24,11 30,10 36,9 42,10 48,9 54,10 58,9"/></svg>
+          <div class="meta"><span class="ok">LINK</span><span>-49dB</span></div>
+        </div>
+      </div>
+
+      <!-- TILE 4 -->
+      <div class="tile">
+        <div class="t-head">
+          <span class="t-led link"></span>
+          <div class="t-id"><b>PR150 · Accent</b><span>GVM PR150 · BI-COLOR</span></div>
+          <span class="t-pw">ON</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val">55%</span></div>
+          <div class="bar"><i class="int" style="width:55%"></i></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">CCT</span><span class="ro-val">4200K</span></div>
+          <div class="cct"><span class="mk" style="left:38%"></span></div></div>
+        <div class="t-foot">
+          <div class="sig weak"><b style="height:5px"></b><b style="height:7px"></b><b style="height:9px"></b><b style="height:11px"></b><b style="height:13px"></b></div>
+          <svg class="spark" width="58" height="16" viewBox="0 0 58 16"><path class="area" d="M0,7 6,8 12,6 18,9 24,7 30,8 36,10 42,8 48,9 54,8 58,9 V16 H0 Z"/><path d="M0,7 6,8 12,6 18,9 24,7 30,8 36,10 42,8 48,9 54,8 58,9"/></svg>
+          <div class="meta"><span class="ok">LINK</span><span>-66dB</span></div>
+        </div>
+      </div>
+
+      <!-- TILE 5 — PR150R FX with RGB + scenes (wide) -->
+      <div class="tile scene-tile">
+        <div class="t-head">
+          <span class="t-led link"></span>
+          <div class="t-id"><b>PR150R · FX</b><span>GVM PR150R · BI + RGB + SCENES</span></div>
+          <span class="t-pw">ON</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start">
+          <div>
+            <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val">80%</span></div>
+              <div class="bar"><i class="int" style="width:80%"></i></div></div>
+            <div class="ro"><div class="ro-top"><span class="ro-lab">HUE</span><span class="ro-val">275°</span></div>
+              <div class="hue"><span class="mk" style="left:76%"></span></div></div>
+            <div class="t-foot" style="border-top:none;padding-top:6px">
+              <div class="sig"><b style="height:5px"></b><b style="height:7px"></b><b style="height:9px"></b><b style="height:11px"></b><b style="height:13px"></b></div>
+              <svg class="spark" width="58" height="16" viewBox="0 0 58 16"><path class="area" d="M0,9 6,5 12,10 18,4 24,8 30,3 36,9 42,5 48,7 54,4 58,8 V16 H0 Z"/><path d="M0,9 6,5 12,10 18,4 24,8 30,3 36,9 42,5 48,7 54,4 58,8"/></svg>
+              <div class="meta"><span class="ok">LINK</span><span>-52dB</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ro-top" style="margin-bottom:6px"><span class="ro-lab">RGB SCENE</span><span class="ro-val" style="font-size:11px;color:#dfe9ff">DISCO</span></div>
+            <div class="scenes">
+              <div class="scene">LGHTNG</div>
+              <div class="scene">COP CAR</div>
+              <div class="scene">CANDLE</div>
+              <div class="scene">TV</div>
+              <div class="scene">BAD BLB</div>
+              <div class="scene">PARTY</div>
+              <div class="scene act">DISCO</div>
+              <div class="scene">PAPARZ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TILE 6 — LA600Bi staged -->
+      <div class="tile staged">
+        <div class="t-head">
+          <span class="t-led stage"></span>
+          <div class="t-id"><b>LA600Bi · Soft</b><span>GODOX LITEMONS · BI-COLOR</span></div>
+          <span class="t-pw off">OFF</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val dim">— —</span></div>
+          <div class="bar"></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">CCT</span><span class="ro-val dim">— —</span></div>
+          <div class="cct" style="opacity:.3"></div></div>
+        <div class="t-foot">
+          <div class="sig stage"><b style="height:5px"></b><b style="height:7px"></b><b style="height:9px;background:#2a323b"></b><b style="height:11px;background:#2a323b"></b><b style="height:13px;background:#2a323b"></b></div>
+          <div class="meta"><span class="wait">STAGED</span><span>PROTOCOL PENDING</span></div>
+        </div>
+      </div>
+
+      <!-- TILE 7 — K60 L staged -->
+      <div class="tile staged">
+        <div class="t-head">
+          <span class="t-led stage"></span>
+          <div class="t-id"><b>K60 · Tube L</b><span>VILTROX K60 · RGB TUBE</span></div>
+          <span class="t-pw off">OFF</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val dim">— —</span></div>
+          <div class="bar"></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">HUE</span><span class="ro-val dim">— —</span></div>
+          <div class="hue" style="opacity:.28"></div></div>
+        <div class="t-foot">
+          <div class="sig stage"><b style="height:5px"></b><b style="height:7px;background:#2a323b"></b><b style="height:9px;background:#2a323b"></b><b style="height:11px;background:#2a323b"></b><b style="height:13px;background:#2a323b"></b></div>
+          <div class="meta"><span class="wait">PENDING</span><span>NO UPLINK</span></div>
+        </div>
+      </div>
+
+      <!-- TILE 8 — K60 R staged -->
+      <div class="tile staged">
+        <div class="t-head">
+          <span class="t-led stage"></span>
+          <div class="t-id"><b>K60 · Tube R</b><span>VILTROX K60 · RGB TUBE</span></div>
+          <span class="t-pw off">OFF</span>
+        </div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">INT</span><span class="ro-val dim">— —</span></div>
+          <div class="bar"></div></div>
+        <div class="ro"><div class="ro-top"><span class="ro-lab">HUE</span><span class="ro-val dim">— —</span></div>
+          <div class="hue" style="opacity:.28"></div></div>
+        <div class="t-foot">
+          <div class="sig stage"><b style="height:5px"></b><b style="height:7px;background:#2a323b"></b><b style="height:9px;background:#2a323b"></b><b style="height:11px;background:#2a323b"></b><b style="height:13px;background:#2a323b"></b></div>
+          <div class="meta"><span class="wait">PENDING</span><span>NO UPLINK</span></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- STATUS BAR -->
+  <footer class="statusbar">
+    <div class="seg"><span class="ok">●</span> <b>SYS</b> NOMINAL</div>
+    <div class="seg"><b>LINKED</b> <span class="ok">5/8</span></div>
+    <div class="seg"><b>STAGED</b> <span class="am">3</span></div>
+    <div class="seg"><b>MASTER</b> 72%</div>
+    <div class="seg"><b>POLL</b> 4Hz</div>
+    <div class="right">
+      <span><b>LAT</b> 38ms</span>
+      <span><b>HUB</b> -58dBm</span>
+      <span class="mono">2026-06-26 · STAGE A</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// flavor only — page is complete as static render
+document.querySelectorAll('.frow').forEach(r=>r.addEventListener('click',()=>{
+  document.querySelectorAll('.frow').forEach(x=>x.classList.remove('active'));
+  r.classList.add('active');
+}));
+document.querySelectorAll('.scene-tile .scene').forEach(s=>s.addEventListener('click',()=>{
+  document.querySelectorAll('.scene-tile .scene').forEach(x=>x.classList.remove('act'));
+  s.classList.add('act');
+}));
+</script>
+</body>
+</html>

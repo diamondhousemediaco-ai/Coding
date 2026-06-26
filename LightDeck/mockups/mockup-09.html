@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightDeck · ON-SET CONTROL</title>
+<style>
+  :root{
+    --bg:#05060a;
+    --ink:#eef1f8;
+    --muted:#8b90a3;
+    --faint:#5b6075;
+    --line:rgba(255,255,255,.08);
+    --card:rgba(20,22,32,.42);
+    --card-hi:rgba(36,40,56,.55);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+    letter-spacing:.2px;
+  }
+
+  /* ---------- AURORA BLOOM BACKGROUND ---------- */
+  .stage{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+    pointer-events:none;
+    filter:saturate(1.15);
+  }
+  .bloom{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.8;
+    mix-blend-mode:screen;
+    will-change:transform;
+  }
+  /* each bloom tinted + placed to evoke a fixture */
+  .b-key{   /* warm key 4750K */
+    width:780px;height:780px;left:-160px;top:-180px;
+    background:radial-gradient(circle at 50% 50%, rgba(255,196,128,.95), rgba(255,150,70,.35) 45%, transparent 70%);
+    animation:drift1 26s ease-in-out infinite alternate;
+  }
+  .b-fill{  /* cooler fill 5200K */
+    width:680px;height:680px;right:-140px;top:-120px;
+    background:radial-gradient(circle at 50% 50%, rgba(150,200,255,.85), rgba(90,150,255,.3) 45%, transparent 70%);
+    animation:drift2 31s ease-in-out infinite alternate;
+  }
+  .b-back{  /* daylight back */
+    width:560px;height:560px;left:42%;top:38%;
+    background:radial-gradient(circle at 50% 50%, rgba(210,225,255,.55), rgba(140,170,230,.2) 45%, transparent 70%);
+    animation:drift3 38s ease-in-out infinite alternate;
+  }
+  .b-accent{ /* accent warm 4200K */
+    width:520px;height:520px;left:8%;bottom:-180px;
+    background:radial-gradient(circle at 50% 50%, rgba(255,170,110,.7), rgba(255,120,60,.22) 45%, transparent 70%);
+    animation:drift2 29s ease-in-out infinite alternate;
+  }
+  .b-fx{    /* magenta RGB FX hue275 */
+    width:720px;height:720px;right:-120px;bottom:-220px;
+    background:radial-gradient(circle at 50% 50%, rgba(200,110,255,.85), rgba(150,60,230,.32) 45%, transparent 70%);
+    animation:drift1 34s ease-in-out infinite alternate;
+  }
+  .b-cyan{
+    width:420px;height:420px;right:30%;top:46%;
+    background:radial-gradient(circle at 50% 50%, rgba(110,235,225,.5), rgba(60,180,210,.18) 45%, transparent 70%);
+    animation:drift3 27s ease-in-out infinite alternate;
+  }
+  /* grain / vignette overlays */
+  .vignette{
+    position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 120% at 50% 40%, transparent 40%, rgba(0,0,0,.55) 100%);
+  }
+  .grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes drift1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(60px,40px) scale(1.12);}}
+  @keyframes drift2{0%{transform:translate(0,0) scale(1.05);}100%{transform:translate(-50px,50px) scale(.95);}}
+  @keyframes drift3{0%{transform:translate(0,0) scale(.95);}100%{transform:translate(40px,-40px) scale(1.1);}}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{
+    position:relative;
+    z-index:2;
+    max-width:1400px;
+    margin:0 auto;
+    padding:34px 40px 80px;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:30px;
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{
+    width:38px;height:38px;border-radius:11px;
+    background:conic-gradient(from 0deg,#ff5e7e,#ffb13d,#fff05e,#5eff9c,#3dc6ff,#8a5eff,#ff5ee0,#ff5e7e);
+    box-shadow:0 0 24px rgba(255,140,200,.45), inset 0 0 12px rgba(0,0,0,.4);
+    position:relative;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:8px;border-radius:6px;
+    background:rgba(8,9,14,.78);backdrop-filter:blur(2px);
+  }
+  .wordmark{line-height:1;}
+  .wordmark .name{font-size:20px;font-weight:700;letter-spacing:.5px;}
+  .wordmark .tag{font-size:10px;letter-spacing:3.5px;color:var(--muted);margin-top:5px;font-weight:600;}
+
+  .status-strip{display:flex;align-items:center;gap:22px;}
+  .stat{display:flex;flex-direction:column;align-items:flex-end;line-height:1;}
+  .stat .v{font-size:15px;font-weight:600;}
+  .stat .v .on{color:#7df0a8;}
+  .stat .l{font-size:9.5px;letter-spacing:2px;color:var(--faint);margin-top:6px;text-transform:uppercase;}
+  .bt{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);
+    padding:7px 12px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.03);}
+  .bt .dot{width:7px;height:7px;border-radius:50%;background:#5ad1ff;box-shadow:0 0 8px #5ad1ff;}
+
+  /* ---------- GLOBAL CONTROL BAR ---------- */
+  .global{
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    padding:18px 22px;margin-bottom:34px;
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--card);
+    backdrop-filter:blur(26px) saturate(1.2);
+    -webkit-backdrop-filter:blur(26px) saturate(1.2);
+    box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .gbtns{display:flex;gap:10px;}
+  .gbtn{
+    font:inherit;font-size:12px;font-weight:600;letter-spacing:.5px;
+    color:var(--ink);cursor:pointer;
+    padding:11px 18px;border-radius:11px;
+    border:1px solid var(--line);background:rgba(255,255,255,.04);
+    transition:.18s;
+  }
+  .gbtn:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);}
+  .gbtn.on{color:#aef5c8;border-color:rgba(120,240,168,.3);background:rgba(120,240,168,.08);}
+  .gbtn.off{color:#9aa0b4;}
+  .gbtn.black{
+    color:#ffd2d2;border-color:rgba(255,90,90,.32);background:rgba(255,60,60,.09);
+  }
+  .gbtn.black:hover{background:rgba(255,60,60,.16);}
+  .spacer{flex:1;}
+  .master{display:flex;align-items:center;gap:14px;min-width:300px;}
+  .master .mlabel{font-size:10px;letter-spacing:2px;color:var(--faint);text-transform:uppercase;}
+  .mtrack{
+    position:relative;flex:1;height:8px;border-radius:8px;
+    background:rgba(255,255,255,.08);overflow:hidden;
+  }
+  .mfill{
+    position:absolute;left:0;top:0;bottom:0;width:72%;
+    background:linear-gradient(90deg,#ffcaa0,#fff0c2);
+    box-shadow:0 0 14px rgba(255,220,160,.55);
+  }
+  .mknob{
+    position:absolute;top:50%;left:72%;transform:translate(-50%,-50%);
+    width:18px;height:18px;border-radius:50%;background:#fff7ea;
+    box-shadow:0 0 12px rgba(255,230,190,.8),0 2px 6px rgba(0,0,0,.5);
+  }
+  .mval{font-size:14px;font-weight:700;width:42px;text-align:right;}
+
+  /* ---------- SECTION LABEL ---------- */
+  .seclabel{
+    display:flex;align-items:center;gap:14px;
+    font-size:10.5px;letter-spacing:3px;color:var(--faint);
+    text-transform:uppercase;margin:0 4px 16px;font-weight:600;
+  }
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  /* ---------- FIXTURE GRID ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+  }
+
+  .fix{
+    position:relative;
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;
+    background:var(--card);
+    backdrop-filter:blur(24px) saturate(1.15);
+    -webkit-backdrop-filter:blur(24px) saturate(1.15);
+    box-shadow:0 14px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.05);
+    overflow:hidden;
+    transition:.2s;
+  }
+  .fix::before{ /* color wash bound to fixture tint */
+    content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background:radial-gradient(130% 90% at 80% -10%, var(--tint,transparent), transparent 60%);
+  }
+  .fix > *{position:relative;z-index:1;}
+  .fix:hover{border-color:rgba(255,255,255,.16);transform:translateY(-2px);}
+
+  .fix.staged{opacity:.46;}
+  .fix.staged:hover{opacity:.6;}
+
+  .fhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:16px;}
+  .fname{font-size:15px;font-weight:700;letter-spacing:.2px;}
+  .fmodel{font-size:10.5px;color:var(--muted);margin-top:5px;letter-spacing:.4px;}
+  .ftag{
+    font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;
+    padding:4px 8px;border-radius:6px;color:#0a0b10;
+    background:var(--tint,#888);white-space:nowrap;
+  }
+  .ftag.muted{background:rgba(255,255,255,.1);color:var(--muted);}
+
+  /* power toggle */
+  .pwr{
+    display:flex;align-items:center;gap:9px;
+    margin-bottom:16px;
+  }
+  .toggle{
+    width:42px;height:23px;border-radius:14px;position:relative;flex:none;
+    background:rgba(255,255,255,.1);border:1px solid var(--line);transition:.2s;
+  }
+  .toggle .nub{
+    position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;
+    background:#cfd3e0;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.5);
+  }
+  .fix.on .toggle{background:rgba(120,240,168,.28);border-color:rgba(120,240,168,.4);}
+  .fix.on .toggle .nub{left:21px;background:#bdf7d4;box-shadow:0 0 10px rgba(150,255,190,.7);}
+  .pwr .ptxt{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .fix.on .pwr .ptxt{color:#9bf0bc;}
+
+  /* readout */
+  .readout{display:flex;gap:22px;margin-bottom:14px;}
+  .ro{line-height:1;}
+  .ro .num{font-size:26px;font-weight:700;letter-spacing:-.5px;
+    font-variant-numeric:tabular-nums;}
+  .ro .num small{font-size:13px;font-weight:600;color:var(--muted);margin-left:1px;}
+  .ro .cap{font-size:9px;letter-spacing:1.8px;color:var(--faint);text-transform:uppercase;margin-top:7px;}
+
+  /* sliders */
+  .ctl{margin-bottom:11px;}
+  .ctl .row{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--faint);margin-bottom:7px;}
+  .track{position:relative;height:6px;border-radius:6px;background:rgba(255,255,255,.08);}
+  .fill{position:absolute;left:0;top:0;bottom:0;border-radius:6px;}
+  .fill.bri{background:linear-gradient(90deg,rgba(255,255,255,.3),#fff);}
+  .fill.cct{background:linear-gradient(90deg,#ffb060,#fff7e6,#bcd6ff);}
+  .knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:13px;height:13px;
+    border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.5),0 1px 3px rgba(0,0,0,.5);}
+
+  /* hue bar */
+  .hue{height:8px;border-radius:8px;position:relative;
+    background:linear-gradient(90deg,#ff4d4d,#ffe24d,#4dff6a,#4de2ff,#6a4dff,#ff4df0,#ff4d4d);}
+  .hue .knob{top:50%;}
+
+  /* scenes */
+  .scenes{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .scene{
+    font-size:9.5px;letter-spacing:.4px;font-weight:600;
+    padding:6px 9px;border-radius:8px;cursor:pointer;
+    border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);
+    transition:.15s;
+  }
+  .scene:hover{background:rgba(255,255,255,.1);color:var(--ink);}
+  .scene.active{
+    color:#0a0b10;background:linear-gradient(90deg,#c86eff,#ff6ee0);
+    border-color:transparent;box-shadow:0 0 14px rgba(200,110,255,.4);
+  }
+
+  /* staged note */
+  .pending{
+    display:flex;align-items:center;gap:8px;
+    font-size:10px;letter-spacing:1px;color:var(--faint);
+    margin-top:6px;padding:10px 12px;border-radius:10px;
+    border:1px dashed rgba(255,255,255,.12);background:rgba(255,255,255,.02);
+  }
+  .pending .pdot{width:6px;height:6px;border-radius:50%;background:#caa44d;
+    box-shadow:0 0 8px #caa44d;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+
+  footer{
+    margin-top:38px;text-align:center;font-size:10px;letter-spacing:2px;
+    color:var(--faint);text-transform:uppercase;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .global{flex-direction:column;align-items:stretch;}
+    .master{min-width:0;}
+  }
+  @media(max-width:600px){
+    .wrap{padding:22px 16px 60px;}
+    .grid{grid-template-columns:1fr;}
+    .status-strip{display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- AURORA BLOOMS -->
+  <div class="stage">
+    <div class="bloom b-key"></div>
+    <div class="bloom b-fill"></div>
+    <div class="bloom b-back"></div>
+    <div class="bloom b-accent"></div>
+    <div class="bloom b-fx"></div>
+    <div class="bloom b-cyan"></div>
+  </div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="wordmark">
+          <div class="name">LightDeck</div>
+          <div class="tag">ON-SET CONTROL</div>
+        </div>
+      </div>
+      <div class="status-strip">
+        <div class="stat"><div class="v"><span class="on">5</span> / 8</div><div class="l">Lights Live</div></div>
+        <div class="stat"><div class="v">66%</div><div class="l">Avg Output</div></div>
+        <div class="bt"><span class="dot"></span> 5 LINKED · 3 PENDING</div>
+      </div>
+    </header>
+
+    <!-- GLOBAL CONTROL BAR -->
+    <div class="global">
+      <div class="gbtns">
+        <button class="gbtn on">All On</button>
+        <button class="gbtn off">All Off</button>
+        <button class="gbtn black">Blackout</button>
+      </div>
+      <div class="spacer"></div>
+      <div class="master">
+        <span class="mlabel">Master</span>
+        <div class="mtrack"><div class="mfill"></div><div class="mknob"></div></div>
+        <span class="mval">72%</span>
+      </div>
+    </div>
+
+    <!-- ACTIVE FIXTURES -->
+    <div class="seclabel">Active Fixtures</div>
+    <div class="grid">
+
+      <!-- 1 KEY -->
+      <div class="fix on" style="--tint:#ffb070;">
+        <div class="fhead">
+          <div><div class="fname">650B Pro · Key</div><div class="fmodel">GVM Pro 650B · Bi-color</div></div>
+          <div class="ftag">KEY</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">On</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num">90<small>%</small></div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num">4750<small>K</small></div><div class="cap">Color Temp</div></div>
+        </div>
+        <div class="ctl"><div class="row"><span>Brightness</span><span>90%</span></div>
+          <div class="track"><div class="fill bri" style="width:90%"></div><div class="knob" style="left:90%"></div></div></div>
+        <div class="ctl"><div class="row"><span>2700K</span><span>6800K</span></div>
+          <div class="track"><div class="fill cct" style="width:50%"></div><div class="knob" style="left:50%"></div></div></div>
+      </div>
+
+      <!-- 2 FILL -->
+      <div class="fix on" style="--tint:#7fb8ff;">
+        <div class="fhead">
+          <div><div class="fname">650B Pro · Fill</div><div class="fmodel">GVM Pro 650B · Bi-color</div></div>
+          <div class="ftag">FILL</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">On</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num">60<small>%</small></div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num">5200<small>K</small></div><div class="cap">Color Temp</div></div>
+        </div>
+        <div class="ctl"><div class="row"><span>Brightness</span><span>60%</span></div>
+          <div class="track"><div class="fill bri" style="width:60%"></div><div class="knob" style="left:60%"></div></div></div>
+        <div class="ctl"><div class="row"><span>2700K</span><span>6800K</span></div>
+          <div class="track"><div class="fill cct" style="width:61%"></div><div class="knob" style="left:61%"></div></div></div>
+      </div>
+
+      <!-- 3 BACK (daylight fixed) -->
+      <div class="fix on" style="--tint:#cdddff;">
+        <div class="fhead">
+          <div><div class="fname">300D · Back</div><div class="fmodel">GVM 300D · Daylight 5600K</div></div>
+          <div class="ftag" style="--tint:#cdddff;">BACK</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">On</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num">45<small>%</small></div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num">5600<small>K</small></div><div class="cap">Fixed Daylight</div></div>
+        </div>
+        <div class="ctl"><div class="row"><span>Brightness</span><span>45%</span></div>
+          <div class="track"><div class="fill bri" style="width:45%"></div><div class="knob" style="left:45%"></div></div></div>
+        <div class="ctl"><div class="row"><span>Color Temp</span><span>Locked</span></div>
+          <div class="track" style="opacity:.4"><div class="fill cct" style="width:62%"></div></div></div>
+      </div>
+
+      <!-- 4 ACCENT -->
+      <div class="fix on" style="--tint:#ffac6e;">
+        <div class="fhead">
+          <div><div class="fname">PR150 · Accent</div><div class="fmodel">GVM PR150 · Bi-color</div></div>
+          <div class="ftag">ACCENT</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">On</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num">55<small>%</small></div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num">4200<small>K</small></div><div class="cap">Color Temp</div></div>
+        </div>
+        <div class="ctl"><div class="row"><span>Brightness</span><span>55%</span></div>
+          <div class="track"><div class="fill bri" style="width:55%"></div><div class="knob" style="left:55%"></div></div></div>
+        <div class="ctl"><div class="row"><span>2700K</span><span>6800K</span></div>
+          <div class="track"><div class="fill cct" style="width:37%"></div><div class="knob" style="left:37%"></div></div></div>
+      </div>
+
+      <!-- 5 FX (RGB + scenes) -->
+      <div class="fix on" style="--tint:#c86eff;">
+        <div class="fhead">
+          <div><div class="fname">PR150R · FX</div><div class="fmodel">GVM PR150R · RGB + Scenes</div></div>
+          <div class="ftag" style="--tint:#c86eff;">FX</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">On</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num">80<small>%</small></div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num">275<small>°</small></div><div class="cap">Hue</div></div>
+        </div>
+        <div class="ctl"><div class="row"><span>Brightness</span><span>80%</span></div>
+          <div class="track"><div class="fill bri" style="width:80%"></div><div class="knob" style="left:80%"></div></div></div>
+        <div class="ctl"><div class="row"><span>Hue</span><span>275°</span></div>
+          <div class="hue"><div class="knob" style="left:76%"></div></div></div>
+        <div class="scenes">
+          <span class="scene">Lightning</span><span class="scene">Cop Car</span>
+          <span class="scene">Candle</span><span class="scene">TV</span>
+          <span class="scene">Bad Bulb</span><span class="scene active">Party</span>
+          <span class="scene">Disco</span><span class="scene">Paparazzi</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGED / PENDING -->
+    <div class="seclabel" style="margin-top:32px;">Staged · Protocol Pending</div>
+    <div class="grid">
+
+      <!-- 6 LITEMONS -->
+      <div class="fix staged" style="--tint:#8fa0c0;">
+        <div class="fhead">
+          <div><div class="fname">LA600Bi · Soft</div><div class="fmodel">Godox LITEMONS · Bi-color</div></div>
+          <div class="ftag muted">SOFT</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">Off</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num" style="color:var(--faint)">—</div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num" style="color:var(--faint)">—</div><div class="cap">Color Temp</div></div>
+        </div>
+        <div class="pending"><span class="pdot"></span> Protocol pending · pairing staged</div>
+      </div>
+
+      <!-- 7 K60 L -->
+      <div class="fix staged" style="--tint:#8fa0c0;">
+        <div class="fhead">
+          <div><div class="fname">K60 · Tube L</div><div class="fmodel">Viltrox K60 · RGB Tube</div></div>
+          <div class="ftag muted">TUBE</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">Off</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num" style="color:var(--faint)">—</div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num" style="color:var(--faint)">—</div><div class="cap">Hue</div></div>
+        </div>
+        <div class="pending"><span class="pdot"></span> Pending · scenes unavailable</div>
+      </div>
+
+      <!-- 8 K60 R -->
+      <div class="fix staged" style="--tint:#8fa0c0;">
+        <div class="fhead">
+          <div><div class="fname">K60 · Tube R</div><div class="fmodel">Viltrox K60 · RGB Tube</div></div>
+          <div class="ftag muted">TUBE</div>
+        </div>
+        <div class="pwr"><div class="toggle"><div class="nub"></div></div><span class="ptxt">Off</span></div>
+        <div class="readout">
+          <div class="ro"><div class="num" style="color:var(--faint)">—</div><div class="cap">Brightness</div></div>
+          <div class="ro"><div class="num" style="color:var(--faint)">—</div><div class="cap">Hue</div></div>
+        </div>
+        <div class="pending"><span class="pdot"></span> Pending · scenes unavailable</div>
+      </div>
+
+    </div>
+
+    <footer>LightDeck · 8 Fixtures · Bluetooth Mesh · One Screen, Whole Set</footer>
+  </div>
+
+<script>
+  // light flavor: toggles + scene selection (purely cosmetic; static render holds)
+  document.querySelectorAll('.pwr').forEach(function(p){
+    p.addEventListener('click',function(){p.closest('.fix').classList.toggle('on');});
+  });
+  document.querySelectorAll('.scene').forEach(function(s){
+    s.addEventListener('click',function(){
+      s.parentElement.querySelectorAll('.scene').forEach(function(x){x.classList.remove('active');});
+      s.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

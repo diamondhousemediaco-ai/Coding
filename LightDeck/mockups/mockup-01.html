@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightDeck · ON-SET CONTROL</title>
+<style>
+  :root{
+    --bg:#05070c;
+    --panel:#0a0e16;
+    --panel-2:#0c121d;
+    --ink:#cdd6e6;
+    --ink-dim:#6c7a93;
+    --ink-faint:#465268;
+    --cyan:#1ff0ff;
+    --magenta:#ff2bd6;
+    --line:rgba(31,240,255,.14);
+    --line-soft:rgba(120,150,200,.10);
+    --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* grid + scanline backdrop */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      linear-gradient(rgba(31,240,255,.035) 1px,transparent 1px) 0 0/100% 40px,
+      linear-gradient(90deg,rgba(31,240,255,.035) 1px,transparent 1px) 0 0/40px 100%,
+      radial-gradient(1200px 700px at 18% -10%,rgba(31,240,255,.10),transparent 60%),
+      radial-gradient(1100px 700px at 95% 0%,rgba(255,43,214,.09),transparent 55%);
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.22) 2px 3px);
+    mix-blend-mode:multiply;opacity:.5;
+  }
+  .wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:22px 26px 60px}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;align-items:center;gap:20px;
+    padding:14px 18px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:linear-gradient(180deg,rgba(18,26,40,.65),rgba(8,11,18,.65));
+    box-shadow:0 0 0 1px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.03),0 0 40px rgba(31,240,255,.05);
+    backdrop-filter:blur(2px);
+  }
+  .brand{display:flex;align-items:center;gap:13px;min-width:0}
+  .logo{
+    width:38px;height:38px;border-radius:50%;flex:none;
+    background:conic-gradient(from 0deg,#ff2bd6,#ff7a00,#ffe600,#3cff7a,#1ff0ff,#3a6bff,#9a3cff,#ff2bd6);
+    box-shadow:0 0 18px rgba(31,240,255,.5),0 0 30px rgba(255,43,214,.35);
+    position:relative;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:8px;border-radius:50%;
+    background:var(--bg);box-shadow:inset 0 0 8px rgba(0,0,0,.9);
+  }
+  .wordmark{display:flex;flex-direction:column;line-height:1}
+  .wordmark h1{
+    margin:0;font-size:22px;letter-spacing:.5px;font-weight:800;
+    background:linear-gradient(90deg,#eafcff,#1ff0ff 60%,#ff2bd6);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 22px rgba(31,240,255,.25);
+  }
+  .wordmark .tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--ink-dim);margin-top:5px;
+  }
+  .topbar .spacer{flex:1}
+  .sys{display:flex;gap:22px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim)}
+  .sys .stat{display:flex;flex-direction:column;gap:3px;text-align:right}
+  .sys .stat b{color:var(--cyan);font-size:13px;letter-spacing:.5px;text-shadow:0 0 10px rgba(31,240,255,.4)}
+  .sys .stat .lbl{letter-spacing:2px}
+  .live{display:flex;align-items:center;gap:7px;color:var(--cyan)}
+  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* ---------- global control rail ---------- */
+  .rail{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px;
+  }
+  .card{
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 0 0 1px rgba(0,0,0,.35);
+  }
+  .card .hd{
+    font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--ink-dim);
+    padding:11px 16px;border-bottom:1px solid var(--line-soft);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .card .hd .hint{color:var(--ink-faint);letter-spacing:1.5px}
+
+  .master{padding:18px 18px 20px}
+  .master .row{display:flex;align-items:center;gap:18px}
+  .master .gauge{font-family:var(--mono);font-size:46px;font-weight:700;color:#eafcff;letter-spacing:1px;text-shadow:0 0 24px rgba(31,240,255,.45);line-height:1}
+  .master .gauge small{font-size:18px;color:var(--cyan)}
+  .master .gsub{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--ink-dim);margin-top:8px}
+  .slider{flex:1;margin-left:6px}
+  .track{
+    position:relative;height:10px;border-radius:6px;
+    background:linear-gradient(90deg,rgba(31,240,255,.08),rgba(31,240,255,.03));
+    border:1px solid var(--line);overflow:hidden;
+  }
+  .fill{position:absolute;inset:0 26% 0 0;background:linear-gradient(90deg,#1ff0ff,#7af6ff);box-shadow:0 0 14px rgba(31,240,255,.7)}
+  .knob{
+    position:absolute;top:50%;left:74%;width:18px;height:18px;border-radius:50%;
+    transform:translate(-50%,-50%);background:#eafcff;
+    box-shadow:0 0 0 4px rgba(31,240,255,.18),0 0 16px rgba(31,240,255,.9);
+  }
+  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--ink-faint);margin-top:8px;letter-spacing:1px}
+
+  .gbtns{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .gbtn{
+    font-family:var(--mono);font-size:12px;letter-spacing:2px;
+    padding:14px 12px;border-radius:9px;cursor:pointer;
+    border:1px solid var(--line);color:var(--ink);
+    background:linear-gradient(180deg,rgba(31,240,255,.05),rgba(31,240,255,.01));
+    transition:.15s;text-align:center;
+  }
+  .gbtn:hover{border-color:var(--cyan);box-shadow:0 0 16px rgba(31,240,255,.25);color:#eafcff}
+  .gbtn.on{border-color:rgba(60,255,122,.5);color:#9affc0}
+  .gbtn.on:hover{box-shadow:0 0 16px rgba(60,255,122,.3)}
+  .gbtn.off{border-color:rgba(140,160,190,.25);color:var(--ink-dim)}
+  .gbtn.kill{
+    grid-column:1 / -1;border-color:rgba(255,43,214,.5);color:#ff9be9;
+    background:linear-gradient(180deg,rgba(255,43,214,.10),rgba(255,43,214,.02));
+  }
+  .gbtn.kill:hover{box-shadow:0 0 22px rgba(255,43,214,.4);border-color:var(--magenta);color:#ffd9f6}
+
+  /* ---------- section title ---------- */
+  .sect{
+    display:flex;align-items:center;gap:14px;margin:26px 2px 14px;
+    font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--ink-dim);
+  }
+  .sect .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+  .sect b{color:var(--cyan);text-shadow:0 0 10px rgba(31,240,255,.4)}
+
+  /* ---------- fixture grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:1180px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){
+    .grid{grid-template-columns:1fr}
+    .rail{grid-template-columns:1fr}
+    .topbar{flex-wrap:wrap}
+    .sys{flex-wrap:wrap;gap:14px}
+  }
+
+  .fx{
+    --glow:31,240,255;
+    position:relative;border-radius:13px;padding:15px 15px 16px;
+    border:1px solid var(--line);
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.015),transparent 40%),
+      linear-gradient(180deg,var(--panel-2),var(--panel));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 0 0 1px rgba(0,0,0,.35);
+    overflow:hidden;transition:.2s;
+  }
+  .fx::before{
+    content:"";position:absolute;inset:-1px;border-radius:13px;padding:1px;pointer-events:none;
+    background:linear-gradient(160deg,rgba(var(--glow),.55),transparent 45%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .fx.live{box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 0 1px rgba(0,0,0,.35),0 8px 34px rgba(var(--glow),.16)}
+  .fx.live:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 0 0 1px rgba(0,0,0,.35),0 10px 44px rgba(var(--glow),.28)}
+  .fx .topglow{
+    position:absolute;top:-40px;right:-30px;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle,rgba(var(--glow),.30),transparent 70%);pointer-events:none;
+  }
+  .fx.staged{opacity:.5;filter:saturate(.5)}
+  .fx.staged .topglow{opacity:.25}
+
+  .fx-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;position:relative}
+  .fx-name{font-size:15px;font-weight:700;letter-spacing:.2px;color:#eef4ff}
+  .fx-model{font-family:var(--mono);font-size:9.5px;letter-spacing:1.5px;color:var(--ink-dim);margin-top:5px}
+  .fx-type{font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--ink-faint);margin-top:3px}
+
+  .pwr{
+    flex:none;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;
+    padding:5px 9px;border-radius:20px;display:flex;align-items:center;gap:6px;
+  }
+  .pwr .d{width:7px;height:7px;border-radius:50%}
+  .pwr.on{color:#9affc0;border:1px solid rgba(60,255,122,.4);background:rgba(60,255,122,.06)}
+  .pwr.on .d{background:#4dff8f;box-shadow:0 0 8px #4dff8f}
+  .pwr.off{color:var(--ink-faint);border:1px solid rgba(140,160,190,.2);background:rgba(140,160,190,.04)}
+  .pwr.off .d{background:var(--ink-faint)}
+
+  /* swatch / preview bar */
+  .swatch{
+    height:54px;border-radius:9px;margin:14px 0 13px;position:relative;overflow:hidden;
+    border:1px solid rgba(255,255,255,.06);
+    background:var(--sw,linear-gradient(90deg,#fff,#fff));
+    box-shadow:inset 0 0 18px rgba(0,0,0,.45),0 0 22px rgba(var(--glow),.18);
+  }
+  .swatch .scan{
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0 3px,rgba(0,0,0,.18) 3px 4px);
+  }
+  .swatch .val{
+    position:absolute;left:11px;bottom:8px;font-family:var(--mono);font-size:11px;letter-spacing:1px;
+    color:#04121a;font-weight:700;text-shadow:0 1px 0 rgba(255,255,255,.4);
+  }
+  .swatch .val.lt{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+
+  /* metrics */
+  .metrics{display:flex;gap:10px}
+  .metric{flex:1}
+  .metric .ml{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;color:var(--ink-faint)}
+  .metric .mv{font-family:var(--mono);font-size:20px;font-weight:700;color:#eaf6ff;margin-top:4px;letter-spacing:.5px}
+  .metric .mv small{font-size:11px;color:var(--ink-dim);font-weight:400}
+
+  /* mini bar (brightness) */
+  .bar{height:6px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:9px;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,rgba(var(--glow),.7),rgba(var(--glow),1));box-shadow:0 0 12px rgba(var(--glow),.7)}
+
+  /* feature chips */
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+  .chip{
+    font-family:var(--mono);font-size:8.5px;letter-spacing:1px;padding:4px 7px;border-radius:5px;
+    color:var(--ink-dim);border:1px solid var(--line-soft);background:rgba(255,255,255,.02);
+  }
+  .chip.hot{color:#bdefff;border-color:rgba(var(--glow),.4);background:rgba(var(--glow),.06)}
+  .chip.warn{color:#ffd27a;border-color:rgba(255,180,80,.3);background:rgba(255,180,80,.05)}
+
+  /* scene presets */
+  .scenes{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  @media(max-width:640px){.scenes{grid-template-columns:repeat(2,1fr)}}
+  .scene{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-align:center;
+    padding:12px 6px;border-radius:8px;cursor:pointer;color:var(--ink);
+    border:1px solid var(--line);transition:.15s;position:relative;overflow:hidden;
+  }
+  .scene .sd{height:5px;border-radius:3px;margin:0 auto 9px;width:60%}
+  .scene:hover{border-color:var(--magenta);color:#fff;box-shadow:0 0 16px rgba(255,43,214,.25)}
+  .scene.active{border-color:var(--magenta);color:#ffd9f6;background:rgba(255,43,214,.07);box-shadow:0 0 18px rgba(255,43,214,.22)}
+
+  .footer{
+    margin-top:30px;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:2px;color:var(--ink-faint);
+    border-top:1px solid var(--line-soft);padding-top:16px;flex-wrap:wrap;gap:10px;
+  }
+  .footer .ok{color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo"></div>
+      <div class="wordmark">
+        <h1>LightDeck</h1>
+        <div class="tag">ON-SET CONTROL</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="sys">
+      <div class="live"><span class="dot"></span> BLE LINK</div>
+      <div class="stat"><span class="lbl">FIXTURES</span><b>5 / 8</b></div>
+      <div class="stat"><span class="lbl">STAGED</span><b>3</b></div>
+      <div class="stat"><span class="lbl">SESSION</span><b>02:41:09</b></div>
+    </div>
+  </div>
+
+  <!-- GLOBAL RAIL -->
+  <div class="rail">
+    <div class="card">
+      <div class="hd"><span>MASTER OUTPUT</span><span class="hint">GLOBAL DIM</span></div>
+      <div class="master">
+        <div class="row">
+          <div>
+            <div class="gauge">74<small>%</small></div>
+            <div class="gsub">SCALES ALL ACTIVE</div>
+          </div>
+          <div class="slider">
+            <div class="track">
+              <div class="fill"></div>
+              <div class="knob"></div>
+            </div>
+            <div class="ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hd"><span>GLOBAL CONTROL</span><span class="hint">FLEET</span></div>
+      <div class="gbtns">
+        <div class="gbtn on">ALL ON</div>
+        <div class="gbtn off">ALL OFF</div>
+        <div class="gbtn kill">⏻ BLACKOUT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVE FIXTURES -->
+  <div class="sect"><b>ACTIVE FIXTURES</b><span class="ln"></span><span>05 ONLINE</span></div>
+  <div class="grid">
+
+    <!-- 1 KEY -->
+    <div class="fx live" style="--glow:120,205,255">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">650B Pro · Key</div>
+          <div class="fx-model">GVM PRO 650B</div>
+          <div class="fx-type">BI-COLOR · 2700–6800K</div>
+        </div>
+        <div class="pwr on"><span class="d"></span>ON</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#fff4e3,#eef4ff)"><div class="scan"></div><div class="val">4750 K</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv">90<small>%</small></div></div>
+        <div class="metric"><div class="ml">TEMP</div><div class="mv">4750<small>K</small></div></div>
+      </div>
+      <div class="bar"><i style="width:90%"></i></div>
+      <div class="chips"><span class="chip hot">CCT</span><span class="chip">DIM</span></div>
+    </div>
+
+    <!-- 2 FILL -->
+    <div class="fx live" style="--glow:150,210,255">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">650B Pro · Fill</div>
+          <div class="fx-model">GVM PRO 650B</div>
+          <div class="fx-type">BI-COLOR · 2700–6800K</div>
+        </div>
+        <div class="pwr on"><span class="d"></span>ON</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#fff7ec,#f0f5ff)"><div class="scan"></div><div class="val">5200 K</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv">60<small>%</small></div></div>
+        <div class="metric"><div class="ml">TEMP</div><div class="mv">5200<small>K</small></div></div>
+      </div>
+      <div class="bar"><i style="width:60%"></i></div>
+      <div class="chips"><span class="chip hot">CCT</span><span class="chip">DIM</span></div>
+    </div>
+
+    <!-- 3 BACK -->
+    <div class="fx live" style="--glow:130,190,255">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">300D · Back</div>
+          <div class="fx-model">GVM 300D</div>
+          <div class="fx-type">DAYLIGHT FIXED · 5600K</div>
+        </div>
+        <div class="pwr on"><span class="d"></span>ON</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#eef4ff,#dbe9ff)"><div class="scan"></div><div class="val">5600 K</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv">45<small>%</small></div></div>
+        <div class="metric"><div class="ml">TEMP</div><div class="mv" style="color:var(--ink-dim)">FIXED</div></div>
+      </div>
+      <div class="bar"><i style="width:45%"></i></div>
+      <div class="chips"><span class="chip">DIM ONLY</span><span class="chip">DAYLIGHT</span></div>
+    </div>
+
+    <!-- 4 ACCENT -->
+    <div class="fx live" style="--glow:170,200,255">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">PR150 · Accent</div>
+          <div class="fx-model">GVM PR150</div>
+          <div class="fx-type">BI-COLOR</div>
+        </div>
+        <div class="pwr on"><span class="d"></span>ON</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#ffedd6,#eef3ff)"><div class="scan"></div><div class="val">4200 K</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv">55<small>%</small></div></div>
+        <div class="metric"><div class="ml">TEMP</div><div class="mv">4200<small>K</small></div></div>
+      </div>
+      <div class="bar"><i style="width:55%"></i></div>
+      <div class="chips"><span class="chip hot">CCT</span><span class="chip">DIM</span></div>
+    </div>
+
+    <!-- 5 FX (RGB) -->
+    <div class="fx live" style="--glow:200,90,255">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">PR150R · FX</div>
+          <div class="fx-model">GVM PR150R</div>
+          <div class="fx-type">BI-COLOR · RGB · SCENES</div>
+        </div>
+        <div class="pwr on"><span class="d"></span>ON</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,hsl(275 90% 60%),hsl(275 90% 42%))"><div class="scan"></div><div class="val lt">HUE 275°</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv">80<small>%</small></div></div>
+        <div class="metric"><div class="ml">HUE / SAT</div><div class="mv">275<small>°</small></div></div>
+      </div>
+      <div class="bar"><i style="width:80%"></i></div>
+      <div class="chips"><span class="chip hot">RGB</span><span class="chip">CCT</span><span class="chip">SCENES</span></div>
+    </div>
+
+    <!-- 6 LITEMONS staged -->
+    <div class="fx staged" style="--glow:140,160,190">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">LA600Bi · Soft</div>
+          <div class="fx-model">GODOX LITEMONS</div>
+          <div class="fx-type">BI-COLOR</div>
+        </div>
+        <div class="pwr off"><span class="d"></span>OFF</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#1a2230,#10151f)"><div class="scan"></div><div class="val lt">—</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv" style="color:var(--ink-faint)">--</div></div>
+        <div class="metric"><div class="ml">STATUS</div><div class="mv" style="font-size:13px;color:var(--ink-dim)">STAGED</div></div>
+      </div>
+      <div class="bar"><i style="width:0%"></i></div>
+      <div class="chips"><span class="chip warn">PROTOCOL PENDING</span></div>
+    </div>
+
+    <!-- 7 K60 L staged -->
+    <div class="fx staged" style="--glow:140,160,190">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">K60 · Tube L</div>
+          <div class="fx-model">VILTROX K60</div>
+          <div class="fx-type">RGB TUBE · SCENES</div>
+        </div>
+        <div class="pwr off"><span class="d"></span>OFF</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#1a2230,#10151f)"><div class="scan"></div><div class="val lt">—</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv" style="color:var(--ink-faint)">--</div></div>
+        <div class="metric"><div class="ml">STATUS</div><div class="mv" style="font-size:13px;color:var(--ink-dim)">PENDING</div></div>
+      </div>
+      <div class="bar"><i style="width:0%"></i></div>
+      <div class="chips"><span class="chip warn">PAIRING…</span><span class="chip">RGB</span></div>
+    </div>
+
+    <!-- 8 K60 R staged -->
+    <div class="fx staged" style="--glow:140,160,190">
+      <div class="topglow"></div>
+      <div class="fx-hd">
+        <div>
+          <div class="fx-name">K60 · Tube R</div>
+          <div class="fx-model">VILTROX K60</div>
+          <div class="fx-type">RGB TUBE · SCENES</div>
+        </div>
+        <div class="pwr off"><span class="d"></span>OFF</div>
+      </div>
+      <div class="swatch" style="--sw:linear-gradient(90deg,#1a2230,#10151f)"><div class="scan"></div><div class="val lt">—</div></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">BRIGHTNESS</div><div class="mv" style="color:var(--ink-faint)">--</div></div>
+        <div class="metric"><div class="ml">STATUS</div><div class="mv" style="font-size:13px;color:var(--ink-dim)">PENDING</div></div>
+      </div>
+      <div class="bar"><i style="width:0%"></i></div>
+      <div class="chips"><span class="chip warn">PAIRING…</span><span class="chip">RGB</span></div>
+    </div>
+
+  </div>
+
+  <!-- SCENE PRESETS -->
+  <div class="sect"><b>RGB SCENE PRESETS</b><span class="ln"></span><span>FX ENGINE</span></div>
+  <div class="card">
+    <div class="hd"><span>BROADCAST TO RGB-CAPABLE FIXTURES</span><span class="hint">PR150R · K60 ×2</span></div>
+    <div class="scenes">
+      <div class="scene active"><div class="sd" style="background:linear-gradient(90deg,#e8f0ff,#9fc4ff);box-shadow:0 0 10px #9fc4ff"></div>LIGHTNING</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#ff3b3b,#3b6bff);box-shadow:0 0 10px #ff3b6b"></div>COP CAR</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#ffb347,#ff7a00);box-shadow:0 0 10px #ff9a3c"></div>CANDLE</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#9fd0ff,#cfe6ff);box-shadow:0 0 10px #9fd0ff"></div>TV</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#fff0a8,#ffd24d);box-shadow:0 0 10px #ffd24d"></div>BAD BULB</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#ff2bd6,#1ff0ff);box-shadow:0 0 10px #ff2bd6"></div>PARTY</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#9a3cff,#1ff0ff);box-shadow:0 0 10px #9a3cff"></div>DISCO</div>
+      <div class="scene"><div class="sd" style="background:linear-gradient(90deg,#fff,#cfd8ff);box-shadow:0 0 10px #fff"></div>PAPARAZZI</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>LIGHTDECK v1.0 · BLE MESH</span>
+    <span class="ok">● SYNC OK · 5 ACTIVE · 3 STAGED</span>
+    <span>LATENCY 12ms</span>
+  </div>
+
+</div>
+
+<script>
+  // light flavor only; render is complete without it
+  document.querySelectorAll('.scene').forEach(s=>{
+    s.addEventListener('click',()=>{
+      document.querySelectorAll('.scene').forEach(x=>x.classList.remove('active'));
+      s.classList.add('active');
+    });
+  });
+  document.querySelectorAll('.gbtn').forEach(b=>{
+    b.addEventListener('click',()=>{b.style.boxShadow='0 0 26px rgba(31,240,255,.5)';setTimeout(()=>b.style.boxShadow='',250);});
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightDeck — Stage Map</title>
+<style>
+  :root{
+    --bg:#070809;
+    --bg2:#0c0e11;
+    --panel:#101317;
+    --panel2:#15191f;
+    --line:#23282f;
+    --line2:#2c333c;
+    --txt:#e9edf2;
+    --txt2:#9aa3ad;
+    --txt3:#646c76;
+    --accent:#ff5a3c;
+    --ok:#4ad07a;
+    --warn:#f0b13c;
+    --radius:14px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #11151c 0%, rgba(17,21,28,0) 60%),
+      var(--bg);
+    color:var(--txt);
+    font-family:var(--font);
+    -webkit-font-smoothing:antialiased;
+    font-size:14px;
+    line-height:1.4;
+    overflow-x:hidden;
+  }
+  .app{
+    max-width:1400px;
+    margin:0 auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ---------- Top bar ---------- */
+  header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(20,24,30,.6),rgba(20,24,30,0));
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:blur(8px);
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:34px;height:34px;border-radius:50%;
+    background:conic-gradient(from 0deg,#ff3b3b,#ffb13b,#f7ff3b,#4dff5e,#3bd8ff,#5a4dff,#e23bff,#ff3b3b);
+    box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 18px rgba(120,90,255,.35);
+    position:relative;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:8px;border-radius:50%;
+    background:var(--bg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+  .wordmark{display:flex;flex-direction:column;line-height:1.05}
+  .wordmark b{font-size:18px;letter-spacing:.5px;font-weight:700}
+  .wordmark span{font-size:9.5px;letter-spacing:3.2px;color:var(--txt3);font-weight:600}
+
+  .topstats{display:flex;gap:22px;margin-left:8px;padding-left:20px;border-left:1px solid var(--line)}
+  .stat{display:flex;flex-direction:column}
+  .stat .k{font-size:10px;letter-spacing:1.5px;color:var(--txt3);text-transform:uppercase}
+  .stat .v{font-size:15px;font-weight:600;margin-top:2px}
+  .stat .v .on{color:var(--ok)}
+  .stat .v .pend{color:var(--warn)}
+
+  .topactions{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .conn{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--txt2);padding:5px 11px;border:1px solid var(--line);border-radius:20px;background:var(--panel)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .btn{
+    font-family:var(--font);font-size:12px;font-weight:600;letter-spacing:.3px;
+    padding:8px 14px;border-radius:9px;border:1px solid var(--line2);
+    background:var(--panel2);color:var(--txt);cursor:pointer;transition:.15s;
+  }
+  .btn:hover{border-color:#3a434e;background:#1b2027}
+  .btn.on:hover{box-shadow:0 0 14px rgba(74,208,122,.25)}
+  .btn.off:hover{box-shadow:0 0 14px rgba(240,177,60,.2)}
+  .btn.danger{border-color:#5a2620;color:#ff8a78;background:#1a0f0d}
+  .btn.danger:hover{background:#241210;box-shadow:0 0 16px rgba(255,90,60,.3)}
+
+  /* ---------- Layout ---------- */
+  .body{display:grid;grid-template-columns:1fr 340px;flex:1;min-height:0}
+  .stagewrap{position:relative;padding:18px 22px 22px}
+  .stage-head{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+  .stage-head h2{font-size:13px;letter-spacing:2px;color:var(--txt2);font-weight:600;text-transform:uppercase}
+  .stage-head .hint{font-size:11px;color:var(--txt3)}
+
+  .stage{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/10.2;
+    border-radius:18px;
+    border:1px solid var(--line);
+    background:
+      radial-gradient(70% 60% at 50% 46%, #14181f 0%, #0a0c10 70%, #070809 100%);
+    overflow:hidden;
+  }
+  /* floor grid */
+  .grid{position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:46px 46px;
+    mask:radial-gradient(75% 70% at 50% 48%,#000 40%,transparent 92%);
+    -webkit-mask:radial-gradient(75% 70% at 50% 48%,#000 40%,transparent 92%);
+  }
+  .grid.fine{
+    background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+    background-size:46px 46px;
+  }
+
+  /* center camera + subject */
+  .subject{
+    position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);
+    display:flex;flex-direction:column;align-items:center;gap:9px;z-index:6;
+  }
+  .subj-ring{
+    width:78px;height:78px;border-radius:50%;
+    border:1.5px dashed rgba(255,255,255,.22);
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle,rgba(255,255,255,.06),rgba(255,255,255,0) 70%);
+  }
+  .subj-core{
+    width:40px;height:40px;border-radius:50%;
+    background:linear-gradient(160deg,#3a414c,#1d222a);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(255,255,255,.06);
+    display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:18px;
+  }
+  .subj-label{font-size:9.5px;letter-spacing:2px;color:var(--txt3);text-transform:uppercase}
+  .camera{
+    position:absolute;left:50%;top:88%;transform:translate(-50%,-50%);
+    display:flex;flex-direction:column;align-items:center;gap:6px;z-index:6;color:var(--txt3)
+  }
+  .cam-icon{
+    width:54px;height:30px;border-radius:5px;
+    background:linear-gradient(180deg,#262c34,#171b21);
+    border:1px solid var(--line2);position:relative;
+    box-shadow:0 2px 10px rgba(0,0,0,.5);
+  }
+  .cam-icon::before{content:"";position:absolute;left:-9px;top:7px;width:11px;height:16px;border-radius:3px;background:#262c34;border:1px solid var(--line2)}
+  .cam-icon::after{content:"";position:absolute;right:7px;top:7px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#444c57,#11151a);border:1px solid #000}
+  .camera span{font-size:9px;letter-spacing:2px;text-transform:uppercase}
+
+  /* axis ticks */
+  .axis{position:absolute;font-size:9px;letter-spacing:2px;color:#3a414b;text-transform:uppercase;z-index:2}
+  .axis.t{top:10px;left:50%;transform:translateX(-50%)}
+  .axis.b{bottom:10px;left:50%;transform:translateX(-50%)}
+
+  /* ---------- Fixture nodes ---------- */
+  .node{
+    position:absolute;transform:translate(-50%,-50%);
+    z-index:5;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    width:120px;text-align:center;
+  }
+  .cone{
+    position:absolute;z-index:-1;
+    width:230px;height:230px;left:50%;top:50%;
+    border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+    filter:blur(2px);
+    opacity:.9;
+    pointer-events:none;
+    /* default points toward center; rotated per node */
+  }
+  .lamp{
+    position:relative;
+    width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1.5px solid rgba(255,255,255,.3);
+    transition:.18s;
+  }
+  .lamp::after{content:"";position:absolute;inset:5px;border-radius:50%;background:rgba(255,255,255,.85);filter:blur(1px)}
+  .nlabel{font-size:11px;font-weight:600;color:var(--txt);letter-spacing:.2px;white-space:nowrap;text-shadow:0 1px 3px #000}
+  .nmeta{font-size:9.5px;color:var(--txt2);letter-spacing:.3px;text-shadow:0 1px 3px #000}
+  .nrole{font-size:8.5px;letter-spacing:2px;color:var(--txt3);text-transform:uppercase}
+
+  .node.selected .lamp{box-shadow:0 0 0 3px var(--bg),0 0 0 4.5px currentColor,0 0 24px currentColor}
+  .node.selected{z-index:8}
+  .node.selected .nlabel{color:#fff}
+
+  /* OFF / pending nodes */
+  .node.off{opacity:.46}
+  .node.off .cone{display:none}
+  .node.off .lamp{border-color:rgba(255,255,255,.18);background:#14181d!important}
+  .node.off .lamp::after{background:rgba(255,255,255,.12)}
+  .node.off .nlabel{color:var(--txt2)}
+  .pendtag{
+    font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--warn);
+    border:1px solid #4a3a18;background:#1b1610;padding:1px 6px;border-radius:10px;margin-top:1px;
+  }
+
+  /* tube strips on edges */
+  .tube{
+    position:absolute;z-index:5;cursor:pointer;display:flex;flex-direction:column;gap:7px;align-items:center;
+  }
+  .tube .bar{
+    width:10px;height:150px;border-radius:8px;
+    background:#14181d;border:1px solid rgba(255,255,255,.16);
+    position:relative;
+  }
+  .tube.off{opacity:.5}
+  .tube .tlabel{font-size:10px;font-weight:600;color:var(--txt2);text-shadow:0 1px 3px #000}
+  .tube .tmeta{font-size:8.5px;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase}
+  .tube.left{left:18px;top:50%;transform:translateY(-50%)}
+  .tube.right{right:18px;top:50%;transform:translateY(-50%)}
+
+  /* legend strip */
+  .legend{
+    display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding:10px 14px;
+    border:1px solid var(--line);border-radius:12px;background:var(--panel);
+    font-size:10.5px;color:var(--txt2);align-items:center;
+  }
+  .legend .li{display:flex;align-items:center;gap:7px}
+  .legend .sw{width:12px;height:12px;border-radius:3px}
+
+  /* ---------- Right control panel ---------- */
+  aside{
+    border-left:1px solid var(--line);
+    background:linear-gradient(180deg,var(--panel),var(--bg2));
+    display:flex;flex-direction:column;
+  }
+  .insp{padding:18px;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
+  .insp-head{display:flex;align-items:flex-start;gap:12px}
+  .insp-swatch{
+    width:46px;height:46px;border-radius:11px;flex:none;
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 0 22px -2px currentColor;
+  }
+  .insp-title h3{font-size:16px;font-weight:700}
+  .insp-title .sub{font-size:11px;color:var(--txt2);margin-top:2px}
+  .insp-title .badges{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap}
+  .pill{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--txt2);border:1px solid var(--line2);background:var(--panel2);padding:2px 8px;border-radius:20px}
+  .pill.live{color:var(--ok);border-color:#1f4a31;background:#0e1a12}
+
+  .field{display:flex;flex-direction:column;gap:9px}
+  .field .lab{display:flex;justify-content:space-between;align-items:baseline}
+  .field .lab .name{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3)}
+  .field .lab .val{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+
+  .track{position:relative;height:10px;border-radius:6px;background:#1c2128;border:1px solid var(--line);overflow:hidden}
+  .fill{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+  .fill.bright{background:linear-gradient(90deg,#5a5e22,#f7ff7a)}
+  .knob{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 1px rgba(0,0,0,.4),0 2px 6px rgba(0,0,0,.6)}
+
+  .cct-track .fill{background:linear-gradient(90deg,#ffae54,#fff4e3 50%,#bcd6ff)}
+  .hue-track{background:linear-gradient(90deg,#ff3b3b,#ffb13b,#f7ff3b,#4dff5e,#3bd8ff,#5a4dff,#e23bff,#ff3b3b)}
+
+  .powerrow{display:flex;gap:9px}
+  .pwr{
+    flex:1;text-align:center;padding:10px;border-radius:9px;font-size:12px;font-weight:600;
+    border:1px solid var(--line2);background:var(--panel2);cursor:pointer;color:var(--txt2)
+  }
+  .pwr.active{background:#0e1a12;border-color:#1f4a31;color:var(--ok);box-shadow:inset 0 0 14px rgba(74,208,122,.12)}
+
+  .scenes-title{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:2px}
+  .scenes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .scene{
+    font-size:11px;font-weight:600;padding:9px 10px;border-radius:9px;text-align:left;
+    border:1px solid var(--line);background:var(--panel2);color:var(--txt2);cursor:pointer;
+    display:flex;align-items:center;gap:8px;transition:.15s
+  }
+  .scene:hover{border-color:#39414c;color:var(--txt)}
+  .scene .sd{width:8px;height:8px;border-radius:50%;flex:none}
+  .scene.sel{border-color:#4a4a2a;color:var(--txt);background:#14140d}
+
+  .divider{height:1px;background:var(--line);margin:2px 0}
+
+  /* master block */
+  .master{padding:16px 18px;border-top:1px solid var(--line);background:var(--bg2)}
+  .master h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:12px}
+  .globalrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .globalrow .btn{padding:11px 8px;text-align:center}
+  .master .field .lab .val{color:var(--txt)}
+
+  @media (max-width:1000px){
+    .body{grid-template-columns:1fr}
+    aside{border-left:none;border-top:1px solid var(--line)}
+    .topstats{display:none}
+  }
+  @media (max-width:640px){
+    header{flex-wrap:wrap;gap:10px}
+    .nlabel,.nmeta{font-size:9px}
+    .node{width:90px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="brand">
+      <div class="logo"></div>
+      <div class="wordmark"><b>LightDeck</b><span>ON-SET CONTROL</span></div>
+    </div>
+    <div class="topstats">
+      <div class="stat"><span class="k">Fixtures</span><span class="v">8</span></div>
+      <div class="stat"><span class="k">Online</span><span class="v"><span class="on">5</span> / 8</span></div>
+      <div class="stat"><span class="k">Staged</span><span class="v"><span class="pend">3</span></span></div>
+      <div class="stat"><span class="k">Master</span><span class="v">82%</span></div>
+    </div>
+    <div class="topactions">
+      <div class="conn"><span class="dot"></span> Bluetooth · 5 linked</div>
+      <button class="btn">Scenes</button>
+      <button class="btn">⚙</button>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <!-- ===== Stage map ===== -->
+    <div class="stagewrap">
+      <div class="stage-head">
+        <h2>Stage Map</h2>
+        <span class="hint">Top-down lighting plot · tap a fixture to control · 650B Pro · Key selected</span>
+      </div>
+
+      <div class="stage">
+        <div class="grid"></div>
+        <div class="grid fine"></div>
+        <span class="axis t">Upstage</span>
+        <span class="axis b">Downstage / Camera</span>
+
+        <!-- Subject -->
+        <div class="subject">
+          <div class="subj-ring"><div class="subj-core">☺</div></div>
+          <div class="subj-label">Subject</div>
+        </div>
+
+        <!-- Camera -->
+        <div class="camera">
+          <div class="cam-icon"></div>
+          <span>Camera A</span>
+        </div>
+
+        <!-- BACK (300D) top-center -->
+        <div class="node off" style="left:50%;top:15%;" data-id="back">
+          <div class="lamp" style="color:#fff7ea;"></div>
+          <div class="nrole">Back</div>
+          <div class="nlabel">300D · Back</div>
+          <div class="nmeta">5600K · 45%</div>
+        </div>
+
+        <!-- KEY (650B Pro) upper-left, SELECTED -->
+        <div class="node selected" style="left:24%;top:30%;" data-id="key">
+          <div class="cone" style="background:radial-gradient(closest-side,rgba(255,236,205,.55),rgba(255,236,205,0));transform:translate(-22%,-22%) scale(1.05);"></div>
+          <div class="lamp" style="color:#ffe9c4;background:#ffe9c4;box-shadow:0 0 26px #ffe9c4;"></div>
+          <div class="nrole">Key</div>
+          <div class="nlabel">650B Pro · Key</div>
+          <div class="nmeta">4750K · 90%</div>
+        </div>
+
+        <!-- FILL (650B Pro) upper-right -->
+        <div class="node" style="left:76%;top:32%;" data-id="fill">
+          <div class="cone" style="background:radial-gradient(closest-side,rgba(214,231,255,.4),rgba(214,231,255,0));transform:translate(22%,-20%) scale(.95);"></div>
+          <div class="lamp" style="color:#dcebff;color:#d7e7ff;background:#d7e7ff;box-shadow:0 0 22px #d7e7ff;"></div>
+          <div class="nrole">Fill</div>
+          <div class="nlabel">650B Pro · Fill</div>
+          <div class="nmeta">5200K · 60%</div>
+        </div>
+
+        <!-- ACCENT (PR150) lower-left -->
+        <div class="node" style="left:30%;top:70%;" data-id="accent">
+          <div class="cone" style="background:radial-gradient(closest-side,rgba(255,224,176,.4),rgba(255,224,176,0));transform:translate(-18%,18%) scale(.85);"></div>
+          <div class="lamp" style="color:#ffdca6;background:#ffdca6;box-shadow:0 0 20px #ffdca6;"></div>
+          <div class="nrole">Accent</div>
+          <div class="nlabel">PR150 · Accent</div>
+          <div class="nmeta">4200K · 55%</div>
+        </div>
+
+        <!-- FX (PR150R RGB) lower-right -->
+        <div class="node" style="left:70%;top:71%;" data-id="fx">
+          <div class="cone" style="background:radial-gradient(closest-side,rgba(176,92,255,.5),rgba(176,92,255,0));transform:translate(18%,18%) scale(.95);"></div>
+          <div class="lamp" style="color:#b05cff;background:#c47cff;box-shadow:0 0 26px #b05cff;"></div>
+          <div class="nrole">FX · RGB</div>
+          <div class="nlabel">PR150R · FX</div>
+          <div class="nmeta">Hue 275° · 80%</div>
+        </div>
+
+        <!-- SOFT (Godox) left side, staged -->
+        <div class="node off" style="left:13%;top:50%;" data-id="soft">
+          <div class="lamp" style="color:#fff;"></div>
+          <div class="nrole">Soft</div>
+          <div class="nlabel">LA600Bi · Soft</div>
+          <div class="pendtag">Protocol pending</div>
+        </div>
+
+        <!-- Tube L (Viltrox K60) left edge -->
+        <div class="tube off left" data-id="tubel">
+          <div class="bar"></div>
+          <div class="tlabel">K60 · Tube L</div>
+          <div class="tmeta">Pending</div>
+        </div>
+
+        <!-- Tube R (Viltrox K60) right edge -->
+        <div class="tube off right" data-id="tuber">
+          <div class="bar"></div>
+          <div class="tlabel">K60 · Tube R</div>
+          <div class="tmeta">Pending</div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div class="li"><span class="sw" style="background:linear-gradient(90deg,#ffae54,#bcd6ff)"></span> Bi-color CCT</div>
+        <div class="li"><span class="sw" style="background:conic-gradient(from 0deg,#ff3b3b,#f7ff3b,#3bd8ff,#e23bff,#ff3b3b)"></span> RGB / Scenes</div>
+        <div class="li"><span class="sw" style="background:#fff7ea"></span> Daylight fixed</div>
+        <div class="li"><span class="sw" style="background:#14181d;border:1px solid #2c333c"></span> Off / Staged</div>
+        <div class="li" style="margin-left:auto;color:var(--txt3)">⌖ Node position = physical placement on set</div>
+      </div>
+    </div>
+
+    <!-- ===== Inspector panel ===== -->
+    <aside>
+      <div class="insp">
+        <div class="insp-head">
+          <div class="insp-swatch" style="background:#ffe9c4;color:#ffe9c4"></div>
+          <div class="insp-title">
+            <h3>650B Pro · Key</h3>
+            <div class="sub">GVM Pro 650B · Bi-color 2700–6800K</div>
+            <div class="badges">
+              <span class="pill live">● Live</span>
+              <span class="pill">Key light</span>
+              <span class="pill">BT linked</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="powerrow">
+          <div class="pwr active">Power ON</div>
+          <div class="pwr">Power OFF</div>
+        </div>
+
+        <div class="field">
+          <div class="lab"><span class="name">Brightness</span><span class="val">90%</span></div>
+          <div class="track"><div class="fill bright" style="width:90%"></div><div class="knob" style="left:90%"></div></div>
+        </div>
+
+        <div class="field">
+          <div class="lab"><span class="name">Color Temp</span><span class="val">4750 K</span></div>
+          <div class="track cct-track"><div class="fill" style="width:50%"></div><div class="knob" style="left:50%"></div></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+          <div class="scenes-title">RGB Scenes · requires RGB fixture</div>
+          <div class="scenes" style="opacity:.4;pointer-events:none">
+            <div class="scene"><span class="sd" style="background:#cfe8ff"></span>Lightning</div>
+            <div class="scene"><span class="sd" style="background:#3b6bff"></span>Cop Car</div>
+            <div class="scene"><span class="sd" style="background:#ff9a3b"></span>Candle</div>
+            <div class="scene"><span class="sd" style="background:#7fb3ff"></span>TV</div>
+            <div class="scene"><span class="sd" style="background:#fff2b0"></span>Bad Bulb</div>
+            <div class="scene"><span class="sd" style="background:#ff3bd0"></span>Party</div>
+            <div class="scene"><span class="sd" style="background:#7c3bff"></span>Disco</div>
+            <div class="scene"><span class="sd" style="background:#ffffff"></span>Paparazzi</div>
+          </div>
+          <div style="font-size:10px;color:var(--txt3);margin-top:8px">Select PR150R · FX or a K60 tube to enable scenes.</div>
+        </div>
+      </div>
+
+      <!-- Master / global -->
+      <div class="master">
+        <h4>Global · Master</h4>
+        <div class="globalrow">
+          <button class="btn on">All On</button>
+          <button class="btn off">All Off</button>
+          <button class="btn danger" style="grid-column:1 / span 2">⏻ Blackout</button>
+        </div>
+        <div class="field">
+          <div class="lab"><span class="name">Master Brightness</span><span class="val">82%</span></div>
+          <div class="track"><div class="fill bright" style="width:82%"></div><div class="knob" style="left:82%"></div></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>
+// Minimal flavor: clicking a node updates the selected ring. Static render stands on its own.
+(function(){
+  var nodes=document.querySelectorAll('.node:not(.off), .tube:not(.off)');
+  document.querySelectorAll('.node').forEach(function(n){
+    n.addEventListener('click',function(){
+      document.querySelectorAll('.node').forEach(function(x){x.classList.remove('selected')});
+      if(!n.classList.contains('off')) n.classList.add('selected');
+    });
+  });
+})();
+</script>
+</body>
+</html>
