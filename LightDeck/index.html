@@ -240,7 +240,7 @@ function blooms(){const el=document.getElementById('blooms');el.innerHTML='';
 /* ===== GRID ===== */
 function renderGrid(){const g=document.getElementById('gridView');g.innerHTML='';
   LIGHTS.forEach(l=>{const s=st[l.id],[r,gr,b]=col(l),c=`rgb(${r},${gr},${b})`,linked=!!BLE.conns[l.id];
-    const card=document.createElement('div');card.className='card'+(s.on?'':' off');
+    const card=document.createElement('div');card.className='card'+(s.on?'':' off');card.dataset.id=l.id;
     card.innerHTML=`
       <div class="accent" style="background:${s.on?c:'#2a2a30'};"></div>
       <div class="chead">
@@ -313,10 +313,19 @@ async function apply(id,act,val,extra){const l=LIGHTS.find(x=>x.id===id),s=st[id
     case'scene':s.scene=+extra;s.mode=3;renderGrid();await emit(l,GVM.mode(3,l.dt),'mode→scenes');return emit(l,GVM.scene(+extra,l.dt),'scene '+SCENES[extra-1]);
     case'power-toggle':return;
   }}
-function repaint(id){ if(document.getElementById('gridView').style.display!=='none')renderGrid();
-  else { /* console live-updates inline; refresh strip state */ const l=LIGHTS.find(x=>x.id===id),s=st[id];
-    const strips=document.querySelectorAll('#deck .strip'); }
+/* in-place card update — does NOT rebuild the grid, so a slider keeps its drag */
+function liveUpdate(id){const l=LIGHTS.find(x=>x.id===id),s=st[id],c=rgbStr(l);
+  const card=document.querySelector('#gridView .card[data-id="'+id+'"]'); if(!card)return;
+  card.classList.toggle('off',!s.on);
+  const ac=card.querySelector('.accent'); if(ac)ac.style.background=s.on?c:'#2a2a30';
+  const sw=card.querySelector('.swatch'); if(sw){sw.style.background=c;sw.style.opacity=s.on?.45+.55*s.bri/100:.3;}
+  const tog=card.querySelector('.tog[data-act="power"]'); if(tog)tog.classList.toggle('on',s.on);
+  const bri=card.querySelector('input.bri'); if(bri){bri.style.setProperty('--c',c);bri.value=s.bri;}
+  card.querySelectorAll('.ctrl').forEach(ct=>{const k=ct.querySelector('.k'),v=ct.querySelector('.v');if(!k||!v)return;
+    const kk=k.textContent; if(kk==='BRIGHTNESS')v.textContent=s.bri+'%';else if(kk==='COLOR TEMP')v.textContent=s.cct+'K';else if(kk==='HUE')v.textContent=s.hue+'°';});
+  card.querySelectorAll('.chip').forEach((ch,i)=>ch.classList.toggle('on',s.scene===i+1));
 }
+function repaint(id){ if(document.getElementById('gridView').style.display!=='none')liveUpdate(id); }
 /* grid event delegation */
 document.getElementById('gridView').addEventListener('input',e=>{const t=e.target;if(t.dataset.act)apply(t.dataset.id,t.dataset.act,t.value);});
 document.getElementById('gridView').addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;
@@ -326,7 +335,9 @@ document.getElementById('deck').addEventListener('click',e=>{const t=e.target.cl
 /* master */
 const mB=document.getElementById('masterBri');
 mB.addEventListener('input',()=>{document.getElementById('masterVal').textContent=mB.value+'%';
-  LIGHTS.forEach(l=>{st[l.id].bri=+mB.value;emit(l,GVM.bri(+mB.value,l.dt),'brightness '+mB.value+'%');});renderActive();blooms();save();});
+  LIGHTS.forEach(l=>{st[l.id].bri=+mB.value;emit(l,GVM.bri(+mB.value,l.dt),'brightness '+mB.value+'%');});
+  if(document.getElementById('gridView').style.display!=='none')LIGHTS.forEach(l=>liveUpdate(l.id));else renderConsole();
+  blooms();save();});
 function allOn(){LIGHTS.forEach(l=>{if(!st[l.id].on)apply(l.id,'power');});}
 function allOff(){LIGHTS.forEach(l=>{if(st[l.id].on)apply(l.id,'power');});}
 function blackout(){LIGHTS.forEach(l=>{st[l.id].on=false;emit(l,GVM.off(l.dt),'BLACKOUT');});renderActive();blooms();save();log("⏻ BLACKOUT");}
