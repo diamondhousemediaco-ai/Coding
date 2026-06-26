@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>LightDeck — Nebula Rose</title>
+<style>
+  :root{
+    --bg:#050507; --txt:#fff; --dim:#9a9aa2; --dim2:#b6b6be;
+    --glass:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.045));
+    --glass-soft:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+    --gbrd:rgba(255,255,255,.17); --gbrd-soft:rgba(255,255,255,.11);
+    --hi:inset 0 1px 0 rgba(255,255,255,.22);
+    --accent:#fff; --accent-txt:#000;
+    --r-card:22px; --r-ctrl:12px; --r-strip:18px; --r-chip:12px; --r-input:10px; --r-swatch:13px;
+  }
+  *{box-sizing:border-box; margin:0; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
+    color:var(--txt); background:var(--bg); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+  ::selection{background:#fff;color:#000;}
+  /* ambient color blooms */
+  #blooms{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
+  #blooms div{position:absolute; border-radius:50%; filter:blur(80px); opacity:.30;}
+  .wrap{position:relative; z-index:1;}
+  /* header */
+  header{position:sticky; top:0; z-index:50; padding:14px 20px 14px; backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4);
+    background:rgba(5,5,7,.6); border-bottom:1px solid var(--gbrd-soft);}
+  .bar{display:flex; align-items:center; gap:13px; flex-wrap:wrap;}
+  .logo{display:flex; align-items:center; gap:11px; font-weight:700; font-size:21px; letter-spacing:.4px;}
+  .mark{width:30px; height:30px; border-radius:9px; position:relative; flex:none;
+    background:conic-gradient(from 210deg,#ff3b3b,#ffd23b,#3bff7a,#3bc8ff,#b13bff,#ff3b3b); box-shadow:0 0 16px rgba(120,120,255,.45);}
+  .mark::after{content:""; position:absolute; inset:6px; border-radius:3px; background:#050507;}
+  .logo small{display:block; font-size:9px; letter-spacing:2.5px; color:var(--dim); font-weight:600; margin-top:1px;}
+  .spacer{flex:1;}
+  .seg{display:inline-flex; background:rgba(120,120,130,.25); border-radius:12px; padding:3px; backdrop-filter:blur(10px);}
+  .seg button{border:none; background:transparent; color:#c7c7cf; font-weight:600; font-size:13.5px; padding:8px 18px; border-radius:9px; cursor:pointer; transition:.16s;}
+  .seg button.on{background:var(--accent); color:var(--accent-txt);}
+  .gbtn{background:var(--glass); border:1px solid var(--gbrd); box-shadow:var(--hi); color:var(--txt);
+    font-weight:600; font-size:13px; padding:9px 15px; border-radius:var(--r-ctrl); cursor:pointer; transition:.16s; backdrop-filter:blur(12px);}
+  .gbtn:active{transform:scale(.95);}
+  .gbtn.danger{color:#ff8a8a;}
+  .pill{display:inline-flex; align-items:center; gap:8px; padding:9px 14px; border-radius:99px; font-size:12.5px; font-weight:600;
+    background:var(--glass); border:1px solid var(--gbrd); cursor:pointer; backdrop-filter:blur(12px);}
+  .pill .dot{width:9px; height:9px; border-radius:50%; background:#ff6b6b; box-shadow:0 0 8px #ff6b6b;}
+  .pill.live .dot{background:#46e08a; box-shadow:0 0 9px #46e08a;}
+  .master{display:flex; align-items:center; gap:12px; margin-top:13px; flex-wrap:wrap;}
+  .master .lbl{font-size:10.5px; letter-spacing:2px; color:var(--dim); font-weight:700;}
+  /* grid */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:16px; padding:20px; max-width:1500px; margin:0 auto;}
+  .card{position:relative; border-radius:var(--r-card); padding:17px; background:var(--glass); border:1px solid var(--gbrd); box-shadow:var(--hi), 0 10px 34px rgba(0,0,0,.35); backdrop-filter:blur(22px) saturate(1.5); overflow:hidden; transition:opacity .3s;}
+  .card.off{opacity:.5;}
+  .accent{position:absolute; left:0; top:0; bottom:0; width:3px;}
+  .chead{display:flex; align-items:center; gap:12px;}
+  .swatch{width:42px; height:42px; border-radius:var(--r-swatch); flex:none; border:1px solid rgba(255,255,255,.22); transition:.3s;}
+  .cname{font-size:15.5px; font-weight:600;}
+  .cmodel{font-size:11px; color:var(--dim); margin-top:2px;}
+  .tog{margin-left:auto; width:50px; height:30px; border-radius:99px; background:rgba(120,120,128,.35); position:relative; flex:none; cursor:pointer; transition:.2s;}
+  .tog.on{background:var(--accent);}
+  .tog i{position:absolute; top:3px; left:3px; width:24px; height:24px; border-radius:50%; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.4); transition:.2s;}
+  .tog.on i{left:23px; background:var(--accent-txt);}
+  .ctrl{margin-top:15px;}
+  .ctrl .top{display:flex; justify-content:space-between; margin-bottom:7px;}
+  .ctrl .k{font-size:10px; letter-spacing:1.4px; color:var(--dim); font-weight:700;}
+  .ctrl .v{font-size:13px; font-weight:700; font-variant-numeric:tabular-nums;}
+  input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:30px; border-radius:var(--r-input); outline:none; cursor:pointer; background:rgba(255,255,255,.10); position:relative;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:24px; height:24px; border-radius:50%; background:#fff; box-shadow:0 2px 7px rgba(0,0,0,.5); border:2px solid #e9edf6;}
+  input[type=range].bri{background:linear-gradient(90deg,rgba(255,255,255,.08),var(--c,#fff));}
+  input[type=range].cct{background:linear-gradient(90deg,#ff9a3c,#ffe2c0,#fff,#cfe3ff,#8fb6ff);}
+  input[type=range].hue{background:linear-gradient(90deg,#ff0040,#ff9a00,#ffe600,#42ff00,#00ffd0,#0080ff,#a000ff,#ff0040);}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
+  .chip{font-size:11.5px; font-weight:600; padding:8px 12px; border-radius:var(--r-chip); cursor:pointer; background:rgba(255,255,255,.08); border:1px solid var(--gbrd-soft); transition:.15s;}
+  .chip.on{background:var(--accent); color:var(--accent-txt);}
+  .link{margin-top:14px; font-size:11px; color:var(--dim); display:flex; align-items:center; gap:7px;}
+  .link b{color:#ffd27a;}
+  .linkbtn{font-size:11px; font-weight:700; padding:6px 11px; border-radius:9px; background:rgba(255,255,255,.10); border:1px solid var(--gbrd); cursor:pointer;}
+  /* console */
+  .console{padding:20px; max-width:1500px; margin:0 auto; overflow-x:auto;}
+  .deck{display:flex; gap:11px; align-items:stretch; min-height:60vh;}
+  .strip{flex:1; min-width:96px; background:var(--glass); border:1px solid var(--gbrd); border-radius:var(--r-strip); padding:13px 8px 11px; display:flex; flex-direction:column; align-items:center; gap:9px; backdrop-filter:blur(20px) saturate(1.4); box-shadow:var(--hi);}
+  .strip.master-strip{background:var(--glass-soft); border-color:var(--gbrd);}
+  .strip.off-strip{opacity:.45;}
+  .scap{width:100%; height:6px; border-radius:4px; background:#2a2a30; transition:.3s;}
+  .sname{font-size:11.5px; font-weight:700; text-align:center; line-height:1.2; min-height:28px; display:flex; align-items:center;}
+  .faders{display:flex; gap:8px; flex:1;}
+  .fader{position:relative; width:34px; flex:1; min-height:150px; border-radius:10px; background:rgba(255,255,255,.10); overflow:hidden; cursor:pointer; touch-action:none;}
+  .fader .fill{position:absolute; left:0; right:0; bottom:0; background:linear-gradient(180deg,#fff,#9a9a9e);}
+  .fader.cctf .fill{background:linear-gradient(180deg,#8fb6ff,#fff 50%,#ff9a3c);}
+  .fader.huef .fill{background:linear-gradient(180deg,#ff0040,#a000ff,#0080ff,#00ffd0,#42ff00,#ffe600,#ff9a00,#ff0040);}
+  .fader .cap{position:absolute; left:-2px; right:-2px; height:14px; border-radius:4px; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.3),0 3px 7px rgba(0,0,0,.6);}
+  .fval{font-size:12px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .flbl{font-size:9px; letter-spacing:1.3px; color:var(--dim); font-weight:800;}
+  .col{display:flex; flex-direction:column; align-items:center; gap:5px; flex:1;}
+  /* log */
+  .logwrap{max-width:1500px; margin:0 auto; padding:0 20px 30px;}
+  .log{background:rgba(0,0,0,.45); border:1px solid var(--gbrd-soft); border-radius:14px; padding:11px 14px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; color:#9fe6c0; max-height:120px; overflow:auto; line-height:1.6;}
+  .log .t{color:var(--dim);} .log .b{color:#8fb6ff;}
+  .demo{text-align:center; font-size:12px; color:#ffd27a; padding:8px; background:rgba(251,191,36,.06); border-bottom:1px solid rgba(251,191,36,.14);}
+  @media(max-width:560px){ .grid{grid-template-columns:1fr; padding:14px;} }
+</style>
+<style id="theme-override">
+:root{
+  /* Nebula Rose — dark SaaS glow, rose accent */
+  --bg:#0d0709; --txt:#f4f3f8; --dim:#8d8c99; --dim2:#abaab8;
+  --glass:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+  --glass-soft:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  --gbrd:rgba(undefined,.16); --gbrd-soft:rgba(undefined,.10);
+  --accent:#fb5c8a; --accent-txt:#ffffff;
+  --r-card:20px; --r-ctrl:999px; --r-strip:18px; --r-chip:999px; --r-input:999px; --r-swatch:14px;
+}
+body{background:
+   radial-gradient(60% 48% at 86% -4%, rgba(251,92,138,0.2), transparent 68%),
+   radial-gradient(52% 46% at 8% 104%, rgba(255,138,92,0.15), transparent 70%),
+   var(--bg) !important;}
+#blooms div{opacity:.26 !important; filter:blur(95px) !important;}
+.card{box-shadow:var(--hi),0 14px 40px rgba(0,0,0,.5),0 0 0 1px rgba(251,92,138,0.05) !important;
+  backdrop-filter:blur(18px) saturate(1.35) !important;}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 60% at 50% -12%, rgba(255,255,255,.06), transparent 58%);}
+header{background:rgba(8,7,12,.68) !important; border-bottom:1px solid rgba(251,92,138,0.12) !important;}
+body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue","Segoe UI",Roboto,sans-serif; letter-spacing:-.01em;}
+.logo{font-size:23px; font-weight:600; letter-spacing:-.6px;}
+.logo small{letter-spacing:3px; font-weight:600; color:var(--dim);}
+.cname{font-size:16px; font-weight:600; letter-spacing:-.25px;}
+.cmodel{color:var(--dim); letter-spacing:.2px;}
+.ctrl .k,.master .lbl,.flbl{letter-spacing:1.8px; font-weight:600;}
+.ctrl .v,.fval{font-weight:600; letter-spacing:-.2px;}
+.gbtn{padding:9px 18px; font-weight:600;}
+.chip{padding:8px 14px;}
+.mark{background:linear-gradient(150deg,#ff8a5c,#fb5c8a) !important; box-shadow:0 0 20px rgba(251,92,138,0.55) !important;}
+.mark::after{background:var(--bg) !important;}
+#masterBri.bri{--c:#ff8a5c !important;}
+</style>
+</head>
+<body>
+<div id="blooms"></div>
+<div class="wrap">
+<div class="demo" id="demo">◇ Demo mode — not linked to lights. On iPad open this in the <b>Bluefy</b> browser, then tap a light’s “Link”.</div>
+
+<header>
+  <div class="bar">
+    <div class="logo"><span class="mark"></span><div>LightDeck<small>ON-SET CONTROL</small></div></div>
+    <div class="seg" style="margin-left:6px;">
+      <button id="tGrid" class="on" onclick="setView('grid')">Grid</button>
+      <button id="tConsole" onclick="setView('console')">Console</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="pill" id="statusPill" onclick="connectNext()"><span class="dot"></span><span id="statusTxt">0 linked</span></div>
+  </div>
+  <div class="master">
+    <span class="lbl">MASTER</span>
+    <button class="gbtn" onclick="allOn()">All On</button>
+    <button class="gbtn" onclick="allOff()">All Off</button>
+    <button class="gbtn danger" onclick="blackout()">Blackout</button>
+    <input type="range" class="bri" id="masterBri" min="0" max="100" value="80" style="flex:1; min-width:140px; --c:#fff;">
+    <span class="v" id="masterVal" style="font-size:13px; font-weight:700;">80%</span>
+  </div>
+</header>
+
+<div id="gridView" class="grid"></div>
+<div id="consoleView" class="console" style="display:none;"><div class="deck" id="deck"></div></div>
+
+<div class="logwrap"><div class="log" id="log"></div></div>
+</div>
+
+<script>
+/* ===== GVM protocol (verified byte-for-byte from decompiled app) ===== */
+function crc16(b){let c=0;for(const x of b){c^=x<<8;for(let i=0;i<8;i++)c=(c&0x8000)?((c<<1)^0x1021)&0xFFFF:(c<<1)&0xFFFF;}return c;}
+function frame(cmd,p,dt=0x30,id=0x00){const body=[0x4C,0x54,0x09,id,dt,0x57,0x00,cmd,0x01,...p];const c=crc16(body);return new Uint8Array([...body,(c>>8)&0xFF,c&0xFF]);}
+const GVM={on:dt=>frame(0,[1],dt),off:dt=>frame(0,[0],dt),bri:(v,dt)=>frame(2,[Math.max(0,Math.min(100,v))],dt),
+  cct:(k,dt)=>frame(3,[Math.round(Math.max(2000,Math.min(8500,k))/100)],dt),hue:(d,dt)=>frame(4,[Math.round(Math.max(0,Math.min(360,d))/5)],dt),
+  sat:(v,dt)=>frame(5,[Math.max(0,Math.min(100,v))],dt),mode:(m,dt)=>frame(6,[m],dt),scene:(s,dt)=>frame(7,[s],dt)};
+const SCENES=["Lightning","Cop Car","Candle","TV","Bad Bulb","Party","Disco","Paparazzi"];
+
+/* ===== BLE engine (Web Bluetooth — fill UUIDs after live scan) ===== */
+const BLE={
+  OPTIONAL:[0xfff0,0xffe0,0xffe5,0xff00,0xfee0,'0000ae00-0000-1000-8000-00805f9b34fb'],
+  conns:{}, // lightId -> {device,char}
+  count(){return Object.keys(this.conns).length;},
+  async link(id){
+    const l=LIGHTS.find(x=>x.id===id);
+    if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
+    try{
+      log("Requesting device for "+l.name+"…");
+      const dev=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});
+      const srv=await dev.gatt.connect();
+      let ch=null;
+      for(const s of await srv.getPrimaryServices())
+        for(const c of await s.getCharacteristics())
+          if(c.properties.write||c.properties.writeWithoutResponse){ch=c;break;}
+      if(!ch){log("✗ no writable characteristic on "+dev.name,1);return;}
+      BLE.conns[id]={device:dev,char:ch};
+      dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
+      log("✓ linked "+l.name+" → "+(dev.name||dev.id)+" ("+ch.uuid.slice(0,8)+"…)");
+      refreshStatus(); render();
+    }catch(e){log("✗ "+e.message,1);}
+  },
+  async send(id,fr){const c=BLE.conns[id];if(!c)return false;try{await c.char.writeValue(fr);return true;}catch(e){log("✗ write "+e.message,1);return false;}}
+};
+function connectNext(){const n=LIGHTS.find(l=>l.proto==='gvm'&&!BLE.conns[l.id]);if(n)BLE.link(n.id);else log("All GVM lights already linked.");}
+function refreshStatus(){const n=BLE.count();const p=document.getElementById('statusPill');p.classList.toggle('live',n>0);
+  document.getElementById('statusTxt').textContent=n+" linked";document.getElementById('demo').style.display=n>0?'none':'block';}
+
+/* ===== fleet ===== */
+const LIGHTS=[
+  {id:"k1",name:"650B Pro · Key",model:"GVM Pro 650B",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
+  {id:"k2",name:"650B Pro · Fill",model:"GVM Pro 650B",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
+  {id:"bk",name:"300D · Back",model:"GVM 300D",proto:"gvm",dt:0x30,cct:null,rgb:false,scenes:false},
+  {id:"ac",name:"PR150 · Accent",model:"GVM PR150",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
+  {id:"fx",name:"PR150R · FX",model:"GVM PR150R",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:true,scenes:true},
+  {id:"gd",name:"LA600Bi · Soft",model:"Godox LITEMONS",proto:"godox",dt:0x30,cct:[2800,6500],rgb:false,scenes:false,pending:true},
+  {id:"t1",name:"K60 · Tube L",model:"Viltrox K60",proto:"viltrox",dt:0x30,cct:[2500,8500],rgb:true,scenes:true,pending:true},
+  {id:"t2",name:"K60 · Tube R",model:"Viltrox K60",proto:"viltrox",dt:0x30,cct:[2500,8500],rgb:true,scenes:true,pending:true},
+];
+const SAVE="lightdeck_state";
+const st=JSON.parse(localStorage.getItem(SAVE)||"null")||{};
+LIGHTS.forEach(l=>{ if(!st[l.id]) st[l.id]={on:false,bri:80,cct:l.cct?Math.round((l.cct[0]+l.cct[1])/2):5600,hue:200,sat:100,mode:1,scene:null}; });
+function save(){localStorage.setItem(SAVE,JSON.stringify(st));}
+
+/* ===== color ===== */
+function kelvinRGB(k){k/=100;let r,g,b;if(k<=66){r=255;g=99.47*Math.log(k)-161.12;}else{r=329.7*Math.pow(k-60,-.1332);g=288.12*Math.pow(k-60,-.0755);}
+  if(k>=66)b=255;else if(k<=19)b=0;else b=138.52*Math.log(k-10)-305.04;const c=v=>Math.max(0,Math.min(255,Math.round(v||0)));return[c(r),c(g),c(b)];}
+function hsvRGB(h,s,v){s/=100;v/=100;const c=v*s,x=c*(1-Math.abs(((h/60)%2)-1)),m=v-c;let r,g,b;
+  if(h<60)[r,g,b]=[c,x,0];else if(h<120)[r,g,b]=[x,c,0];else if(h<180)[r,g,b]=[0,c,x];else if(h<240)[r,g,b]=[0,x,c];else if(h<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
+  return[Math.round((r+m)*255),Math.round((g+m)*255),Math.round((b+m)*255)];}
+function col(l){const s=st[l.id];if(l.rgb&&s.mode===2)return hsvRGB(s.hue,s.sat,100);return l.cct?kelvinRGB(s.cct):kelvinRGB(5600);}
+function rgbStr(l){return"rgb("+col(l).join(",")+")";}
+
+/* ambient blooms reflect a few lights */
+function blooms(){const el=document.getElementById('blooms');el.innerHTML='';
+  const pos=[["-60px","40px"],["60%","-40px"],["20%","70%"],["80%","60%"]];
+  LIGHTS.filter(l=>st[l.id].on).slice(0,4).forEach((l,i)=>{const[r,g,b]=col(l);const d=document.createElement('div');
+    d.style.cssText=`width:340px;height:340px;background:rgb(${r},${g},${b});left:${pos[i][0]};top:${pos[i][1]};opacity:${.10+.18*st[l.id].bri/100};`;el.appendChild(d);});}
+
+/* ===== GRID ===== */
+function renderGrid(){const g=document.getElementById('gridView');g.innerHTML='';
+  LIGHTS.forEach(l=>{const s=st[l.id],[r,gr,b]=col(l),c=`rgb(${r},${gr},${b})`,linked=!!BLE.conns[l.id];
+    const card=document.createElement('div');card.className='card'+(s.on?'':' off');
+    card.innerHTML=`
+      <div class="accent" style="background:${s.on?c:'#2a2a30'};"></div>
+      <div class="chead">
+        <div class="swatch" style="background:${c};opacity:${s.on?.45+.55*s.bri/100:.3};"></div>
+        <div><div class="cname">${l.name}</div><div class="cmodel">${l.model}</div></div>
+        <div class="tog ${s.on?'on':''}" data-act="power" data-id="${l.id}"><i></i></div>
+      </div>
+      <div class="ctrl"><div class="top"><span class="k">BRIGHTNESS</span><span class="v">${s.bri}%</span></div>
+        <input type="range" class="bri" min="0" max="100" value="${s.bri}" data-act="bri" data-id="${l.id}" style="--c:${c};"></div>
+      ${l.cct?`<div class="ctrl"><div class="top"><span class="k">COLOR TEMP</span><span class="v">${s.cct}K</span></div>
+        <input type="range" class="cct" min="${l.cct[0]}" max="${l.cct[1]}" step="50" value="${s.cct}" data-act="cct" data-id="${l.id}"></div>`
+        :`<div class="cmodel" style="margin-top:14px;">Daylight · 5600K fixed</div>`}
+      ${l.rgb?`<div class="ctrl"><div class="top"><span class="k">HUE</span><span class="v">${s.hue}°</span></div>
+        <input type="range" class="hue" min="0" max="360" value="${s.hue}" data-act="hue" data-id="${l.id}"></div>`:''}
+      ${l.scenes?`<div class="chips">${SCENES.map((nm,i)=>`<span class="chip ${s.scene===i+1?'on':''}" data-act="scene" data-id="${l.id}" data-s="${i+1}">${nm}</span>`).join('')}</div>`:''}
+      <div class="link">${l.pending?`⚠ <b>${l.model}</b> protocol pending — staged`
+         :linked?`<span style="color:#46e08a;">● linked</span>`
+         :`<span>not linked</span><button class="linkbtn" data-act="link" data-id="${l.id}">Link Bluetooth</button>`}</div>`;
+    g.appendChild(card);});}
+
+/* ===== CONSOLE ===== */
+function faderHTML(id,kind,cls,pct){return `<div class="col">
+  <div class="fader ${cls}" data-id="${id}" data-kind="${kind}"><div class="fill" style="height:${pct}%"></div><div class="cap" style="bottom:${pct}%"></div></div>
+  <div class="fval" id="${kind}v_${id}">${fdisp(id,kind)}</div><div class="flbl">${kind.toUpperCase()}</div></div>`;}
+function fdisp(id,kind){const s=st[id];return kind==='bri'?s.bri+'%':kind==='cct'?s.cct+'K':s.hue+'°';}
+function cctPct(l,k){return Math.round((k-l.cct[0])/(l.cct[1]-l.cct[0])*100);}
+function pctCct(l,p){return Math.round((l.cct[0]+p/100*(l.cct[1]-l.cct[0]))/50)*50;}
+function renderConsole(){const d=document.getElementById('deck');d.innerHTML='';
+  const m=document.createElement('div');m.className='strip master-strip';
+  m.innerHTML=`<div class="scap" style="background:linear-gradient(90deg,#ff9a3c,#fff,#8fb6ff);"></div><div class="sname">MASTER</div>
+    <div class="faders"><div class="col"><div class="fader" data-master="1"><div class="fill" style="height:${document.getElementById('masterBri').value}%"></div><div class="cap" style="bottom:${document.getElementById('masterBri').value}%"></div></div><div class="fval">${document.getElementById('masterBri').value}%</div><div class="flbl">INT</div></div></div>
+    <div class="tog on" onclick="allOn()"><i></i></div>`;
+  d.appendChild(m);
+  LIGHTS.forEach(l=>{const s=st[l.id],[r,gr,b]=col(l);
+    const strip=document.createElement('div');strip.className='strip'+(s.on?'':' off-strip');
+    let f=faderHTML(l.id,'bri','',s.bri);
+    if(l.cct)f+=faderHTML(l.id,'cct','cctf',cctPct(l,s.cct));
+    if(l.rgb)f+=faderHTML(l.id,'hue','huef',Math.round(s.hue/360*100));
+    strip.innerHTML=`<div class="scap" style="background:rgb(${r},${gr},${b});opacity:${s.on?.4+.6*s.bri/100:.3};"></div>
+      <div class="sname">${l.name.replace(' · ','<br>')}</div>
+      <div class="faders">${f}</div>
+      <div class="tog ${s.on?'on':''}" data-act="power" data-id="${l.id}"><i></i></div>`;
+    d.appendChild(strip);});
+  wireFaders();}
+function wireFaders(){document.querySelectorAll('.fader[data-id]').forEach(f=>{
+  const move=e=>{const rc=f.getBoundingClientRect(),y=(e.touches?e.touches[0].clientY:e.clientY);
+    let p=Math.round((1-(y-rc.top)/rc.height)*100);p=Math.max(0,Math.min(100,p));
+    const id=f.dataset.id,kind=f.dataset.kind,l=LIGHTS.find(x=>x.id===id),s=st[id];
+    f.querySelector('.fill').style.height=p+'%';f.querySelector('.cap').style.bottom=p+'%';
+    if(kind==='bri'){apply(id,'bri',p);}else if(kind==='cct'){apply(id,'cct',pctCct(l,p));}else{apply(id,'hue',Math.round(p/100*360));}
+    document.getElementById(kind+'v_'+id).textContent=fdisp(id,kind);
+    const strip=f.closest('.strip'),[r,gr,b]=col(l);const cap=strip.querySelector('.scap');
+    cap.style.background=`rgb(${r},${gr},${b})`;cap.style.opacity=s.on?.4+.6*s.bri/100:.3;
+    strip.classList.toggle('off-strip',!s.on);strip.querySelector('.tog').classList.toggle('on',s.on);};
+  f.addEventListener('pointerdown',e=>{e.preventDefault();move(e);
+    const up=()=>{document.removeEventListener('pointermove',move);document.removeEventListener('pointerup',up);blooms();save();};
+    document.addEventListener('pointermove',move);document.addEventListener('pointerup',up);});});}
+
+/* ===== actions ===== */
+async function emit(l,fr,human){
+  if(l.proto!=='gvm'||l.pending){log(`<span class="t">[staged]</span> ${l.name}: ${human}`);return;}
+  const ok=await BLE.send(l.id,fr);
+  log(`<span class="t">[${ok?'TX':'demo'}]</span> ${l.name}: ${human} <span class="b">${[...fr].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase()}</span>`);}
+async function apply(id,act,val,extra){const l=LIGHTS.find(x=>x.id===id),s=st[id];
+  switch(act){
+    case'power':s.on=!s.on;repaint(id);blooms();save();return emit(l,s.on?GVM.on(l.dt):GVM.off(l.dt),s.on?'ON':'OFF');
+    case'bri':s.bri=+val;if(+val>0&&!s.on)s.on=true;repaint(id);save();return emit(l,GVM.bri(s.bri,l.dt),'brightness '+s.bri+'%');
+    case'cct':s.cct=+val;s.mode=1;repaint(id);save();return emit(l,GVM.cct(s.cct,l.dt),s.cct+'K');
+    case'hue':s.hue=+val;s.mode=2;s.scene=null;repaint(id);save();return emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');
+    case'scene':s.scene=+extra;s.mode=3;renderGrid();await emit(l,GVM.mode(3,l.dt),'mode→scenes');return emit(l,GVM.scene(+extra,l.dt),'scene '+SCENES[extra-1]);
+    case'power-toggle':return;
+  }}
+function repaint(id){ if(document.getElementById('gridView').style.display!=='none')renderGrid();
+  else { /* console live-updates inline; refresh strip state */ const l=LIGHTS.find(x=>x.id===id),s=st[id];
+    const strips=document.querySelectorAll('#deck .strip'); }
+}
+/* grid event delegation */
+document.getElementById('gridView').addEventListener('input',e=>{const t=e.target;if(t.dataset.act)apply(t.dataset.id,t.dataset.act,t.value);});
+document.getElementById('gridView').addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;
+  const a=t.dataset.act;if(a==='power')apply(t.dataset.id,'power');else if(a==='scene')apply(t.dataset.id,'scene',null,t.dataset.s);else if(a==='link')BLE.link(t.dataset.id);});
+document.getElementById('deck').addEventListener('click',e=>{const t=e.target.closest('[data-act="power"]');if(t)apply(t.dataset.id,'power'),renderConsole();});
+
+/* master */
+const mB=document.getElementById('masterBri');
+mB.addEventListener('input',()=>{document.getElementById('masterVal').textContent=mB.value+'%';
+  LIGHTS.forEach(l=>{st[l.id].bri=+mB.value;emit(l,GVM.bri(+mB.value,l.dt),'brightness '+mB.value+'%');});renderActive();blooms();save();});
+function allOn(){LIGHTS.forEach(l=>{if(!st[l.id].on)apply(l.id,'power');});}
+function allOff(){LIGHTS.forEach(l=>{if(st[l.id].on)apply(l.id,'power');});}
+function blackout(){LIGHTS.forEach(l=>{st[l.id].on=false;emit(l,GVM.off(l.dt),'BLACKOUT');});renderActive();blooms();save();log("⏻ BLACKOUT");}
+function renderActive(){if(document.getElementById('gridView').style.display!=='none')renderGrid();else renderConsole();}
+
+/* view + log */
+function render(){renderActive();}
+function setView(v){document.getElementById('gridView').style.display=v==='grid'?'grid':'none';
+  document.getElementById('consoleView').style.display=v==='console'?'block':'none';
+  document.getElementById('tGrid').classList.toggle('on',v==='grid');document.getElementById('tConsole').classList.toggle('on',v==='console');
+  localStorage.setItem('lightdeck_view',v); if(v==='grid')renderGrid();else renderConsole();}
+function log(h,err){const el=document.getElementById('log');const d=document.createElement('div');
+  d.innerHTML=err?`<span style="color:#ff8a8a">${h}</span>`:h;el.appendChild(d);el.scrollTop=el.scrollHeight;}
+
+/* boot */
+const Q=location.search;
+if(Q.indexOf('demo')>=0){const seed={k1:[90,4750],k2:[60,5200],fx:[80,null],bk:[45,null],ac:[55,4200]};
+  Object.keys(seed).forEach(k=>{st[k].on=true;st[k].bri=seed[k][0];if(seed[k][1])st[k].cct=seed[k][1];});st.fx.mode=2;st.fx.hue=275;}
+blooms(); renderGrid();
+setView(Q.indexOf('console')>=0?'console':(localStorage.getItem('lightdeck_view')||'grid'));
+log(`LightDeck ready · ${LIGHTS.length} fixtures · GVM protocol <b>verified</b> · ${BLE.count()} linked.`);
+</script>
+</body>
+</html>
