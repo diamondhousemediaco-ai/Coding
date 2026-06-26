@@ -100,6 +100,44 @@
   .demo{text-align:center; font-size:12px; color:#ffd27a; padding:8px; background:rgba(251,191,36,.06); border-bottom:1px solid rgba(251,191,36,.14);}
   @media(max-width:560px){ .grid{grid-template-columns:1fr; padding:14px;} }
 </style>
+<style id="theme-override">
+:root{
+  /* Nebula — dark SaaS, violet accent + colorful card glow (TaskXen/Cawar vibe) */
+  --bg:#08070d; --txt:#f3f2f8; --dim:#8b8a99; --dim2:#aaa9b8;
+  --glass:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+  --glass-soft:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  --gbrd:rgba(150,130,255,.14); --gbrd-soft:rgba(150,130,255,.09);
+  --accent:#7c5cff; --accent-txt:#ffffff;
+  --r-card:20px; --r-ctrl:999px; --r-strip:18px; --r-chip:999px; --r-input:999px; --r-swatch:14px;
+}
+/* violet corner wash + nebula ambience */
+body{background:
+   radial-gradient(60% 48% at 86% -4%, rgba(124,92,255,.20), transparent 68%),
+   radial-gradient(52% 46% at 8% 104%, rgba(190,85,247,.14), transparent 70%),
+   var(--bg) !important;}
+#blooms div{opacity:.26 !important; filter:blur(95px) !important;}
+/* glowing rounded cards with soft top sheen + violet-tinted depth */
+.card{box-shadow:var(--hi),0 14px 40px rgba(0,0,0,.5),0 0 0 1px rgba(124,92,255,.05) !important;
+  backdrop-filter:blur(18px) saturate(1.35) !important;}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 60% at 50% -12%, rgba(255,255,255,.06), transparent 58%);}
+header{background:rgba(8,7,13,.68) !important; border-bottom:1px solid rgba(124,92,255,.12) !important;}
+/* editorial type (kept from refined pass) */
+body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue","Segoe UI",Roboto,sans-serif; letter-spacing:-.01em;}
+.logo{font-size:23px; font-weight:600; letter-spacing:-.6px;}
+.logo small{letter-spacing:3px; font-weight:600; color:var(--dim);}
+.cname{font-size:16px; font-weight:600; letter-spacing:-.25px;}
+.cmodel{color:var(--dim); letter-spacing:.2px;}
+.ctrl .k,.master .lbl,.flbl{letter-spacing:1.8px; font-weight:600;}
+.ctrl .v,.fval{font-weight:600; letter-spacing:-.2px;}
+.gbtn{padding:9px 18px; font-weight:600;}
+.chip{padding:8px 14px;}
+/* glowing violet logo mark (was rainbow) */
+.mark{background:linear-gradient(150deg,#b39dff,#7c5cff) !important; box-shadow:0 0 20px rgba(124,92,255,.55) !important;}
+.mark::after{background:var(--bg) !important;}
+/* purple-tinted master slider track */
+#masterBri.bri{--c:#9b7cff !important;}
+</style>
 </head>
 <body>
 <div id="blooms"></div>
