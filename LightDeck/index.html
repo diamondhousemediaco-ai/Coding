@@ -102,27 +102,25 @@
 </style>
 <style id="theme-override">
 :root{
-  /* Nebula — dark SaaS, violet accent + colorful card glow (TaskXen/Cawar vibe) */
-  --bg:#08070d; --txt:#f3f2f8; --dim:#8b8a99; --dim2:#aaa9b8;
+  /* LightDeck — flat dark, white accent, editorial type */
+  --bg:#08070d; --txt:#f4f4f5; --dim:#8a8a90; --dim2:#a8a8ae;
   --glass:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
   --glass-soft:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
-  --gbrd:rgba(150,130,255,.14); --gbrd-soft:rgba(150,130,255,.09);
-  --accent:#7c5cff; --accent-txt:#ffffff;
+  --gbrd:rgba(255,255,255,.10); --gbrd-soft:rgba(255,255,255,.065);
+  --accent:#f5f5f7; --accent-txt:#141416;
   --r-card:20px; --r-ctrl:999px; --r-strip:18px; --r-chip:999px; --r-input:999px; --r-swatch:14px;
 }
-/* violet corner wash + nebula ambience */
-body{background:
-   radial-gradient(60% 48% at 86% -4%, rgba(124,92,255,.20), transparent 68%),
-   radial-gradient(52% 46% at 8% 104%, rgba(190,85,247,.14), transparent 70%),
-   var(--bg) !important;}
-#blooms div{opacity:.26 !important; filter:blur(95px) !important;}
-/* glowing rounded cards with soft top sheen + violet-tinted depth */
-.card{box-shadow:var(--hi),0 14px 40px rgba(0,0,0,.5),0 0 0 1px rgba(124,92,255,.05) !important;
-  backdrop-filter:blur(18px) saturate(1.35) !important;}
+/* flat dark background — no corner wash, no ambient blooms */
+body{background:var(--bg) !important;}
+#blooms{display:none !important;}
+/* clean rounded cards (no left accent strip) */
+.card{box-shadow:var(--hi),0 14px 40px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04) !important;
+  backdrop-filter:blur(18px) saturate(1.15) !important;}
 .card::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 60% at 50% -12%, rgba(255,255,255,.06), transparent 58%);}
-header{background:rgba(8,7,13,.68) !important; border-bottom:1px solid rgba(124,92,255,.12) !important;}
-/* editorial type (kept from refined pass) */
+  background:radial-gradient(120% 60% at 50% -12%, rgba(255,255,255,.05), transparent 58%);}
+.accent{display:none !important;}
+header{background:rgba(8,7,13,.7) !important; border-bottom:1px solid rgba(255,255,255,.08) !important;}
+/* editorial type */
 body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue","Segoe UI",Roboto,sans-serif; letter-spacing:-.01em;}
 .logo{font-size:23px; font-weight:600; letter-spacing:-.6px;}
 .logo small{letter-spacing:3px; font-weight:600; color:var(--dim);}
@@ -132,11 +130,11 @@ body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helv
 .ctrl .v,.fval{font-weight:600; letter-spacing:-.2px;}
 .gbtn{padding:9px 18px; font-weight:600;}
 .chip{padding:8px 14px;}
-/* glowing violet logo mark (was rainbow) */
-.mark{background:linear-gradient(150deg,#b39dff,#7c5cff) !important; box-shadow:0 0 20px rgba(124,92,255,.55) !important;}
+/* monochrome logo mark */
+.mark{background:linear-gradient(150deg,#fafafa,#8d8d94) !important; box-shadow:0 0 0 1px rgba(255,255,255,.10) !important;}
 .mark::after{background:var(--bg) !important;}
-/* purple-tinted master slider track */
-#masterBri.bri{--c:#9b7cff !important;}
+/* white master slider track */
+#masterBri.bri{--c:#ffffff !important;}
 </style>
 </head>
 <body>
@@ -346,7 +344,7 @@ function log(h,err){const el=document.getElementById('log');const d=document.cre
 /* boot */
 const Q=location.search;
 if(Q.indexOf('demo')>=0){const seed={k1:[90,4750],k2:[60,5200],fx:[80,null],bk:[45,null],ac:[55,4200]};
-  Object.keys(seed).forEach(k=>{st[k].on=true;st[k].bri=seed[k][0];if(seed[k][1])st[k].cct=seed[k][1];});st.fx.mode=2;st.fx.hue=275;}
+  Object.keys(seed).forEach(k=>{st[k].on=true;st[k].bri=seed[k][0];if(seed[k][1])st[k].cct=seed[k][1];});st.fx.mode=1;st.fx.cct=5600;}
 blooms(); renderGrid();
 setView(Q.indexOf('console')>=0?'console':(localStorage.getItem('lightdeck_view')||'grid'));
 log(`LightDeck ready · ${LIGHTS.length} fixtures · GVM protocol <b>verified</b> · ${BLE.count()} linked.`);
