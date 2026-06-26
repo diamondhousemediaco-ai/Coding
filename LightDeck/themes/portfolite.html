@@ -102,20 +102,33 @@
 </style>
 <style id="theme-override">
 :root{
-  /* Portfolite vibe — calm, minimal, refined dark */
-  --bg:#0c0c0e; --txt:#f4f4f5; --dim:#86868b; --dim2:#a1a1a6;
-  --glass:linear-gradient(160deg,rgba(255,255,255,.050),rgba(255,255,255,.018));
-  --glass-soft:linear-gradient(160deg,rgba(255,255,255,.030),rgba(255,255,255,.010));
-  --gbrd:rgba(255,255,255,.10); --gbrd-soft:rgba(255,255,255,.065);
-  --accent:#f5f5f7; --accent-txt:#161618;
-  /* soft panels, pill controls/tags */
-  --r-card:22px; --r-ctrl:999px; --r-strip:20px; --r-chip:999px; --r-input:999px; --r-swatch:14px;
+  /* Portfolite — flat, calm, editorial mono-dark (matched to reference) */
+  --bg:#0a0a0b; --txt:#f4f4f5; --dim:#8a8a90; --dim2:#a8a8ae;
+  --glass:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  --glass-soft:linear-gradient(160deg,rgba(255,255,255,.028),rgba(255,255,255,.009));
+  --gbrd:rgba(255,255,255,.09); --gbrd-soft:rgba(255,255,255,.06);
+  --accent:#f5f5f7; --accent-txt:#141416;
+  /* soft panels, rounded-rect buttons, pill tags */
+  --r-card:18px; --r-ctrl:12px; --r-strip:18px; --r-chip:999px; --r-input:11px; --r-swatch:13px;
 }
-/* calmer, less-glowy ambience to match the minimal feel */
-#blooms div{opacity:.12 !important; filter:blur(120px) !important;}
-.card{box-shadow:var(--hi), 0 8px 30px rgba(0,0,0,.28) !important; backdrop-filter:blur(18px) saturate(1.15) !important;}
+/* ---- editorial typography ---- */
+body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue","Segoe UI",Roboto,sans-serif; letter-spacing:-.01em;}
+.logo{font-size:23px; font-weight:600; letter-spacing:-.6px;}
+.logo small{letter-spacing:3px; font-weight:600; color:var(--dim); margin-top:2px;}
+.cname{font-size:16px; font-weight:600; letter-spacing:-.25px;}
+.cmodel{letter-spacing:.2px; color:var(--dim);}
+.ctrl .k,.master .lbl,.flbl{letter-spacing:1.8px; font-weight:600;}
+.ctrl .v,.fval{font-weight:600; letter-spacing:-.2px;}
+.seg button{font-weight:600;}
+/* ---- flat, calm finish (kill the glassy glow) ---- */
+#blooms div{opacity:.07 !important; filter:blur(130px) !important;}
+.card{box-shadow:var(--hi),0 8px 28px rgba(0,0,0,.25) !important; backdrop-filter:blur(14px) saturate(1.08) !important;}
+.gbtn{padding:9px 18px; font-weight:600;}
 .chip{padding:8px 14px;}
-.gbtn{padding:9px 17px;}
+header{background:rgba(10,10,11,.7) !important;}
+/* ---- monochrome minimal logo mark (was rainbow) ---- */
+.mark{background:linear-gradient(150deg,#fafafa,#8d8d94) !important; box-shadow:0 0 0 1px rgba(255,255,255,.10) !important;}
+.mark::after{background:var(--bg) !important;}
 </style>
 </head>
 <body>
