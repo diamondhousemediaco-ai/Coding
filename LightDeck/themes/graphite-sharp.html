@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>LightDeck</title>
+<title>LightDeck — Graphite — sharp corners</title>
 <style>
   :root{
     --bg:#050507; --txt:#fff; --dim:#9a9aa2; --dim2:#b6b6be;
@@ -99,6 +99,16 @@
   .log .t{color:var(--dim);} .log .b{color:#8fb6ff;}
   .demo{text-align:center; font-size:12px; color:#ffd27a; padding:8px; background:rgba(251,191,36,.06); border-bottom:1px solid rgba(251,191,36,.14);}
   @media(max-width:560px){ .grid{grid-template-columns:1fr; padding:14px;} }
+</style>
+<style id="theme-override">
+:root{
+  --bg:#0b0c0e; --txt:#eef1f5; --dim:#8b9099; --dim2:#aab0b8;
+  --glass:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  --glass-soft:linear-gradient(160deg,rgba(255,255,255,0.050),rgba(255,255,255,0.013));
+  --gbrd:rgba(255,255,255,.14); --gbrd-soft:rgba(255,255,255,.09);
+  --accent:#d7dde6; --accent-txt:#0b0c0e;
+  --r-card:8px; --r-ctrl:6px; --r-strip:8px; --r-chip:5px; --r-input:5px; --r-swatch:7px;
+}
 </style>
 </head>
 <body>

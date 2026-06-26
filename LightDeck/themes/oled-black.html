@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>LightDeck</title>
+<title>LightDeck — Pure Black OLED — high contrast</title>
 <style>
   :root{
     --bg:#050507; --txt:#fff; --dim:#9a9aa2; --dim2:#b6b6be;
@@ -99,6 +99,16 @@
   .log .t{color:var(--dim);} .log .b{color:#8fb6ff;}
   .demo{text-align:center; font-size:12px; color:#ffd27a; padding:8px; background:rgba(251,191,36,.06); border-bottom:1px solid rgba(251,191,36,.14);}
   @media(max-width:560px){ .grid{grid-template-columns:1fr; padding:14px;} }
+</style>
+<style id="theme-override">
+:root{
+  --bg:#000000; --txt:#ffffff; --dim:#8a8a8a; --dim2:#b0b0b0;
+  --glass:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
+  --glass-soft:linear-gradient(160deg,rgba(255,255,255,0.055),rgba(255,255,255,0.013));
+  --gbrd:rgba(255,255,255,.20); --gbrd-soft:rgba(255,255,255,.12);
+  --accent:#ffffff; --accent-txt:#000;
+  --r-card:20px; --r-ctrl:12px; --r-strip:16px; --r-chip:11px; --r-input:9px; --r-swatch:12px;
+}
 </style>
 </head>
 <body>
