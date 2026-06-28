@@ -75,7 +75,7 @@
 # ═══ SCENE 2 — ROOFTOP AT THE VINYL LOUNGE ═══
 *Dom and the girls meet; a model tries on the dresses.*
 
-## ▸ Side talk — PRE-ARRIVAL (girls' getting-to-know; "Dom's running late" gag)
+## ▸ Side talk — PRE-ARRIVAL (personal / Nashville / dating — getting-to-know + "Dom's running late" gag)
 > This whole block (01:01:35–01:09:08) is small talk **before** Dom arrives — NOT champagne, NOT dress. It's the side-talk reservoir: pull only a short beat as a lead-in before each dress, and feed the rest into **2e**. The "Dom's always late" gag lives at **01:07:04–01:07:18** ("he takes longer than any of us to get ready"); the setup question at 01:07:04 is garbled in ASR — relisten.
 
 `[01:01:31:19 - 01:01:33:18]` **Speaker 15:** I
@@ -270,8 +270,7 @@
 
 `[01:13:50:06 - 01:14:01:00]` *(Music)*
 
-## ▸ 2c — Dress 2 (graphic / ballroom-leaning "contender")
-> The dress meat is 01:16:46–01:18:33: "graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." Use that. The tangents that follow (flagged below) are side talk — keep only a beat.
+> *(still DRESS 1 — "love it" and the reactions below are to the FIRST gown; the model doesn't change into Dress 2 until "we got number two" at 01:16:40.)*
 
 `[01:14:05:10 - 01:15:13:20]` **Speaker 20:** love it. Are we ready for number two? Number two. Bring it on.
 
@@ -280,6 +279,9 @@
 `[01:16:09:20 - 01:16:13:03]` **Speaker 2:** Yeah, because it like popped out and floated, so it stayed on top.
 
 `[01:16:13:03 - 01:16:16:03]` **Speaker 1:** Oh my gosh. Yeah. Yeah, it was really cool. That's crazy.
+
+### ↪ Side talk — LINE DANCING (lead-in beat; this thread pays off at the party)
+> "Have you been line dancing… we have to get you boots… our night might end in line dancing/swing dancing." A recurring thread — keep a beat.
 
 `[01:16:16:03 - 01:16:18:15]` **Speaker 1:** Have you guys been line dancing? I do want a line dancing.
 
@@ -300,6 +302,9 @@
 `[01:16:35:23 - 01:16:37:01]` **Speaker 19:** Yeah.
 
 `[01:16:37:02 - 01:16:40:16]` **Speaker 1:** It looks like our night might end in line dancing, swing dancing.
+
+## ▸ 2c — Dress 2 (graphic / ballroom-leaning "contender")
+> Dress 2 arrives here ("we got number two"). Meat: "I'm loving this one more… it's very graphic," the top/shape, ballroom-vs-beach, "it's a contender" (01:16:46–01:18:33).
 
 `[01:16:40:16 - 01:16:42:11]` **Speaker 1:** what are you guys excited about? Oh, we got number two.
 
@@ -330,7 +335,7 @@
 `[01:18:33:19 - 01:18:35:00]` **Speaker 2:** that. What'd you get these clips from?
 
 ### ↪ Side talk — pull OUT of the dress beat (01:18:36–01:22:00)
-> The next ~3.5 min are tangents, not dress talk: the "Lowe's clips" bit, wine/beer/cigars, and Nashville/development + "how do you help them — finances." Park these in 2e or trim to a beat. **Dress 3 resumes at 01:22:00.** (The finances line at 01:21:47 is worth keeping as a stakes seed.)
+> Tangents, not dress talk — and they map to the three side-talk threads: **personal** (the "Lowe's clips" bit, wine/beer/cigars) and **Nashville** (development, "how do you help them — finances"). Park in 2e or trim to a beat. **Dress 3 resumes at 01:22:00.** (Keep the finances line at 01:21:47 as a stakes seed.)
 
 `[01:18:36:14 - 01:18:38:08]` **Speaker 1:** I got real clips by the way. From where?
 

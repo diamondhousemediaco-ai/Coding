@@ -35,6 +35,8 @@ They met at Sarah's brother's wedding, both in the wedding party. She's a single
 ## 4. ACT-BY-ACT BEAT SHEET
 
 > Footage refs use scene/sub-scene codes + timecodes. INT = confessional/interview callouts.
+>
+> **Side-talk policy (whole episode):** keep side talk that builds the three recurring threads — **line dancing** (rooftop "I want to line dance" → the party lesson pays it off), **Nashville** (the city, Broadway, real estate/development, "everybody's moving here"), and **personal** (single-life/dating, the dogs, self-love — feeds the B-story). Trim generic filler.
 
 ### COLD OPEN — (~1:30) *emotion only, NO dress*
 | Beat | Action | Footage ref | INT bites | Function |
@@ -63,10 +65,10 @@ They met at Sarah's brother's wedding, both in the wedding party. She's a single
 |---|---|---|---|---|
 | 2-1 | Dom arrives, introduces the model **Alex** — "this is Alex… we got Sarah, she's our bride." | 2/S2 01:09:30–01:09:53 | — | Kick the preview off |
 | 2-2 | **Champagne** — toast/sip, skyline, "let's do it." Brief and glam. Lands *right after* Alex. | 2a/S2 01:09:53–01:11:03 (B-roll; grab a "cheers to Sarah" on relisten) | — | Glam reset, energy up |
-| 2-3 | *(short side-talk lead-in)* → **Dress 1** — the **beach / room-to-dance** dress: line-dancing talk ("we have to get you boots"), "ease on the beach," champagne color, pearl/light. | 2b/S2 01:16:13 + 01:17:39 + 01:24:45 (walk 01:11:03) | — | First gown; establish the beach + dance brief |
+| 2-3 | *(short side-talk lead-in)* → **Dress 1** — the **beach / room-to-dance** dress. Live reactions: "love it," "so cool," "it popped out and floated, stayed on top." Beach/dance character: "ease on the beach," champagne color, pearl/light. | 2b/S2 walk 01:11:03; reactions 01:14:05–01:16:16; beach/dance 01:17:39 + 01:24:45 | — | First gown; establish the beach + dance brief |
 | 2-4 | *(short lead-in)* → **Dress 2** — "it's very graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." Dom: "I wanted to give her options." | 2c/S2 01:16:46–01:18:33 | — | Options = stakes; build the choice |
 | 2-5 | *(short lead-in)* → **Dress 3** — corset, sleeves, waistline; "I love a corset"; scores 8 / 8.5 / "10 — I want it." Dom: "those baby tears the first time… you know she found her dress." | 2d/S2 01:22:00–01:24:21; Dom philosophy 01:22:18 | INT-Dom: the "yes" moment is what he lives for. | Strongest gown; pre-sell the reveal |
-| 2-6 | **Side talk** — Dom torn between 1 and 2, champagne color for the beach, "strong variety." Sprinkle the getting-to-know + the "Dom's always late" gag (01:07:06) here. | 2e/S2 01:24:45–01:25:33; pre-arrival 01:01:35–01:09:08 | — | Strategy + texture |
+| 2-6 | **Side talk** — Dom's pick (torn 1 vs 2, champagne for the beach, "strong variety") + the recurring threads: **line dancing** ("our night might end in line dancing"), **Nashville** (Broadway, the city), **personal** (all-single/dating, dogs, the "Dom's always late" gag 01:07:06). | 2e/S2 01:24:45–01:25:33; pre-arrival 01:01:35–01:09:08 | — | Strategy + texture |
 | 2-7 | VALLEY — Savannah's emotional story (B-story plant). Fun drops out for a quiet, real beat. | 2f/S2 ~01:36:00–01:38:16 *(confirm narrator — see Notes)* | INT-Savannah: why this work hits home. | Plant the payoff; peaks & valleys |
 | **ACT-OUT** | "Thank you, Alex." Dom: now we actually meet her. | 2/S2 01:25:55–01:26:14 | — | **Hook:** who is Sarah, really? |
 
@@ -86,7 +88,7 @@ They met at Sarah's brother's wedding, both in the wedding party. She's a single
 |---|---|---|---|---|
 | 4-1 | The walk-up: VIP welcome, Grace & Frankie the "welcoming committee," Yousuf to dress her. | 4a/S4 01:49:13–01:50:24 | — | Glam reset, warmth |
 | 4-2 | Dress 1 — beaded ballgown. Stunning but "not my dancing dress" (90%-party wedding). | 4b/S4 01:53:21–01:55:25 | INT-girl: first impressions of Sarah. | Establish her taste; raise the bar |
-| 4-3 | Banter valley while she changes: bonding, "bridal superheroes," all single together. | 4b side-talk 01:50:47–01:53:20 | — | Tie B-story to the room |
+| 4-3 | Banter valley while she changes (**personal** thread): bonding, "bridal superheroes," all single together. | 4b side-talk 01:50:47–01:53:20 | — | Tie B-story to the room |
 | 4-4 | Dress 2 — graphic neckline, she glows: "more of a glow in your face." A real contender. | 4c/S4 01:57:48–02:00:41 | — | False peak — "she might cry twice" |
 | 4-5 | Strategy beat: "we can always add sleeves"; "there's a wedding dress and a party dress." "Now it's happening." | 4c side-talk 02:01:04–02:02:13 | INT: changing lives "one bride at a time." | Hold tension before the win |
 | 4-6 | ★ DRESS 3 — THE YES DRESS. Deep-V corset, lace sleeves to the knuckles, train. Tears. "I feel like a wife." Veil — chills. "Is this the yes dress?" "Yes." | 4d/S4 02:02:40–02:05:17; veil 02:06–02:10; button 02:04:56 / 02:10:40 | — | THE PEAK |
@@ -99,7 +101,7 @@ They met at Sarah's brother's wedding, both in the wedding party. She's a single
 |---|---|---|---|---|
 | 5-1 | Arrival; couple out of their element. The girls greet Sarah FIRST — "my tribe, my people." | 5a/S5 03:09:01–03:09:27; INT-Dom 04:33:20–04:34:03 | — | Reunion warmth |
 | 5-2 | Line dancing (FUN PEAK) — Justin Lee teaches; flailing in heels, "yeehaw," laughter. | 5b/S5 03:49:14–03:59:40 | INT-Muff: "favorite part… I'm a pro now" 04:32:00; INT-Danielle: "pretended I knew what I was doing — which is life" 04:39:21 | High-energy glam-fun |
-| 5-3 | Side-talk valley: dogs join the party; quieter bonding. | 5c/S5 + party b-roll | — | Breath before the speech |
+| 5-3 | Side-talk valley — the recurring threads land: **personal** (dogs, single-life/dating, Danielle's visa story), **Nashville** (Leiper's Fork / real estate / "everybody's moving here"), **line dancing** recap. | 5c/S5 + party b-roll | — | Breath before the speech; texture |
 | 5-4 | PARTY INTERVIEWS — B-STORY PAYOFF. The single women, lit by Sarah's love story, name what they want. | 5d/S5 04:24:10–04:41:58 | INT-Danielle: "so much bigger than marriage" 04:37:34; INT-Savannah/Danielle: "someone who sees me in the little moments" 04:41:16; INT-Muff: "digging Sarah for sure" 04:29:35 | Pay off the planted hearts |
 | 5-5 | THE SPEECH (LAST — the button). Dom's toast: pain-to-purpose; met Garrison at the cigar bar, Sarah the barista who knows his order, the truck-battery day → "tell me your story." "Why aren't y'all married?… it's been tough, financially." "This was real for me… I balled like a baby." | 5e/S5 04:11:18–04:23:06 (core 04:19:27–04:22:32) | INT-Dom (closer): won't feel it "until I'm on my back porch looking at the stars" 04:35:53–04:37:06 | Final button — meaning over fun |
 | 5-6 | "These people are my family." Cheers to Sarah & Garrison, cheers to all of us. | 5e/S5 04:13:36–04:14:07 / 04:23:06 | — | Land the family theme |
