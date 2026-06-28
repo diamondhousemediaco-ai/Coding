@@ -259,18 +259,13 @@
 ## ▸ 2a — Champagne (toast / sip — right after Alex intro)
 > The champagne pour/toast sits in the ~70-sec gap to 01:11:03 and is largely **B-ROLL**. Verbal anchor right before it: Dom's "we got Sarah, she's our bride" (01:09:52). ⚠ If a clean "cheers to Sarah" / prosecco line exists, recover it on relisten — the ASR didn't capture one.
 
-## ▸ 2b — Dress 1 (the beach / room-to-dance dress)
-> Dress 1 is the one they discuss as the **beach** gown with **room to dance**: the line-dancing / "we have to get you boots" talk (01:16:13), the "I'd go for ease on the beach… the light hits the pearl" preference (01:17:39), and Dom's "champagne color… the sand, her white flowers, her arch" (01:24:45). That comparison talk IS the dress-1 meat.
+## ▸ 2b — Dress 1 (01:12:17–01:13:49)
+> **Dress 1 segment = 01:12:17 → 01:13:49.** Beats: **Muff** — "I'm really excited for this opportunity to help people" → the girls talk about the **beading** → **Dom** — "you guys think she'll like it?" → ends on **"that's dress number 1"** (the segment's last line). The beach / room-to-dance character is voiced later, in comparison during Dress 2 ("I'd go for ease on the beach," 01:17:39). ⚠ The ASR captured this window as music only — relisten to transcribe the exact lines.
 
-`[01:11:03:15 - 01:11:08:10]` *(Music)*
+`[01:11:03:15 - 01:14:01:00]` *(Music — model walks Dress 1. The dialogue at 01:12:17–01:13:49 plays under the music; content per the note above.)*
 
-`[01:13:04:18 - 01:13:16:17]` *(Music)*
-
-`[01:13:19:14 - 01:13:29:22]` *(Music)*
-
-`[01:13:50:06 - 01:14:01:00]` *(Music)*
-
-> *(still DRESS 1 — "love it" and the reactions below are to the FIRST gown; the model doesn't change into Dress 2 until "we got number two" at 01:16:40.)*
+## ▸ 2c — Dress 2 (graphic / ballroom "contender")
+> Dress 2 from the "ready for number two" cue (01:14:05) → 01:18:33. Meat: "I'm loving this one more… it's very graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." The "I'd go for ease on the beach… the first one" lines are the comparison back to Dress 1.
 
 `[01:14:05:10 - 01:15:13:20]` **Speaker 20:** love it. Are we ready for number two? Number two. Bring it on.
 
@@ -302,9 +297,6 @@
 `[01:16:35:23 - 01:16:37:01]` **Speaker 19:** Yeah.
 
 `[01:16:37:02 - 01:16:40:16]` **Speaker 1:** It looks like our night might end in line dancing, swing dancing.
-
-## ▸ 2c — Dress 2 (graphic / ballroom-leaning "contender")
-> Dress 2 arrives here ("we got number two"). Meat: "I'm loving this one more… it's very graphic," the top/shape, ballroom-vs-beach, "it's a contender" (01:16:46–01:18:33).
 
 `[01:16:40:16 - 01:16:42:11]` **Speaker 1:** what are you guys excited about? Oh, we got number two.
 
