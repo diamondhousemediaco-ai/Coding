@@ -75,7 +75,8 @@
 # ═══ SCENE 2 — ROOFTOP AT THE VINYL LOUNGE ═══
 *Dom and the girls meet; a model tries on the dresses.*
 
-## ▸ 2a — Champagne / getting-to-know
+## ▸ Side talk — PRE-ARRIVAL (girls' getting-to-know; "Dom's running late" gag)
+> This whole block (01:01:35–01:09:08) is small talk **before** Dom arrives — NOT champagne, NOT dress. It's the side-talk reservoir: pull only a short beat as a lead-in before each dress, and feed the rest into **2e**. The "Dom's always late" gag lives at **01:07:04–01:07:18** ("he takes longer than any of us to get ready"); the setup question at 01:07:04 is garbled in ASR — relisten.
 
 `[01:01:31:19 - 01:01:33:18]` **Speaker 15:** I
 
@@ -237,7 +238,7 @@
 
 `[01:09:08:02 - 01:09:08:18]` **Speaker 19:** I know.
 
-## ▸ 2b — Dress 1 (on the model "Alex")
+### Dom arrives & introduces Alex (the model)
 
 `[01:09:14:01 - 01:09:15:13]` **Speaker 6:** What's up girls?
 
@@ -254,6 +255,12 @@
 `[01:09:52:00 - 01:09:53:21]` **Speaker 2:** Yeah, we got Sarah. She's our patron.
 
 `[01:09:53:21 - 01:10:00:22]` **Speaker 6:** You guys ready? Yeah, we're ready. Let's do it.
+
+## ▸ 2a — Champagne (toast / sip — right after Alex intro)
+> The champagne pour/toast sits in the ~70-sec gap to 01:11:03 and is largely **B-ROLL**. Verbal anchor right before it: Dom's "we got Sarah, she's our bride" (01:09:52). ⚠ If a clean "cheers to Sarah" / prosecco line exists, recover it on relisten — the ASR didn't capture one.
+
+## ▸ 2b — Dress 1 (beachy / champagne color)
+> ⚠ Dedicated Dress-1 commentary is **thin / buried under music** in the ASR (the model just walks). For the dress-1 beat, build from the retrospective lines: "I don't love it as much as the first one… I'd go for ease on the beach… the light hits the pearl" (01:17:39), "I think I like the first one better" (01:18:43), and Dom's "the first one was that champagne color… the sand, her white flowers, her arch" (01:24:45). Relisten 01:11–01:14 for any on-the-spot reactions.
 
 `[01:11:03:15 - 01:11:08:10]` *(Music)*
 
@@ -273,7 +280,8 @@
 
 `[01:14:04:14 - 01:14:05:10]` **Speaker 25:** Hi.
 
-## ▸ 2c — Dress 2
+## ▸ 2c — Dress 2 (graphic / ballroom-leaning "contender")
+> The dress meat is 01:16:46–01:18:33: "graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." Use that. The tangents that follow (flagged below) are side talk — keep only a beat.
 
 `[01:14:05:10 - 01:15:13:20]` **Speaker 20:** love it. Are we ready for number two? Number two. Bring it on.
 
@@ -330,6 +338,9 @@
 `[01:18:29:19 - 01:18:33:19]` **Speaker 2:** Right, exactly. Like I said, that's all one thing in her options because I think that was important. I can see
 
 `[01:18:33:19 - 01:18:35:00]` **Speaker 2:** that. What'd you get these clips from?
+
+### ↪ Side talk — pull OUT of the dress beat (01:18:36–01:22:00)
+> The next ~3.5 min are tangents, not dress talk: the "Lowe's clips" bit, wine/beer/cigars, and Nashville/development + "how do you help them — finances." Park these in 2e or trim to a beat. **Dress 3 resumes at 01:22:00.** (The finances line at 01:21:47 is worth keeping as a stakes seed.)
 
 `[01:18:36:14 - 01:18:38:08]` **Speaker 1:** I got real clips by the way. From where?
 
@@ -419,7 +430,8 @@
 
 `[01:21:47:01 - 01:22:00:03]` **Speaker 19:** Oh, how do you help them? The funny issue that they're having is actually going through with the weddings due to finances and stuff like that, I think. Right, yeah, I mean, I mean, to me, like, that's one of the most important things. Like, some of the, some of the, can't afford to be here. Oh,
 
-## ▸ 2d — Dress 3 (corset)
+## ▸ 2d — Dress 3 (corset / sleeves — the favorite)
+> The strongest dress beat: "I love a corset," the sleeves, the waistline, beads = weight, and the scoring (8 / 8.5 / "10 — I want it"). Runs 01:22:08–01:24:21.
 
 `[01:22:00:03 - 01:22:03:09]` **Speaker 19:** there she comes. Wow, okay.
 
@@ -483,7 +495,8 @@
 
 `[01:24:37:09 - 01:24:43:20]` **Speaker 2:** No, that looks great. I like it. It looks really good on the team. All of them, wow. Which one does you choose?
 
-## ▸ 2e — Side talk (Dom picks / chatter)
+## ▸ 2e — Side talk (Dom picks 1 vs 2 / champagne color / variety)
+> Absorbs the pre-arrival getting-to-know and the dress-2 tangents flagged above. Keep the dress-decision meat here: Dom torn between 1 and 2, the champagne color for the beach, "strong variety."
 
 `[01:24:45:02 - 01:25:28:07]` **Speaker 2:** I'm stuck between the first one and the second one. Okay. I really like the sleeves on this one. Yeah. I think they're very elegant. Yes, it is. I think the one thing I liked about the first one was just kind of like that champagne color. Yeah. And so when she's on the beach, you get a kind of like offset, like the sand, and then her white flowers, and then like her arch and everything else. And so that's kind of what I was thinking when we were first. And even though we can like change the color, just kind of like, yeah, champagne. I wanted you guys to be able to see the difference in like maybe if she were to get distressed and champagne, how she would feel about it. Yeah, yeah. You know what I mean? Great options, Tom. So I think like when we get to the appointment, I mean, I think that's one thing that we'll try to make sure that we find in the first one. Yeah. She can change the actual color.
 

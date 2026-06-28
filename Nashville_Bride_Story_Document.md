@@ -57,14 +57,16 @@ They met at Sarah's brother's wedding, both in the wedding party. She's a single
 | **ACT-OUT** | "Y'all sold?" "Sold." Off to the rooftop — "convince us." | S1 01:00:53–01:01:00 | — | **Hook:** what did Dom pick? |
 
 ### ACT 2 — ROOFTOP AT THE VINYL LOUNGE / THE PREVIEW — (~8:00)
+> **Rule for this act:** each dress beat is *about the dress* — that's the meat. Lead into each with only a short beat of side talk (a line or two), then get to the gown. Bank the rest of the small talk for 2-7's dedicated side-talk beat. Order: Dom + Alex → champagne → Dress 1 → Dress 2 → Dress 3 → side talk → Savannah.
+
 | Beat | Action | Footage ref | INT bites | Function |
 |---|---|---|---|---|
-| 2-1 | Champagne, skyline, model Alex arrives. "We got Sarah, she's our bride." | 2a/S2 01:09:30–01:09:53 | — | Glam reset, energy up |
-| 2-2 | Dress 1 on the model — first look, oohs. | 2b/S2 ~01:14:05–01:15:13 | — | Anticipation; "the shape she wants" |
-| 2-3 | Dress 2 — graphic, beaded; beachy or ballroom? "a contender." | 2c/S2 01:15:17–01:18:29 | — | Options = stakes; the "Lowe's clips" for levity |
-| 2-4 | Dom's philosophy: give her options so she finds THE one — "those baby tears for the first time… you know she found her dress." | 2d/S2 01:22:18–01:22:56 | INT-Dom: the "yes" moment is what he lives for. | Theme statement; pre-sell the reveal |
-| 2-5 | Dress 3 — corset, sleeves; "I love a corset," scores 8 / 8.5 / "10 — I want it." | 2d/S2 01:22:56–01:24:21 | — | Tease the winning silhouette (on a model) |
-| 2-6 | Dom locks favorites: torn 1 vs 2, champagne-vs-white for the beach. "Strong variety." | 2e/S2 01:24:45–01:25:33 | — | Strategy → forward motion |
+| 2-1 | Dom arrives, introduces the model **Alex** — "this is Alex… we got Sarah, she's our bride." | 2/S2 01:09:30–01:09:53 | — | Kick the preview off |
+| 2-2 | **Champagne** — toast/sip, skyline, "let's do it." Brief and glam. Lands *right after* Alex. | 2a/S2 01:09:53–01:11:03 (B-roll; grab a "cheers to Sarah" on relisten) | — | Glam reset, energy up |
+| 2-3 | *(short side-talk lead-in)* → **Dress 1 walks** — beachy, champagne color, pearl/light, "ease on the beach." | 2b/S2 walk 01:11:03; dress-1 character from 01:17:39 + 01:24:45 ⚠ *thin coverage — pickup* | — | First gown; establish the beach brief |
+| 2-4 | *(short lead-in)* → **Dress 2** — "it's very graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." Dom: "I wanted to give her options." | 2c/S2 01:16:46–01:18:33 | — | Options = stakes; build the choice |
+| 2-5 | *(short lead-in)* → **Dress 3** — corset, sleeves, waistline; "I love a corset"; scores 8 / 8.5 / "10 — I want it." Dom: "those baby tears the first time… you know she found her dress." | 2d/S2 01:22:00–01:24:21; Dom philosophy 01:22:18 | INT-Dom: the "yes" moment is what he lives for. | Strongest gown; pre-sell the reveal |
+| 2-6 | **Side talk** — Dom torn between 1 and 2, champagne color for the beach, "strong variety." Sprinkle the getting-to-know + the "Dom's always late" gag (01:07:06) here. | 2e/S2 01:24:45–01:25:33; pre-arrival 01:01:35–01:09:08 | — | Strategy + texture |
 | 2-7 | VALLEY — Savannah's emotional story (B-story plant). Fun drops out for a quiet, real beat. | 2f/S2 ~01:36:00–01:38:16 *(confirm narrator — see Notes)* | INT-Savannah: why this work hits home. | Plant the payoff; peaks & valleys |
 | **ACT-OUT** | "Thank you, Alex." Dom: now we actually meet her. | 2/S2 01:25:55–01:26:14 | — | **Hook:** who is Sarah, really? |
 
@@ -140,6 +142,8 @@ They met at Sarah's brother's wedding, both in the wedding party. She's a single
 - Savannah's story (2f) can float into Act 5's interview block if Act 2 runs long — but plant at least a line on the rooftop.
 
 **Missing / recommended pickups**
+- **Dress 1 coverage is thin.** The ASR has almost no on-the-spot dress-1 talk (model walks under music). Build the dress-1 beat from the retrospective "the first one… champagne color… ease on the beach" lines (01:17:39 / 01:24:45) and **relisten 01:11–01:14** for live reactions.
+- **Champagne toast is B-roll.** No clean "cheers to Sarah" line was captured. Relisten 01:09:53–01:11:03; if one exists, it's the button on the champagne beat.
 - **PRIORITY: Sarah's solo confessional.** The rules want the bride's interview rawest, right after the reveal (4e), but the transcript has only in-scene reactions. Grab a bride ITW: how the dress compared to her childhood picture, what not stressing about the wedding means, what Garrison will feel at the aisle.
 - **Garrison reaction pickup.** He's pure setup and never seen reacting — a short ITW or aisle-day tag closes his arc.
 - **Speaker-ID verification.** ASR blurs Danielle / Savannah / Muff. Confirm who delivers the home-care/"deathbed" reflection (~01:36–01:38), the self-love lines (~02:22), and the visa-marriage backstory (~03:48 / 04:03). Breakdown assigns 2f to Savannah; the transcript's richest single-woman material may be Danielle's — assign the B-story to whoever is on screen and keep it consistent. (See companion `Nashville_Bride_SpeakerID_Worksheet`.)
