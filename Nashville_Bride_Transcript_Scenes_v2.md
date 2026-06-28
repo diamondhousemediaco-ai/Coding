@@ -78,10 +78,30 @@
 # ═══ SCENE 2 — ROOFTOP AT THE VINYL LOUNGE ═══
 *Dom and the girls meet; a model tries on the dresses.*
 
-## ▸ Side talk — PRE-ARRIVAL (personal / Nashville / dating — getting-to-know + "Dom's running late" gag)
-> This whole block (01:01:35–01:09:08) is small talk **before** Dom arrives — NOT champagne, NOT dress. It's the side-talk reservoir: pull only a short beat as a lead-in before each dress, and feed the rest into **2e**. The "Dom's always late" gag lives at **01:07:04–01:07:18** ("he takes longer than any of us to get ready"); the setup question at 01:07:04 is garbled in ASR — relisten.
+## ▸ Side talk — PRE-ARRIVAL (Danielle & Muff arrive → Savannah joins → "Where's Dom?")
+> Minimal walk-up small talk before Dom shows. Keep it tight. **⚠ Speaker names follow the directed staging (Danielle & Muff first, then Savannah) — the ASR collapsed the three women under shared labels, so confirm on footage.**
 
-⟦TRIM — v2⟧ *Pre-arrival getting-to-know (~7 min of personal / Nashville / dating small talk) collapsed. Use only as one-line lead-ins. Keepers to pull: the **"Dom's running late" gag** — "he takes longer than any of us to get ready" (01:07:06); **"at least we're all single"** (01:08:05).*
+**▸ Danielle & Muff arrive / walk up:**
+
+`[01:03:09:18 - 01:03:11:19]` **Danielle ⚠:** Coming from Toronto, I'm loving this weather.
+
+`[01:03:56:08 - 01:04:07:10]` **Muff ⚠:** It's really fun. It's such a cool opportunity. It's nothing I would have imagined doing at this point, but it's cool that we're doing it now.
+
+`[01:04:07:10 - 01:04:15:11]` **Danielle ⚠:** I can't wait to see who else we can help. I love seeing all the dresses that Dom picked out.
+
+**▸ Savannah walks up, says hi to the girls:**
+
+`[01:05:13:05 - 01:05:26:21]` **Savannah ⚠:** Hello. Hi, guys. Hey, guys. You guys look beautiful. You look amazing. I love this one.
+
+`[01:05:28:14 - 01:05:30:22]` **Danielle ⚠:** How are you? Your dogs are so cute.
+
+**▸ "Where's Dom?":**
+
+`[01:07:04:19 - 01:07:06:19]` **Savannah ⚠:** *[likely "Where's Dom?" — garbled in ASR as "Guys, I'll put a dog"; confirm on relisten]*
+
+`[01:07:06:19 - 01:07:18:22]` **Danielle ⚠:** That's a great question. He takes longer than any of us to get ready, though. He's in the bridal world. That's right — he does own a bridal store.
+
+⟦TRIM — v2⟧ *Rest of the pre-arrival getting-to-know (dating / phone-stolen / "save the number," etc.) stays collapsed.*
 
 ### Dom arrives & introduces Alex (the model)
 
