@@ -259,26 +259,16 @@
 ## ▸ 2a — Champagne (toast / sip — right after Alex intro)
 > The champagne pour/toast sits in the ~70-sec gap to 01:11:03 and is largely **B-ROLL**. Verbal anchor right before it: Dom's "we got Sarah, she's our bride" (01:09:52). ⚠ If a clean "cheers to Sarah" / prosecco line exists, recover it on relisten — the ASR didn't capture one.
 
-## ▸ 2b — Dress 1 (beachy / champagne color)
-> ⚠ Dedicated Dress-1 commentary is **thin / buried under music** in the ASR (the model just walks). For the dress-1 beat, build from the retrospective lines: "I don't love it as much as the first one… I'd go for ease on the beach… the light hits the pearl" (01:17:39), "I think I like the first one better" (01:18:43), and Dom's "the first one was that champagne color… the sand, her white flowers, her arch" (01:24:45). Relisten 01:11–01:14 for any on-the-spot reactions.
+## ▸ 2b — Dress 1 (the beach / room-to-dance dress)
+> Dress 1 is the one they discuss as the **beach** gown with **room to dance**: the line-dancing / "we have to get you boots" talk (01:16:13), the "I'd go for ease on the beach… the light hits the pearl" preference (01:17:39), and Dom's "champagne color… the sand, her white flowers, her arch" (01:24:45). That comparison talk IS the dress-1 meat.
 
 `[01:11:03:15 - 01:11:08:10]` *(Music)*
 
-`[01:11:32:23 - 01:11:33:19]` **Speaker 25:** Hi, we're acting.
-
-`[01:13:04:13 - 01:13:04:18]` **Speaker 25:** Hi.
-
 `[01:13:04:18 - 01:13:16:17]` *(Music)*
-
-`[01:13:18:19 - 01:13:19:14]` **Speaker 25:** Hi, we're acting.
 
 `[01:13:19:14 - 01:13:29:22]` *(Music)*
 
-`[01:13:48:14 - 01:13:50:06]` **Speaker 25:** Hi.
-
 `[01:13:50:06 - 01:14:01:00]` *(Music)*
-
-`[01:14:04:14 - 01:14:05:10]` **Speaker 25:** Hi.
 
 ## ▸ 2c — Dress 2 (graphic / ballroom-leaning "contender")
 > The dress meat is 01:16:46–01:18:33: "graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." Use that. The tangents that follow (flagged below) are side talk — keep only a beat.
@@ -366,7 +356,7 @@
 
 `[01:19:13:23 - 01:19:16:07]` **Speaker 15:** Like a jumper. Yeah, like a jumper cable.
 
-`[01:19:16:07 - 01:19:19:03]` **Speaker 2:** But that was good for TV, so we'll keep it. Those are for the Lowe's.
+`[01:19:16:07 - 01:19:19:03]` **Speaker 2:** Those are for the Lowe's.
 
 `[01:19:20:06 - 01:19:21:22]` **Speaker 15:** Even the dogs are confused about it.
 
@@ -533,19 +523,7 @@
 ## ▸ 2f — Savannah's emotional story
 > ⚠ Per the breakdown this is **Savannah's** story; the ASR tags it **Speaker 1**, and its content reads as Danielle's (home care, the ex, self-love). Confirm narrator against footage/ISO before relying on it for the B-story.
 
-`[01:32:59:01 - 01:33:04:20]` **Speaker 1:** Okay,
-
-`[01:33:05:23 - 01:33:06:13]` **Speaker 1:** two
-
-`[01:33:08:13 - 01:33:09:20]` **Speaker 1:** seconds, two seconds.
-
-`[01:33:12:04 - 01:33:13:05]` **Speaker 1:** I'm rolling also.
-
-`[01:33:19:03 - 01:33:22:17]` **Speaker 1:** Both half step that way, half step to your right, perfect.
-
-`[01:33:24:16 - 01:33:28:19]` **Speaker 1:** Now y'all can go and start talking, don't get to the juicy stuff yet. Cool.
-
-`[01:33:31:01 - 01:33:31:10]` **Speaker 1:** Wow.
+> *(crew/production setup trimmed — 01:32:59–01:33:31: "I'm rolling," "half step to your right," "don't get to the juicy stuff yet.")*
 
 `[01:33:33:14 - 01:33:51:06]` **Speaker 1:** Like the fat band building over here. Like Bonnie, fat band building. You've been at a third top before, right? Yeah, a lot of times ago I actually sang here and did like a little show that way. Yeah, it was so fun. You do music as well, so are you normally doing like shows or more like studio stuff? More studio
 
@@ -573,15 +551,7 @@
 
 `[01:36:18:23 - 01:36:45:16]` **Speaker 1:** How did you prepare? 100%. I feel like a Canadian's firing for us. 100%. And I used to do home care. I don't know if you knew that. I actually did. Yeah. And so genuinely, I did for a couple of years. And I think one thing I learned-- because I've always been an old soul. It's like-- and I feel like you're the same way. If you're an old soul. It's you don't learn things in life until you've asked the right questions from people that have more experience. And you'll be like dying on their deathbed. We're
 
-`[01:36:45:16 - 01:36:53:05]` **Speaker 1:** good to go. Cut. OK. OK. We're done. We have them wrapped up. It was good, cut. Good talking to you. What are we going to think?
-
-`[01:36:55:00 - 01:36:55:14]` **Speaker 1:** I'm so glad
-
-`[01:36:55:14 - 01:37:00:00]` **Speaker 1:** you're here. Just say, I'm so glad you're here. OK. Got it. Yeah, I'm so
-
-`[01:37:00:00 - 01:37:21:09]` **Speaker 1:** glad you're here. We get to do this together. OK, you say that because you live here. OK. Yeah. I'm just giving as much meat. And you guys can cut at any point. What that was was just like-- which that was a good story. It was-- you knew where I was going with that. So you didn't hear. I feel like it was good. But you-- I'll say it for another one. You knew exactly where I was going.
-
-`[01:37:22:13 - 01:37:46:18]` **Speaker 1:** It's people dying on their deathbed. They either let the love of their life get away, or their loved one pass away. But anyways, OK. I love that. We'll save it. Say that, keep it brief, and then go into like, this is what I love what we're doing. OK. That'd be perfect purchase. And then exit in. And then I'll just say, I'm so happy we're here together. Do your hug and hug. OK. So just say what you said about the home care. Yeah. Yeah.
+> *(crew/production workshop trimmed — 01:36:45–01:37:46: "Cut, we're done… just say I'm so glad you're here… we'll save it, keep it brief… do your hug." The deathbed reflection is restated cleanly in the bite below.)*
 
 `[01:37:49:10 - 01:38:16:19]` **Speaker 1:** And anyways, working in home care and all that, that's why I enjoyed that. Because I witnessed so many different walks of life of people that let love get away, or their loved one pass away. And so it's crazy being on this journey of getting to watch people in love and helping them. Yeah, I was happy we're doing this together. Yeah. Like to be together. Yeah, well, I better get going. But it was so good seeing you. You too. Well, we'll see you tomorrow. Yeah. We'll see you tomorrow. I'm excited. Cheers. Bye, girl.
 
@@ -632,26 +602,7 @@
 
 `[01:41:38:03 - 01:41:48:07]` **Speaker 8:** We, yes. We met at my brother's wedding. We were both in the wedding. He's been friends with my brother for years. We knew of each other, but we met for the first time at my brother's wedding.
 
-`[01:41:48:07 - 01:41:49:13]` **Speaker 2:** The whole world is about each other.
-
-`[01:41:50:20 - 01:41:52:07]` **Speaker 2:** Everybody should be talking at one time.
-
-`[01:41:52:07 - 01:41:54:07]` **Speaker 1:** Okay. Okay, got it.
-
-`[01:41:55:18 - 01:41:57:19]` **Speaker 2:** Can you get used to a quick point? You want to fix the tape?
-
-`[01:41:59:02 - 01:42:00:01]` **Speaker 1:** I think you're right.
-
-`[01:42:01:08 - 01:42:04:11]` **Speaker 1:** No, no, sorry. Oh, yeah, the tape? What was he talking about?
-
-`[01:42:04:11 - 01:42:07:02]` **Speaker 2:** Can we just try to move it over to the top? Oh, yeah, yeah, you're fine.
-
-`[01:42:07:02 - 01:42:08:11]` **Speaker 1:** It's not good. You're too much.
-
-`[01:42:11:14 - 01:42:15:01]` **Speaker 1:** Perfect. Okay, there you go. Okay, let's roll the video.
-
-`[01:42:17:15 - 01:42:22:03]` **Speaker 1:** Yes, my turn is going. Okay, we're going. Let me just start with a word.
-
+> *(crew/production reset trimmed — 01:41:48–01:42:22: "everybody talk at one time," fixing the tape, "let's roll the video.")*
 `[01:42:22:03 - 01:42:27:11]` **Speaker 8:** Wedding? Yeah, go ahead. So on a scale from one to ten, how excited are you today?
 
 `[01:42:29:07 - 01:42:30:01]` **Speaker 8:** Ten? Ten?
@@ -664,132 +615,7 @@
 
 `[01:42:41:00 - 01:42:50:09]` **Speaker 8:** Well, that's how it's going to go. Okay. Everyone come with the girls. We're going to pick out some dresses for you. Okay. You're going to try them on and hopefully find some. Girls, you're excited to have the show out. Oh, they need that. That sounds amazing.
 
-`[01:42:51:16 - 01:42:53:02]` **Speaker 2:** You didn't ask them about their story.
-
-`[01:42:53:02 - 01:42:55:18]` **Speaker 8:** We did. You want to do us to do that again?
-
-`[01:42:55:18 - 01:42:56:03]` **Speaker 2:** More.
-
-`[01:42:56:03 - 01:42:57:11]` **Speaker 8:** More. More story.
-
-`[01:42:57:11 - 01:42:59:23]` **Speaker 2:** I didn't hear it. Oh, I wasn't acknowledging it.
-
-`[01:42:59:23 - 01:43:02:18]` **Speaker 8:** I was like, what part of the story? We kind of started it.
-
-`[01:43:02:18 - 01:43:04:23]` **Speaker 2:** Why are they...
-
-`[01:43:04:23 - 01:43:19:16]` **Speaker 1:** Oh, why are they going to ask? So we asked them about when they met. Okay. Let's roll from kind of... Okay. Well, because we cut scenes. Okay. So we'll start back to how they met maybe or just roll straight into that.
-
-`[01:43:19:16 - 01:43:21:21]` **Speaker 2:** Let's just do that. Let's do how they met.
-
-`[01:43:21:21 - 01:43:23:13]` **Speaker 1:** Yeah, let's do how they met. Yeah, let's do how they met. It's been done. It's been done. Okay.
-
-`[01:43:25:08 - 01:43:26:01]` **Speaker 8:** We'll go back to that.
-
-`[01:43:26:01 - 01:43:28:00]` **Speaker 1:** Okay. Here's the writing. I'll just ask that.
-
-`[01:43:28:00 - 01:43:29:05]` **Speaker 2:** Yeah. Okay.
-
-`[01:43:30:20 - 01:43:33:19]` **Speaker 1:** Just tell me you guys are right.
-
-`[01:43:34:23 - 01:43:36:14]` **Speaker 1:** Just keep rolling. So you're right back.
-
-`[01:43:36:14 - 01:43:37:15]` **Speaker 2:** What's up, dude?
-
-`[01:43:37:15 - 01:43:38:17]` **Speaker 8:** All right.
-
-`[01:43:39:17 - 01:43:42:20]` **Speaker 2:** Hey, what do you need? What do you need? What do you need?
-
-`[01:43:44:04 - 01:43:44:22]` **Speaker 2:** What do you need? You want a snack?
-
-`[01:43:44:22 - 01:43:45:14]` **Speaker 1:** What's a good way to ask?
-
-`[01:43:45:14 - 01:43:46:08]` **Speaker 2:** You want sashias?
-
-`[01:43:47:17 - 01:43:51:08]` **Speaker 1:** What do you want? Like, what's a good... like, verbiage wise? Well, we want them to do something.
-
-`[01:43:51:08 - 01:43:52:08]` **Speaker 8:** We want them to do something.
-
-`[01:43:52:08 - 01:44:02:16]` **Speaker 1:** No, no, no. We didn't get there. So I'm asking you verbiage wise, what's a good way to ask that question? So it's not the same question. We asked them, what's your... how do you guys meet? Yeah. But we're... we wanted... what's a good way to be like...
-
-`[01:44:02:16 - 01:44:08:18]` **Speaker 2:** To segue into... Like, what we're doing. Yeah, so like, tell us why you got it or not. Tell us...
-
-`[01:44:12:18 - 01:44:16:11]` **Speaker 2:** I want to ask you about making it sound like fried.
-
-`[01:44:17:16 - 01:44:19:23]` **Speaker 2:** So... These are just... Just these?
-
-`[01:44:21:14 - 01:44:22:19]` **Speaker 2:** What are these?
-
-`[01:44:22:19 - 01:44:23:15]` **Speaker 8:** Those are chips.
-
-`[01:44:23:15 - 01:44:26:17]` **Speaker 2:** Kind of. What chips you like for the corn chips?
-
-`[01:44:30:07 - 01:44:34:23]` **Speaker 2:** What's the quick snacks I can grab you right now? We're in the middle of something. I gotta go. Is that good? That's all I'm saying.
-
-`[01:44:34:23 - 01:44:37:08]` **Speaker 8:** For right now, I'm getting more than here. Okay.
-
-`[01:44:40:03 - 01:44:41:14]` **Speaker 1:** Goodness, dude.
-
-`[01:44:41:14 - 01:44:43:02]` **Speaker 8:** Like, what... yeah.
-
-`[01:44:45:01 - 01:44:47:16]` **Speaker 8:** Do you have a date set yet or something?
-
-`[01:44:47:16 - 01:44:47:20]` **Speaker 1:** Buddy.
-
-`[01:44:47:20 - 01:44:48:22]` **Speaker 8:** Buddy.
-
-`[01:44:49:23 - 01:44:55:23]` **Speaker 8:** Do you have a date set yet? And then that'll go into it. So why aren't you married yet?
-
-`[01:45:05:02 - 01:45:06:13]` **Speaker 8:** Ouch. You wanna poach?
-
-`[01:45:07:23 - 01:45:11:15]` **Speaker 8:** Do you want me to open that? He's the king of snacks. Okay. Those are your options right now. He's the king of snacks.
-
-`[01:45:13:00 - 01:45:13:02]` **Speaker 8:** Okay.
-
-`[01:45:13:02 - 01:45:13:04]` **Speaker 1:** Good?
-
-`[01:45:21:09 - 01:45:22:16]` **Speaker 2:** He's getting whiny.
-
-`[01:45:22:16 - 01:45:24:09]` **Speaker 8:** Yeah, I know. He's ready.
-
-`[01:45:27:11 - 01:45:30:04]` **Speaker 1:** We go to the back. It doesn't show.
-
-`[01:45:31:17 - 01:45:32:03]` **Speaker 8:** You good?
-
-`[01:45:36:15 - 01:45:38:07]` **Speaker 1:** So we're picking up from where we met?
-
-`[01:45:38:07 - 01:45:42:15]` **Speaker 2:** Yeah, we're gonna pick up and then she's got questions she's gonna ask and then it'll kind of segue into...
-
-`[01:45:45:11 - 01:45:47:03]` **Speaker 8:** The story? Okay.
-
-`[01:45:49:18 - 01:45:52:09]` **Speaker 1:** I fixed it, but if it won't go, he's down again. Let me know. Okay.
-
-`[01:45:54:14 - 01:45:55:09]` **Speaker 1:** All right. You good?
-
-`[01:45:58:09 - 01:46:02:00]` **Speaker 1:** Wait, wait, wait. What was that? You came up with that question. What was it? Oh, okay.
-
-`[01:46:03:05 - 01:46:08:11]` **Speaker 1:** And we don't want to expand more on how they met and on that, so we'll just go straight into hers maybe? Or do you want to go first into...
-
-`[01:46:08:11 - 01:46:20:05]` **Speaker 2:** No, just go into her question. Okay. And then once you go from her to that question and they get done explaining, you guys can kind of just make it natural so whatever they say, you can be like, "Oh, whatever."
-
-`[01:46:20:05 - 01:46:20:17]` **Speaker 1:** Yeah.
-
-`[01:46:20:17 - 01:46:22:05]` **Speaker 2:** You know, the girly stuff. Okay.
-
-`[01:46:23:07 - 01:46:27:23]` **Speaker 2:** And then you can maybe give them some credit and say, "Well, you have such a sweet pain."
-
-`[01:46:27:23 - 01:46:28:20]` **Speaker 1:** Yeah.
-
-`[01:46:28:20 - 01:46:35:12]` **Speaker 2:** No. And then you can reach out and reach out to that kind of situation. Okay. And then you can go in today. So this is how the day's going to go. Right.
-
-`[01:46:35:12 - 01:46:37:10]` **Speaker 1:** So I'll be the last one. Yeah, yeah.
-
-`[01:46:37:10 - 01:46:37:17]` **Speaker 2:** Okay.
-
-`[01:46:37:17 - 01:46:41:23]` **Speaker 8:** Okay. Cool. Okay. So I'm starting with, do you have a date set?
-
-`[01:46:41:23 - 01:46:43:20]` **Speaker 2:** So are you starting with it?
-
+> *(crew/production reset trimmed — 01:42:51–01:46:43: "you didn't ask their story," "let's do how they met," "what's a good way to ask that question," snacks for the dog, "so we're picking up from where we met.")*
 `[01:46:43:20 - 01:47:07:01]` **Speaker 8:** I can set. Okay. Cool. Yeah. So do you have a date set for your wedding? Not yet. Not yet. No? It's been kind of a process trying to set a date. Yeah. We had a date set. We changed it. And then we postponed it. So I think, ideally, June 5th of 2027 is kind of like our goal. Okay.
 
 `[01:47:07:01 - 01:47:07:19]` **Speaker 1:** We like that date.
@@ -1459,8 +1285,6 @@
 
 `[02:06:33:01 - 02:06:37:00]` **Speaker 16:** This is so exciting. Wow. Yeah. Unreal.
 
-`[02:06:37:00 - 02:07:36:05]` **Speaker 18:** Thanks, Dave. Sit down, please. Three, two, one, action.
-
 `[02:07:36:05 - 02:07:42:00]` **Speaker 8:** I wanna see it. I wanna see it. Okay, cool. I can't. I can't. I just gave you a hug. It was amazing.
 
 `[02:07:43:05 - 02:07:47:00]` **Speaker 8:** Congratulations. Thank you. Thank you. It's so beautiful.
@@ -1468,8 +1292,6 @@
 `[02:07:48:06 - 02:07:58:16]` **Speaker 8:** You look so great. You look like a princess. This detail is it. I love the deep V. That's my favorite part. Perfect. Yeah. Gorgeous. So flattering.
 
 `[02:07:59:23 - 02:08:03:08]` **Speaker 8:** The neckline just suits you. Yeah, that's how it kinda comes out like this.
-
-`[02:08:03:08 - 02:08:04:03]` **Speaker 18:** Mm-hmm.
 
 `[02:08:05:05 - 02:08:09:06]` **Speaker 8:** Oh my gosh, the belt. The moment we're waiting for. Four tears.
 
@@ -1483,23 +1305,11 @@
 
 `[02:08:36:17 - 02:08:37:03]` **Speaker 2:** Wow.
 
-`[02:08:38:18 - 02:08:41:01]` **Speaker 18:** Can we have our turn, can we have our turn this way? Yeah. Turn this
-
-`[02:08:42:12 - 02:08:43:22]` **Speaker 18:** way? No. Step up and go again.
-
-`[02:08:45:23 - 02:08:47:15]` **Speaker 18:** Okay, bye. Tiffany,
-
-`[02:08:52:03 - 02:08:54:22]` **Speaker 18:** come here and get the mirror shot. Yeah.
-
-`[02:08:57:00 - 02:08:59:16]` **Speaker 18:** Come on in and shot me.
-
 `[02:09:00:22 - 02:09:02:01]` **Speaker 8:** Oh yeah, I guess we get this.
 
 `[02:09:03:08 - 02:09:03:14]` **Speaker 8:** You good?
 
 `[02:09:03:14 - 02:09:04:17]` **Speaker 2:** Mm-hmm. Got it.
-
-`[02:09:04:17 - 02:09:08:16]` **Speaker 18:** What do you want us to do? I'm just going in. No, you're good there. Okay.
 
 `[02:09:12:02 - 02:09:12:07]` **Speaker 2:** Wow.
 
@@ -1507,13 +1317,7 @@
 
 `[02:09:19:12 - 02:09:20:14]` **Speaker 2:** Oh my gosh.
 
-`[02:09:20:14 - 02:09:26:18]` **Speaker 18:** Sir, we will be out if you can move me here. Kinda out of your face. Stay. That's where you're going. Down,
-
-`[02:09:29:10 - 02:09:31:14]` **Speaker 18:** girls down. Down, girls down. Girls, awake.
-
 `[02:09:33:23 - 02:09:34:21]` **Speaker 8:** Oh my God, guys.
-
-`[02:09:34:21 - 02:09:39:19]` **Speaker 18:** You have it to look. All right, three, two, one, action.
 
 `[02:09:46:07 - 02:09:46:12]` **Speaker 8:** Aww.
 
@@ -1543,8 +1347,6 @@
 
 `[02:10:35:22 - 02:10:37:14]` **Speaker 2:** Thanks for letting us be a part of it, you know?
 
-`[02:10:37:14 - 02:10:40:21]` **Speaker 18:** Yeah, thank you. Yes, thank you so much.
-
 `[02:10:40:21 - 02:10:55:00]` **Speaker 28:** is this the yes dress? Yes. Awesome. Good job, everybody. We have to go celebrate. Yeah. Let's do it. Let's do it. Let's go. Can I be at the Texas Hospital? Yeah. For now.
 
 ## ▸ 4e — Interviews (SARAH = PRIORITY)
@@ -1567,13 +1369,9 @@
 
 `[02:16:17:18 - 02:16:22:00]` **Speaker 14:** Wait, wait, wait. It's definitely a breath.
 
-`[02:16:22:00 - 02:16:24:01]` **Speaker 18:** It looks so pretty on you. No.
-
 `[02:16:24:01 - 02:16:28:02]` **Speaker 14:** I'm gonna have to give it a shot. Yeah.
 
 `[02:16:37:21 - 02:16:43:18]` **Speaker 3:** Like, how is she going to go into another breath and have her actually feeling like that in order? Right. Right. Right.
-
-`[02:16:58:02 - 02:17:06:11]` **Speaker 18:** I'm trying to look at her. She said, "I'm trying to get her out of here." Yeah. Yeah, she's like, "I'm trying to get her out of here."
 
 `[02:17:06:11 - 02:17:13:20]` **Speaker 2:** have to go through in life, you know? And so being in Bridal, one, I love fashion.
 
@@ -1895,15 +1693,9 @@
 
 `[02:32:07:00 - 02:32:08:01]` **Speaker 1:** It can be.
 
-`[02:32:08:01 - 02:32:12:00]` **Speaker 19:** Hey, so listen up. Are you three? Yeah. You have to stay together.
+`[02:32:22:19 - 02:32:27:04]` **Speaker 19:** I'm Danielle.
 
-`[02:32:12:00 - 02:32:17:19]` **Speaker 27:** Oh, got it. Because you're having side conversations and you're most picky at all of them. Everybody's talking about your face.
-
-`[02:32:17:19 - 02:32:22:19]` **Speaker 1:** Yeah. Yeah, so you guys are always having... You three are always in the same conversation. That's what you need to be.
-
-`[02:32:22:19 - 02:32:27:04]` **Speaker 19:** Okay, so back to work. Good idea. Thank you. Okay. I'm Danielle.
-
-`[02:32:27:04 - 02:32:33:19]` **Speaker 1:** Nice to see you. Nice to meet you. I'm gonna fill this up a little bit so it looks good for camera. How are you? I'm here. Are you dog-scrambled?
+`[02:32:27:04 - 02:32:33:19]` **Speaker 1:** Nice to see you. Nice to meet you. How are you? Are you dog-scrambled?
 
 `[02:32:33:19 - 02:32:35:09]` **Speaker 19:** Okay, now it's time.
 
@@ -2060,8 +1852,6 @@
 `[03:50:05:11 - 03:50:08:18]` **Speaker 1:** And nobody falls in the back. No one falls in the back. Come on in.
 
 `[03:50:10:21 - 03:50:14:19]` **Speaker 6:** I went on this side for a reason. So, let me get you a chance to please.
-
-`[03:50:14:19 - 03:50:15:16]` **Speaker 27:** Behind the scenes.
 
 `[03:50:17:01 - 03:50:40:20]` **Speaker 27:** All right. First thing first. I'm going to do a lot of talking. That way you can understand what we're doing. I'm not going to spend too much time on this. Before we start, just to get everybody excited. On three, we're going to do a big yeehaw. She likes yeehaw. On three. One, two, three. Yeehaw. There we go.
 
@@ -2317,34 +2107,15 @@
 
 `[04:04:41:09 - 04:04:55:06]` **Speaker 15:** That's me. Yeah, you are. What kind of surgery are you doing? Everybody was in the hospital.
 
-`[04:05:20:12 - 04:05:26:16]` **Speaker 15:** Sam, we're doing a cheer. Sorry, I will catch up with you in a sec. I'm going to work.
-
 `[04:05:26:16 - 04:05:29:11]` **Speaker 1:** I said if I go missing, this is my lip imprint.
-
-`[04:05:49:11 - 04:05:55:05]` **Speaker 15:** We're going to do some use of. I think this might be your calling. I was so much fun. I can tell.
 
 `[04:06:13:19 - 04:06:16:21]` **Speaker 28:** We're doing a cheer.
 
-`[04:06:18:16 - 04:06:22:05]` **Speaker 2:** This is like a getting ready film and scene for me giving the cheers.
-
-`[04:07:39:18 - 04:07:40:06]` **Speaker 19:** I don't know.
-
-`[04:07:40:06 - 04:07:40:18]` **Speaker 2:** I'm going to try.
-
-`[04:07:50:11 - 04:07:51:12]` **Speaker 15:** You're good with words.
-
-`[04:08:01:12 - 04:08:03:06]` **Speaker 27:** You'll be good. You can do it.
-
-`[04:08:05:06 - 04:08:10:11]` **Speaker 15:** I'm like, raise your glasses. Thank you all for coming. This is for the show.
-
-`[04:08:13:13 - 04:08:28:06]` **Speaker 2:** I'm going to do two separate cheers. The first cheers is going to be for the show. And the second cheers is going to be completely for everybody. For you guys. Thank you for everything. For us. For everybody. Thank you for everything.
+> *(crew note trimmed — "this is like a getting-ready film for me giving the cheers.")*
 
 `[04:10:25:21 - 04:10:31:08]` **Speaker 1:** Oh, I just took a shot by the way. Behind closed doors I just did. I did. You said JV one.
 
-`[04:11:09:14 - 04:11:12:12]` **Speaker 2:** Kentucky was 1792.
-
-`[04:11:14:13 - 04:11:18:02]` **Speaker 19:** All right. Three, two, one. Action.
-
+> *(crew trimmed — Tennessee/Kentucky statehood googling for the cheers graphic + "three, two, one, action" slate.)*
 ## ▸ 5e — The speech (LAST)
 
 `[04:11:18:02 - 04:12:16:04]` **Speaker 2:** So everybody, I just want to I want to take a second to cheers to this week. It's been amazing. I want to thank these amazing women for coming from all around the United States to be here to help me fulfill this dream to to help brides to to empower women to feel beautiful and seen and heard and accomplished. And I just want to take a minute to think Sarah and Garrison for being a part of a lot when those to just be in this moment with you guys. We know that, you know, life can life can knock us all out. They can hit us from the left from the right. And we just want to thank you guys for being open and being able to share your story. I'll just say that, you know, when you guys came to what you didn't you didn't get to come. But
@@ -2469,9 +2240,7 @@
 
 `[04:22:39:13 - 04:23:06:05]` **Speaker 2:** These people love you like they love me. And we're here celebrating. We're praying for you guys. God is going to do amazing things in your life. He loves you. He cares about you financially, physically, emotionally. He's going to do so many cool things in your life. So to all my friends and my family, Olu, thank you for allowing us to be here. Cameron, my production team, I love you all. Thank you. And I just want to give a big salute and a cheers to you guys.
 
-`[04:23:06:05 - 04:23:12:13]` **Speaker 15:** Cheers, everyone. Cheers. Cheers to Dom. Cheers. And that's a wrap.
-
-`[04:23:12:13 - 04:23:13:04]` **Speaker 6:** That's a wrap.
+`[04:23:06:05 - 04:23:12:13]` **Speaker 15:** Cheers, everyone. Cheers. Cheers to Dom. Cheers.
 
 `[04:23:21:13 - 04:23:25:00]` **Speaker 6:** Yes. These heels are coming off. I'm sorry, Jim. I can
 
@@ -2490,14 +2259,6 @@
 
 `[04:25:08:00 - 04:25:22:11]` **Speaker 1:** Sarah definitely has a chaotic lifestyle and she is trying to find a balance. I feel like I'm able to give her more of a, you know, life balance outside of her home life.
 
-`[04:25:24:02 - 04:25:29:07]` **Speaker 1:** Not so much. That's a hard question. I feel like I need to redo that.
-
-`[04:25:29:07 - 04:25:31:13]` **Speaker 4:** I don't know what I asked.
-
-`[04:25:31:13 - 04:25:37:04]` **Speaker 1:** You asked me how do I transition her out of her home life?
-
-`[04:25:37:04 - 04:25:52:19]` **Speaker 4:** How do I transition from chaotic home life into being... Don't re-ask it. I'm going to bring her comfort. She's got kids, she's in the same life. I guess not single life.
-
 `[04:25:52:19 - 04:25:57:07]` **Speaker 1:** Yeah, I mean, just talk to her about her life and then change the subject.
 
 `[04:25:57:07 - 04:26:04:06]` **Speaker 4:** It's kind of a... From a chaotic wedding planning motherhood into being a wife and going into a new stage of life.
@@ -2508,10 +2269,6 @@
 
 `[04:26:36:14 - 04:26:44:04]` **Speaker 1:** Just try to make her have as much fun as possible. Make her laugh and just take anything that's on her mind away.
 
-`[04:26:50:12 - 04:26:52:02]` **Speaker 1:** That's very good at this vlog.
-
-`[04:26:55:09 - 04:26:59:00]` **Speaker 4:** Thank you. We'll cook it for you in a second.
-
 `[04:27:03:17 - 04:27:14:08]` **Speaker 4:** She is going to... Sarah's going to feel a little bit out of her element being here and being around all these people. How do you plan on helping her feel comfortable and being welcomed?
 
 `[04:27:15:12 - 04:27:34:17]` **Speaker 1:** Sarah's definitely going to feel a little out of her element going through this process. I've always been this way with everyone. I make them feel comfortable. I try to create a bond right off the start and just ask them about themselves and their day and
@@ -2519,16 +2276,6 @@
 `[04:27:35:20 - 04:27:45:19]` **Speaker 1:** what's going on in their life. I just try to make them feel comfortable. I think that helps their worries go away and it enables them to just relax and have fun and enjoy
 
 `[04:27:46:22 - 04:27:56:22]` **Speaker 1:** the experience. When they're comfortable. We're strangers coming into their life for a day. Just trying to create some type of bond with them I think really helps.
-
-`[04:27:58:09 - 04:28:01:00]` **Speaker 1:** That's fine. Am I done?
-
-`[04:28:03:09 - 04:28:07:17]` **Speaker 1:** I know you wanted to talk about the bond. I feel like my throat is so scratchy today.
-
-`[04:28:31:07 - 04:28:35:08]` **Speaker 1:** Ask him about the party? We're in party mode. We just asked you from the party mode.
-
-`[04:28:35:08 - 04:28:37:13]` **Speaker 4:** You can't talk about him. I'm a line dancer.
-
-`[04:28:38:23 - 04:28:41:02]` **Speaker 1:** Oh, I actually met him so I can talk about him.
 
 `[04:28:46:18 - 04:28:52:19]` **Speaker 4:** So there's a line dancer here tonight. How do you feel? Have you ever line danced before? What was that experience like?
 
@@ -2544,15 +2291,13 @@
 
 `[04:30:02:16 - 04:30:04:11]` **Speaker 4:** The energy of the party, how would you describe it?
 
-`[04:30:05:23 - 04:30:19:04]` **Speaker 3:** It's fine. Wait. So the energy of the party tonight is really fun. I'm here for work and I'm trying not to have too many drinks because then I'll be on the dance floor. I'm not trying to do all that, but
+`[04:30:05:23 - 04:30:19:04]` **Speaker 3:** So the energy of the party tonight is really fun. I'm here for work and I'm trying not to have too many drinks because then I'll be on the dance floor. I'm not trying to do all that, but
 
 `[04:30:20:11 - 04:30:28:03]` **Speaker 3:** yeah, the energy is getting more intense and I'm ready for it to get popping now. Yeah.
 
 `[04:30:28:03 - 04:30:36:17]` **Speaker 4:** How are you tonight?
 
-`[04:30:38:10 - 04:30:43:15]` **Speaker 3:** On a scale from zero to Juicy J, like a four.
-
-`[04:30:45:00 - 04:30:59:08]` **Speaker 3:** Ask the question. Oh, how drunk? No, you're not asking how drunk I am. You're asking how I'm feeling. How are you feeling? Oh, I'm feeling great tonight. Um, I'm just really excited to be here and really celebrate Sarah. Like I feel like that's, that's probably the,
+`[04:30:45:00 - 04:30:59:08]` **Speaker 3:** I'm feeling great tonight. Um, I'm just really excited to be here and really celebrate Sarah. Like I feel like that's, that's probably the,
 
 `[04:31:00:15 - 04:31:20:02]` **Speaker 3:** like, I don't know how to explain it whenever you're like working and doing what you love at the same time. It's not really work. So I feel great, but I'm working. So it's like, I'm trying to be reserved and not show too much excitement because we're here for Sarah. So it's like, um, I'm trying to feel great without being too great because it's about Sarah.
 
