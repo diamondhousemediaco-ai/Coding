@@ -59,8 +59,8 @@ A Nashville barista and single mom keeps postponing the wedding she and the man 
 | Beat | Action / **dress lines** | Footage ref | Function |
 |---|---|---|---|
 | 2-1 | Dom introduces model **Alex** — "this is Alex… we got Sarah, she's our bride." | 01:09:30 | Start preview |
-| 2-2 | **Champagne** — brief toast/sip (~20s), "let's do it." | 2a 01:09:53–01:11:03 | Glam beat |
-| 2-3 | **DRESS 1 (01:12:17–01:13:49) — beach / room-to-dance.** Segment: Muff *"I'm really excited for this opportunity to help people"* → the girls discuss the **beading** → Dom *"you guys think she'll like it?"* → ends on *"that's dress number 1."* Beach/dance voiced later in comparison (*"ease on the beach… the light hits the pearl,"* 01:17:39). ⚠ ASR has only music here — relisten for exact lines. | 2b 01:12:17–01:13:49 | Beach + dance brief |
+| 2-2 | **Champagne** ✅ — Dom: "I got Prosecco… I feel like I'm psychic, I knew y'all was gonna want Prosecco" → "Cheers to the Nashville Brides." Lands right after Alex. | 2a 01:10:48–01:12:15 | Glam beat |
+| 2-3 | **DRESS 1 (01:12:15–01:15:13) — the beading / beach dress.** Muff: *"I'm really excited for this opportunity to help people."* → *"I love the beading… it looks like a mermaid without the shape — beach without hugging your body."* → *"the pearls embody the beach look… when the sunlight hits it, it's gorgeous."* → Dom: *"she didn't want anything heavy."* / *"you guys think she'll like it?"* → *"that's dress number one."* Rated 8 / 8.5 / 7 / 7.5. | 2b 01:12:15–01:15:13 | Beach + dance brief |
 | 2-4 | **DRESS 2 (01:14:05–01:18:33) — graphic / ballroom "contender."** Lines: *"I'm loving this one more… it's very graphic"* · *"the shape is perfect… the way it sits, it's very beautiful"* · *"I wanted a little more ballroom… the ballroom venue"* · *"it's a contender."* Dom: *"I wanted to give her options."* | 2c 01:14:05–01:18:33 | Options = stakes |
 | 2-5 | **DRESS 3 — corset / sleeves (the favorite).** Lines: *"that top speaks to me — I love a corset"* · *"the girls are popping out"* · *"I love the sleeves"* · *"I love the waistline"* · *"does it feel heavy?"* → Dom: beads = weight · scoring *"an eight" / "8.5" / "it's a 10 for me, I want it."* Dom philosophy: *"those baby tears the first time… you know she found her dress."* | 2d 01:22:00–01:24:21; 01:22:18 | Pre-sell the reveal |
 | 2-6 | **Side talk — ONE beat:** Dom's pick (torn 1 vs 2, champagne for the beach, "strong variety") + a single thread line (line dancing **or** Nashville). **⟦TRIM⟧ the Lowe's-clips bit, wine/cigars, extended getting-to-know.** | 2e 01:24:45–01:25:33 | Strategy, brief |
@@ -140,7 +140,6 @@ A Nashville barista and single mom keeps postponing the wedding she and the man 
 **Pickups (carried from v1):**
 - **Sarah's solo confessional** right after the reveal (PRIORITY) — the transcript has only in-scene reactions.
 - **Garrison reaction** pickup / aisle-day tag — closes his arc.
-- **Champagne toast** is B-roll — recover a clean "cheers to Sarah" on relisten (01:09:53–01:11:03).
 - **Speaker-ID verification** for 2f narrator (Savannah vs Danielle) — decides the B-story attribution. See `Nashville_Bride_SpeakerID_Worksheet`.
 
 **Lines to build cold opens / act-outs from:** "the dress is the first piece to the puzzle" · "this is bigger than the whole thing" · "Y'all sold? Sold." · "you know she found her dress." · "Get your bags packed — girls day." · "Is this the yes dress? Yes." · "this is only the beginning."

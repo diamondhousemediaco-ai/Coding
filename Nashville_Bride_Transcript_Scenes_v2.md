@@ -95,39 +95,90 @@
 
 `[01:05:28:14 - 01:05:30:22]` **Danielle ⚠:** How are you? Your dogs are so cute.
 
-**▸ "Where's Dom?":**
+**▸ "Where's Dom?":** *(now captured in the corrected transcript)*
 
-`[01:07:04:19 - 01:07:06:19]` **Savannah ⚠:** *[likely "Where's Dom?" — garbled in ASR as "Guys, I'll put a dog"; confirm on relisten]*
+`[01:02:19:11 - 01:02:24:05]` **Danielle:** Amazing. Where is Dom? Okay, he's late.
 
-`[01:07:06:19 - 01:07:18:22]` **Danielle ⚠:** That's a great question. He takes longer than any of us to get ready, though. He's in the bridal world. That's right — he does own a bridal store.
+`[01:07:03:09 - 01:07:06:21]` **Danielle:** A lot of drunk people. Guys, okay, where is Dom?
+
+`[01:07:06:21 - 01:07:11:07]` **Savannah:** That is a great question. He takes longer than any of us to get ready, though.
+
+`[01:07:11:07 - 01:07:14:00]` **Danielle:** He's not painting his nails. You know, he's in the bridal world.
+
+`[01:07:14:00 - 01:07:17:09]` **Savannah:** The bridal world, that's right. He does own a bridal store, you know.
 
 ⟦TRIM — v2⟧ *Rest of the pre-arrival getting-to-know (dating / phone-stolen / "save the number," etc.) stays collapsed.*
 
-### Dom arrives & introduces Alex (the model)
+### Dom arrives & introduces Alex (the model) — lands the "running late" gag
 
-`[01:09:14:01 - 01:09:15:13]` **Speaker 6:** What's up girls?
+`[01:09:14:11 - 01:09:15:12]` **Speaker 28:** What's up girls?
 
-`[01:09:18:14 - 01:09:30:19]` *(Crosstalk)*
+`[01:09:15:12 - 01:09:18:14]` **Savannah:** Hi, how are you? Look who's finally arrived.
 
-`[01:09:30:19 - 01:09:41:18]` **Speaker 2:** All right girls, so this is Alex.
+`[01:09:18:14 - 01:09:20:15]` **Dom:** I know — I was out there. I feel trapped.
 
-`[01:09:41:18 - 01:09:43:01]` **Speaker 6:** Hey, Alex. Hi.
+`[01:09:30:03 - 01:09:36:03]` **Savannah:** Hi Alex, nice to meet you. Hi, I'm Savannah, nice to meet you.
 
-`[01:09:43:01 - 01:09:45:01]` **Speaker 2:** Hi. Hi. Hi. Hi. Hi. Hi. Hi. Hi. Hi.
+`[01:09:39:13 - 01:09:41:22]` **Dom:** All right girls, so this is Alex.
 
-`[01:09:48:17 - 01:09:52:00]` **Speaker 6:** Hey, it's me. It's fun to see you turn on. I can't wait to see you.
+`[01:09:42:17 - 01:09:46:06]` **Dom:** Alex is gonna be modeling the dresses today.
 
-`[01:09:52:00 - 01:09:53:21]` **Speaker 2:** Yeah, we got Sarah. She's our patron.
+`[01:09:52:12 - 01:09:55:22]` **Dom:** Yeah, we got Sarah — she's our beach girl. She's getting married on the beach.
 
-`[01:09:53:21 - 01:10:00:22]` **Speaker 6:** You guys ready? Yeah, we're ready. Let's do it.
+`[01:09:57:13 - 01:09:59:09]` **Dom:** So these are our dresses. You guys ready?
 
-## ▸ 2a — Champagne (toast / sip — right after Alex intro)
-> The champagne pour/toast sits in the ~70-sec gap to 01:11:03 and is largely **B-ROLL**. Verbal anchor right before it: Dom's "we got Sarah, she's our bride" (01:09:52). ⚠ If a clean "cheers to Sarah" / prosecco line exists, recover it on relisten — the ASR didn't capture one.
+`[01:09:59:09 - 01:10:03:08]` **Muff:** Yeah, ready. Let's do it. I'm excited. Can't wait to see them.
 
-## ▸ 2b — Dress 1 (01:12:17–01:13:49)
-> **Dress 1 segment = 01:12:17 → 01:13:49.** Beats: **Muff** — "I'm really excited for this opportunity to help people" → the girls talk about the **beading** → **Dom** — "you guys think she'll like it?" → ends on **"that's dress number 1"** (the segment's last line). The beach / room-to-dance character is voiced later, in comparison during Dress 2 ("I'd go for ease on the beach," 01:17:39). ⚠ The ASR captured this window as music only — relisten to transcribe the exact lines.
+## ▸ 2a — Champagne (toast — right after Alex intro) ✅ *now captured*
 
-`[01:11:03:15 - 01:14:01:00]` *(Music — model walks Dress 1. The dialogue at 01:12:17–01:13:49 plays under the music; content per the note above.)*
+`[01:10:48:10 - 01:10:52:02]` **Dom:** I'm excited. So I got some champagne. You guys want champagne? I feel like we need champagne while we're doing this.
+
+`[01:10:52:18 - 01:10:54:14]` **Dom:** I got Prosecco.
+
+`[01:10:58:17 - 01:11:01:22]` **Dom:** Yeah, I feel like I'm psychic. I feel like I knew y'all was gonna want Prosecco.
+
+`[01:11:02:17 - 01:11:07:20]` **Savannah:** We said that. Oh, Prosecco time. There he is. There he is.
+
+`[01:11:14:14 - 01:11:23:04]` **Savannah:** It's so nice. Beautiful up here. You can see the skyline, the Batman building — iconic.
+
+`[01:11:54:20 - 01:11:59:06]` **Dom:** I'm not good at pouring. You can tell I've never been a bartender. We gotta tilt your glass.
+
+`[01:12:10:22 - 01:12:15:03]` **Dom:** All right, girls. Cheers. Cheers to the Nashville Brides.
+
+`[01:12:15:03 - 01:12:15:03]` **Savannah:** Nashville Brides. Let's go.
+
+## ▸ 2b — Dress 1 (the beading / beach dress) ✅ *now captured (01:12:15–01:15:13)*
+> ⚠ Speaker names in this scene are best-guess (the producer notes Muff delivers the "excited to help people" line). The three women's IDs in the rooftop still want a footage confirm.
+
+`[01:12:15:03 - 01:12:27:11]` **Muff:** I'm really excited for this opportunity to help people and help the brides. I mean, I don't perceive myself getting married — so for me to be helping someone when I'm single, it's crazy, but I'm excited.
+
+`[01:12:31:03 - 01:12:34:15]` **Dom:** What do you guys think? I love that one. Dress one, dress one.
+
+`[01:12:34:15 - 01:12:45:02]` **Danielle:** Oh my gosh, I love the top. I think the beading is beautiful on you, but I think it's too much fabric at the bottom for you. It's just so tiny. *(re: the model)*
+
+`[01:12:45:02 - 01:13:02:06]` **Dom:** Well, we have to be thinking about the bride. This is kinda like her style — what she wants. All three dresses today are gonna be based on what she's looking for.
+
+`[01:13:03:08 - 01:13:05:00]` **Dom:** My favorite thing about this dress is the beading.
+
+`[01:13:05:00 - 01:13:10:20]` **Savannah:** I love the beading. It looks like a mermaid without that shape — so it gives beach without the hugging-your-body vibe.
+
+`[01:13:15:13 - 01:13:31:02]` **Muff:** I love how it has the pearls too, which embodies the beach look. And when the sunlight hits it for the whole wedding vibe, it's gorgeous. I could actually see you in this.
+
+`[01:13:34:10 - 01:13:42:12]` **Dom:** The biggest thing for me — she said she didn't want anything heavy. So the more beads, the heavier it gets. So this is perfect.
+
+`[01:13:44:09 - 01:13:45:04]` **Dom:** You guys think she'll like it?
+
+`[01:13:45:04 - 01:13:47:00]` **Savannah:** I love that one.
+
+`[01:13:47:23 - 01:13:49:14]` **Savannah:** That's dress number one. Dress number one. Love it. Love it.
+
+`[01:13:57:06 - 01:14:21:00]` **Dom:** So this is actually my first pick. Based on the information she gave us, being a beach wedding — she didn't want a heavy dress. She wants something she can walk in, move around, dance and not have to change into a different dress.
+
+`[01:14:40:19 - 01:14:44:03]` **Savannah:** I think you nailed it with this one, Dom.
+
+`[01:14:53:09 - 01:15:11:01]` **Danielle:** Okay guys, out of 10, what are we rating this one? — *(an eight · 8.5 · seven · 7.5)*
+
+`[01:15:11:01 - 01:15:13:20]` **Savannah:** Are we rating it for number two? Number two, bring it on.
 
 ## ▸ 2c — Dress 2 (graphic / ballroom "contender")
 > Dress 2 from the "ready for number two" cue (01:14:05) → 01:18:33. Meat: "I'm loving this one more… it's very graphic," the top/shape ("the shape is perfect"), ballroom-vs-beach, "it's a contender." The "I'd go for ease on the beach… the first one" lines are the comparison back to Dress 1.
