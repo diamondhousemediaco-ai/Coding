@@ -188,24 +188,14 @@ const BLE={
   count(){return Object.keys(this.conns).length;},
   errText(e){if(!e)return "unknown error";if(typeof e==='string')return e;
     return e.message||e.name||(function(){try{return JSON.stringify(e);}catch(_){return String(e);}})()||"unknown error";},
-  // Chooser pre-filter: typical fixture ad names + the GVM control service.
-  FILTERS:[{namePrefix:'GVM'},{namePrefix:'BT'},{namePrefix:'LED'},{namePrefix:'LITEMONS'},
-           {namePrefix:'LA600'},{namePrefix:'GD'},{namePrefix:'K60'},{namePrefix:'Weeylite'},
-           {namePrefix:'WEEYLITE'},{namePrefix:'VILTROX'},
-           {services:['0000ae00-0000-1000-8000-00805f9b34fb']}],
+  // Show ALL devices — GVM fixtures (esp. the 650B) advertise non-obvious names
+  // like "eb23ff…", so a name filter hides them and leaves an empty picker.
   async request(){
-    try{return await navigator.bluetooth.requestDevice({filters:BLE.FILTERS,optionalServices:BLE.OPTIONAL});}
-    catch(e1){
-      if(e1&&e1.name==='NotFoundError')
-        log("… light not in the filtered list? Showing ALL nearby devices (cancel again to abort)");
-      else
-        log("… filtered chooser failed ("+BLE.errText(e1)+"), showing all devices");
-      try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
-      catch(e2){
-        if(e2&&e2.name==='NotFoundError')throw e2; // cancelled — don't reopen
-        log("… chooser failed ("+BLE.errText(e2)+"), retrying without service list");
-        return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
-      }
+    try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
+    catch(e){
+      if(e&&e.name==='NotFoundError')throw e; // cancelled — don't reopen
+      log("… chooser failed ("+BLE.errText(e)+"), retrying without service list");
+      return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
     }
   },
   async services(gatt){
@@ -238,7 +228,7 @@ const BLE={
     const l=LIGHTS.find(x=>x.id===id);
     if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
     try{
-      log("Requesting device for "+l.name+"… (classic GVM = “BT_LED”; the 650B Pro shows a hex-like name)");
+      log("Pick your light from the list (classic GVM = “BT_LED”; the 650B Pro shows a hex-like name like eb23ff…)");
       const dev=await BLE.request();
       log("Connecting to "+(dev.name||dev.id||"device")+"…");
       const srv=await dev.gatt.connect();
