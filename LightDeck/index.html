@@ -221,7 +221,7 @@ const BLE={
     const l=LIGHTS.find(x=>x.id===id);
     if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
     try{
-      log("Requesting device for "+l.name+"…");
+      log("Requesting device for "+l.name+"… (GVM fixtures show up as “BT_LED” — light must be in APP mode)");
       const dev=await BLE.request();
       log("Connecting to "+(dev.name||dev.id||"device")+"…");
       const srv=await dev.gatt.connect();
