@@ -187,12 +187,24 @@ const BLE={
   count(){return Object.keys(this.conns).length;},
   errText(e){if(!e)return "unknown error";if(typeof e==='string')return e;
     return e.message||e.name||(function(){try{return JSON.stringify(e);}catch(_){return String(e);}})()||"unknown error";},
+  // Chooser pre-filter: typical fixture ad names + the GVM control service.
+  FILTERS:[{namePrefix:'GVM'},{namePrefix:'BT'},{namePrefix:'LED'},{namePrefix:'LITEMONS'},
+           {namePrefix:'LA600'},{namePrefix:'GD'},{namePrefix:'K60'},{namePrefix:'Weeylite'},
+           {namePrefix:'WEEYLITE'},{namePrefix:'VILTROX'},
+           {services:['0000ae00-0000-1000-8000-00805f9b34fb']}],
   async request(){
-    try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
+    try{return await navigator.bluetooth.requestDevice({filters:BLE.FILTERS,optionalServices:BLE.OPTIONAL});}
     catch(e1){
-      if(e1&&e1.name==='NotFoundError')throw e1; // chooser cancelled — don't reopen it
-      log("… chooser failed ("+BLE.errText(e1)+"), retrying without service list");
-      return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
+      if(e1&&e1.name==='NotFoundError')
+        log("… light not in the filtered list? Showing ALL nearby devices (cancel again to abort)");
+      else
+        log("… filtered chooser failed ("+BLE.errText(e1)+"), showing all devices");
+      try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
+      catch(e2){
+        if(e2&&e2.name==='NotFoundError')throw e2; // cancelled — don't reopen
+        log("… chooser failed ("+BLE.errText(e2)+"), retrying without service list");
+        return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
+      }
     }
   },
   async findChar(gatt){
