@@ -33,5 +33,9 @@ Commands: `00` on/off, `02` brightness(0-100), `03` temp(K/100), `04` hue(deg/5)
 `06` mode(1 CCT / 2 HSI / 3 scenes), `07` scene(1-8).
 
 ## Redeploy
-Copy a fresh `index.html` into `../lightdeck-site/`, then deploy that folder to the Netlify
-project `lightdeck-control` (siteId 176250f8-3c9d-4a95-8e60-e12ea5d4d6c5).
+Hosting is on Vercel via Git integration: the repo-root `vercel.json` copies `LightDeck/index.html`
+into `out/` and serves only that. Merging to the default branch auto-deploys production —
+no manual upload step.
+
+Legacy Netlify site (manual drag-and-drop deploys, may be stale): lightdeck-control.netlify.app
+(siteId 176250f8-3c9d-4a95-8e60-e12ea5d4d6c5).
