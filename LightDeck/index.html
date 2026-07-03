@@ -179,28 +179,54 @@ const SCENES=["Lightning","Cop Car","Candle","TV","Bad Bulb","Party","Disco","Pa
 
 /* ===== BLE engine (Web Bluetooth — fill UUIDs after live scan) ===== */
 const BLE={
-  OPTIONAL:[0xfff0,0xffe0,0xffe5,0xff00,0xfee0,'0000ae00-0000-1000-8000-00805f9b34fb'],
+  // Full 128-bit strings only: Bluefy's iOS bridge rejects numeric aliases like 0xfff0.
+  OPTIONAL:['0000ae00-0000-1000-8000-00805f9b34fb','0000fff0-0000-1000-8000-00805f9b34fb',
+            '0000ffe0-0000-1000-8000-00805f9b34fb','0000ffe5-0000-1000-8000-00805f9b34fb',
+            '0000ff00-0000-1000-8000-00805f9b34fb','0000fee0-0000-1000-8000-00805f9b34fb'],
   conns:{}, // lightId -> {device,char}
   count(){return Object.keys(this.conns).length;},
+  errText(e){if(!e)return "unknown error";if(typeof e==='string')return e;
+    return e.message||e.name||(function(){try{return JSON.stringify(e);}catch(_){return String(e);}})()||"unknown error";},
+  async request(){
+    try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
+    catch(e1){
+      if(e1&&e1.name==='NotFoundError')throw e1; // chooser cancelled — don't reopen it
+      log("… chooser failed ("+BLE.errText(e1)+"), retrying without service list");
+      return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
+    }
+  },
+  async findChar(gatt){
+    let svcs=[];
+    try{svcs=await gatt.getPrimaryServices();}catch(e){log("… service scan failed ("+BLE.errText(e)+"), probing known UUIDs");}
+    if(!svcs.length)for(const u of BLE.OPTIONAL){try{svcs.push(await gatt.getPrimaryService(u));}catch(e){}}
+    for(const s of svcs){
+      let chars=[];try{chars=await s.getCharacteristics();}catch(e){continue;}
+      for(const c of chars)if(c.properties.write||c.properties.writeWithoutResponse)return c;
+    }
+    return null;
+  },
   async link(id){
     const l=LIGHTS.find(x=>x.id===id);
     if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
     try{
       log("Requesting device for "+l.name+"…");
-      const dev=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});
+      const dev=await BLE.request();
+      log("Connecting to "+(dev.name||dev.id||"device")+"…");
       const srv=await dev.gatt.connect();
-      let ch=null;
-      for(const s of await srv.getPrimaryServices())
-        for(const c of await s.getCharacteristics())
-          if(c.properties.write||c.properties.writeWithoutResponse){ch=c;break;}
-      if(!ch){log("✗ no writable characteristic on "+dev.name,1);return;}
+      const ch=await BLE.findChar(srv);
+      if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
       BLE.conns[id]={device:dev,char:ch};
       dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
       log("✓ linked "+l.name+" → "+(dev.name||dev.id)+" ("+ch.uuid.slice(0,8)+"…)");
       refreshStatus(); render();
-    }catch(e){log("✗ "+e.message,1);}
+    }catch(e){log("✗ "+BLE.errText(e),1);}
   },
-  async send(id,fr){const c=BLE.conns[id];if(!c)return false;try{await c.char.writeValue(fr);return true;}catch(e){log("✗ write "+e.message,1);return false;}}
+  async send(id,fr){const c=BLE.conns[id];if(!c)return false;
+    try{
+      if(c.char.properties.writeWithoutResponse&&c.char.writeValueWithoutResponse)await c.char.writeValueWithoutResponse(fr);
+      else await c.char.writeValue(fr);
+      return true;
+    }catch(e){log("✗ write "+BLE.errText(e),1);return false;}}
 };
 function connectNext(){const n=LIGHTS.find(l=>l.proto==='gvm'&&!BLE.conns[l.id]);if(n)BLE.link(n.id);else log("All GVM lights already linked.");}
 function refreshStatus(){const n=BLE.count();const p=document.getElementById('statusPill');p.classList.toggle('live',n>0);
