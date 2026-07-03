@@ -182,7 +182,8 @@ const BLE={
   // Full 128-bit strings only: Bluefy's iOS bridge rejects numeric aliases like 0xfff0.
   OPTIONAL:['0000ae00-0000-1000-8000-00805f9b34fb','0000fff0-0000-1000-8000-00805f9b34fb',
             '0000ffe0-0000-1000-8000-00805f9b34fb','0000ffe5-0000-1000-8000-00805f9b34fb',
-            '0000ff00-0000-1000-8000-00805f9b34fb','0000fee0-0000-1000-8000-00805f9b34fb'],
+            '0000ff00-0000-1000-8000-00805f9b34fb','0000fee0-0000-1000-8000-00805f9b34fb',
+            '00010203-0405-0607-0809-0a0b0c0d1910'], // Telink Mesh base service (650B Pro)
   conns:{}, // lightId -> {device,char}
   count(){return Object.keys(this.conns).length;},
   errText(e){if(!e)return "unknown error";if(typeof e==='string')return e;
@@ -207,25 +208,43 @@ const BLE={
       }
     }
   },
-  async findChar(gatt){
+  async services(gatt){
     let svcs=[];
     try{svcs=await gatt.getPrimaryServices();}catch(e){log("… service scan failed ("+BLE.errText(e)+"), probing known UUIDs");}
     if(!svcs.length)for(const u of BLE.OPTIONAL){try{svcs.push(await gatt.getPrimaryService(u));}catch(e){}}
+    return svcs;
+  },
+  // Dump the GATT layout to the log so a fixture's protocol can be identified from the iPad.
+  async inspect(gatt){
+    const svcs=await BLE.services(gatt);
+    let telink=false,writable=null;
+    log("── GATT map ("+svcs.length+" service"+(svcs.length===1?"":"s")+") ──");
     for(const s of svcs){
-      let chars=[];try{chars=await s.getCharacteristics();}catch(e){continue;}
-      for(const c of chars)if(c.properties.write||c.properties.writeWithoutResponse)return c;
+      log("• service "+s.uuid);
+      let chars=[];try{chars=await s.getCharacteristics();}catch(e){log("   (characteristics unreadable: "+BLE.errText(e)+")");continue;}
+      for(const c of chars){
+        const p=Object.keys(c.properties).filter(k=>c.properties[k]).join(",");
+        log("   ◦ "+c.uuid+"  ["+p+"]");
+        if(/0a0b0c0d191[124]/.test(c.uuid))telink=true;
+        if((c.properties.write||c.properties.writeWithoutResponse)&&!writable)writable=c;
+      }
     }
-    return null;
+    if(telink)log("⇒ TELINK MESH light (650B Pro). Needs the mesh handshake — tell Claude.",1);
+    else if(writable)log("⇒ classic BLE: writable characteristic "+writable.uuid.slice(0,8)+"… found.");
+    else log("⇒ no writable characteristic found — paste this map to Claude.",1);
+    return {telink,writable};
   },
   async link(id){
     const l=LIGHTS.find(x=>x.id===id);
     if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
     try{
-      log("Requesting device for "+l.name+"… (GVM fixtures show up as “BT_LED” — light must be in APP mode)");
+      log("Requesting device for "+l.name+"… (classic GVM = “BT_LED”; the 650B Pro shows a hex-like name)");
       const dev=await BLE.request();
       log("Connecting to "+(dev.name||dev.id||"device")+"…");
       const srv=await dev.gatt.connect();
-      const ch=await BLE.findChar(srv);
+      const {telink,writable}=await BLE.inspect(srv);
+      if(telink){log("650B Pro linked for inspection but mesh control isn’t wired into the app yet.",1);return;}
+      const ch=writable;
       if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
       BLE.conns[id]={device:dev,char:ch};
       dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
