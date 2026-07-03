@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "mkdir -p out && cp LightDeck/index.html out/index.html",
+  "outputDirectory": "out"
+}
