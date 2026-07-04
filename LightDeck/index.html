@@ -207,29 +207,35 @@ const BLE={
     if(!svcs.length)for(const u of BLE.OPTIONAL){try{svcs.push(await gatt.getPrimaryService(u));}catch(e){}}
     return svcs;
   },
-  // Dump the GATT layout to the log so a fixture's protocol can be identified from the iPad.
+  // Dump the GATT layout and decide if this is really a GVM light.
+  // Only a recognized GVM service counts — a bare writable characteristic (which tons of
+  // random BLE devices expose, e.g. 8667556C…) must NOT be mistaken for a light.
   async inspect(gatt){
     const svcs=await BLE.services(gatt);
-    let kind=null,writable=null,sawTelinkSvc=false;
+    const CLASSIC=/0000(ffe0|ffe5|fff0|ff00|fee0|ae00)-/i;
+    let kind=null,writable=null,sawGvmSvc=false,classicW=null,gvmSvcW=null;
     log("── GATT map ("+svcs.length+" service"+(svcs.length===1?"":"s")+") ──");
     for(const s of svcs){
       log("• service "+s.uuid);
-      if(/0a0b0c0d1910/i.test(s.uuid))sawTelinkSvc=true;
+      const gvmTelink=/0a0b0c0d1910/i.test(s.uuid), classicSvc=CLASSIC.test(s.uuid);
+      if(gvmTelink||classicSvc)sawGvmSvc=true;
       let chars=[];try{chars=await s.getCharacteristics();}catch(e){log("   (characteristics unreadable: "+BLE.errText(e)+")");continue;}
       for(const c of chars){
         const p=Object.keys(c.properties).filter(k=>c.properties[k]).join(",");
         log("   ◦ "+c.uuid+"  ["+p+"]");
-        if(/0a0b0c0d191[124]/i.test(c.uuid))kind='telink';        // full Telink mesh (SD650 Pro)
-        else if(/0a0b0c0d2b10/i.test(c.uuid)&&!kind)kind='sd';    // SD-series single-char control
-        if((c.properties.write||c.properties.writeWithoutResponse)&&!writable)writable=c;
+        const w=c.properties.write||c.properties.writeWithoutResponse;
+        if(/0a0b0c0d2b10/i.test(c.uuid)){kind='sd';writable=c;}                     // SD control channel
+        else if(/0a0b0c0d191[124]/i.test(c.uuid)&&kind!=='sd'){kind='telink';writable=c;} // full mesh
+        if(w&&classicSvc&&!classicW)classicW=c;
+        if(w&&gvmTelink&&!gvmSvcW)gvmSvcW=c;
       }
     }
-    if(!kind&&sawTelinkSvc&&writable)kind='sd';
-    if(!kind&&writable)kind='classic';
-    if(kind==='telink')log("⇒ TELINK MESH (SD650 Pro). Command protocol not captured yet — see telink-650b.md.",1);
-    else if(kind==='sd')log("⇒ SD SERIES (Telink 2B10). Connected, but SD command protocol not captured yet.",1);
-    else if(kind==='classic')log("⇒ CLASSIC GVM: writable "+writable.uuid.slice(0,8)+"… — should respond to the app.");
-    else log("⇒ no writable characteristic — paste this map to Claude.",1);
+    if(!kind&&classicW){kind='classic';writable=classicW;}
+    else if(!kind&&sawGvmSvc&&gvmSvcW){kind='classic';writable=gvmSvcW;} // GVM svc but unusual char
+    if(kind==='sd')log("⇒ SD SERIES (2B10) — running the handshake to bring it up.");
+    else if(kind==='telink')log("⇒ full Telink mesh (…1912) — inspect only for now.",1);
+    else if(kind==='classic')log("⇒ CLASSIC GVM ("+(writable?writable.uuid.slice(0,8):'?')+"…).");
+    else {log("⇒ NOT a GVM light (no GVM service here) — pick a different device.",1);writable=null;}
     return {kind,writable};
   },
   async link(id){
@@ -254,7 +260,11 @@ const BLE={
       refreshStatus(); render(); return;
     }
     const ch=writable;
-    if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
+    if(!kind||!ch){ // not a GVM light — don't link or remember it, drop the connection
+      log("✗ "+(dev.name||"That device")+" isn’t one of your lights — try another entry.",1);
+      BLE.forget(id); try{dev.gatt.disconnect();}catch(e){}
+      return;
+    }
     if(kind==='sd'){ // SD-series 2B10: learn devType/devID from the light, then it's controllable
       wireDisconnect(); BLE.remember(id,dev);
       await BLE.sdHandshake(id,dev,ch);
