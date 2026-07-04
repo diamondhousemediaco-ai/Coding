@@ -388,8 +388,12 @@ async function apply(id,act,val,extra){const l=LIGHTS.find(x=>x.id===id),s=st[id
   switch(act){
     case'power':s.on=!s.on;repaint(id);blooms();save();return emit(l,s.on?GVM.on(l.dt):GVM.off(l.dt),s.on?'ON':'OFF');
     case'bri':s.bri=+val;if(+val>0&&!s.on)s.on=true;repaint(id);save();return emit(l,GVM.bri(s.bri,l.dt),'brightness '+s.bri+'%');
-    case'cct':s.cct=+val;s.mode=1;repaint(id);save();return emit(l,GVM.cct(s.cct,l.dt),s.cct+'K');
-    case'hue':s.hue=+val;s.mode=2;s.scene=null;repaint(id);save();return emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');
+    case'cct':{const sw=s.mode!==1;s.cct=+val;s.mode=1;s.scene=null;repaint(id);save();
+      if(sw)await emit(l,GVM.mode(1,l.dt),'mode→CCT');   // switch light out of HSI/scene first
+      return emit(l,GVM.cct(s.cct,l.dt),s.cct+'K');}
+    case'hue':{const sw=s.mode!==2;s.hue=+val;s.mode=2;s.scene=null;repaint(id);save();
+      if(sw)await emit(l,GVM.mode(2,l.dt),'mode→HSI');   // switch light into HSI first
+      return emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');}
     case'scene':s.scene=+extra;s.mode=3;renderGrid();await emit(l,GVM.mode(3,l.dt),'mode→scenes');return emit(l,GVM.scene(+extra,l.dt),'scene '+SCENES[extra-1]);
     case'power-toggle':return;
   }}
