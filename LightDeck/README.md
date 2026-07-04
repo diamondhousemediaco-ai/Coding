@@ -18,7 +18,12 @@ Web Bluetooth API that Safari blocks. No Mac, Xcode, or Apple Developer account 
 - `mockup*.html`, `*.png` — design exploration / comps.
 
 ## Fleet
-2× GVM Pro 650B, GVM 300D, GVM PR150, GVM PR150R, Godox LITEMONS LA600Bi, 2× Viltrox/Weeylite K60.
+2× GVM PRO-SD650B, GVM SD300D, GVM PR150D, GVM PR150R.
+Split across two protocol families:
+- **SD/Pro series** (SD650B ×2, SD300D) — Telink-based, control channel `2B10`; command
+  protocol not yet captured. Staged in the app (link = inspect only). See `protocol/telink-650b.md`.
+- **PR series** (PR150D, PR150R) — the candidates for the classic `4C5409` protocol the app
+  already implements; test these first.
 
 ## Status
 Two different GVM protocols — the fleet is split:

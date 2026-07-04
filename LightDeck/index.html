@@ -207,37 +207,48 @@ const BLE={
   // Dump the GATT layout to the log so a fixture's protocol can be identified from the iPad.
   async inspect(gatt){
     const svcs=await BLE.services(gatt);
-    let telink=false,writable=null;
+    let kind=null,writable=null,sawTelinkSvc=false;
     log("── GATT map ("+svcs.length+" service"+(svcs.length===1?"":"s")+") ──");
     for(const s of svcs){
       log("• service "+s.uuid);
+      if(/0a0b0c0d1910/i.test(s.uuid))sawTelinkSvc=true;
       let chars=[];try{chars=await s.getCharacteristics();}catch(e){log("   (characteristics unreadable: "+BLE.errText(e)+")");continue;}
       for(const c of chars){
         const p=Object.keys(c.properties).filter(k=>c.properties[k]).join(",");
         log("   ◦ "+c.uuid+"  ["+p+"]");
-        if(/0a0b0c0d191[124]/.test(c.uuid))telink=true;
+        if(/0a0b0c0d191[124]/i.test(c.uuid))kind='telink';        // full Telink mesh (SD650 Pro)
+        else if(/0a0b0c0d2b10/i.test(c.uuid)&&!kind)kind='sd';    // SD-series single-char control
         if((c.properties.write||c.properties.writeWithoutResponse)&&!writable)writable=c;
       }
     }
-    if(telink)log("⇒ TELINK MESH light (650B Pro). Needs the mesh handshake — tell Claude.",1);
-    else if(writable)log("⇒ classic BLE: writable characteristic "+writable.uuid.slice(0,8)+"… found.");
-    else log("⇒ no writable characteristic found — paste this map to Claude.",1);
-    return {telink,writable};
+    if(!kind&&sawTelinkSvc&&writable)kind='sd';
+    if(!kind&&writable)kind='classic';
+    if(kind==='telink')log("⇒ TELINK MESH (SD650 Pro). Command protocol not captured yet — see telink-650b.md.",1);
+    else if(kind==='sd')log("⇒ SD SERIES (Telink 2B10). Connected, but SD command protocol not captured yet.",1);
+    else if(kind==='classic')log("⇒ CLASSIC GVM: writable "+writable.uuid.slice(0,8)+"… — should respond to the app.");
+    else log("⇒ no writable characteristic — paste this map to Claude.",1);
+    return {kind,writable};
   },
   async link(id){
     const l=LIGHTS.find(x=>x.id===id);
     if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
     try{
-      log("Pick your light from the list (classic GVM = “BT_LED”; the 650B Pro shows a hex-like name like eb23ff…)");
+      log("Pick your light from the list (classic PR150 shows as “BT_LED”; SD lights show a hex-like name)");
       const dev=await BLE.request();
       log("Connecting to "+(dev.name||dev.id||"device")+"…");
       const srv=await dev.gatt.connect();
-      const {telink,writable}=await BLE.inspect(srv);
-      if(telink){log("650B Pro linked for inspection but mesh control isn’t wired into the app yet.",1);return;}
+      const {kind,writable}=await BLE.inspect(srv);
+      const wireDisconnect=()=>dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
+      if(kind==='telink'||kind==='sd'){ // connect for inspection only — SD protocol not captured yet
+        if(writable)BLE.conns[id]={device:dev,char:writable};
+        wireDisconnect();
+        log("✓ "+l.name+" linked for INSPECTION — SD command protocol not captured yet, so sliders stay staged.",1);
+        refreshStatus(); render(); return;
+      }
       const ch=writable;
       if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
       BLE.conns[id]={device:dev,char:ch};
-      dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
+      wireDisconnect();
       log("✓ linked "+l.name+" → "+(dev.name||dev.id)+" ("+ch.uuid.slice(0,8)+"…)");
       refreshStatus(); render();
     }catch(e){log("✗ "+BLE.errText(e),1);}
@@ -255,14 +266,11 @@ function refreshStatus(){const n=BLE.count();const p=document.getElementById('st
 
 /* ===== fleet ===== */
 const LIGHTS=[
-  {id:"k1",name:"650B Pro · Key",model:"GVM Pro 650B",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
-  {id:"k2",name:"650B Pro · Fill",model:"GVM Pro 650B",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
-  {id:"bk",name:"300D · Back",model:"GVM 300D",proto:"gvm",dt:0x30,cct:null,rgb:false,scenes:false},
-  {id:"ac",name:"PR150 · Accent",model:"GVM PR150",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
-  {id:"fx",name:"PR150R · FX",model:"GVM PR150R",proto:"gvm",dt:0x30,cct:[2700,6800],rgb:true,scenes:true},
-  {id:"gd",name:"LA600Bi · Soft",model:"Godox LITEMONS",proto:"godox",dt:0x30,cct:[2800,6500],rgb:false,scenes:false,pending:true},
-  {id:"t1",name:"K60 · Tube L",model:"Viltrox K60",proto:"viltrox",dt:0x30,cct:[2500,8500],rgb:true,scenes:true,pending:true},
-  {id:"t2",name:"K60 · Tube R",model:"Viltrox K60",proto:"viltrox",dt:0x30,cct:[2500,8500],rgb:true,scenes:true,pending:true},
+  {id:"k1",name:"SD650 Pro · Key", model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"Telink mesh — protocol capture pending"},
+  {id:"k2",name:"SD650 Pro · Fill",model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"Telink mesh — protocol capture pending"},
+  {id:"bk",name:"SD300D · Back",   model:"GVM SD300D",   proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"Telink 2B10 — protocol capture pending"},
+  {id:"ac",name:"PR150D · Accent", model:"GVM PR150D",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
+  {id:"fx",name:"PR150R · FX",     model:"GVM PR150R",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:true, scenes:true},
 ];
 const SAVE="lightdeck_state";
 const st=JSON.parse(localStorage.getItem(SAVE)||"null")||{};
@@ -303,9 +311,10 @@ function renderGrid(){const g=document.getElementById('gridView');g.innerHTML=''
       ${l.rgb?`<div class="ctrl"><div class="top"><span class="k">HUE</span><span class="v">${s.hue}°</span></div>
         <input type="range" class="hue" min="0" max="360" value="${s.hue}" data-act="hue" data-id="${l.id}"></div>`:''}
       ${l.scenes?`<div class="chips">${SCENES.map((nm,i)=>`<span class="chip ${s.scene===i+1?'on':''}" data-act="scene" data-id="${l.id}" data-s="${i+1}">${nm}</span>`).join('')}</div>`:''}
-      <div class="link">${l.pending?`⚠ <b>${l.model}</b> protocol pending — staged`
-         :linked?`<span style="color:#46e08a;">● linked</span>`
-         :`<span>not linked</span><button class="linkbtn" data-act="link" data-id="${l.id}">Link Bluetooth</button>`}</div>`;
+      <div class="link">${
+         linked?`<span style="color:#46e08a;">● linked</span>${l.pending?' · inspect only':''}`
+         :`<span>not linked</span><button class="linkbtn" data-act="link" data-id="${l.id}">${l.pending?'Link / Inspect':'Link Bluetooth'}</button>`
+        }${l.pending?`<div class="cmodel" style="margin-top:6px;">⚠ ${l.note||'protocol pending'}</div>`:''}</div>`;
     g.appendChild(card);});}
 
 /* ===== CONSOLE ===== */

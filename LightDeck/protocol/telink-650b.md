@@ -1,9 +1,57 @@
-# GVM PRO-SD650B — Telink Mesh control
+# GVM SD/Pro series (SD300D, PRO-SD650B, …) — control notes
 
-The 650B Pro is **not** a classic GVM BLE light. It uses **Telink Mesh**, the same
-scheme reverse-engineered by [python-dimond](https://github.com/google/python-dimond)
-and [telinkpp](https://github.com/vpaeder/telinkpp). GVM's own spec lists three control
-paths: **APP (Bluetooth mesh), wired DMX-512 (8/16-bit, RDM), and mesh grouping.**
+## Live findings (2026-07, from the real fixtures)
+The whole fleet appears to be the **SD/Pro Telink line**, NOT the classic lights the
+app's `4C5409` protocol was built for. Confirmed against a real **GVM SD300D**:
+
+- Advertises as **`BT_LED`** (so it hides among the classic lights in a scan).
+- GATT map: service `180A` (Device Info) + vendor service
+  `00010203-0405-0607-0809-0A0B0C0D1910` with a single control characteristic
+  **`00010203-0405-0607-0809-0A0B0C0D2B10`** `[writeWithoutResponse, read, notify]`.
+- **The classic `4C5409` frames do NOT drive it** — connected + wrote brightness, light
+  did not respond. The SD series speaks a different (Telink-based) command language on
+  `2B10` that is not publicly documented.
+- **Next step: capture the GVM app driving an SD light and read the bytes it writes to
+  `2B10`** (see "Capturing the SD command format" below). That unlocks the whole fleet.
+
+The SD650B additionally exposes the full Telink-mesh characteristics (`…1911/1912/1914`);
+the notes below on the mesh handshake still apply to it.
+
+## Capturing the SD command format (the unblock)
+Goal: record what the GVM app writes to characteristic `2B10` for known slider moves.
+Off-set, ~30–60 min. Owner uses an **iPhone**, so pick one of these:
+
+**Option A — over-the-air BLE sniffer (best for an iPhone user, ~$15–25, OS-agnostic).**
+1. Buy a **Nordic nRF52840 dongle** (or Adafruit Bluefruit LE Sniffer). Flash/enable the
+   **nRF Sniffer for Bluetooth LE** and install its Wireshark plugin (works on Mac/Win/Linux).
+2. Start the sniffer in Wireshark, target the light's advertising address.
+3. On the iPhone, open the GVM app and make single, known moves: brightness **0→100**, then
+   **100→0**; then color temp **min**, then **max**. Note the order.
+4. In Wireshark filter `btatt.opcode == 0x52` (write cmd) to the `2B10` handle. The payloads
+   are the commands.
+
+**Option B — iPhone + Mac (no extra hardware).**
+1. Install Apple's **Bluetooth** logging profile on the iPhone
+   (developer.apple.com → Bug Reporting → Profiles and Logs → Bluetooth).
+2. Reproduce the same known slider moves in the GVM app.
+3. Capture/decode with **PacketLogger** (in *Additional Tools for Xcode*) on a Mac, or pull a
+   sysdiagnose and extract the PacketLogger `.pklg`. Filter to writes to `2B10`.
+
+**Option C — borrow any Android phone** (cleanest if available): Developer Options →
+**Bluetooth HCI snoop log**, reproduce the moves, `adb bugreport`, open the `btsnoop` in
+Wireshark, filter writes to `2B10`.
+
+Then send me the write payloads (hex) labelled with which move produced each. I decode the
+brightness/CCT/on-off format and wire it into the app for every SD fixture (SD300D + both
+SD650B, since they share the family).
+
+---
+
+## (Reference) Telink Mesh handshake — applies to the SD650B's `…1911/1912/1914`
+The 650B Pro also exposes full **Telink Mesh**, the scheme reverse-engineered by
+[python-dimond](https://github.com/google/python-dimond) and
+[telinkpp](https://github.com/vpaeder/telinkpp). GVM's spec lists three control paths:
+**APP (Bluetooth mesh), wired DMX-512 (8/16-bit, RDM), and mesh grouping.**
 
 ## How Telink Mesh control works
 1. Connect over normal GATT. Characteristics:
