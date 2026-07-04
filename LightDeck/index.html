@@ -154,6 +154,7 @@ body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helv
   </div>
   <div class="master">
     <span class="lbl">MASTER</span>
+    <button class="gbtn" onclick="BLE.reconnectSaved()">⟳ Reconnect</button>
     <button class="gbtn" onclick="allOn()">All On</button>
     <button class="gbtn" onclick="allOff()">All Off</button>
     <button class="gbtn danger" onclick="blackout()">Blackout</button>
@@ -230,29 +231,51 @@ const BLE={
     return {kind,writable};
   },
   async link(id){
-    const l=LIGHTS.find(x=>x.id===id);
     if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use the Bluefy browser on iPad.",1);return;}
     try{
       log("Pick your light from the list (classic PR150 shows as “BT_LED”; SD lights show a hex-like name)");
       const dev=await BLE.request();
-      log("Connecting to "+(dev.name||dev.id||"device")+"…");
-      const srv=await dev.gatt.connect();
-      const {kind,writable}=await BLE.inspect(srv);
-      const wireDisconnect=()=>dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
-      if(kind==='telink'){ // true mesh (…1911/1912/1914): raw frames can't drive it, inspect only
-        if(writable)BLE.conns[id]={device:dev,char:writable};
-        wireDisconnect();
-        log("✓ "+l.name+" linked for INSPECTION — full Telink mesh needs the handshake, sliders stay staged.",1);
-        refreshStatus(); render(); return;
-      }
-      // 'sd' (2B10 passthrough) and 'classic' both link fully and attempt the classic protocol
-      const ch=writable;
-      if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
-      BLE.conns[id]={device:dev,char:ch};
-      wireDisconnect();
-      log("✓ linked "+l.name+" → "+(dev.name||dev.id)+" ("+ch.uuid.slice(0,8)+"…)");
-      refreshStatus(); render();
+      await BLE.attach(id,dev,false);
     }catch(e){log("✗ "+BLE.errText(e),1);}
+  },
+  // Connect a chosen/remembered device to a card. Shared by manual link + auto-reconnect.
+  async attach(id,dev,silent){
+    const l=LIGHTS.find(x=>x.id===id);
+    log("Connecting "+l.name+" → "+(dev.name||dev.id||"device")+"…");
+    const srv=await dev.gatt.connect();
+    const {kind,writable}=await BLE.inspect(srv);
+    const wireDisconnect=()=>dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
+    if(kind==='telink'){ // true mesh (…1911/1912/1914): raw frames can't drive it, inspect only
+      if(writable)BLE.conns[id]={device:dev,char:writable};
+      wireDisconnect(); BLE.remember(id,dev);
+      log("✓ "+l.name+" linked for INSPECTION — full Telink mesh needs the handshake, sliders stay staged.",1);
+      refreshStatus(); render(); return;
+    }
+    const ch=writable;
+    if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
+    BLE.conns[id]={device:dev,char:ch};
+    wireDisconnect(); BLE.remember(id,dev);
+    log("✓ linked "+l.name+" → "+(dev.name||dev.id)+" ("+ch.uuid.slice(0,8)+"…) · remembered");
+    refreshStatus(); render();
+  },
+  // Persist which physical device belongs to which card, so we can reconnect without the chooser.
+  PAIRED:"lightdeck_paired",
+  remember(id,dev){try{const p=JSON.parse(localStorage.getItem(BLE.PAIRED)||"{}");p[id]={id:dev.id,name:dev.name||""};localStorage.setItem(BLE.PAIRED,JSON.stringify(p));}catch(e){}},
+  forget(id){try{const p=JSON.parse(localStorage.getItem(BLE.PAIRED)||"{}");delete p[id];localStorage.setItem(BLE.PAIRED,JSON.stringify(p));}catch(e){}},
+  async reconnectSaved(){
+    if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable.",1);return;}
+    let saved={};try{saved=JSON.parse(localStorage.getItem(BLE.PAIRED)||"{}");}catch(e){}
+    const ids=Object.keys(saved).filter(id=>!BLE.conns[id]&&LIGHTS.some(l=>l.id===id));
+    if(!ids.length){log("No saved lights to reconnect — link one and it'll be remembered.");return;}
+    if(!navigator.bluetooth.getDevices){log("This browser can't silently reconnect — tap Link once per light (Bluefy remembers after that).",1);return;}
+    let devs=[];try{devs=await navigator.bluetooth.getDevices();}catch(e){log("✗ getDevices: "+BLE.errText(e),1);return;}
+    log("Reconnecting "+ids.length+" saved light"+(ids.length>1?"s":"")+"… (lights on, GVM app closed)");
+    for(const id of ids){
+      const nm=(LIGHTS.find(l=>l.id===id)||{}).name||id;
+      const dev=devs.find(d=>d.id===saved[id].id);
+      if(!dev){log("… "+nm+" not available yet (out of range or not granted)",1);continue;}
+      try{await BLE.attach(id,dev,true);}catch(e){log("✗ "+nm+": "+BLE.errText(e),1);}
+    }
   },
   async send(id,fr){const c=BLE.conns[id];if(!c)return false;
     try{
@@ -313,7 +336,7 @@ function renderGrid(){const g=document.getElementById('gridView');g.innerHTML=''
         <input type="range" class="hue" min="0" max="360" value="${s.hue}" data-act="hue" data-id="${l.id}"></div>`:''}
       ${l.scenes?`<div class="chips">${SCENES.map((nm,i)=>`<span class="chip ${s.scene===i+1?'on':''}" data-act="scene" data-id="${l.id}" data-s="${i+1}">${nm}</span>`).join('')}</div>`:''}
       <div class="link">${
-         linked?`<span style="color:#46e08a;">● linked</span>${l.pending?' · inspect only':''}`
+         linked?`<span style="color:#46e08a;">● linked</span>${l.pending?' · inspect only':''} <button class="linkbtn" data-act="link" data-id="${l.id}">Re-link</button>`
          :`<span>not linked</span><button class="linkbtn" data-act="link" data-id="${l.id}">${l.pending?'Link / Inspect':'Link Bluetooth'}</button>`
         }${l.pending?`<div class="cmodel" style="margin-top:6px;">⚠ ${l.note||'protocol pending'}</div>`:''}</div>`;
     g.appendChild(card);});}
@@ -415,7 +438,10 @@ if(Q.indexOf('demo')>=0){const seed={k1:[90,4750],k2:[60,5200],fx:[80,null],bk:[
   Object.keys(seed).forEach(k=>{st[k].on=true;st[k].bri=seed[k][0];if(seed[k][1])st[k].cct=seed[k][1];});st.fx.mode=1;st.fx.cct=5600;}
 blooms(); renderGrid();
 setView(Q.indexOf('console')>=0?'console':(localStorage.getItem('lightdeck_view')||'grid'));
-log(`LightDeck ready · ${LIGHTS.length} fixtures · GVM protocol <b>verified</b> · ${BLE.count()} linked.`);
+log(`LightDeck ready · ${LIGHTS.length} fixtures · ${BLE.count()} linked.`);
+/* auto-reconnect remembered lights (Bluefy keeps device access once granted) */
+try{ if(JSON.parse(localStorage.getItem(BLE.PAIRED)||"{}") && Object.keys(JSON.parse(localStorage.getItem(BLE.PAIRED)||"{}")).length)
+  setTimeout(()=>BLE.reconnectSaved(),600); }catch(e){}
 </script>
 </body>
 </html>
