@@ -271,9 +271,17 @@ const BLE={
       bigToast('❌','ALREADY TRIED\nthat one’s not a light — pick another',false);
       try{dev.gatt.disconnect();}catch(e){} return;
     }
-    log("Connecting "+l.name+" → "+(dev.name||dev.id||"device")+"…");
-    const srv=await dev.gatt.connect();
-    const {kind,writable}=await BLE.inspect(srv);
+    log("Connecting "+l.name+" → "+(dev.name||dev.id||"device")+"… (10s max)");
+    let srv,kind,writable;
+    try{
+      srv=await BLE.withTimeout(dev.gatt.connect(),10000,"connect");
+      ({kind,writable}=await BLE.withTimeout(BLE.inspect(srv),10000,"read services"));
+    }catch(e){ // hung or refused — turn the freeze into a clear "next"
+      log("✗ "+(dev.name||dev.id)+" wouldn’t connect ("+BLE.errText(e)+") — try another.",1);
+      bigToast('❌','COULDN’T CONNECT\ntry another device',false);
+      BLE.rejected.add(dev.id); try{dev.gatt.disconnect();}catch(_){}
+      return;
+    }
     const wireDisconnect=()=>dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
     if(kind==='telink'){ // true mesh (…1911/1912/1914): raw frames can't drive it, inspect only
       if(writable)BLE.conns[id]={device:dev,char:writable};
@@ -363,6 +371,7 @@ const BLE={
       return true;
     }catch(e){log("✗ write "+BLE.errText(e),1);return false;}},
   sleep(ms){return new Promise(r=>setTimeout(r,ms));},
+  withTimeout(p,ms,label){return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error((label||"operation")+" timed out")),ms))]);},
   // Flash a linked light so you can SEE which physical fixture a card controls.
   async identify(id){
     const l=LIGHTS.find(x=>x.id===id);
