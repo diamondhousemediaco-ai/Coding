@@ -196,10 +196,10 @@ const BLE={
   async request(){
     // GVM lights are named "BT_LED" (confirmed in the app's own scan filter). Try that first
     // so the picker shows only your lights; if iOS doesn't surface the name, show everything.
-    try{return await navigator.bluetooth.requestDevice({filters:[{namePrefix:'BT_LED'}],optionalServices:BLE.OPTIONAL});}
+    try{return await navigator.bluetooth.requestDevice({filters:[{namePrefix:'BT_LED'},{services:['00010203-0405-0607-0809-0a0b0c0d1910']}],optionalServices:BLE.OPTIONAL});}
     catch(e1){
-      if(e1&&e1.name==='NotFoundError')log("… no “BT_LED” in the picker — showing ALL devices. Pick your light; junk gets rejected.");
-      else log("… BT_LED filter failed ("+BLE.errText(e1)+") — showing all devices.");
+      if(e1&&e1.name==='NotFoundError')log("… lights don’t advertise a name/service iOS can filter — showing ALL. Pick a nameless entry (not Govee/iPhone); junk is rejected.");
+      else log("… filter failed ("+BLE.errText(e1)+") — showing all devices.");
       try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
       catch(e2){
         if(e2&&e2.name==='NotFoundError')throw e2; // cancelled — don't reopen
