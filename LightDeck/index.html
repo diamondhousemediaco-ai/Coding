@@ -283,7 +283,9 @@ const BLE={
   // Connect a chosen/remembered device to a card. Shared by manual link + auto-reconnect.
   async attach(id,dev,silent){
     const l=LIGHTS.find(x=>x.id===id);
-    if(BLE.rejected.has(dev.id)){ // known junk from a previous try — don't even reconnect
+    // 'other' panels (K60/Godox) inspect *any* device, so never block them on the
+    // rejected set — a mesh light gets rejected by GVM panels but is valid on its own card.
+    if(l.proto!=='other'&&BLE.rejected.has(dev.id)){ // known junk from a previous try — don't even reconnect
       log("(skipped "+(dev.name||dev.id)+" — already tried, not a light)",1);
       bigToast('❌','ALREADY TRIED\nthat one’s not a light — pick another',false);
       try{dev.gatt.disconnect();}catch(e){} return;
@@ -296,7 +298,9 @@ const BLE={
     }catch(e){ // hung or refused — turn the freeze into a clear "next"
       log("✗ "+(dev.name||dev.id)+" wouldn’t connect ("+BLE.errText(e)+") — try another.",1);
       bigToast('❌','COULDN’T CONNECT\ntry another device',false);
-      BLE.rejected.add(dev.id); try{dev.gatt.disconnect();}catch(_){}
+      // don't blacklist 'other' (mesh) devices — a slow first connect shouldn't lock out the K60/Godox
+      if(l.proto!=='other')BLE.rejected.add(dev.id);
+      try{dev.gatt.disconnect();}catch(_){}
       return;
     }
     const wireDisconnect=()=>dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});

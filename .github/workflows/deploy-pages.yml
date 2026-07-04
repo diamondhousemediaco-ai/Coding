@@ -2,7 +2,7 @@ name: Deploy LightDeck to GitHub Pages
 
 on:
   push:
-    branches: [claude/new-session-75v5kg]
+    branches: [claude/new-session-75v5kg, claude/light-deck-6djfw2]
   workflow_dispatch:
 
 permissions:
