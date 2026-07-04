@@ -169,6 +169,7 @@ body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helv
   <div class="master">
     <span class="lbl">MASTER</span>
     <button class="gbtn" onclick="BLE.reconnectSaved()">⟳ Reconnect</button>
+    <button class="gbtn" onclick="BLE.inspectAny()">🔍 Inspect</button>
     <button class="gbtn" onclick="allOn()">All On</button>
     <button class="gbtn" onclick="allOff()">All Off</button>
     <button class="gbtn danger" onclick="blackout()">Blackout</button>
@@ -261,6 +262,22 @@ const BLE={
       log("Pick your light from the list (classic PR150 shows as “BT_LED”; SD lights show a hex-like name)");
       const dev=await BLE.request();
       await BLE.attach(id,dev,false);
+    }catch(e){log("✗ "+BLE.errText(e),1);}
+  },
+  // Connect to ANY device (K60, Godox, anything) and dump its full GATT map — pure diagnostics.
+  async inspectAny(){
+    if(!navigator.bluetooth){log("✗ Web Bluetooth unavailable — use Bluefy.",1);return;}
+    try{
+      log("── INSPECT: pick the device to examine (K60 / Godox / anything) ──");
+      const dev=await BLE.request();
+      log("Connecting to "+(dev.name||dev.id||"device")+"… (10s max)");
+      let srv;
+      try{ srv=await BLE.withTimeout(dev.gatt.connect(),10000,"connect"); }
+      catch(e){ log("✗ "+(dev.name||dev.id)+" wouldn’t connect ("+BLE.errText(e)+")",1); bigToast('❌','COULDN’T CONNECT\ntry again',false); return; }
+      const {kind,writable}=await BLE.withTimeout(BLE.inspect(srv),10000,"read services");
+      log("── INSPECT done. Name: “"+(dev.name||"(unnamed)")+"”. Paste the • / ◦ lines above to Claude. ──");
+      bigToast('🔍','MAP CAPTURED\npaste the service/char lines to Claude',true);
+      try{dev.gatt.disconnect();}catch(e){}
     }catch(e){log("✗ "+BLE.errText(e),1);}
   },
   // Connect a chosen/remembered device to a card. Shared by manual link + auto-reconnect.
