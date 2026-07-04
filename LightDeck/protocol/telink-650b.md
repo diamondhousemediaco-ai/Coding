@@ -18,23 +18,32 @@ The SD650B additionally exposes the full Telink-mesh characteristics (`…1911/1
 the notes below on the mesh handshake still apply to it.
 
 ## Capturing the SD command format (the unblock)
-Do this off-set — it's a 30–60 min sit-down, not a quick fix.
-1. **Android phone** (cleanest): Settings → Developer Options → enable
-   **Bluetooth HCI snoop log** (set to "Enabled"/"Filtered"). Reboot if prompted.
-2. Install the GVM app on that phone, connect to the **SD300D**.
-3. Make single, known moves: brightness **0 → 100**, then **100 → 0**; then color
-   temp to its min, then max. Note each move.
-4. `adb bugreport` (or pull `/data/misc/bluetooth/logs/btsnoop_hci.log`) and open the
-   `btsnoop` file in **Wireshark**.
-5. Filter to `btatt` writes to handle/characteristic `2B10`. The bytes in each write are
-   the command; brightness moves reveal the brightness opcode+scale, CCT moves the CCT one.
-6. Send me those write payloads (hex) with which slider move produced each — I decode the
-   format and wire it into the app for every SD fixture.
+Goal: record what the GVM app writes to characteristic `2B10` for known slider moves.
+Off-set, ~30–60 min. Owner uses an **iPhone**, so pick one of these:
 
-iOS-only alternative (needs a Mac): install Apple's **Bluetooth** logging profile on the
-iPad (developer.apple.com → Profiles and Logs), reproduce with the GVM app, then capture
-with **PacketLogger** (Additional Tools for Xcode) on the Mac. Messier than Android; use
-the Android route if you have any Android device.
+**Option A — over-the-air BLE sniffer (best for an iPhone user, ~$15–25, OS-agnostic).**
+1. Buy a **Nordic nRF52840 dongle** (or Adafruit Bluefruit LE Sniffer). Flash/enable the
+   **nRF Sniffer for Bluetooth LE** and install its Wireshark plugin (works on Mac/Win/Linux).
+2. Start the sniffer in Wireshark, target the light's advertising address.
+3. On the iPhone, open the GVM app and make single, known moves: brightness **0→100**, then
+   **100→0**; then color temp **min**, then **max**. Note the order.
+4. In Wireshark filter `btatt.opcode == 0x52` (write cmd) to the `2B10` handle. The payloads
+   are the commands.
+
+**Option B — iPhone + Mac (no extra hardware).**
+1. Install Apple's **Bluetooth** logging profile on the iPhone
+   (developer.apple.com → Bug Reporting → Profiles and Logs → Bluetooth).
+2. Reproduce the same known slider moves in the GVM app.
+3. Capture/decode with **PacketLogger** (in *Additional Tools for Xcode*) on a Mac, or pull a
+   sysdiagnose and extract the PacketLogger `.pklg`. Filter to writes to `2B10`.
+
+**Option C — borrow any Android phone** (cleanest if available): Developer Options →
+**Bluetooth HCI snoop log**, reproduce the moves, `adb bugreport`, open the `btsnoop` in
+Wireshark, filter writes to `2B10`.
+
+Then send me the write payloads (hex) labelled with which move produced each. I decode the
+brightness/CCT/on-off format and wire it into the app for every SD fixture (SD300D + both
+SD650B, since they share the family).
 
 ---
 
