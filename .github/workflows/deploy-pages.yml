@@ -20,10 +20,19 @@ jobs:
       - name: Stage site
         run: |
           mkdir -p out/deck
-          # root: plain copy (legacy URL)
-          cp LightDeck/index.html out/index.html
-          # /deck/: the real app, plus a tiny loader that always fetches it fresh
-          cp LightDeck/index.html out/deck/app.html
+          # Inject the verified SIG-mesh module into the app in place of the /*__MESH_JS__*/
+          # placeholder, so it ships inline (robust against the /deck/ document.write loader).
+          node -e '
+            const fs=require("fs");
+            const html=fs.readFileSync("LightDeck/index.html","utf8");
+            const mesh=fs.readFileSync("LightDeck/protocol/mesh.js","utf8");
+            if(!html.includes("/*__MESH_JS__*/")){console.error("MESH placeholder missing");process.exit(1);}
+            const out=html.replace("/*__MESH_JS__*/",()=>mesh);
+            fs.mkdirSync("out/deck",{recursive:true});
+            fs.writeFileSync("out/index.html",out);
+            fs.writeFileSync("out/deck/app.html",out);
+            console.log("Injected mesh.js ("+mesh.length+" bytes)");
+          '
           cat > out/deck/index.html <<'HTML'
           <!doctype html><html lang="en"><head><meta charset="utf-8">
           <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
