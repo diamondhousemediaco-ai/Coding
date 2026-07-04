@@ -239,12 +239,13 @@ const BLE={
       const srv=await dev.gatt.connect();
       const {kind,writable}=await BLE.inspect(srv);
       const wireDisconnect=()=>dev.addEventListener('gattserverdisconnected',()=>{delete BLE.conns[id];refreshStatus();render();log("⚠ "+l.name+" disconnected",1);});
-      if(kind==='telink'||kind==='sd'){ // connect for inspection only — SD protocol not captured yet
+      if(kind==='telink'){ // true mesh (…1911/1912/1914): raw frames can't drive it, inspect only
         if(writable)BLE.conns[id]={device:dev,char:writable};
         wireDisconnect();
-        log("✓ "+l.name+" linked for INSPECTION — SD command protocol not captured yet, so sliders stay staged.",1);
+        log("✓ "+l.name+" linked for INSPECTION — full Telink mesh needs the handshake, sliders stay staged.",1);
         refreshStatus(); render(); return;
       }
+      // 'sd' (2B10 passthrough) and 'classic' both link fully and attempt the classic protocol
       const ch=writable;
       if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
       BLE.conns[id]={device:dev,char:ch};
@@ -266,9 +267,9 @@ function refreshStatus(){const n=BLE.count();const p=document.getElementById('st
 
 /* ===== fleet ===== */
 const LIGHTS=[
-  {id:"k1",name:"SD650 Pro · Key", model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"Telink mesh — protocol capture pending"},
-  {id:"k2",name:"SD650 Pro · Fill",model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"Telink mesh — protocol capture pending"},
-  {id:"bk",name:"SD300D · Back",   model:"GVM SD300D",   proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"Telink 2B10 — protocol capture pending"},
+  {id:"k1",name:"SD650 Pro · Key", model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"full Telink mesh — needs handshake"},
+  {id:"k2",name:"SD650 Pro · Fill",model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"full Telink mesh — needs handshake"},
+  {id:"bk",name:"SD300D · Back",   model:"GVM SD300D",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
   {id:"ac",name:"PR150D · Accent", model:"GVM PR150D",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
   {id:"fx",name:"PR150R · FX",     model:"GVM PR150R",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:true, scenes:true},
 ];
