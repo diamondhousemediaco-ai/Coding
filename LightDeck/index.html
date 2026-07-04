@@ -306,6 +306,13 @@ const BLE={
       log("✓ "+l.name+" linked for INSPECTION — full Telink mesh needs the handshake, sliders stay staged.",1);
       refreshStatus(); render(); return;
     }
+    if(l.proto==='other'){ // K60 / Godox: link any device to connect+inspect; control still pending
+      if(writable)BLE.conns[id]={device:dev,char:writable};
+      wireDisconnect(); BLE.remember(id,dev);
+      log("✓ "+l.name+" connected — "+(writable?"writable "+writable.uuid.slice(0,8)+"…":"no writable char found")+". Map logged above; control pending.",1);
+      bigToast('🔍',l.name+' CONNECTED\nGATT map logged — paste it to Claude',true);
+      refreshStatus(); render(); return;
+    }
     const ch=writable;
     if(!kind||!ch){ // not a GVM light — remember it as junk so re-picks are instant
       log("✗ "+(dev.name||"That device")+" isn’t one of your lights — try another entry.",1);
@@ -435,6 +442,9 @@ const LIGHTS=[
   {id:"bk",name:"SD300D · Back",   model:"GVM SD300D",   proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"SD-series — tap Link to run the handshake"},
   {id:"ac",name:"PR150D · Accent", model:"GVM PR150D",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
   {id:"fx",name:"PR150R · FX",     model:"GVM PR150R",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:true, scenes:true},
+  {id:"t1",name:"K60 · Tube L",    model:"Weeylite/Viltrox K60",proto:"other",dt:0x30,cct:[2500,8500],rgb:true, scenes:true,pending:true,note:"tap Link to connect & inspect — protocol pending"},
+  {id:"t2",name:"K60 · Tube R",    model:"Weeylite/Viltrox K60",proto:"other",dt:0x30,cct:[2500,8500],rgb:true, scenes:true,pending:true,note:"tap Link to connect & inspect — protocol pending"},
+  {id:"gd",name:"LA600Bi · Soft",  model:"Godox LITEMONS LA600Bi",proto:"other",dt:0x30,cct:[2800,6500],rgb:false,scenes:false,pending:true,note:"tap Link to connect & inspect — protocol pending"},
 ];
 const SAVE="lightdeck_state";
 const st=JSON.parse(localStorage.getItem(SAVE)||"null")||{};
