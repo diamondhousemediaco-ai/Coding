@@ -1,9 +1,48 @@
-# GVM PRO-SD650B — Telink Mesh control
+# GVM SD/Pro series (SD300D, PRO-SD650B, …) — control notes
 
-The 650B Pro is **not** a classic GVM BLE light. It uses **Telink Mesh**, the same
-scheme reverse-engineered by [python-dimond](https://github.com/google/python-dimond)
-and [telinkpp](https://github.com/vpaeder/telinkpp). GVM's own spec lists three control
-paths: **APP (Bluetooth mesh), wired DMX-512 (8/16-bit, RDM), and mesh grouping.**
+## Live findings (2026-07, from the real fixtures)
+The whole fleet appears to be the **SD/Pro Telink line**, NOT the classic lights the
+app's `4C5409` protocol was built for. Confirmed against a real **GVM SD300D**:
+
+- Advertises as **`BT_LED`** (so it hides among the classic lights in a scan).
+- GATT map: service `180A` (Device Info) + vendor service
+  `00010203-0405-0607-0809-0A0B0C0D1910` with a single control characteristic
+  **`00010203-0405-0607-0809-0A0B0C0D2B10`** `[writeWithoutResponse, read, notify]`.
+- **The classic `4C5409` frames do NOT drive it** — connected + wrote brightness, light
+  did not respond. The SD series speaks a different (Telink-based) command language on
+  `2B10` that is not publicly documented.
+- **Next step: capture the GVM app driving an SD light and read the bytes it writes to
+  `2B10`** (see "Capturing the SD command format" below). That unlocks the whole fleet.
+
+The SD650B additionally exposes the full Telink-mesh characteristics (`…1911/1912/1914`);
+the notes below on the mesh handshake still apply to it.
+
+## Capturing the SD command format (the unblock)
+Do this off-set — it's a 30–60 min sit-down, not a quick fix.
+1. **Android phone** (cleanest): Settings → Developer Options → enable
+   **Bluetooth HCI snoop log** (set to "Enabled"/"Filtered"). Reboot if prompted.
+2. Install the GVM app on that phone, connect to the **SD300D**.
+3. Make single, known moves: brightness **0 → 100**, then **100 → 0**; then color
+   temp to its min, then max. Note each move.
+4. `adb bugreport` (or pull `/data/misc/bluetooth/logs/btsnoop_hci.log`) and open the
+   `btsnoop` file in **Wireshark**.
+5. Filter to `btatt` writes to handle/characteristic `2B10`. The bytes in each write are
+   the command; brightness moves reveal the brightness opcode+scale, CCT moves the CCT one.
+6. Send me those write payloads (hex) with which slider move produced each — I decode the
+   format and wire it into the app for every SD fixture.
+
+iOS-only alternative (needs a Mac): install Apple's **Bluetooth** logging profile on the
+iPad (developer.apple.com → Profiles and Logs), reproduce with the GVM app, then capture
+with **PacketLogger** (Additional Tools for Xcode) on the Mac. Messier than Android; use
+the Android route if you have any Android device.
+
+---
+
+## (Reference) Telink Mesh handshake — applies to the SD650B's `…1911/1912/1914`
+The 650B Pro also exposes full **Telink Mesh**, the scheme reverse-engineered by
+[python-dimond](https://github.com/google/python-dimond) and
+[telinkpp](https://github.com/vpaeder/telinkpp). GVM's spec lists three control paths:
+**APP (Bluetooth mesh), wired DMX-512 (8/16-bit, RDM), and mesh grouping.**
 
 ## How Telink Mesh control works
 1. Connect over normal GATT. Characteristics:
