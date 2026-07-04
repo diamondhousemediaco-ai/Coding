@@ -172,10 +172,12 @@ body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helv
 <script>
 /* ===== GVM protocol (verified byte-for-byte from decompiled app) ===== */
 function crc16(b){let c=0;for(const x of b){c^=x<<8;for(let i=0;i<8;i++)c=(c&0x8000)?((c<<1)^0x1021)&0xFFFF:(c<<1)&0xFFFF;}return c;}
-function frame(cmd,p,dt=0x30,id=0x00){const body=[0x4C,0x54,0x09,id,dt,0x57,0x00,cmd,0x01,...p];const c=crc16(body);return new Uint8Array([...body,(c>>8)&0xFF,c&0xFF]);}
-const GVM={on:dt=>frame(0,[1],dt),off:dt=>frame(0,[0],dt),bri:(v,dt)=>frame(2,[Math.max(0,Math.min(100,v))],dt),
-  cct:(k,dt)=>frame(3,[Math.round(Math.max(2000,Math.min(8500,k))/100)],dt),hue:(d,dt)=>frame(4,[Math.round(Math.max(0,Math.min(360,d))/5)],dt),
-  sat:(v,dt)=>frame(5,[Math.max(0,Math.min(100,v))],dt),mode:(m,dt)=>frame(6,[m],dt),scene:(s,dt)=>frame(7,[s],dt)};
+/* SD lights learn dt(devType)+id(devID) from a handshake and need a CRLF terminator;
+   classic lights pass undefined id/term → frame defaults (id 0x00, no terminator). */
+function frame(cmd,p,dt=0x30,id=0x00,term=false){const body=[0x4C,0x54,0x09,id,dt,0x57,0x00,cmd,0x01,...p];const c=crc16(body);const out=[...body,(c>>8)&0xFF,c&0xFF];if(term)out.push(0x0D,0x0A);return new Uint8Array(out);}
+const GVM={on:(dt,id,t)=>frame(0,[1],dt,id,t),off:(dt,id,t)=>frame(0,[0],dt,id,t),bri:(v,dt,id,t)=>frame(2,[Math.max(0,Math.min(100,v))],dt,id,t),
+  cct:(k,dt,id,t)=>frame(3,[Math.round(Math.max(2000,Math.min(8500,k))/100)],dt,id,t),hue:(d,dt,id,t)=>frame(4,[Math.round(Math.max(0,Math.min(360,d))/5)],dt,id,t),
+  sat:(v,dt,id,t)=>frame(5,[Math.max(0,Math.min(100,v))],dt,id,t),mode:(m,dt,id,t)=>frame(6,[m],dt,id,t),scene:(s,dt,id,t)=>frame(7,[s],dt,id,t)};
 const SCENES=["Lightning","Cop Car","Candle","TV","Bad Bulb","Party","Disco","Paparazzi"];
 
 /* ===== BLE engine (Web Bluetooth — fill UUIDs after live scan) ===== */
@@ -253,10 +255,47 @@ const BLE={
     }
     const ch=writable;
     if(!ch){log("✗ no writable characteristic on "+(dev.name||"device"),1);return;}
+    if(kind==='sd'){ // SD-series 2B10: learn devType/devID from the light, then it's controllable
+      wireDisconnect(); BLE.remember(id,dev);
+      await BLE.sdHandshake(id,dev,ch);
+      refreshStatus(); render(); return;
+    }
     BLE.conns[id]={device:dev,char:ch};
     wireDisconnect(); BLE.remember(id,dev);
     log("✓ linked "+l.name+" → "+(dev.name||dev.id)+" ("+ch.uuid.slice(0,8)+"…) · remembered");
     refreshStatus(); render();
+  },
+  async rawWrite(ch,bytes){
+    if(ch.properties&&ch.properties.writeWithoutResponse&&ch.writeValueWithoutResponse)return ch.writeValueWithoutResponse(bytes);
+    return ch.writeValue(bytes);
+  },
+  // SD (2B10) bring-up: enable notify, send the discovery query, read the light's
+  // handshake reply to learn devType (byte4) + devID (byte3), then mark it controllable.
+  // Protocol confirmed by decompiling GVM LED v1.8.0 (com.gvm.cloudphone).
+  async sdHandshake(id,dev,ch){
+    const l=LIGHTS.find(x=>x.id===id);
+    BLE.conns[id]={device:dev,char:ch,sd:true};
+    let learned=null;
+    const onNotify=e=>{
+      const b=new Uint8Array(e.target.value.buffer);
+      if(b.length>=6&&b[0]===0x4C&&b[1]===0x54&&b[5]===0x53&&!(b[3]===0&&b[4]===0))learned={id:b[3],dt:b[4]};
+    };
+    try{await ch.startNotifications();ch.addEventListener('characteristicvaluechanged',onNotify);}
+    catch(e){log("… SD notify unavailable ("+BLE.errText(e)+")",1);}
+    log("SD handshake — asking "+l.name+" to identify itself…");
+    // discovery: 4C5409 00 00 53 0000 01 00 9474  + CRLF  (exactly what the GVM app sends)
+    const disc=new Uint8Array([0x4C,0x54,0x09,0x00,0x00,0x53,0x00,0x00,0x01,0x00,0x94,0x74,0x0D,0x0A]);
+    for(let t=0;t<3&&!learned;t++){
+      try{await BLE.rawWrite(ch,disc);}catch(e){log("… SD write failed ("+BLE.errText(e)+")",1);}
+      for(let i=0;i<12&&!learned;i++)await BLE.sleep(100);
+    }
+    const hx=v=>v.toString(16).padStart(2,'0').toUpperCase();
+    if(learned){
+      l.dt=learned.dt;l.devid=learned.id;l.term=true;l.sd=true;l.pending=false;l.proto='gvm';
+      log("✓ "+l.name+" is LIVE — devType 0x"+hx(learned.dt)+", devID 0x"+hx(learned.id)+". Sliders control it now.");
+    }else{
+      log("✗ "+l.name+" didn’t answer the handshake (powered on? GVM app closed?). Staying staged — tap Re-link to retry.",1);
+    }
   },
   // Persist which physical device belongs to which card, so we can reconnect without the chooser.
   PAIRED:"lightdeck_paired",
@@ -288,14 +327,14 @@ const BLE={
   async identify(id){
     const l=LIGHTS.find(x=>x.id===id);
     if(!BLE.conns[id]){log("Link "+(l?l.name:id)+" first, then Identify.",1);return;}
-    if(l.proto!=='gvm'){log("Identify needs a controllable light (the SD650 mesh isn't wired yet).",1);return;}
+    if(l.proto!=='gvm'){log("Identify needs a linked, controllable light — run Link first.",1);return;}
     const s=st[id],wasOn=s.on,wasBri=s.bri;
     log("Identifying "+l.name+" — watch which light flashes…");
     for(let i=0;i<5;i++){
-      await BLE.send(id,GVM.on(l.dt)); await BLE.send(id,GVM.bri(100,l.dt)); await BLE.sleep(200);
-      await BLE.send(id,GVM.bri(3,l.dt)); await BLE.sleep(200);
+      await BLE.send(id,GVM.on(l.dt,l.devid,l.term)); await BLE.send(id,GVM.bri(100,l.dt,l.devid,l.term)); await BLE.sleep(200);
+      await BLE.send(id,GVM.bri(3,l.dt,l.devid,l.term)); await BLE.sleep(200);
     }
-    await BLE.send(id,wasOn?GVM.on(l.dt):GVM.off(l.dt)); await BLE.send(id,GVM.bri(wasBri,l.dt));
+    await BLE.send(id,wasOn?GVM.on(l.dt,l.devid,l.term):GVM.off(l.dt,l.devid,l.term)); await BLE.send(id,GVM.bri(wasBri,l.dt,l.devid,l.term));
     log("Identify done — "+l.name+" restored.");
   },
   hex(dv){const u=new Uint8Array(dv.buffer||dv);return[...u].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase();},
@@ -325,9 +364,9 @@ function refreshStatus(){const n=BLE.count();const p=document.getElementById('st
 
 /* ===== fleet ===== */
 const LIGHTS=[
-  {id:"k1",name:"SD650 Pro · Key", model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"full Telink mesh — needs handshake"},
-  {id:"k2",name:"SD650 Pro · Fill",model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"full Telink mesh — needs handshake"},
-  {id:"bk",name:"SD300D · Back",   model:"GVM SD300D",   proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"ignores classic protocol — needs GVM-app capture"},
+  {id:"k1",name:"SD650 Pro · Key", model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"SD-series — tap Link to run the handshake"},
+  {id:"k2",name:"SD650 Pro · Fill",model:"GVM PRO-SD650B",proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"SD-series — tap Link to run the handshake"},
+  {id:"bk",name:"SD300D · Back",   model:"GVM SD300D",   proto:"sd", dt:0x30,cct:[2700,6800],rgb:false,scenes:false,pending:true,note:"SD-series — tap Link to run the handshake"},
   {id:"ac",name:"PR150D · Accent", model:"GVM PR150D",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:false,scenes:false},
   {id:"fx",name:"PR150R · FX",     model:"GVM PR150R",   proto:"gvm",dt:0x30,cct:[2700,6800],rgb:true, scenes:true},
 ];
@@ -424,19 +463,19 @@ async function emit(l,fr,human){
   log(`<span class="t">[${ok?'TX':'demo'}]</span> ${l.name}: ${human} <span class="b">${[...fr].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase()}</span>`);}
 async function apply(id,act,val,extra){const l=LIGHTS.find(x=>x.id===id),s=st[id];
   switch(act){
-    case'power':s.on=!s.on;repaint(id);blooms();save();return emit(l,s.on?GVM.on(l.dt):GVM.off(l.dt),s.on?'ON':'OFF');
-    case'bri':s.bri=+val;if(+val>0&&!s.on)s.on=true;repaint(id);save();return emit(l,GVM.bri(s.bri,l.dt),'brightness '+s.bri+'%');
+    case'power':s.on=!s.on;repaint(id);blooms();save();return emit(l,s.on?GVM.on(l.dt,l.devid,l.term):GVM.off(l.dt,l.devid,l.term),s.on?'ON':'OFF');
+    case'bri':s.bri=+val;if(+val>0&&!s.on)s.on=true;repaint(id);save();return emit(l,GVM.bri(s.bri,l.dt,l.devid,l.term),'brightness '+s.bri+'%');
     case'cct':{const sw=s.mode!==1;s.cct=+val;s.mode=1;s.scene=null;repaint(id);save();
-      if(sw)await emit(l,GVM.mode(1,l.dt),'mode→CCT');   // switch light out of HSI/scene first
-      return emit(l,GVM.cct(s.cct,l.dt),s.cct+'K');}
+      if(sw)await emit(l,GVM.mode(1,l.dt,l.devid,l.term),'mode→CCT');   // switch light out of HSI/scene first
+      return emit(l,GVM.cct(s.cct,l.dt,l.devid,l.term),s.cct+'K');}
     case'hue':{const sw=s.mode!==2;s.hue=+val;s.mode=2;s.scene=null;repaint(id);save();
-      if(sw)await emit(l,GVM.mode(2,l.dt),'mode→HSI');   // switch light into HSI first
-      return emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');}
-    case'scene':s.scene=+extra;s.mode=3;renderGrid();await emit(l,GVM.mode(3,l.dt),'mode→scenes');return emit(l,GVM.scene(+extra,l.dt),'scene '+SCENES[extra-1]);
+      if(sw)await emit(l,GVM.mode(2,l.dt,l.devid,l.term),'mode→HSI');   // switch light into HSI first
+      return emit(l,GVM.hue(s.hue,l.dt,l.devid,l.term),'hue '+s.hue+'°');}
+    case'scene':s.scene=+extra;s.mode=3;renderGrid();await emit(l,GVM.mode(3,l.dt,l.devid,l.term),'mode→scenes');return emit(l,GVM.scene(+extra,l.dt,l.devid,l.term),'scene '+SCENES[extra-1]);
     case'setmode':{s.mode=+val;s.scene=null;renderGrid();
-      if(+val===1){await emit(l,GVM.mode(1,l.dt),'mode→CCT');return emit(l,GVM.cct(s.cct,l.dt),s.cct+'K');}
+      if(+val===1){await emit(l,GVM.mode(1,l.dt,l.devid,l.term),'mode→CCT');return emit(l,GVM.cct(s.cct,l.dt,l.devid,l.term),s.cct+'K');}
       // enter HSI: set mode, then push hue + full saturation so colour actually appears
-      await emit(l,GVM.mode(2,l.dt),'mode→HSI');await emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');return emit(l,GVM.sat(s.sat,l.dt),'sat '+s.sat+'%');}
+      await emit(l,GVM.mode(2,l.dt,l.devid,l.term),'mode→HSI');await emit(l,GVM.hue(s.hue,l.dt,l.devid,l.term),'hue '+s.hue+'°');return emit(l,GVM.sat(s.sat,l.dt,l.devid,l.term),'sat '+s.sat+'%');}
     case'power-toggle':return;
   }}
 /* in-place card update — does NOT rebuild the grid, so a slider keeps its drag */
@@ -461,12 +500,12 @@ document.getElementById('deck').addEventListener('click',e=>{const t=e.target.cl
 /* master */
 const mB=document.getElementById('masterBri');
 mB.addEventListener('input',()=>{document.getElementById('masterVal').textContent=mB.value+'%';
-  LIGHTS.forEach(l=>{st[l.id].bri=+mB.value;emit(l,GVM.bri(+mB.value,l.dt),'brightness '+mB.value+'%');});
+  LIGHTS.forEach(l=>{st[l.id].bri=+mB.value;emit(l,GVM.bri(+mB.value,l.dt,l.devid,l.term),'brightness '+mB.value+'%');});
   if(document.getElementById('gridView').style.display!=='none')LIGHTS.forEach(l=>liveUpdate(l.id));else renderConsole();
   blooms();save();});
 function allOn(){LIGHTS.forEach(l=>{if(!st[l.id].on)apply(l.id,'power');});}
 function allOff(){LIGHTS.forEach(l=>{if(st[l.id].on)apply(l.id,'power');});}
-function blackout(){LIGHTS.forEach(l=>{st[l.id].on=false;emit(l,GVM.off(l.dt),'BLACKOUT');});renderActive();blooms();save();log("⏻ BLACKOUT");}
+function blackout(){LIGHTS.forEach(l=>{st[l.id].on=false;emit(l,GVM.off(l.dt,l.devid,l.term),'BLACKOUT');});renderActive();blooms();save();log("⏻ BLACKOUT");}
 function renderActive(){if(document.getElementById('gridView').style.display!=='none')renderGrid();else renderConsole();}
 
 /* view + log */
