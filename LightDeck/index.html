@@ -194,11 +194,17 @@ const BLE={
   // Show ALL devices — GVM fixtures (esp. the 650B) advertise non-obvious names
   // like "eb23ff…", so a name filter hides them and leaves an empty picker.
   async request(){
-    try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
-    catch(e){
-      if(e&&e.name==='NotFoundError')throw e; // cancelled — don't reopen
-      log("… chooser failed ("+BLE.errText(e)+"), retrying without service list");
-      return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
+    // GVM lights are named "BT_LED" (confirmed in the app's own scan filter). Try that first
+    // so the picker shows only your lights; if iOS doesn't surface the name, show everything.
+    try{return await navigator.bluetooth.requestDevice({filters:[{namePrefix:'BT_LED'}],optionalServices:BLE.OPTIONAL});}
+    catch(e1){
+      if(e1&&e1.name==='NotFoundError')log("… no “BT_LED” in the picker — showing ALL devices. Pick your light; junk gets rejected.");
+      else log("… BT_LED filter failed ("+BLE.errText(e1)+") — showing all devices.");
+      try{return await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:BLE.OPTIONAL});}
+      catch(e2){
+        if(e2&&e2.name==='NotFoundError')throw e2; // cancelled — don't reopen
+        return await navigator.bluetooth.requestDevice({acceptAllDevices:true});
+      }
     }
   },
   async services(gatt){
@@ -285,26 +291,29 @@ const BLE={
   async sdHandshake(id,dev,ch){
     const l=LIGHTS.find(x=>x.id===id);
     BLE.conns[id]={device:dev,char:ch,sd:true};
-    let learned=null;
+    const hx=v=>v.toString(16).padStart(2,'0').toUpperCase();
+    let learned=null,heard=0;
     const onNotify=e=>{
-      const b=new Uint8Array(e.target.value.buffer);
+      const b=new Uint8Array(e.target.value.buffer);heard++;
+      log("SD ← "+[...b].map(x=>hx(x)).join(''));      // show EVERY reply so we can read the format
       if(b.length>=6&&b[0]===0x4C&&b[1]===0x54&&b[5]===0x53&&!(b[3]===0&&b[4]===0))learned={id:b[3],dt:b[4]};
     };
-    try{await ch.startNotifications();ch.addEventListener('characteristicvaluechanged',onNotify);}
+    try{await ch.startNotifications();ch.addEventListener('characteristicvaluechanged',onNotify);await BLE.sleep(300);}
     catch(e){log("… SD notify unavailable ("+BLE.errText(e)+")",1);}
     log("SD handshake — asking "+l.name+" to identify itself…");
     // discovery: 4C5409 00 00 53 0000 01 00 9474  + CRLF  (exactly what the GVM app sends)
     const disc=new Uint8Array([0x4C,0x54,0x09,0x00,0x00,0x53,0x00,0x00,0x01,0x00,0x94,0x74,0x0D,0x0A]);
-    for(let t=0;t<3&&!learned;t++){
+    for(let t=0;t<6&&!learned;t++){
       try{await BLE.rawWrite(ch,disc);}catch(e){log("… SD write failed ("+BLE.errText(e)+")",1);}
-      for(let i=0;i<12&&!learned;i++)await BLE.sleep(100);
+      for(let i=0;i<15&&!learned;i++)await BLE.sleep(100);   // ~1.5s per try, ~9s total
     }
-    const hx=v=>v.toString(16).padStart(2,'0').toUpperCase();
     if(learned){
       l.dt=learned.dt;l.devid=learned.id;l.term=true;l.sd=true;l.pending=false;l.proto='gvm';
       log("✓ "+l.name+" is LIVE — devType 0x"+hx(learned.dt)+", devID 0x"+hx(learned.id)+". Sliders control it now.");
+    }else if(heard){
+      log("✗ "+l.name+" replied but not with the expected handshake — paste the “SD ←” lines to Claude.",1);
     }else{
-      log("✗ "+l.name+" didn’t answer the handshake (powered on? GVM app closed?). Staying staged — tap Re-link to retry.",1);
+      log("✗ "+l.name+" stayed silent (powered on? GVM app fully closed? try Re-link).",1);
     }
   },
   // Persist which physical device belongs to which card, so we can reconnect without the chooser.
