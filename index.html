@@ -297,6 +297,26 @@ const BLE={
     }
     await BLE.send(id,wasOn?GVM.on(l.dt):GVM.off(l.dt)); await BLE.send(id,GVM.bri(wasBri,l.dt));
     log("Identify done — "+l.name+" restored.");
+  },
+  hex(dv){const u=new Uint8Array(dv.buffer||dv);return[...u].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase();},
+  // Listen to a light's channel (read + notify) to reverse an unknown protocol from what it reports.
+  async diagnose(id){
+    const l=LIGHTS.find(x=>x.id===id),c=BLE.conns[id];
+    if(!c){log("Link "+(l?l.name:id)+" first, then Diagnose.",1);return;}
+    log("── DIAGNOSE "+l.name+": reading + listening on its channel for 15s ──");
+    try{const v=await c.char.readValue();log("read ← "+BLE.hex(v));}catch(e){log("read failed: "+BLE.errText(e));}
+    let got=0;
+    const handler=e=>{got++;log("notify ← "+BLE.hex(e.target.value));};
+    try{
+      await c.char.startNotifications();
+      c.char.addEventListener("characteristicvaluechanged",handler);
+      log("▶ NOW turn the "+l.name+"’s own brightness/CCT knob or press its buttons — watching for reports…");
+      await BLE.sleep(15000);
+      c.char.removeEventListener("characteristicvaluechanged",handler);
+      try{await c.char.stopNotifications();}catch(e){}
+      log(got?("── done — "+got+" report(s). Paste the 'notify ←' lines to Claude ──")
+             :"── done — light stayed silent. If nothing appeared, we’ll need the GVM-app capture. ──",got?0:1);
+    }catch(e){log("notify failed: "+BLE.errText(e),1);}
   }
 };
 function connectNext(){const n=LIGHTS.find(l=>l.proto==='gvm'&&!BLE.conns[l.id]);if(n)BLE.link(n.id);else log("All GVM lights already linked.");}
@@ -354,7 +374,7 @@ function renderGrid(){const g=document.getElementById('gridView');g.innerHTML=''
         <input type="range" class="hue" min="0" max="360" value="${s.hue}" data-act="hue" data-id="${l.id}"></div>`:''}
       ${l.scenes?`<div class="chips">${SCENES.map((nm,i)=>`<span class="chip ${s.scene===i+1?'on':''}" data-act="scene" data-id="${l.id}" data-s="${i+1}">${nm}</span>`).join('')}</div>`:''}
       <div class="link">${
-         linked?`<span style="color:#46e08a;">● linked</span>${l.pending?' · inspect only':` <button class="linkbtn" data-act="identify" data-id="${l.id}">Identify</button>`} <button class="linkbtn" data-act="link" data-id="${l.id}">Re-link</button>`
+         linked?`<span style="color:#46e08a;">● linked</span>${l.pending?' · inspect only':` <button class="linkbtn" data-act="identify" data-id="${l.id}">Identify</button> <button class="linkbtn" data-act="diagnose" data-id="${l.id}">Diagnose</button>`} <button class="linkbtn" data-act="link" data-id="${l.id}">Re-link</button>`
          :`<span>not linked</span><button class="linkbtn" data-act="link" data-id="${l.id}">${l.pending?'Link / Inspect':'Link Bluetooth'}</button>`
         }${l.pending?`<div class="cmodel" style="margin-top:6px;">⚠ ${l.note||'protocol pending'}</div>`:''}</div>`;
     g.appendChild(card);});}
@@ -435,7 +455,7 @@ function repaint(id){ if(document.getElementById('gridView').style.display!=='no
 /* grid event delegation */
 document.getElementById('gridView').addEventListener('input',e=>{const t=e.target;if(t.dataset.act)apply(t.dataset.id,t.dataset.act,t.value);});
 document.getElementById('gridView').addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;
-  const a=t.dataset.act;if(a==='power')apply(t.dataset.id,'power');else if(a==='scene')apply(t.dataset.id,'scene',null,t.dataset.s);else if(a==='setmode')apply(t.dataset.id,'setmode',t.dataset.m);else if(a==='link')BLE.link(t.dataset.id);else if(a==='identify')BLE.identify(t.dataset.id);});
+  const a=t.dataset.act;if(a==='power')apply(t.dataset.id,'power');else if(a==='scene')apply(t.dataset.id,'scene',null,t.dataset.s);else if(a==='setmode')apply(t.dataset.id,'setmode',t.dataset.m);else if(a==='link')BLE.link(t.dataset.id);else if(a==='identify')BLE.identify(t.dataset.id);else if(a==='diagnose')BLE.diagnose(t.dataset.id);});
 document.getElementById('deck').addEventListener('click',e=>{const t=e.target.closest('[data-act="power"]');if(t)apply(t.dataset.id,'power'),renderConsole();});
 
 /* master */
