@@ -344,6 +344,9 @@ function renderGrid(){const g=document.getElementById('gridView');g.innerHTML=''
       </div>
       <div class="ctrl"><div class="top"><span class="k">BRIGHTNESS</span><span class="v">${s.bri}%</span></div>
         <input type="range" class="bri" min="0" max="100" value="${s.bri}" data-act="bri" data-id="${l.id}" style="--c:${c};"></div>
+      ${l.rgb?`<div class="chips" style="margin:10px 0 2px;">
+        <span class="chip ${s.mode===1?'on':''}" data-act="setmode" data-id="${l.id}" data-m="1">White / CCT</span>
+        <span class="chip ${s.mode===2?'on':''}" data-act="setmode" data-id="${l.id}" data-m="2">Color / HSI</span></div>`:''}
       ${l.cct?`<div class="ctrl"><div class="top"><span class="k">COLOR TEMP</span><span class="v">${s.cct}K</span></div>
         <input type="range" class="cct" min="${l.cct[0]}" max="${l.cct[1]}" step="50" value="${s.cct}" data-act="cct" data-id="${l.id}"></div>`
         :`<div class="cmodel" style="margin-top:14px;">Daylight · 5600K fixed</div>`}
@@ -410,6 +413,10 @@ async function apply(id,act,val,extra){const l=LIGHTS.find(x=>x.id===id),s=st[id
       if(sw)await emit(l,GVM.mode(2,l.dt),'mode→HSI');   // switch light into HSI first
       return emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');}
     case'scene':s.scene=+extra;s.mode=3;renderGrid();await emit(l,GVM.mode(3,l.dt),'mode→scenes');return emit(l,GVM.scene(+extra,l.dt),'scene '+SCENES[extra-1]);
+    case'setmode':{s.mode=+val;s.scene=null;renderGrid();
+      if(+val===1){await emit(l,GVM.mode(1,l.dt),'mode→CCT');return emit(l,GVM.cct(s.cct,l.dt),s.cct+'K');}
+      // enter HSI: set mode, then push hue + full saturation so colour actually appears
+      await emit(l,GVM.mode(2,l.dt),'mode→HSI');await emit(l,GVM.hue(s.hue,l.dt),'hue '+s.hue+'°');return emit(l,GVM.sat(s.sat,l.dt),'sat '+s.sat+'%');}
     case'power-toggle':return;
   }}
 /* in-place card update — does NOT rebuild the grid, so a slider keeps its drag */
@@ -428,7 +435,7 @@ function repaint(id){ if(document.getElementById('gridView').style.display!=='no
 /* grid event delegation */
 document.getElementById('gridView').addEventListener('input',e=>{const t=e.target;if(t.dataset.act)apply(t.dataset.id,t.dataset.act,t.value);});
 document.getElementById('gridView').addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;
-  const a=t.dataset.act;if(a==='power')apply(t.dataset.id,'power');else if(a==='scene')apply(t.dataset.id,'scene',null,t.dataset.s);else if(a==='link')BLE.link(t.dataset.id);else if(a==='identify')BLE.identify(t.dataset.id);});
+  const a=t.dataset.act;if(a==='power')apply(t.dataset.id,'power');else if(a==='scene')apply(t.dataset.id,'scene',null,t.dataset.s);else if(a==='setmode')apply(t.dataset.id,'setmode',t.dataset.m);else if(a==='link')BLE.link(t.dataset.id);else if(a==='identify')BLE.identify(t.dataset.id);});
 document.getElementById('deck').addEventListener('click',e=>{const t=e.target.closest('[data-act="power"]');if(t)apply(t.dataset.id,'power'),renderConsole();});
 
 /* master */
