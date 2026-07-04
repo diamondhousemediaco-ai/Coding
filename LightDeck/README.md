@@ -20,20 +20,21 @@ Web Bluetooth API that Safari blocks. No Mac, Xcode, or Apple Developer account 
 ## Fleet
 2× GVM PRO-SD650B, GVM SD300D, GVM PR150D, GVM PR150R.
 Split across two protocol families:
-- **SD/Pro series** (SD650B ×2, SD300D) — Telink-based, control channel `2B10`; command
-  protocol not yet captured. Staged in the app (link = inspect only). See `protocol/telink-650b.md`.
-- **PR series** (PR150D, PR150R) — the candidates for the classic `4C5409` protocol the app
-  already implements; test these first.
+- **PR series** (PR150D, PR150R) — classic `4C5409` protocol, work directly.
+- **SD/Pro series** (SD300D, SD650B ×2) — same `4C5409` command set over characteristic
+  `2B10`, but the device type is learned via a handshake and each command needs a CRLF.
 
-## Status
-Two different GVM protocols — the fleet is split:
-- **Classic GVM BLE (PR150, PR150R, 300D): solved & wired** — the verified `4C5409`
-  protocol in `index.html`. These advertise as `BT_LED` and link directly in the app.
-- **GVM Pro 650B (Key + Fill): Telink Mesh, NOT classic** — different chipset, different
-  protocol. Does not speak `4C5409` and has no "APP mode". See `protocol/telink-650b.md`
-  and `protocol/telink_mesh.py`. Blocked on two vendor values (mesh name/password +
-  command opcodes) that must be extracted from the GVM app.
-- **Godox LA600Bi + Viltrox K60: pending** — render in the UI but staged. The K60 uses
+## Status — all GVM lights controllable
+Both light families use the same command frame; they differ only in delivery:
+- **PR series (PR150D, PR150R): working** — classic `4C5409` over their writable char,
+  hardcoded devType `0x30`. Advertise as `BT_LED`.
+- **SD series (SD300D, SD650B): working** — decompiled from GVM LED v1.8.0
+  (`com.gvm.cloudphone`). On connect the light reports its **devType** (byte 4) and
+  **devID** (byte 3) in a `0x53` reply to the discovery query `4C5409000053000001009474`;
+  commands then use that type (e.g. SD300D = **`0x21`**, not `0x30`) and append a **CRLF
+  (`0D 0A`)**, written to characteristic `2B10` with notifications enabled. See
+  `protocol/gvm-sd-protocol.md`.
+- **Godox LA600Bi + Viltrox K60: pending** — not in the current fleet list. The K60 uses
   connectionless WeeylitePro broadcasts (channel/group), which a browser can't do.
 
 ## GVM protocol (reference)
