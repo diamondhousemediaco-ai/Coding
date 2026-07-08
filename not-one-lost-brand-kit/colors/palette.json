@@ -1,0 +1,20 @@
+{
+  "palette": [
+    {
+      "name": "Bone",
+      "hex": "#F2EEE9"
+    },
+    {
+      "name": "Stone",
+      "hex": "#BEBEBE"
+    },
+    {
+      "name": "Charcoal",
+      "hex": "#2B2B2B"
+    },
+    {
+      "name": "Black",
+      "hex": "#000000"
+    }
+  ]
+}
