@@ -49,17 +49,29 @@ swatch PNG for each.
 
 `patterns/topographic-dark.png` — the topographic line texture (dark, as on the sheet).
 `patterns/topographic-light.png` — inverted, for dark marks on light layouts.
+`patterns/topographic-bone-transparent.png` — bone lines on a **transparent** background
+(overlay on any dark color).
+`patterns/topographic-black-transparent.png` — black lines on a **transparent** background
+(overlay on any light color).
 
 ## Typography
 
 `typography/specimen.png` — the type specimen from the sheet.
 
-- **Primary** — *Wide Bold / Extended.* A wide, bold, extended grotesque. Used for the
-  wordmark and headlines.
-- **Secondary** — *Condensed Regular.* A narrow grotesque for supporting copy.
+- **Primary** — *Wide Bold / Extended.* Now delivered as a real, installable custom font:
+  **NOL Display** → `typography/font/` (OTF, TTF, WOFF2, WOFF + `@font-face` CSS). Built by
+  tracing the primary specimen — it's yours, not a licensed third-party font. See
+  `typography/font/README.md`.
+- **Secondary** — *Condensed Regular.* A narrow grotesque for supporting copy. Not built as
+  a font: the specimen is too small/thin to trace into readable body text — better to
+  license or commission it (details in the font README).
 
-> The font files themselves are **not** included — the sheet only names the styles.
-> See the repo history / notes for how to license or rebuild them into an installable font.
+## Transparency
+
+Every **logo and mark** (`logos/**`) already has a fully transparent background — both the
+`.png` cutouts and the `.svg` vectors. The color swatches are solid fills (transparency
+N/A), the topographic pattern has transparent-overlay versions (above), and the `usage/`
+files are photographs kept as-is.
 
 ## Source
 

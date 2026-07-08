@@ -1,0 +1,20 @@
+/* NOL Display — Not One Lost brand display font.
+   Uppercase display face (lowercase maps to caps). Use for headlines,
+   the wordmark, merch, and short display copy — not long body text. */
+
+@font-face {
+  font-family: "NOL Display";
+  src: url("NOLDisplay-Regular.woff2") format("woff2"),
+       url("NOLDisplay-Regular.woff")  format("woff"),
+       url("NOLDisplay-Regular.ttf")   format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Example */
+.nol-headline {
+  font-family: "NOL Display", "Arial Narrow", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
