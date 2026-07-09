@@ -511,15 +511,36 @@ const MeshCtl={
     }catch(e){log('✗ configure failed: '+(e&&e.message||e),1);bigToast('❌','CONFIGURE FAILED',false);}
   },
   connected(id){return !!this.live[id];},
+  _busy:{}, _pending:{}, _err:{},
+  // Coalescing sender: a slider drag fires dozens of events/sec but Bluefy can only flush
+  // BLE writes so fast. Keep ONE write in flight per light and always send the LATEST state
+  // (drop the in-between drag values). This kills the "mesh send: 2" write-queue overrun.
   async drive(id,act){
-    const node=this.live[id]; if(!node)return false; const s=st[id],l=LIGHTS.find(x=>x.id===id);
+    if(!this.live[id])return false;
+    // power must not be swallowed by a pending slider value; everything else is latest-wins
+    this._pending[id]=(act==='power')?'power':(act==='hue'||act==='sat'?'hue':act==='setmode'?act:act==='cct'?'cct':'bri');
+    if(this._busy[id])return true;
+    this._busy[id]=true;
     try{
-      if(act==='power')await node.onOff(s.on);
-      else if(act==='bri'){ if(l.rgb&&s.mode===2)await node.hsl(this.lv(id),Math.round(s.hue/360*65535),Math.round(s.sat/100*65535)); else await node.ctl(this.lv(id),s.cct,0); }
-      else if(act==='cct')await node.ctl(this.lv(id),s.cct,0);
-      else if(act==='hue'||act==='sat')await node.hsl(this.lv(id),Math.round(s.hue/360*65535),Math.round(s.sat/100*65535));
-      return true;
-    }catch(e){log('✗ mesh send: '+(e&&e.message||e),1);return true;}
+      while(this._pending[id]){
+        const a=this._pending[id]; this._pending[id]=null;
+        try{ await this._send(id,a); this._err[id]=0; }
+        catch(e){ // one retry after a short breath; then report once, keep the loop alive
+          const em=(e&&e.message)||e;
+          await new Promise(r=>setTimeout(r,60));
+          try{ await this._send(id,a); this._err[id]=0; }
+          catch(e2){ if((this._err[id]=(this._err[id]||0)+1)<=1)log('✗ mesh send ('+((e2&&e2.message)||e2)+') — retrying live',1); }
+        }
+        await new Promise(r=>setTimeout(r,15)); // small gap so Bluefy's write queue drains
+      }
+    }finally{ this._busy[id]=false; }
+    return true;
+  },
+  async _send(id,a){
+    const node=this.live[id]; if(!node)return; const s=st[id],l=LIGHTS.find(x=>x.id===id);
+    if(a==='power')return node.onOff(s.on);
+    if(a==='cct'||(a==='bri'&&!(l.rgb&&s.mode===2)))return node.ctl(this.lv(id),s.cct,0);
+    return node.hsl(this.lv(id),Math.round(s.hue/360*65535),Math.round(s.sat/100*65535)); // bri-in-HSI / hue / sat
   }
 };
 
