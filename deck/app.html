@@ -874,7 +874,7 @@ const MeshCtl={
   },
   async _send(id,a){
     const node=this.live[id]; if(!node)return; const s=st[id],l=LIGHTS.find(x=>x.id===id);
-    if(node.vendor){ if(node.vendorOp==null)return; return node.vendorCCT(node.vendorOp,s.on,s.bri,s.cct); } // Viltrox K60: one vendor cmd carries on/off+bri+cct
+    if(node.vendor){ const op=node.vendorOp!=null?node.vendorOp:0x01; return node.vendorCCT(op,s.on,s.bri,s.cct); } // Viltrox K60: one vendor cmd carries on/off+bri+cct
     if(a==='power')return node.onOff(s.on);
     if(a==='cct'||(a==='bri'&&!(l.rgb&&s.mode===2)))return node.ctl(this.lv(id),s.cct,0);
     return node.hsl(this.lv(id),Math.round(s.hue/360*65535),Math.round(s.sat/100*65535)); // bri-in-HSI / hue / sat
