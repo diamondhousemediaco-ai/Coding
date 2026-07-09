@@ -847,7 +847,7 @@ function meshLinkHTML(l){
     +`<div class="cmodel" style="margin-top:6px;">⚠ ${l.note||''} — factory-reset the light first</div>`;
   if(!conn)return `<span style="color:#e0b246;">◐ provisioned 0x${rec.unicast.toString(16)}</span> <button class="linkbtn" data-act="mconn" data-id="${l.id}">Connect</button> <button class="linkbtn" data-act="mprov" data-id="${l.id}">Re-provision</button>`;
   if(!rec.configured)return `<span style="color:#46e08a;">● connected</span> <button class="linkbtn" data-act="mcfg" data-id="${l.id}">Configure</button>`;
-  return `<span style="color:#46e08a;">● mesh live 0x${rec.unicast.toString(16)}</span> <button class="linkbtn" data-act="mconn" data-id="${l.id}">Reconnect</button>`;
+  return `<span style="color:#46e08a;">● mesh live 0x${rec.unicast.toString(16)}</span> <button class="linkbtn" data-act="mcfg" data-id="${l.id}">Re-configure</button> <button class="linkbtn" data-act="mconn" data-id="${l.id}">Reconnect</button>`;
 }
 
 /* ===== CONSOLE ===== */
