@@ -495,6 +495,7 @@ const MeshCtl={
       const node=await new Mesh.ble.Node({netKeyHex:net.netKey,appKeyHex:net.appKey,devKeyHex:rec.devKey,unicast:rec.unicast,provisionerAddr:net.provisioner,ivIndex:net.ivIndex,seq:rec.seq||0,onSeq:s=>{const m=this.nodes();if(m[id]){m[id].seq=s;this.saveNodes(m);}}}).ready();
       node._log=m=>log(m);
       if(rec.routes){node.routes={};for(const k in rec.routes)node.routes[+k]=rec.routes[k];} // restore model→element map
+      if(rec.vendor)node.vendor=rec.vendor; if(rec.vendorOp!=null)node.vendorOp=rec.vendorOp; // restore vendor model + learned opcode
       await node.connect(m=>log(m));
       this.live[id]=node; refreshStatus(); renderActive();
       log('✓ '+l.name+' mesh proxy connected.');
@@ -507,10 +508,19 @@ const MeshCtl={
     try{const models=l.rgb?[0x1000,0x1300,0x1303,0x1306,0x1307]:[0x1000,0x1300,0x1303,0x1306];
       log('── CONFIGURE '+l.name+' (read composition, AppKey Add, bind at real elements) ──');
       await node.configure(models,m=>log(m));
-      const m=this.nodes(); if(m[id]){m[id].configured=true;m[id].routes=node.routes||{};this.saveNodes(m);}
-      bigToast('✅',l.name+' CONFIGURED\nsliders are live now',true); renderActive();
+      const m=this.nodes(); if(m[id]){m[id].configured=true;m[id].routes=node.routes||{};m[id].vendor=node.vendor||null;this.saveNodes(m);}
+      if(node.vendor)bigToast('🔬',l.name+' uses a VENDOR model\ntap Probe to find its opcode',true);
+      else bigToast('✅',l.name+' CONFIGURED\nsliders are live now',true);
+      renderActive();
     }catch(e){log('✗ configure failed: '+(e&&e.message||e),1);bigToast('❌','CONFIGURE FAILED',false);}
   },
+  async probe(id){
+    const node=this.live[id],l=LIGHTS.find(x=>x.id===id); if(!node){bigToast('❌','CONNECT FIRST',false);return;}
+    if(!node.vendor){log('No vendor model on '+l.name+' — probe is only for vendor lights.',1);return;}
+    try{ await node.probeVendor(m=>log(m)); bigToast('🔬','PROBE DONE\ntell Claude which step moved it',true); }
+    catch(e){ log('✗ probe: '+(e&&e.message||e),1); }
+  },
+  setVendorOp(id,op){ const node=this.live[id]; if(node)node.vendorOp=op; const m=this.nodes(); if(m[id]){m[id].vendorOp=op;this.saveNodes(m);} log('Vendor opcode for '+id+' set to 0x'+op.toString(16)); },
   connected(id){return !!this.live[id];},
   _busy:{}, _pending:{}, _err:{},
   // Coalescing sender: a slider drag fires dozens of events/sec but Bluefy can only flush
@@ -539,6 +549,7 @@ const MeshCtl={
   },
   async _send(id,a){
     const node=this.live[id]; if(!node)return; const s=st[id],l=LIGHTS.find(x=>x.id===id);
+    if(node.vendor){ if(node.vendorOp==null)return; return node.vendorCCT(node.vendorOp,s.on,s.bri,s.cct); } // Viltrox K60: one vendor cmd carries on/off+bri+cct
     if(a==='power')return node.onOff(s.on);
     if(a==='cct'||(a==='bri'&&!(l.rgb&&s.mode===2)))return node.ctl(this.lv(id),s.cct,0);
     return node.hsl(this.lv(id),Math.round(s.hue/360*65535),Math.round(s.sat/100*65535)); // bri-in-HSI / hue / sat
@@ -596,7 +607,8 @@ function meshLinkHTML(l){
     +`<div class="cmodel" style="margin-top:6px;">⚠ ${l.note||''} — factory-reset the light first</div>`;
   if(!conn)return `<span style="color:#e0b246;">◐ provisioned 0x${rec.unicast.toString(16)}</span> <button class="linkbtn" data-act="mconn" data-id="${l.id}">Connect</button> <button class="linkbtn" data-act="mprov" data-id="${l.id}">Re-provision</button>`;
   if(!rec.configured)return `<span style="color:#46e08a;">● connected</span> <button class="linkbtn" data-act="mcfg" data-id="${l.id}">Configure</button>`;
-  return `<span style="color:#46e08a;">● mesh live 0x${rec.unicast.toString(16)}</span> <button class="linkbtn" data-act="mcfg" data-id="${l.id}">Re-configure</button> <button class="linkbtn" data-act="mconn" data-id="${l.id}">Reconnect</button>`;
+  const probe=rec.vendor?` <button class="linkbtn" data-act="mprobe" data-id="${l.id}">Probe opcode</button>`:'';
+  return `<span style="color:#46e08a;">● mesh live 0x${rec.unicast.toString(16)}${rec.vendor?' · vendor':''}</span> <button class="linkbtn" data-act="mcfg" data-id="${l.id}">Re-configure</button>${probe} <button class="linkbtn" data-act="mconn" data-id="${l.id}">Reconnect</button>`;
 }
 
 /* ===== CONSOLE ===== */
@@ -689,7 +701,7 @@ function repaint(id){ if(document.getElementById('gridView').style.display!=='no
 document.getElementById('gridView').addEventListener('input',e=>{const t=e.target;if(t.dataset.act)apply(t.dataset.id,t.dataset.act,t.value);});
 document.getElementById('gridView').addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;
   const a=t.dataset.act;if(a==='power')apply(t.dataset.id,'power');else if(a==='scene')apply(t.dataset.id,'scene',null,t.dataset.s);else if(a==='setmode')apply(t.dataset.id,'setmode',t.dataset.m);else if(a==='link')BLE.link(t.dataset.id);else if(a==='identify')BLE.identify(t.dataset.id);else if(a==='diagnose')BLE.diagnose(t.dataset.id);
-  else if(a==='mprov')MeshCtl.provision(t.dataset.id);else if(a==='mconn')MeshCtl.connect(t.dataset.id);else if(a==='mcfg')MeshCtl.configure(t.dataset.id);});
+  else if(a==='mprov')MeshCtl.provision(t.dataset.id);else if(a==='mconn')MeshCtl.connect(t.dataset.id);else if(a==='mcfg')MeshCtl.configure(t.dataset.id);else if(a==='mprobe')MeshCtl.probe(t.dataset.id);});
 document.getElementById('deck').addEventListener('click',e=>{const t=e.target.closest('[data-act="power"]');if(t)apply(t.dataset.id,'power'),renderConsole();});
 
 /* master */

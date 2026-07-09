@@ -125,7 +125,14 @@
   const cfg = {
     appKeyAdd: (ni, ai, ak) => { const b = new Uint8Array(3); b[0] = ni & 0xff; b[1] = ((ni >> 8) & 0x0f) | ((ai & 0x0f) << 4); b[2] = (ai >> 4) & 0xff; return cat(h2b('00'), b, ak); },
     modelAppBind: (elem, ai, model) => cat(h2b('803d'), be16le(elem), be16le(ai), be16le(model)),
+    // vendor model bind: ModelIdentifier is 4 octets (CompanyID + ModelID), little-endian
+    modelAppBindVendor: (elem, ai, cid, model) => cat(h2b('803d'), be16le(elem), be16le(ai), be16le(cid), be16le(model)),
   };
+  // vendor access message: 3-octet opcode [0xC0|op, CID_lo, CID_hi] + params (Viltrox LedState cmd)
+  const accVendor = (op, cid, params) => cat(new Uint8Array([0xc0 | (op & 0x3f), cid & 0xff, (cid >> 8) & 0xff]), params);
+  // Viltrox K60 CCT-mode payload (reverse-engineered from ViltroxLink LedStateKt.sentCCTMeshCmd):
+  // [ brightness(0-100) | (on<<7), tint/Rg, Kelvin/100, cctType ]
+  const viltroxCCT = (on, bri, cctK, tint = 0, cctType = 0) => new Uint8Array([((bri & 0x7f) | (on ? 0x80 : 0)), tint & 0xff, Math.round(cctK / 100) & 0xff, cctType & 0xff]);
 
   // ---------------- provisioning ----------------
   async function genKeyPair() { const kp = await subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']); const raw = new Uint8Array(await subtle.exportKey('raw', kp.publicKey)); return { priv: kp.privateKey, pub64: raw.slice(1) }; }
@@ -266,10 +273,32 @@
           await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.modelAppBind(el.addr, 0, m)); await sleep(350);
           if (this.routes[m] == null) this.routes[m] = el.addr;
         }
-        for (const el of comp.elements) if (el.ven.length) log('  vendor model(s) on elem 0x' + el.addr.toString(16) + ': ' + el.ven.map(x => '0x' + x.toString(16)).join(',') + ' (effects/CCT may need these)');
+        // bind vendor models too (Viltrox K60 is driven entirely by a vendor model)
+        this.vendor = null;
+        for (const el of comp.elements) for (const vm of el.ven) {
+          const cid = vm & 0xffff, model = (vm >>> 16) & 0xffff;   // stored (modelId<<16)|companyId
+          log('Config: bind vendor cid 0x' + cid.toString(16) + ' model 0x' + model.toString(16) + ' @ elem 0x' + el.addr.toString(16) + '…');
+          await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.modelAppBindVendor(el.addr, 0, cid, model)); await sleep(350);
+          this.vendor = { cid, model, elem: el.addr };            // last vendor model wins (matches the app)
+        }
       } else { log('No composition — binding at primary element as a fallback.'); for (const m of models) { await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.modelAppBind(this.unicast, 0, m)); await sleep(300); this.routes[m] = this.unicast; } }
-      log('Config done. Routes: ' + Object.keys(this.routes).map(m => '0x' + (+m).toString(16) + '→0x' + this.routes[m].toString(16)).join(', '));
-      return this.routes;
+      log('Config done. Routes: ' + Object.keys(this.routes).map(m => '0x' + (+m).toString(16) + '→0x' + this.routes[m].toString(16)).join(', ') + (this.vendor ? ' | vendor cid 0x' + this.vendor.cid.toString(16) + '@0x' + this.vendor.elem.toString(16) : ''));
+      return { routes: this.routes, vendor: this.vendor };
+    }
+    // Send a Viltrox vendor CCT command (op = 6-bit vendor opcode).
+    async vendorCCT(op, on, bri, cctK, tint = 0) {
+      const v = this.vendor || { cid: 0x093a, elem: this.unicast };
+      return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: v.elem }, accVendor(op, v.cid, viltroxCCT(on, bri, cctK, tint)));
+    }
+    // Opcode probe: cycle candidate opcodes with a bright, obvious command so the
+    // right one makes the light visibly react. Watch the light; note which fires.
+    async probeVendor(log = () => {}, cands = [0x01, 0x00, 0x02, 0x0a, 0x21, 0x22, 0x33, 0x24]) {
+      log('── VENDOR OPCODE PROBE — watch the light, note which step it reacts to ──');
+      for (const op of cands) {
+        log('probe: opcode 0x' + op.toString(16) + ' → ON, 100%, 5600K'); await this.vendorCCT(op, 1, 100, 5600); await sleep(1600);
+        log('probe: opcode 0x' + op.toString(16) + ' → 10%'); await this.vendorCCT(op, 1, 10, 5600); await sleep(1600);
+      }
+      log('── probe done — tell me which opcode made it move ──');
     }
     _route(models) { if (this.routes) for (const m of models) if (this.routes[m] != null) return this.routes[m]; return this.unicast; }
     onOff(on) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this._route([0x1000, 0x1300, 0x1303]) }, accOnOff(on)); }
