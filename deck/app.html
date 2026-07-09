@@ -398,32 +398,73 @@ body{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Helv
       try {
         const d = await netDecode(data, this.net); if (!d.ok) return;
         const t = d.transportPDU;
-        if (t[0] & 0x80) { if (this._log) this._log('← segmented status from 0x' + d.src.toString(16) + ' (not decoded)'); return; }
-        const akf = (t[0] >> 6) & 1, key = akf ? this.appKey : this.devKey;
-        const ctx = { devKey: !akf, seq: d.seq, src: d.src, dst: d.dst, ivIndex: this.net.ivIndex, aszmic: 0 };
-        const dec = await upperDecrypt(key, ctx, t.slice(1));
-        if (!dec.ok) { if (this._log) this._log('← 0x' + d.src.toString(16) + ' reply (could not decrypt — key/bind issue)'); return; }
+        let upper, akf, aszmic = 0, seqForNonce = d.seq, src = d.src, dst = d.dst;
+        if (t[0] & 0x80) {                                     // segmented access — reassemble
+          akf = (t[0] >> 6) & 1; aszmic = (t[1] >> 7) & 1;
+          const seqZero = ((t[1] & 0x3f) << 6) | (t[2] >> 2);
+          const segO = ((t[2] & 0x03) << 3) | (t[3] >> 5), segN = t[3] & 0x1f;
+          const kk = src + ':' + seqZero; this._segbuf = this._segbuf || {};
+          const sb = this._segbuf[kk] || (this._segbuf[kk] = { parts: [], segN });
+          sb.parts[segO] = t.slice(4);
+          if (segO === 0) { let s = (d.seq & ~0x1fff) | seqZero; if (s > d.seq) s -= 0x2000; sb.seqAuth = s; }
+          let have = 0; for (let i = 0; i <= segN; i++) if (sb.parts[i]) have++;
+          if (have <= segN) return;                            // still waiting for segments
+          delete this._segbuf[kk]; upper = cat(...sb.parts); seqForNonce = sb.seqAuth != null ? sb.seqAuth : d.seq;
+        } else { akf = (t[0] >> 6) & 1; upper = t.slice(1); }
+        const key = akf ? this.appKey : this.devKey;
+        const dec = await upperDecrypt(key, { devKey: !akf, seq: seqForNonce, src, dst, ivIndex: this.net.ivIndex, aszmic }, upper);
+        if (!dec.ok) { if (this._log) this._log('← 0x' + src.toString(16) + ' reply (could not decrypt)'); return; }
         const p = dec.pt; let op, n; if (p[0] < 0x80) { op = p[0]; n = 1; } else if (p[0] < 0xc0) { op = (p[0] << 8) | p[1]; n = 2; } else { op = (p[0] << 16) | (p[1] << 8) | p[2]; n = 3; }
         const params = p.slice(n);
+        if (this._waiters && this._waiters[op]) { const w = this._waiters[op]; delete this._waiters[op]; w(params); }
         const NAMES = { 0x8003: 'AppKey Status', 0x803e: 'Model App Status', 0x8204: 'Generic OnOff Status', 0x804e: 'Light Lightness Status', 0x8260: 'Light CTL Status', 0x02: 'Composition Data Status' };
         const nm = NAMES[op] || ('op 0x' + op.toString(16));
         const st = (op === 0x8003 || op === 0x803e) ? (params[0] === 0 ? ' ✓ SUCCESS' : ' ✗ ERROR 0x' + (params[0] || 0).toString(16)) : '';
         if (this._log) this._log('← ' + nm + st + ' [' + b2h(params) + ']');
       } catch (_) {}
     }
+    _await(op, ms = 5000) { this._waiters = this._waiters || {}; return new Promise(res => { this._waiters[op] = res; setTimeout(() => { if (this._waiters[op] === res) { delete this._waiters[op]; res(null); } }, ms); }); }
     _seq() { const s = this.seq | 0; this.seq = s + 1; if (this.onSeq) this.onSeq(this.seq); return s; }
-    async _sendAccess(o, ap) { const seq = this._seq(); const pdus = await encodeAccessMessages(this.net, { ...o, seq }, ap); if (pdus.length > 1) this.seq += pdus.length - 1; for (const p of pdus) { await this.bearer.send(0x00, p.slice(1)); await sleep(30); } }
-    // one-time config: add app key, bind to the models we drive
-    async configure(models = [0x1000, 0x1300, 0x1303, 0x1307], log = () => {}) {
-      const src = this.provisionerAddr || 0x0001, dst = this.unicast;
-      log('Config: AppKey Add…'); await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.appKeyAdd(0, 0, this.appKey)); await sleep(400);
-      for (const m of models) { log('Config: bind model 0x' + m.toString(16) + '…'); await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.modelAppBind(this.unicast, 0, m)); await sleep(300); }
-      log('Config done — app key bound.');
+    async _sendAccess(o, ap) { const seq = this._seq(); const pdus = await encodeAccessMessages(this.net, { ...o, seq }, ap); if (pdus.length > 1) this.seq += pdus.length - 1; for (const p of pdus) { try { await this.bearer.send(0x00, p.slice(1)); } catch (e) { await sleep(80); await this.bearer.send(0x00, p.slice(1)); } await sleep(40); } }
+    // Ask the light for its element/model map (Config Composition Data Get, page 0).
+    async getComposition(log = () => {}) {
+      const wait = this._await(0x02, 6000); log('Config: Composition Data Get…');
+      await this._sendAccess({ devKey: this.devKey, src: this.provisionerAddr || 0x0001, dst: this.unicast }, cat(h2b('8008'), h2b('00')));
+      const params = await wait; if (!params) { log('✗ no Composition Data Status (timed out)'); return null; }
+      let i = 1; const rd = () => { const v = params[i] | (params[i + 1] << 8); i += 2; return v; };
+      const cid = rd(), pid = rd(), vid = rd(), crpl = rd(), feat = rd(); const elements = []; let addr = this.unicast;
+      while (i + 4 <= params.length) {
+        const loc = rd(), numS = params[i++], numV = params[i++], sig = [], ven = [];
+        for (let k = 0; k < numS; k++) sig.push(rd());
+        for (let k = 0; k < numV; k++) { const c = rd(), m = rd(); ven.push((c << 16) | m); }
+        elements.push({ addr, loc, sig, ven }); addr++;
+      }
+      log('── Composition: CID 0x' + cid.toString(16) + ' PID 0x' + pid.toString(16) + ' · ' + elements.length + ' element(s) ──');
+      for (const el of elements) log('  elem 0x' + el.addr.toString(16) + ' SIG[' + el.sig.map(x => '0x' + x.toString(16)).join(',') + ']' + (el.ven.length ? ' VENDOR[' + el.ven.map(x => '0x' + x.toString(16)).join(',') + ']' : ''));
+      this.composition = { cid, pid, elements }; return this.composition;
     }
-    onOff(on) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this.unicast }, accOnOff(on)); }
-    lightness(v) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this.unicast }, accLightness(v)); }
-    ctl(l, temp, duv = 0) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this.unicast }, accCTL(l, temp, duv)); }
-    hsl(l, hue, sat) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this.unicast }, accHSL(l, hue, sat)); }
+    // Read composition, add app key, bind the app key to each target model at its REAL element.
+    async configure(models = [0x1000, 0x1300, 0x1303, 0x1306, 0x1307], log = () => {}) {
+      const src = this.provisionerAddr || 0x0001, dst = this.unicast;
+      const comp = await this.getComposition(log);
+      log('Config: AppKey Add…'); await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.appKeyAdd(0, 0, this.appKey)); await sleep(500);
+      this.routes = {};
+      if (comp) {
+        for (const el of comp.elements) for (const m of el.sig) if (models.includes(m)) {
+          log('Config: bind 0x' + m.toString(16) + ' @ elem 0x' + el.addr.toString(16) + '…');
+          await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.modelAppBind(el.addr, 0, m)); await sleep(350);
+          if (this.routes[m] == null) this.routes[m] = el.addr;
+        }
+        for (const el of comp.elements) if (el.ven.length) log('  vendor model(s) on elem 0x' + el.addr.toString(16) + ': ' + el.ven.map(x => '0x' + x.toString(16)).join(',') + ' (effects/CCT may need these)');
+      } else { log('No composition — binding at primary element as a fallback.'); for (const m of models) { await this._sendAccess({ devKey: this.devKey, src, dst }, cfg.modelAppBind(this.unicast, 0, m)); await sleep(300); this.routes[m] = this.unicast; } }
+      log('Config done. Routes: ' + Object.keys(this.routes).map(m => '0x' + (+m).toString(16) + '→0x' + this.routes[m].toString(16)).join(', '));
+      return this.routes;
+    }
+    _route(models) { if (this.routes) for (const m of models) if (this.routes[m] != null) return this.routes[m]; return this.unicast; }
+    onOff(on) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this._route([0x1000, 0x1300, 0x1303]) }, accOnOff(on)); }
+    lightness(v) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this._route([0x1300, 0x1303]) }, accLightness(v)); }
+    ctl(l, temp, duv = 0) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this._route([0x1303, 0x1306]) }, accCTL(l, temp, duv)); }
+    hsl(l, hue, sat) { return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: this._route([0x1307]) }, accHSL(l, hue, sat)); }
   }
 
   function randomKey() { return b2h(CR.getRandomValues(new Uint8Array(16))); }
@@ -746,6 +787,7 @@ const MeshCtl={
     try{
       const node=await new Mesh.ble.Node({netKeyHex:net.netKey,appKeyHex:net.appKey,devKeyHex:rec.devKey,unicast:rec.unicast,provisionerAddr:net.provisioner,ivIndex:net.ivIndex,seq:rec.seq||0,onSeq:s=>{const m=this.nodes();if(m[id]){m[id].seq=s;this.saveNodes(m);}}}).ready();
       node._log=m=>log(m);
+      if(rec.routes){node.routes={};for(const k in rec.routes)node.routes[+k]=rec.routes[k];} // restore model→element map
       await node.connect(m=>log(m));
       this.live[id]=node; refreshStatus(); renderActive();
       log('✓ '+l.name+' mesh proxy connected.');
@@ -755,10 +797,10 @@ const MeshCtl={
   },
   async configure(id){
     const node=this.live[id],l=LIGHTS.find(x=>x.id===id); if(!node){bigToast('❌','CONNECT FIRST',false);return;}
-    try{const models=l.rgb?[0x1000,0x1300,0x1303,0x1307]:[0x1000,0x1300,0x1303];
-      log('── CONFIGURE '+l.name+' (AppKey Add + model bind) ──');
+    try{const models=l.rgb?[0x1000,0x1300,0x1303,0x1306,0x1307]:[0x1000,0x1300,0x1303,0x1306];
+      log('── CONFIGURE '+l.name+' (read composition, AppKey Add, bind at real elements) ──');
       await node.configure(models,m=>log(m));
-      const m=this.nodes(); if(m[id]){m[id].configured=true;this.saveNodes(m);}
+      const m=this.nodes(); if(m[id]){m[id].configured=true;m[id].routes=node.routes||{};this.saveNodes(m);}
       bigToast('✅',l.name+' CONFIGURED\nsliders are live now',true); renderActive();
     }catch(e){log('✗ configure failed: '+(e&&e.message||e),1);bigToast('❌','CONFIGURE FAILED',false);}
   },
