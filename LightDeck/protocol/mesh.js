@@ -131,9 +131,13 @@
   };
   // vendor access message: 3-octet opcode [0xC0|op, CID_lo, CID_hi] + params (Viltrox LedState cmd)
   const accVendor = (op, cid, params) => cat(new Uint8Array([0xc0 | (op & 0x3f), cid & 0xff, (cid >> 8) & 0xff]), params);
-  // Viltrox K60 CCT-mode payload (reverse-engineered from ViltroxLink LedStateKt.sentCCTMeshCmd):
-  // [ brightness(0-100) | (on<<7), tint/Rg, Kelvin/100, cctType ]
-  const viltroxCCT = (on, bri, cctK, tint = 0, cctType = 0) => new Uint8Array([((bri & 0x7f) | (on ? 0x80 : 0)), tint & 0xff, Math.round(cctK / 100) & 0xff, cctType & 0xff]);
+  // Viltrox K60 payloads (reverse-engineered from ViltroxLink LedStateKt). Both start with
+  // getPowerAndStete = brightness(0-100) | (on<<7). cctType default is -1 (0xFF), not 0 —
+  // with 0 the light ignores the colour-temp bytes.
+  // CCT:  [ powerState, tint/Rg, Kelvin/100, cctType(0xFF) ]  (sentCCTMeshCmd)
+  // HSI:  [ powerState, hue>>8, hue&0xff, saturation ]        (sentHSIMeshCmd, hue 0-360 BE)
+  const viltroxCCT = (on, bri, cctK, tint = 0, cctType = 0xff) => new Uint8Array([((bri & 0x7f) | (on ? 0x80 : 0)), tint & 0xff, Math.round(cctK / 100) & 0xff, cctType & 0xff]);
+  const viltroxHSI = (on, bri, hue, sat) => new Uint8Array([((bri & 0x7f) | (on ? 0x80 : 0)), (hue >> 8) & 0xff, hue & 0xff, sat & 0xff]);
 
   // ---------------- provisioning ----------------
   async function genKeyPair() { const kp = await subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']); const raw = new Uint8Array(await subtle.exportKey('raw', kp.publicKey)); return { priv: kp.privateKey, pub64: raw.slice(1) }; }
@@ -290,6 +294,12 @@
       const v = this.vendor || { cid: 0x093a, elem: this.unicast };
       const cid = company != null ? company : v.cid;
       return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: v.elem }, accVendor(op, cid, viltroxCCT(on, bri, cctK, tint)));
+    }
+    // Viltrox vendor HSI (colour) command.
+    async vendorHSI(op, on, bri, hue, sat, company) {
+      const v = this.vendor || { cid: 0x093a, elem: this.unicast };
+      const cid = company != null ? company : v.cid;
+      return this._sendAccess({ appKey: this.appKey, src: this.provisionerAddr || 0x0001, dst: v.elem }, accVendor(op, cid, viltroxHSI(on, bri, hue, sat)));
     }
     // Opcode probe: cycle candidate opcodes (and both company-ID byte orders) with an obvious
     // bright→dim command so the right combo makes the light visibly react.

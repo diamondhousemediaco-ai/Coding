@@ -549,7 +549,11 @@ const MeshCtl={
   },
   async _send(id,a){
     const node=this.live[id]; if(!node)return; const s=st[id],l=LIGHTS.find(x=>x.id===id);
-    if(node.vendor){ const op=node.vendorOp!=null?node.vendorOp:0x01; return node.vendorCCT(op,s.on,s.bri,s.cct); } // Viltrox K60: one vendor cmd carries on/off+bri+cct
+    if(node.vendor){ // Viltrox K60 vendor model: CCT cmd (opcode 1) or HSI cmd (opcode 2) by mode
+      const cctOp=node.vendorOp!=null?node.vendorOp:0x01, hslOp=node.vendorHslOp!=null?node.vendorHslOp:0x02;
+      if(l.rgb&&s.mode===2)return node.vendorHSI(hslOp,s.on,s.bri,s.hue,s.sat);
+      return node.vendorCCT(cctOp,s.on,s.bri,s.cct);
+    }
     if(a==='power')return node.onOff(s.on);
     if(a==='cct'||(a==='bri'&&!(l.rgb&&s.mode===2)))return node.ctl(this.lv(id),s.cct,0);
     return node.hsl(this.lv(id),Math.round(s.hue/360*65535),Math.round(s.sat/100*65535)); // bri-in-HSI / hue / sat
