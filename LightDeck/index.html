@@ -494,6 +494,7 @@ const MeshCtl={
     try{
       const node=await new Mesh.ble.Node({netKeyHex:net.netKey,appKeyHex:net.appKey,devKeyHex:rec.devKey,unicast:rec.unicast,provisionerAddr:net.provisioner,ivIndex:net.ivIndex,seq:rec.seq||0,onSeq:s=>{const m=this.nodes();if(m[id]){m[id].seq=s;this.saveNodes(m);}}}).ready();
       node._log=m=>log(m);
+      if(rec.routes){node.routes={};for(const k in rec.routes)node.routes[+k]=rec.routes[k];} // restore model→element map
       await node.connect(m=>log(m));
       this.live[id]=node; refreshStatus(); renderActive();
       log('✓ '+l.name+' mesh proxy connected.');
@@ -503,10 +504,10 @@ const MeshCtl={
   },
   async configure(id){
     const node=this.live[id],l=LIGHTS.find(x=>x.id===id); if(!node){bigToast('❌','CONNECT FIRST',false);return;}
-    try{const models=l.rgb?[0x1000,0x1300,0x1303,0x1307]:[0x1000,0x1300,0x1303];
-      log('── CONFIGURE '+l.name+' (AppKey Add + model bind) ──');
+    try{const models=l.rgb?[0x1000,0x1300,0x1303,0x1306,0x1307]:[0x1000,0x1300,0x1303,0x1306];
+      log('── CONFIGURE '+l.name+' (read composition, AppKey Add, bind at real elements) ──');
       await node.configure(models,m=>log(m));
-      const m=this.nodes(); if(m[id]){m[id].configured=true;this.saveNodes(m);}
+      const m=this.nodes(); if(m[id]){m[id].configured=true;m[id].routes=node.routes||{};this.saveNodes(m);}
       bigToast('✅',l.name+' CONFIGURED\nsliders are live now',true); renderActive();
     }catch(e){log('✗ configure failed: '+(e&&e.message||e),1);bigToast('❌','CONFIGURE FAILED',false);}
   },
