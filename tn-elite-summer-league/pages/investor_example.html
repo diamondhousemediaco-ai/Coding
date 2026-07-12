@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TN Elite Summer League — Mock Cap Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,-apple-system,sans-serif;line-height:1.5;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:40px 22px 60px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:10px}
+h1{font-size:clamp(30px,6vw,46px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.98}
+h1 .o{color:var(--blaze)}
+.mockflag{display:inline-block;margin-top:16px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--volt);background:rgba(232,255,58,.1);border:1px solid rgba(232,255,58,.4);border-radius:999px;padding:7px 16px}
+.sub{color:var(--mut);font-size:14px;margin-top:14px;max-width:620px}
+
+.sec{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.sec-n{font-size:12px;font-weight:900;color:var(--blaze);letter-spacing:.1em}
+.sec-t{font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+.split{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:620px){.split{grid-template-columns:1fr 1fr}}
+.moneytag{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:12px}
+.tag-green{color:var(--ice);background:rgba(94,234,212,.1);border:1px solid rgba(94,234,212,.35)}
+.tag-orange{color:var(--blaze);background:rgba(255,77,28,.12);border:1px solid rgba(255,77,28,.4)}
+.li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13.5px}
+.li:last-child{border-bottom:none}
+.li .n{color:var(--txt)}
+.li .n small{display:block;color:var(--dim);font-size:11px;font-weight:400}
+.li .v{color:var(--mut);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.subtotal{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:2px solid var(--line);font-weight:800;font-size:14px}
+.subtotal .v{color:var(--txt)}
+
+.valbox{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;background:linear-gradient(180deg,rgba(255,77,28,.08),var(--panel));border:1px solid rgba(255,77,28,.35)}
+.valbig{font-size:clamp(34px,8vw,52px);font-weight:900;color:var(--txt);line-height:1}
+.vallabel{font-size:12px;color:var(--mut);font-weight:600}
+.formula{font-size:12.5px;color:var(--dim);margin-top:6px}
+.formula b{color:var(--volt)}
+
+/* ownership bars */
+.bar{margin:14px 0}
+.bar .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:10px}
+.bar .who{font-weight:800;font-size:14px}
+.bar .who small{display:block;font-weight:500;color:var(--dim);font-size:11px}
+.bar .pct{font-weight:900;font-size:16px;font-variant-numeric:tabular-nums}
+.bar .track{height:26px;background:var(--panel2);border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.bar .fill{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:800;color:#0B0B0D;white-space:nowrap}
+.fill.founder{background:var(--blaze)}
+.fill.angel{background:var(--volt)}
+.fill.comm{background:var(--ice)}
+.fill.newinv{background:#6b6b78;color:#fff}
+.investorline{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);padding:4px 0 4px 14px;border-left:2px solid var(--line);margin-left:6px}
+.investorline .v{font-variant-numeric:tabular-nums;font-weight:600}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);text-align:right;padding:10px 8px;border-bottom:1px solid var(--line)}
+th:first-child{text-align:left}
+td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.05);text-align:right;font-variant-numeric:tabular-nums}
+td:first-child{text-align:left;font-weight:700}
+td small{color:var(--dim);font-weight:400}
+tr.founder td:first-child{color:var(--blaze)}
+tr.total td{font-weight:800;border-top:2px solid var(--line);color:var(--txt)}
+.mult{color:var(--volt);font-weight:800}
+
+.note{margin-top:26px;font-size:11px;color:var(--dim);line-height:1.6;border-top:1px solid var(--line);padding-top:18px}
+.note b{color:var(--mut)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0 0;font-size:11px;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+.d-founder{background:var(--blaze)}.d-angel{background:var(--volt)}.d-comm{background:var(--ice)}.d-new{background:#6b6b78}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kick">Illustrative Investor Example</div>
+  <h1>Mock <span class="o">Cap Table</span><br>Year One</h1>
+  <span class="mockflag">⚠ Made-up names &amp; numbers — shows the shape, not real terms</span>
+  <p class="sub">One clean way a first-year raise could look for the league. Every name is invented; every figure is illustrative.</p>
+
+  <!-- 1: THE RAISE -->
+  <div class="sec">
+    <div class="sec-h"><span class="sec-n">01</span><span class="sec-t">The Raise — $975,000</span></div>
+    <div class="split">
+      <div class="card">
+        <span class="moneytag tag-green">Non-dilutive · costs you 0% ownership</span>
+        <div class="li"><span class="n">Founding partners / sponsors</span><span class="v">$350,000</span></div>
+        <div class="li"><span class="n">Belmont venue <small>in-kind sponsorship</small></span><span class="v">$74,000</span></div>
+        <div class="li"><span class="n">3-year title prepay</span><span class="v">$75,000</span></div>
+        <div class="li"><span class="n">Memberships</span><span class="v">$40,000</span></div>
+        <div class="li"><span class="n">Vendor Row</span><span class="v">$18,000</span></div>
+        <div class="li"><span class="n">Grants · gala · donations <small>via the 501(c)(3)</small></span><span class="v">$118,000</span></div>
+        <div class="subtotal"><span>Subtotal</span><span class="v">$675,000</span></div>
+      </div>
+      <div class="card">
+        <span class="moneytag tag-orange">Dilutive · the only ownership you sell</span>
+        <div class="li"><span class="n">Angel / athlete SAFE round</span><span class="v">$200,000</span></div>
+        <div class="li"><span class="n">Community round <small>Reg CF — fans buy in</small></span><span class="v">$100,000</span></div>
+        <div class="subtotal"><span>Subtotal</span><span class="v">$300,000</span></div>
+        <p class="formula" style="margin-top:16px">Only this <b>$300K</b> shows up on the cap table below. The other <b>$675K</b> costs you <b>zero equity.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: VALUATION -->
+  <div class="sec">
+    <div class="sec-h"><span class="sec-n">02</span><span class="sec-t">The Valuation</span></div>
+    <div class="card valbox">
+      <div><div class="valbig">$2,000,000</div><div class="vallabel">post-money valuation (mock cap)</div></div>
+      <div class="formula">Ownership % = <b>check ÷ $2,000,000</b><br>e.g. $200,000 ÷ $2,000,000 = <b>10%</b></div>
+    </div>
+  </div>
+
+  <!-- 3: CAP TABLE -->
+  <div class="sec">
+    <div class="sec-h"><span class="sec-n">03</span><span class="sec-t">Who Owns What</span></div>
+    <div class="card">
+      <div class="bar">
+        <div class="top"><div class="who">Diamond House Media <small>you — the founder / "your house"</small></div><div class="pct" style="color:var(--blaze)">85%</div></div>
+        <div class="track"><div class="fill founder" style="width:85%">$1,700,000</div></div>
+      </div>
+      <div class="bar">
+        <div class="top"><div class="who">Angel / athlete SAFE <small>$200,000 in</small></div><div class="pct" style="color:var(--volt)">10%</div></div>
+        <div class="track"><div class="fill angel" style="width:10%">$200K</div></div>
+        <div class="investorline"><span>Alicia Grant — ex-WNBA guard, Nashville <small>(capital + name)</small></span><span class="v">$50K · 2.5%</span></div>
+        <div class="investorline"><span>Coach Marcus Bell — ex-D1 assistant / local owner</span><span class="v">$75K · 3.75%</span></div>
+        <div class="investorline"><span>Harpeth Capital — local angel group</span><span class="v">$75K · 3.75%</span></div>
+      </div>
+      <div class="bar">
+        <div class="top"><div class="who">Community round <small>~400 fans &amp; families, avg $250</small></div><div class="pct" style="color:var(--ice)">5%</div></div>
+        <div class="track"><div class="fill comm" style="width:5%">$100K</div></div>
+      </div>
+      <div class="legend">
+        <span><i class="dot d-founder"></i>Founder 85%</span>
+        <span><i class="dot d-angel"></i>Angels 10%</span>
+        <span><i class="dot d-comm"></i>Community 5%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: ESCALATION -->
+  <div class="sec">
+    <div class="sec-h"><span class="sec-n">04</span><span class="sec-t">If It Grows 4× (the Unrivaled curve)</span></div>
+    <div class="card">
+      <p class="formula" style="margin-bottom:12px">Year 3, a bigger investor puts in <b>$1.6M</b> at an <b>$8,000,000</b> valuation (buys 20%). Everyone else's slice shrinks ~20% — but the <b>pie is 4× bigger</b>, so every stake is worth far more.</p>
+      <table>
+        <thead><tr><th>Holder</th><th>Yr 1 %</th><th>Value @ $2M</th><th>Yr 3 %</th><th>Value @ $8M</th><th>Paper</th></tr></thead>
+        <tbody>
+          <tr class="founder"><td>Diamond House</td><td>85%</td><td>$1.70M</td><td>68%</td><td>$5.44M</td><td class="mult">3.2×</td></tr>
+          <tr><td>Angels / athlete</td><td>10%</td><td>$200K</td><td>8%</td><td>$640K</td><td class="mult">3.2×</td></tr>
+          <tr><td>Community</td><td>5%</td><td>$100K</td><td>4%</td><td>$320K</td><td class="mult">3.2×</td></tr>
+          <tr><td>New Yr-3 investor</td><td>—</td><td>—</td><td>20%</td><td>$1.60M</td><td><small>just in</small></td></tr>
+          <tr class="total"><td>Total</td><td>100%</td><td>$2.0M</td><td>100%</td><td>$8.0M</td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="formula" style="margin-top:14px">You dropped from <b>85% → 68%</b>, but your stake went from <b>$1.7M → $5.44M.</b> That's the whole game: a smaller slice of a much bigger pie.</p>
+    </div>
+  </div>
+
+  <p class="note"><b>This is a mock illustration.</b> Names are invented; dollar amounts and the $2M / $8M valuations are made up to show the mechanics — they are not real terms, offers, or commitments. Anything conveying ownership (SAFEs, equity, Reg CF) is a <b>security</b> regulated by the SEC and the State of Tennessee. Consult a securities attorney before raising any equity. Cap math assumes a post-money SAFE and a simple single-round dilution; a real round adds an option pool, legal terms, and conversion details.</p>
+
+</div>
+</body>
+</html>
