@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — Budget</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,-apple-system,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+/* NAV — rounded tabs + search */
+nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1180px;display:flex;align-items:center;gap:10px;min-height:60px;padding-top:9px;padding-bottom:9px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+nav .logo{font-weight:900;font-size:14px;letter-spacing:.06em;margin-right:6px;flex:0 0 auto}
+nav .logo span{color:var(--blaze)}
+nav a.lnk{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);transition:all .15s}
+nav a.lnk:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+nav a.lnk.active{color:#0B0B0D;background:var(--blaze);border-color:var(--blaze)}
+.searchwrap{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin-left:auto}
+#leaguesearch{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--txt);font-family:'Poppins',sans-serif;font-size:12px;padding:8px 16px;width:190px;outline:none;transition:all .15s}
+#leaguesearch:focus{border-color:var(--blaze);width:240px}
+#leaguesearch::placeholder{color:var(--dim)}
+#searchcount{font-size:10px;font-weight:800;color:var(--volt);letter-spacing:.08em;min-width:70px;display:none}
+.searchdim{display:none !important}
+.searchhit{outline:1px solid rgba(255,77,28,.55);border-radius:10px}
+.section-hidden{display:none}
+/* HERO */
+.hero{padding:84px 0 60px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(700px 340px at 85% -10%, rgba(255,77,28,.22), transparent 60%),
+  radial-gradient(500px 280px at 5% 110%, rgba(232,255,58,.10), transparent 60%)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(232,255,58,.35);padding:6px 14px;border-radius:999px;margin-bottom:26px}
+h1{font-size:clamp(42px,7.5vw,86px);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase}
+h1 .o{color:var(--blaze)}
+.hero p.sub{margin-top:22px;max-width:640px;color:var(--mut);font-size:16.5px;font-weight:500}
+.hero p.sub b{color:var(--txt)}
+/* STAT BAND */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.band .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+.stat{padding:26px 18px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat .n{font-size:34px;font-weight:900;line-height:1;color:var(--txt)}
+.stat .n em{font-style:normal;color:var(--blaze)}
+.stat .l{margin-top:6px;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+/* SECTIONS */
+section{padding:74px 0 10px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:10px}
+h2{font-size:clamp(28px,4vw,44px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.05;margin-bottom:14px}
+.lede{color:var(--mut);max-width:760px;font-size:15px;margin-bottom:34px}
+.lede b{color:var(--txt)}
+/* CARDS */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.card p{font-size:13px;color:var(--mut)}
+.card .num{font-size:12px;font-weight:800;color:var(--volt);letter-spacing:.18em;margin-bottom:10px}
+.card.hot{border-color:rgba(255,77,28,.5);background:linear-gradient(180deg,rgba(255,77,28,.10),var(--panel) 55%)}
+/* TIMELINE */
+.tl{border-left:2px solid rgba(255,77,28,.45);margin-left:8px;padding-left:26px;display:flex;flex-direction:column;gap:22px}
+.tl .ev{position:relative}
+.tl .ev:before{content:"";position:absolute;left:-33px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blaze);box-shadow:0 0 0 4px rgba(255,77,28,.18)}
+.tl .d{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--volt)}
+.tl .t{font-weight:700;font-size:15.5px;margin:2px 0}
+.tl p{font-size:13px;color:var(--mut);max-width:680px}
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--txt)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+td.mut{color:var(--mut);font-size:12px}
+tr.tot td{font-weight:800;border-top:2px solid var(--line);font-size:14px}
+tr.gap td{font-weight:800;color:var(--blaze)}
+.tblcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 8px 4px;overflow-x:auto}
+.tbl-title{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:12px 12px 4px}
+.tbl-title span{color:var(--blaze)}
+/* PILLS + TAGS */
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.pill.orange{background:rgba(255,77,28,.16);color:var(--blaze);border:1px solid rgba(255,77,28,.4)}
+.pill.volt{background:rgba(232,255,58,.12);color:var(--volt);border:1px solid rgba(232,255,58,.35)}
+.pill.ice{background:rgba(94,234,212,.1);color:var(--ice);border:1px solid rgba(94,234,212,.35)}
+/* SCENARIO */
+.scn{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:18px}
+.scn .card .big{font-size:30px;font-weight:900;margin:4px 0}
+.scn .card .gapn{font-size:14px;font-weight:800;color:var(--blaze)}
+.scn .card .gapn.ok{color:var(--volt)}
+/* SPONSOR LISTS */
+.sp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.sp h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--volt);margin-bottom:4px}
+.sp .cat-note{font-size:11.5px;color:var(--dim);margin-bottom:12px}
+.sp ul{list-style:none}
+.sp li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px}
+.sp li:last-child{border-bottom:none}
+.sp li .a{color:var(--txt);font-weight:500}
+.sp li .a small{display:block;color:var(--dim);font-weight:400;font-size:11px}
+.sp li .p{color:var(--mut);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* CALLOUT */
+.callout{border:1px solid rgba(232,255,58,.4);background:linear-gradient(180deg,rgba(232,255,58,.07),transparent);border-radius:14px;padding:22px;margin-top:20px}
+.callout .t{font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.08em;color:var(--volt);margin-bottom:6px}
+.callout p{font-size:13.5px;color:var(--mut)}
+.callout p b{color:var(--txt)}
+/* ORG */
+.org .role{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.org .role:last-child{border:none}
+.org .role .rn{font-weight:700}
+.org .role .rn small{display:block;font-weight:400;color:var(--dim);font-size:11.5px}
+.org .role .rc{white-space:nowrap;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
+/* SCHEDULE + BRACKET */
+.slate td.time{color:var(--volt);font-weight:700;white-space:nowrap}
+.slate td.tv{color:var(--blaze);font-weight:800;font-size:11px;letter-spacing:.08em}
+.bracket{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
+.round{display:flex;flex-direction:column;justify-content:space-around;gap:12px}
+.round h4{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.match{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px}
+.match .tm{display:flex;justify-content:flex-start;gap:10px;padding:3px 0}
+.match .seed{color:var(--dim);font-weight:800;width:22px}
+.match .nm{font-weight:600}
+.match.champ{border-color:rgba(232,255,58,.55);background:linear-gradient(180deg,rgba(232,255,58,.08),var(--panel))}
+.match.champ .nm{color:var(--volt);font-weight:800}
+
+}
+
+
+/* --- APPLE BREAKPOINT (iPhone ~390-430px) --- */
+@media(max-width:440px){
+  .wrap{padding:0 16px}
+  nav .wrap{gap:8px;min-height:56px}
+  nav a.lnk{padding:10px 15px;font-size:11px}
+  #leaguesearch{width:150px;padding:9px 14px}
+  #leaguesearch:focus{width:170px}
+  .hero{padding:56px 0 44px}
+  .hero p.sub{font-size:14.5px}
+  .eyebrow{font-size:10px;padding:5px 12px;letter-spacing:.16em}
+  .band .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none;border-top:1px solid var(--line);padding:20px 14px}
+  .stat .n{font-size:28px}
+  section{padding:48px 0 8px}
+  .lede{font-size:13.5px}
+  .card{padding:18px}
+  .sp{padding:16px}
+  .sp li{flex-wrap:wrap}
+  .sp li .p{width:100%;text-align:left;color:var(--volt);font-size:11px;margin-top:2px}
+  .callout{padding:16px}
+  .tl{margin-left:4px;padding-left:20px}
+  .tl .ev:before{left:-27px}
+  table{font-size:12px}
+  td,th{padding:7px 9px}
+  .tbl-title{font-size:12.5px}
+  .scn .card .big{font-size:26px}
+  h2{margin-bottom:12px}
+  footer{font-size:10.5px}
+}
+footer{margin-top:80px;padding:34px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:11.5px}
+footer b{color:var(--mut)}
+.small-note{font-size:11.5px;color:var(--dim);margin-top:14px}
+
+section{padding-top:38px}
+.pagenav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px}
+.pagenav a{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:11px 20px;text-decoration:none;background:var(--panel)}
+.pagenav a:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:34px 0 10px}
+.tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 18px;text-decoration:none;transition:all .15s}
+.tile:hover{border-color:rgba(255,77,28,.55);transform:translateY(-2px)}
+.tile .tn{font-size:14px;font-weight:900;color:var(--txt);text-transform:uppercase}
+.tile .td2{font-size:10.5px;color:var(--dim);margin-top:5px;line-height:1.45}
+.tile .arrow{color:var(--blaze);font-weight:900;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <span class="logo">TN&nbsp;ELITE&nbsp;<span>SL</span></span>
+  <a class="lnk" href="index.html">Home</a>
+  <a class="lnk" href="model.html">The Model</a>
+  <a class="lnk" href="calendar.html">Calendar</a>
+  <a class="lnk" href="schedule.html">Schedule</a>
+  <a class="lnk" href="rules.html">Rules</a>
+  <a class="lnk active" href="budget.html">Budget</a>
+  <a class="lnk" href="broadcast.html">Broadcast</a>
+  <a class="lnk" href="sponsors.html">Sponsors</a>
+  <a class="lnk" href="revenue.html">Revenue</a>
+  <a class="lnk" href="housing.html">Housing</a>
+  <a class="lnk" href="million.html">The Million</a>
+  <a class="lnk" href="team.html">The Team</a>
+  <a class="lnk" href="countdown.html">Countdown</a>
+</div></nav>
+<section id="budget"><div class="wrap">
+  <div class="kick">The Money</div>
+  <h2>Two Budgets, One Roadmap</h2>
+  <p class="lede"><b>Year 1 is lean but legit</b> — every game streamed, arena marquee nights, pro-level safety. <b>Full Vision is the Unrivaled-scale version</b> — every game in the arena, broadcast-grade production, players fully sponsored, Nationals live. The gap between revenue and cost is not a problem; it's the size of the raise. (Unrivaled raised $35M before its first game and nearly broke even in season one.)</p>
+
+  <div class="grid g2">
+    <div class="tblcard">
+      <div class="tbl-title">Year 1 — Summer 2027 <span>· Expenses</span></div>
+      <table>
+        <tr><th>Line</th><th class="r">Cost</th></tr>
+        <tr><td>Front office (7 seasonal staff + interns)</td><td class="r">$161,000</td></tr>
+        <tr><td>Coaches — 16 HC + 16 AC + interim pool</td><td class="r">$90,000</td></tr>
+        <tr><td>Production — 16 marquee games, real broadcast crews</td><td class="r">$56,000</td></tr>
+        <tr><td>Production — all other games streamed</td><td class="r">$56,000</td></tr>
+        <tr><td>Curb Event Center — 6 marquee days</td><td class="r">$45,000</td></tr>
+        <tr><td>Practice facility court time (320 hrs)</td><td class="r">$28,800</td></tr>
+        <tr><td>Officials — college-level (D2) 3-man crews × 156</td><td class="r">$70,200</td></tr>
+        <tr><td>Uniforms &amp; player gear (160 × $220)</td><td class="r">$35,200</td></tr>
+        <tr><td>Marketing &amp; brand engine</td><td class="r">$45,000</td></tr>
+        <tr><td>Game-day ops (44 event days)</td><td class="r">$35,200</td></tr>
+        <tr><td>Combine + Draft Night production</td><td class="r">$30,000</td></tr>
+        <tr><td>Athletic trainers (every event day)</td><td class="r">$19,800</td></tr>
+        <tr><td>Insurance ($1M/$2M + accident)</td><td class="r">$18,000</td></tr>
+        <tr><td>Tech, stats &amp; recruiting profiles</td><td class="r">$15,000</td></tr>
+        <tr><td>Legal, 501(c)(3) &amp; accounting</td><td class="r">$12,000</td></tr>
+        <tr><td>Travel, awards, equipment, compliance</td><td class="r">$26,000</td></tr>
+        <tr><td class="mut">Contingency (10%)</td><td class="r">$74,320</td></tr>
+        <tr class="tot"><td>TOTAL EXPENSES</td><td class="r">$817,520</td></tr>
+      </table>
+    </div>
+    <div class="tblcard">
+      <div class="tbl-title">Year 1 <span>· Revenue (base case)</span></div>
+      <table>
+        <tr><th>Line</th><th class="r">Revenue</th></tr>
+        <tr><td>Sponsorships (title, presenting, category, jerseys)</td><td class="r">$210,000</td></tr>
+        <tr><td>Gate / tickets (6 arena days + weeknights)</td><td class="r">$120,000</td></tr>
+        <tr><td>Vendor fees — Curb lobby vendor village</td><td class="r">$18,000</td></tr>
+        <tr><td>Player season fees (160 × $400)</td><td class="r">$64,000</td></tr>
+        <tr><td>Donations &amp; grants (501c3 arm)</td><td class="r">$60,000</td></tr>
+        <tr><td>Tryout fees (600 × $50)</td><td class="r">$30,000</td></tr>
+        <tr><td>Merch (net)</td><td class="r">$20,000</td></tr>
+        <tr><td>Streaming rev share / league pass</td><td class="r">$15,000</td></tr>
+        <tr class="tot"><td>TOTAL REVENUE</td><td class="r">$537,000</td></tr>
+        <tr class="gap"><td>FOUNDING CAPITAL NEEDED</td><td class="r">~$281,000</td></tr>
+      </table>
+      <div class="tbl-title" style="margin-top:18px">Full Vision (Yr 3+) <span>· Snapshot</span></div>
+      <table>
+        <tr><td>Total expenses (arena every night, broadcast-grade, Nationals, players free, NIL pool)</td><td class="r">$2,884,750</td></tr>
+        <tr><td>Revenue (sponsors $1M, gate $500K, media $150K, Nationals fees, grants)</td><td class="r">$1,890,000</td></tr>
+        <tr class="gap"><td>INVESTOR CAPITAL / GROWTH GAP</td><td class="r">~$995,000</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="scn">
+    <div class="card"><h3>Conservative</h3><p>Sell 60% of sponsor/gate/vendor targets</p><div class="big">$359.8K</div><div class="gapn">Gap: $457.7K</div></div>
+    <div class="card hot"><h3>Base</h3><p>The plan above</p><div class="big">$537.0K</div><div class="gapn">Gap: $280.5K</div></div>
+    <div class="card"><h3>Stretch</h3><p>Sell 140% — full sponsor menu is worth ~$518K alone</p><div class="big">$714.2K</div><div class="gapn ok">Gap: $103.3K</div></div>
+  </div>
+  <div class="callout"><div class="t">The Belmont play — turn the landlord into a sponsor</div>
+  <p>Before signing a rental, pitch Belmont as <b>"Official Home of the League"</b> — facilities in-kind as their founding sponsorship (~$74K of venue cost at market rates). What they get: exclusive higher-ed category, "Live from Belmont University" on 150+ broadcasts, their court in every highlight, an <b>admissions booth in Vendor Row</b> in front of 600 tryout athletes and their college-shopping families all summer, and summer production practicum for Curb College media students. Even a hybrid (half rent + student production support) swings this budget $35–50K. Offer the menu — full in-kind, hybrid, or straight rental — and sign date holds under whichever they'll do fastest.</p></div>
+  <p class="small-note">Full editable model in the interactive budget page and Excel workbook. Biggest unknowns needing real quotes: Belmont rental (no published rates — Belmont Strategic Venues), production vendor bids, and title-sponsor appetite.</p>
+</div></section>
+<div class="wrap"><div class="pagenav"><a href="rules.html">← Rules</a><a href="broadcast.html">Broadcast →</a></div></div>
+</body>
+</html>

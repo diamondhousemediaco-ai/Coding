@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — Broadcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,-apple-system,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+/* NAV — rounded tabs + search */
+nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1180px;display:flex;align-items:center;gap:10px;min-height:60px;padding-top:9px;padding-bottom:9px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+nav .logo{font-weight:900;font-size:14px;letter-spacing:.06em;margin-right:6px;flex:0 0 auto}
+nav .logo span{color:var(--blaze)}
+nav a.lnk{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);transition:all .15s}
+nav a.lnk:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+nav a.lnk.active{color:#0B0B0D;background:var(--blaze);border-color:var(--blaze)}
+.searchwrap{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin-left:auto}
+#leaguesearch{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--txt);font-family:'Poppins',sans-serif;font-size:12px;padding:8px 16px;width:190px;outline:none;transition:all .15s}
+#leaguesearch:focus{border-color:var(--blaze);width:240px}
+#leaguesearch::placeholder{color:var(--dim)}
+#searchcount{font-size:10px;font-weight:800;color:var(--volt);letter-spacing:.08em;min-width:70px;display:none}
+.searchdim{display:none !important}
+.searchhit{outline:1px solid rgba(255,77,28,.55);border-radius:10px}
+.section-hidden{display:none}
+/* HERO */
+.hero{padding:84px 0 60px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(700px 340px at 85% -10%, rgba(255,77,28,.22), transparent 60%),
+  radial-gradient(500px 280px at 5% 110%, rgba(232,255,58,.10), transparent 60%)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(232,255,58,.35);padding:6px 14px;border-radius:999px;margin-bottom:26px}
+h1{font-size:clamp(42px,7.5vw,86px);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase}
+h1 .o{color:var(--blaze)}
+.hero p.sub{margin-top:22px;max-width:640px;color:var(--mut);font-size:16.5px;font-weight:500}
+.hero p.sub b{color:var(--txt)}
+/* STAT BAND */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.band .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+.stat{padding:26px 18px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat .n{font-size:34px;font-weight:900;line-height:1;color:var(--txt)}
+.stat .n em{font-style:normal;color:var(--blaze)}
+.stat .l{margin-top:6px;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+/* SECTIONS */
+section{padding:74px 0 10px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:10px}
+h2{font-size:clamp(28px,4vw,44px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.05;margin-bottom:14px}
+.lede{color:var(--mut);max-width:760px;font-size:15px;margin-bottom:34px}
+.lede b{color:var(--txt)}
+/* CARDS */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.card p{font-size:13px;color:var(--mut)}
+.card .num{font-size:12px;font-weight:800;color:var(--volt);letter-spacing:.18em;margin-bottom:10px}
+.card.hot{border-color:rgba(255,77,28,.5);background:linear-gradient(180deg,rgba(255,77,28,.10),var(--panel) 55%)}
+/* TIMELINE */
+.tl{border-left:2px solid rgba(255,77,28,.45);margin-left:8px;padding-left:26px;display:flex;flex-direction:column;gap:22px}
+.tl .ev{position:relative}
+.tl .ev:before{content:"";position:absolute;left:-33px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blaze);box-shadow:0 0 0 4px rgba(255,77,28,.18)}
+.tl .d{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--volt)}
+.tl .t{font-weight:700;font-size:15.5px;margin:2px 0}
+.tl p{font-size:13px;color:var(--mut);max-width:680px}
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--txt)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+td.mut{color:var(--mut);font-size:12px}
+tr.tot td{font-weight:800;border-top:2px solid var(--line);font-size:14px}
+tr.gap td{font-weight:800;color:var(--blaze)}
+.tblcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 8px 4px;overflow-x:auto}
+.tbl-title{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:12px 12px 4px}
+.tbl-title span{color:var(--blaze)}
+/* PILLS + TAGS */
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.pill.orange{background:rgba(255,77,28,.16);color:var(--blaze);border:1px solid rgba(255,77,28,.4)}
+.pill.volt{background:rgba(232,255,58,.12);color:var(--volt);border:1px solid rgba(232,255,58,.35)}
+.pill.ice{background:rgba(94,234,212,.1);color:var(--ice);border:1px solid rgba(94,234,212,.35)}
+/* SCENARIO */
+.scn{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:18px}
+.scn .card .big{font-size:30px;font-weight:900;margin:4px 0}
+.scn .card .gapn{font-size:14px;font-weight:800;color:var(--blaze)}
+.scn .card .gapn.ok{color:var(--volt)}
+/* SPONSOR LISTS */
+.sp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.sp h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--volt);margin-bottom:4px}
+.sp .cat-note{font-size:11.5px;color:var(--dim);margin-bottom:12px}
+.sp ul{list-style:none}
+.sp li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px}
+.sp li:last-child{border-bottom:none}
+.sp li .a{color:var(--txt);font-weight:500}
+.sp li .a small{display:block;color:var(--dim);font-weight:400;font-size:11px}
+.sp li .p{color:var(--mut);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* CALLOUT */
+.callout{border:1px solid rgba(232,255,58,.4);background:linear-gradient(180deg,rgba(232,255,58,.07),transparent);border-radius:14px;padding:22px;margin-top:20px}
+.callout .t{font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.08em;color:var(--volt);margin-bottom:6px}
+.callout p{font-size:13.5px;color:var(--mut)}
+.callout p b{color:var(--txt)}
+/* ORG */
+.org .role{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.org .role:last-child{border:none}
+.org .role .rn{font-weight:700}
+.org .role .rn small{display:block;font-weight:400;color:var(--dim);font-size:11.5px}
+.org .role .rc{white-space:nowrap;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
+/* SCHEDULE + BRACKET */
+.slate td.time{color:var(--volt);font-weight:700;white-space:nowrap}
+.slate td.tv{color:var(--blaze);font-weight:800;font-size:11px;letter-spacing:.08em}
+.bracket{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
+.round{display:flex;flex-direction:column;justify-content:space-around;gap:12px}
+.round h4{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.match{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px}
+.match .tm{display:flex;justify-content:flex-start;gap:10px;padding:3px 0}
+.match .seed{color:var(--dim);font-weight:800;width:22px}
+.match .nm{font-weight:600}
+.match.champ{border-color:rgba(232,255,58,.55);background:linear-gradient(180deg,rgba(232,255,58,.08),var(--panel))}
+.match.champ .nm{color:var(--volt);font-weight:800}
+
+}
+
+
+/* --- APPLE BREAKPOINT (iPhone ~390-430px) --- */
+@media(max-width:440px){
+  .wrap{padding:0 16px}
+  nav .wrap{gap:8px;min-height:56px}
+  nav a.lnk{padding:10px 15px;font-size:11px}
+  #leaguesearch{width:150px;padding:9px 14px}
+  #leaguesearch:focus{width:170px}
+  .hero{padding:56px 0 44px}
+  .hero p.sub{font-size:14.5px}
+  .eyebrow{font-size:10px;padding:5px 12px;letter-spacing:.16em}
+  .band .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none;border-top:1px solid var(--line);padding:20px 14px}
+  .stat .n{font-size:28px}
+  section{padding:48px 0 8px}
+  .lede{font-size:13.5px}
+  .card{padding:18px}
+  .sp{padding:16px}
+  .sp li{flex-wrap:wrap}
+  .sp li .p{width:100%;text-align:left;color:var(--volt);font-size:11px;margin-top:2px}
+  .callout{padding:16px}
+  .tl{margin-left:4px;padding-left:20px}
+  .tl .ev:before{left:-27px}
+  table{font-size:12px}
+  td,th{padding:7px 9px}
+  .tbl-title{font-size:12.5px}
+  .scn .card .big{font-size:26px}
+  h2{margin-bottom:12px}
+  footer{font-size:10.5px}
+}
+footer{margin-top:80px;padding:34px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:11.5px}
+footer b{color:var(--mut)}
+.small-note{font-size:11.5px;color:var(--dim);margin-top:14px}
+
+section{padding-top:38px}
+.pagenav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px}
+.pagenav a{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:11px 20px;text-decoration:none;background:var(--panel)}
+.pagenav a:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:34px 0 10px}
+.tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 18px;text-decoration:none;transition:all .15s}
+.tile:hover{border-color:rgba(255,77,28,.55);transform:translateY(-2px)}
+.tile .tn{font-size:14px;font-weight:900;color:var(--txt);text-transform:uppercase}
+.tile .td2{font-size:10.5px;color:var(--dim);margin-top:5px;line-height:1.45}
+.tile .arrow{color:var(--blaze);font-weight:900;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <span class="logo">TN&nbsp;ELITE&nbsp;<span>SL</span></span>
+  <a class="lnk" href="index.html">Home</a>
+  <a class="lnk" href="model.html">The Model</a>
+  <a class="lnk" href="calendar.html">Calendar</a>
+  <a class="lnk" href="schedule.html">Schedule</a>
+  <a class="lnk" href="rules.html">Rules</a>
+  <a class="lnk" href="budget.html">Budget</a>
+  <a class="lnk active" href="broadcast.html">Broadcast</a>
+  <a class="lnk" href="sponsors.html">Sponsors</a>
+  <a class="lnk" href="revenue.html">Revenue</a>
+  <a class="lnk" href="housing.html">Housing</a>
+  <a class="lnk" href="million.html">The Million</a>
+  <a class="lnk" href="team.html">The Team</a>
+  <a class="lnk" href="countdown.html">Countdown</a>
+</div></nav>
+<section id="broadcast"><div class="wrap">
+  <div class="kick">The Stage &amp; The Stream</div>
+  <h2>Built For Broadcast</h2>
+  <p class="lede">"The highest stage before college" is a production claim, not a slogan. Every game streams from day one, and there's a deliberate ladder from our own channels to ESPN. Here's where games live, what real production costs, and how to make every night <b>read</b> big-league on camera.</p>
+
+  <div class="grid g4">
+    <div class="card hot"><div class="num">LEVEL 1 · YEAR 1</div><h3>Own Channels</h3><p>League YouTube for full games + TikTok/IG/YT Shorts highlight engine. This is OTE's actual model — 23M views on opening weekend, all owned audience and data. Free distribution, and sponsors buy the clips.</p></div>
+    <div class="card"><div class="num">LEVEL 2 · YEAR 1</div><h3>League Pass</h3><p>Summer pass ($10–15/mo) or per-season pass on our site. Parents, relatives, and college staffs subscribe — BallerTV built an entire business on exactly this. Revenue, plus emails of every fan.</p></div>
+    <div class="card"><div class="num">LEVEL 3 · YEAR 2</div><h3>Local TV</h3><p>Nashville independent stations sell airtime — a weekly "Game of the Week" time-buy runs low four figures a night and instantly reprices every sponsor asset ("as seen on TV").</p></div>
+    <div class="card"><div class="num">LEVEL 4 · YEAR 2–3</div><h3>ESPN+ / National</h3><p>High-school hoops reaches ESPN through packagers — Paragon Marketing has curated ESPN's HS slate since the LeBron game in 2002. ESPN airs only ~12 HS games a year, anchored on ESPN-100 recruits. The route in is star power + a broadcast-quality feed, not a check.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tblcard">
+      <div class="tbl-title">Production Cost Menu <span>· per game, real market rates</span></div>
+      <table>
+        <tr><th>Tier</th><th>What it is</th><th class="r">Cost/game</th></tr>
+        <tr><td><b>Auto-cam</b></td><td class="mut">AI camera (Pixellot-style), fixed angle, auto-follow — every game's floor</td><td class="r">$150–400</td></tr>
+        <tr><td><b>Standard</b></td><td class="mut">2 cameras + student commentary crew</td><td class="r">$800–1,200</td></tr>
+        <tr><td><b>Marquee</b></td><td class="mut">3–4 manned broadcast cameras, switcher, graphics, replay, 2 commentators</td><td class="r">$3,500–6,000</td></tr>
+        <tr><td><b>Broadcast</b></td><td class="mut">8–12 cameras, full crew/truck — championship, Nationals, TV nights</td><td class="r">$15,000+</td></tr>
+      </table>
+      <div class="tbl-title" style="margin-top:14px">Crew Rates <span>· if hiring piecemeal</span></div>
+      <table>
+        <tr><td class="mut">Camera operator $500–1,500/day · Technical director $1,000–5,000/day · Audio $400–1,200/day · Commentary pair $400–1,600/game · Graphics package $500–2,500 · Live graphics/replay op $500–1,000/day</td></tr>
+      </table>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+      <h3 style="color:var(--volt)">Real broadcast cameras. Four ways to get them.</h3>
+      <p style="margin-top:10px"><b style="color:var(--txt)">1 · The Belmont play (first call).</b> Belmont's D-I games already stream on ESPN's platforms, produced on campus — meaning camera positions, cabling, and control-room infrastructure live in the building we're renting, and Belmont's Curb College trains sports-broadcast students who need summer reps. Negotiate production access + a student/faculty crew pipeline <b style="color:var(--txt)">into the venue deal itself</b>.</p>
+      <p style="margin-top:10px"><b style="color:var(--txt)">2 · Nashville's freelance broadcast bench.</b> This is Music City — the town is full of broadcast-grade camera ops, TDs, and replay operators between tours and TV gigs. A crewed flypack (4–6 broadcast cameras with CCUs, switcher, replay) rents for roughly $5–10K/day — reserve it for championship nights and anything a network might see.</p>
+      <p style="margin-top:10px"><b style="color:var(--txt)">3 · School gear partnerships.</b> MTSU's media college runs one of the biggest broadcast programs in the South with mobile production units; local schools own camera kits that sit idle in June and July. Trade crew credits, stipends, and demo-reel footage for gear and hands.</p>
+      <p style="margin-top:10px"><b style="color:var(--txt)">4 · Own used broadcast glass.</b> If we buy, we buy real: used ENG/system cameras with proper lenses and tripods run $3–8K each — a manned 4-camera kit lands ~$25–50K one-time and becomes a Diamond House asset billable year-round. Operated by real shooters, every night.</p>
+      <p style="margin-top:12px"><b style="color:var(--txt)">Commentator pipeline:</b> Belmont/Lipscomb/MTSU broadcasting programs + local radio talent hungry for reps. Pay $200–400/game, develop your own voices — they become part of the brand like OTE's crew did.</p>
+    </div>
+  </div>
+
+  <div class="callout"><div class="t">Big-stage feel — cheap, but loud on camera</div>
+  <p>Walkout tunnel + smoke/light player intros · per-team hype videos on the board · DJ + PA personality · printed court-apron branding · live stat overlays · postgame press-conference backdrop wall (sponsor logos behind every quote) · media-day portraits used in every graphic. <b>None of these cost real money. All of them read "pro" in every clip that leaves the building</b> — and clips are the product.</p></div>
+</div></section>
+<div class="wrap"><div class="pagenav"><a href="budget.html">← Budget</a><a href="sponsors.html">Sponsors →</a></div></div>
+</body>
+</html>

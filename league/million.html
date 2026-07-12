@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — The Million</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,-apple-system,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+/* NAV — rounded tabs + search */
+nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1180px;display:flex;align-items:center;gap:10px;min-height:60px;padding-top:9px;padding-bottom:9px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+nav .logo{font-weight:900;font-size:14px;letter-spacing:.06em;margin-right:6px;flex:0 0 auto}
+nav .logo span{color:var(--blaze)}
+nav a.lnk{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);transition:all .15s}
+nav a.lnk:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+nav a.lnk.active{color:#0B0B0D;background:var(--blaze);border-color:var(--blaze)}
+.searchwrap{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin-left:auto}
+#leaguesearch{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--txt);font-family:'Poppins',sans-serif;font-size:12px;padding:8px 16px;width:190px;outline:none;transition:all .15s}
+#leaguesearch:focus{border-color:var(--blaze);width:240px}
+#leaguesearch::placeholder{color:var(--dim)}
+#searchcount{font-size:10px;font-weight:800;color:var(--volt);letter-spacing:.08em;min-width:70px;display:none}
+.searchdim{display:none !important}
+.searchhit{outline:1px solid rgba(255,77,28,.55);border-radius:10px}
+.section-hidden{display:none}
+/* HERO */
+.hero{padding:84px 0 60px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(700px 340px at 85% -10%, rgba(255,77,28,.22), transparent 60%),
+  radial-gradient(500px 280px at 5% 110%, rgba(232,255,58,.10), transparent 60%)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(232,255,58,.35);padding:6px 14px;border-radius:999px;margin-bottom:26px}
+h1{font-size:clamp(42px,7.5vw,86px);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase}
+h1 .o{color:var(--blaze)}
+.hero p.sub{margin-top:22px;max-width:640px;color:var(--mut);font-size:16.5px;font-weight:500}
+.hero p.sub b{color:var(--txt)}
+/* STAT BAND */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.band .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+.stat{padding:26px 18px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat .n{font-size:34px;font-weight:900;line-height:1;color:var(--txt)}
+.stat .n em{font-style:normal;color:var(--blaze)}
+.stat .l{margin-top:6px;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+/* SECTIONS */
+section{padding:74px 0 10px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:10px}
+h2{font-size:clamp(28px,4vw,44px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.05;margin-bottom:14px}
+.lede{color:var(--mut);max-width:760px;font-size:15px;margin-bottom:34px}
+.lede b{color:var(--txt)}
+/* CARDS */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.card p{font-size:13px;color:var(--mut)}
+.card .num{font-size:12px;font-weight:800;color:var(--volt);letter-spacing:.18em;margin-bottom:10px}
+.card.hot{border-color:rgba(255,77,28,.5);background:linear-gradient(180deg,rgba(255,77,28,.10),var(--panel) 55%)}
+/* TIMELINE */
+.tl{border-left:2px solid rgba(255,77,28,.45);margin-left:8px;padding-left:26px;display:flex;flex-direction:column;gap:22px}
+.tl .ev{position:relative}
+.tl .ev:before{content:"";position:absolute;left:-33px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blaze);box-shadow:0 0 0 4px rgba(255,77,28,.18)}
+.tl .d{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--volt)}
+.tl .t{font-weight:700;font-size:15.5px;margin:2px 0}
+.tl p{font-size:13px;color:var(--mut);max-width:680px}
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--txt)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+td.mut{color:var(--mut);font-size:12px}
+tr.tot td{font-weight:800;border-top:2px solid var(--line);font-size:14px}
+tr.gap td{font-weight:800;color:var(--blaze)}
+.tblcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 8px 4px;overflow-x:auto}
+.tbl-title{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:12px 12px 4px}
+.tbl-title span{color:var(--blaze)}
+/* PILLS + TAGS */
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.pill.orange{background:rgba(255,77,28,.16);color:var(--blaze);border:1px solid rgba(255,77,28,.4)}
+.pill.volt{background:rgba(232,255,58,.12);color:var(--volt);border:1px solid rgba(232,255,58,.35)}
+.pill.ice{background:rgba(94,234,212,.1);color:var(--ice);border:1px solid rgba(94,234,212,.35)}
+/* SCENARIO */
+.scn{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:18px}
+.scn .card .big{font-size:30px;font-weight:900;margin:4px 0}
+.scn .card .gapn{font-size:14px;font-weight:800;color:var(--blaze)}
+.scn .card .gapn.ok{color:var(--volt)}
+/* SPONSOR LISTS */
+.sp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.sp h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--volt);margin-bottom:4px}
+.sp .cat-note{font-size:11.5px;color:var(--dim);margin-bottom:12px}
+.sp ul{list-style:none}
+.sp li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px}
+.sp li:last-child{border-bottom:none}
+.sp li .a{color:var(--txt);font-weight:500}
+.sp li .a small{display:block;color:var(--dim);font-weight:400;font-size:11px}
+.sp li .p{color:var(--mut);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* CALLOUT */
+.callout{border:1px solid rgba(232,255,58,.4);background:linear-gradient(180deg,rgba(232,255,58,.07),transparent);border-radius:14px;padding:22px;margin-top:20px}
+.callout .t{font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.08em;color:var(--volt);margin-bottom:6px}
+.callout p{font-size:13.5px;color:var(--mut)}
+.callout p b{color:var(--txt)}
+/* ORG */
+.org .role{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.org .role:last-child{border:none}
+.org .role .rn{font-weight:700}
+.org .role .rn small{display:block;font-weight:400;color:var(--dim);font-size:11.5px}
+.org .role .rc{white-space:nowrap;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
+/* SCHEDULE + BRACKET */
+.slate td.time{color:var(--volt);font-weight:700;white-space:nowrap}
+.slate td.tv{color:var(--blaze);font-weight:800;font-size:11px;letter-spacing:.08em}
+.bracket{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
+.round{display:flex;flex-direction:column;justify-content:space-around;gap:12px}
+.round h4{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.match{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px}
+.match .tm{display:flex;justify-content:flex-start;gap:10px;padding:3px 0}
+.match .seed{color:var(--dim);font-weight:800;width:22px}
+.match .nm{font-weight:600}
+.match.champ{border-color:rgba(232,255,58,.55);background:linear-gradient(180deg,rgba(232,255,58,.08),var(--panel))}
+.match.champ .nm{color:var(--volt);font-weight:800}
+
+}
+
+
+/* --- APPLE BREAKPOINT (iPhone ~390-430px) --- */
+@media(max-width:440px){
+  .wrap{padding:0 16px}
+  nav .wrap{gap:8px;min-height:56px}
+  nav a.lnk{padding:10px 15px;font-size:11px}
+  #leaguesearch{width:150px;padding:9px 14px}
+  #leaguesearch:focus{width:170px}
+  .hero{padding:56px 0 44px}
+  .hero p.sub{font-size:14.5px}
+  .eyebrow{font-size:10px;padding:5px 12px;letter-spacing:.16em}
+  .band .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none;border-top:1px solid var(--line);padding:20px 14px}
+  .stat .n{font-size:28px}
+  section{padding:48px 0 8px}
+  .lede{font-size:13.5px}
+  .card{padding:18px}
+  .sp{padding:16px}
+  .sp li{flex-wrap:wrap}
+  .sp li .p{width:100%;text-align:left;color:var(--volt);font-size:11px;margin-top:2px}
+  .callout{padding:16px}
+  .tl{margin-left:4px;padding-left:20px}
+  .tl .ev:before{left:-27px}
+  table{font-size:12px}
+  td,th{padding:7px 9px}
+  .tbl-title{font-size:12.5px}
+  .scn .card .big{font-size:26px}
+  h2{margin-bottom:12px}
+  footer{font-size:10.5px}
+}
+footer{margin-top:80px;padding:34px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:11.5px}
+footer b{color:var(--mut)}
+.small-note{font-size:11.5px;color:var(--dim);margin-top:14px}
+
+section{padding-top:38px}
+.pagenav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 10px}
+.pagenav a{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:11px 20px;text-decoration:none;background:var(--panel)}
+.pagenav a:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:34px 0 10px}
+.tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 18px;text-decoration:none;transition:all .15s}
+.tile:hover{border-color:rgba(255,77,28,.55);transform:translateY(-2px)}
+.tile .tn{font-size:14px;font-weight:900;color:var(--txt);text-transform:uppercase}
+.tile .td2{font-size:10.5px;color:var(--dim);margin-top:5px;line-height:1.45}
+.tile .arrow{color:var(--blaze);font-weight:900;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <span class="logo">TN&nbsp;ELITE&nbsp;<span>SL</span></span>
+  <a class="lnk" href="index.html">Home</a>
+  <a class="lnk" href="model.html">The Model</a>
+  <a class="lnk" href="calendar.html">Calendar</a>
+  <a class="lnk" href="schedule.html">Schedule</a>
+  <a class="lnk" href="rules.html">Rules</a>
+  <a class="lnk" href="budget.html">Budget</a>
+  <a class="lnk" href="broadcast.html">Broadcast</a>
+  <a class="lnk" href="sponsors.html">Sponsors</a>
+  <a class="lnk" href="revenue.html">Revenue</a>
+  <a class="lnk" href="housing.html">Housing</a>
+  <a class="lnk active" href="million.html">The Million</a>
+  <a class="lnk" href="team.html">The Team</a>
+  <a class="lnk" href="countdown.html">Countdown</a>
+</div></nav>
+<section id="fundraising"><div class="wrap">
+  <div class="kick">Bread &amp; Butter</div>
+  <h2>The Million-Dollar Playbook</h2>
+  <p class="lede">Stop aiming at $500K. Stack the sources below and <b>$1M is a plan, not a stretch</b> — the conservative column alone clears ~$975K, and it changes what Year 1 looks like: arena nights every week, owned broadcast rig, a real NIL pool, zero corners cut. Sequenced right, each wave sells the next.</p>
+
+  <div class="tblcard">
+    <div class="tbl-title">The Stack <span>· ten sources, biggest first</span></div>
+    <table>
+      <tr><th>#</th><th>Source</th><th class="r">Conservative</th><th class="r">Aggressive</th><th>The play</th></tr>
+      <tr><td>1</td><td><b>Founding Team Owners</b></td><td class="r">$240,000</td><td class="r">$400,000</td><td class="mut">The Big3/TBT move: sell "ownership" of each of the 16 franchises at $15–25K to local business owners, athletes, music-industry names. They get naming input, courtside hospitality, merch rev-share, a founders plaque — and first refusal if teams ever become real equity. Owners recruit each other; nobody wants to be the one without a team.</td></tr>
+      <tr><td>2</td><td><b>Angel / athlete equity round</b></td><td class="r">$250,000</td><td class="r">$500,000</td><td class="mut">A SAFE round selling the Full Vision (the $2.9M property), not Year 1. Unrivaled's cap table is athletes + operators; Nashville has NBA/WNBA alumni, Titans/Preds players, and country-music money who all know the AAU problem personally.</td></tr>
+      <tr><td>3</td><td><b>Founding partners (4–6 brands)</b></td><td class="r">$100,000</td><td class="r">$180,000</td><td class="mut">$20–30K each, category-exclusive, "Founding Partner — est. 2027" forever, first-refusal renewals. Scarcity + legacy is the pitch.</td></tr>
+      <tr><td>4</td><td><b>Community investment round (Reg CF)</b></td><td class="r">$100,000</td><td class="r">$250,000</td><td class="mut">Regulated crowdfunding (Wefunder/StartEngine-style) legally lets fans invest up to $5M/yr. "Own a piece of Tennessee's league" — Green Bay Packers energy, and every investor becomes a season-long evangelist.</td></tr>
+      <tr><td>5</td><td><b>Title partner — 3-year prepay</b></td><td class="r">$75,000</td><td class="r">$150,000</td><td class="mut">Sell the title as a 3-year deal with Year 1 paid upfront at a discount. Sponsors love locked pricing on a property about to grow; you love the cash now.</td></tr>
+      <tr><td>6</td><td><b>Founding memberships / seat licenses</b></td><td class="r">$70,000</td><td class="r">$150,000</td><td class="mut">200 "Day One" memberships at $350–750: lifetime courtside priority, founders wall in the arena, exclusive merch drop, draft-night invite. Fans buy identity, not tickets.</td></tr>
+      <tr><td>7</td><td><b>Grants &amp; institutional money</b></td><td class="r">$50,000</td><td class="r">$150,000</td><td class="mut">Nashville Sports Council / Visit Music City event funds (room-nights = their mandate), community foundations, retailer youth-sports foundations, Metro youth programs — all via the 501(c)(3) arm. Free money most operators never apply for.</td></tr>
+      <tr><td>8</td><td><b>Draft Night Gala + paddle raise</b></td><td class="r">$40,000</td><td class="r">$100,000</td><td class="mut">Sell draft night twice: public spectacle + a $250/plate VIP experience — courtside dinner, meet the draft class, live paddle raise for the scholarship fund.</td></tr>
+      <tr><td>9</td><td><b>Celebrity + college alumni game</b></td><td class="r">$25,000</td><td class="r">$75,000</td><td class="mut">One August exhibition: Nashville celebrities + TN college stars home for summer. Ticketed, streamed, sponsored — it sells itself and doubles as a league commercial.</td></tr>
+      <tr><td>10</td><td><b>Sponsor-a-Player + corporate match</b></td><td class="r">$25,000</td><td class="r">$75,000</td><td class="mut">"$400 covers one kid's entire summer" is a devastatingly effective ask — run it through employers with matching-gift programs and churches/civic clubs to double every dollar.</td></tr>
+      <tr class="tot"><td></td><td>TOTAL RAISED</td><td class="r">~$975,000</td><td class="r">~$2,030,000</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3 style="color:var(--volt)">Plus the invisible line: in-kind</h3><p>Host hotel rooms, dealership vehicles, team meals, printing, and production trade don't show up as cash — but $100K+ of budget relief hits the bottom line exactly the same. Every in-kind deal you close makes the cash stack go further. As a media company, Diamond House can trade content production for almost anything.</p></div>
+    <div class="card hot"><h3>Sequencing is the whole game</h3><p><b style="color:var(--txt)">Wave 1:</b> Founding Team Owners — scarcity sells itself and gives you ~$300K of social proof. <b style="color:var(--txt)">Wave 2:</b> title + founding partners, priced off that momentum ("the owners are already in"). <b style="color:var(--txt)">Wave 3:</b> the equity round, pitched with $500K+ of commitments as traction. <b style="color:var(--txt)">Wave 4:</b> community round + memberships at brand launch, when hype peaks. Each wave is the proof for the next one.</p></div>
+  </div>
+</div></section>
+<div class="wrap"><div class="pagenav"><a href="housing.html">← Housing</a><a href="team.html">The Team →</a></div></div>
+</body>
+</html>
