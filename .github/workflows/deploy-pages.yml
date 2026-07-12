@@ -37,6 +37,9 @@ jobs:
           </script></body></html>
           HTML
           touch out/.nojekyll
+          # TN Elite Summer League site at /league/ (carousel home + all detail pages)
+          mkdir -p out/league
+          cp tn-elite-summer-league/site/*.html out/league/
       - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
