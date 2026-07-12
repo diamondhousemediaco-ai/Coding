@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — The Team · Org Chart & Job Descriptions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1150px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:10px;min-height:60px;padding-top:9px;padding-bottom:9px;overflow-x:auto;white-space:nowrap}
+nav .logo{font-weight:900;font-size:14px;letter-spacing:.06em;margin-right:6px}
+nav .logo span{color:var(--blaze)}
+nav a{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);text-decoration:none;transition:all .15s}
+nav a:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+header{padding:52px 0 26px}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(232,255,58,.35);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+h1{font-size:clamp(30px,5.4vw,58px);font-weight:900;text-transform:uppercase;line-height:1.02}
+h1 span{color:var(--blaze)}
+header p{margin-top:14px;color:var(--mut);max-width:820px;font-size:14.5px}
+header p b{color:var(--txt)}
+section{padding:52px 0 6px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:8px}
+h2{font-size:clamp(24px,3.4vw,36px);font-weight:900;text-transform:uppercase;margin-bottom:16px}
+.lede{color:var(--mut);max-width:820px;font-size:14px;margin-bottom:26px}
+.lede b{color:var(--txt)}
+/* org chart */
+.orgchart{display:flex;flex-direction:column;align-items:center;gap:0}
+.node{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 20px;text-align:center;min-width:200px}
+.node .r{font-size:13px;font-weight:800}
+.node .s{font-size:10px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.node.top{border-color:rgba(255,77,28,.6);background:linear-gradient(180deg,rgba(255,77,28,.12),var(--panel))}
+.vline{width:2px;height:22px;background:var(--line)}
+.tier{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;width:100%;padding-top:22px;border-top:2px solid var(--line);margin-top:0}
+.tier .node{min-width:0;padding:12px 10px}
+.tier .node .r{font-size:11.5px}
+.tier .node .under{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:9.5px;color:var(--dim);line-height:1.5}
+/* JD cards */
+.jd{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 26px 20px;margin-bottom:20px}
+.jd.hot{border-color:rgba(255,77,28,.5)}
+.jdhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.jd h3{font-size:19px;font-weight:900;text-transform:uppercase}
+.jd .meta{text-align:right;font-size:11px;color:var(--dim);font-weight:600;line-height:1.6}
+.jd .meta b{color:var(--volt);font-size:13px}
+.jd .mission{font-size:13px;color:var(--mut);margin:6px 0 16px;max-width:900px}
+.jd .mission b{color:var(--txt)}
+.jdgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+@media(max-width:820px){.jdgrid{grid-template-columns:1fr}}
+.jd h4{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blaze);margin:12px 0 6px}
+.jd ul{list-style:none}
+.jd li{font-size:12px;color:var(--txt);padding:4px 0 4px 16px;position:relative;line-height:1.5}
+.jd li:before{content:"▸";position:absolute;left:0;color:var(--blaze);font-weight:900;font-size:10px;top:6px}
+.jd li b{color:var(--volt);font-weight:700}
+.jd .side{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px}
+.jd .side h4{margin-top:0;color:var(--volt)}
+.jd .side p{font-size:11.5px;color:var(--mut);line-height:1.55;margin-bottom:10px}
+.jd .side p b{color:var(--txt)}
+.pill{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.pill.orange{background:rgba(255,77,28,.16);color:var(--blaze);border:1px solid rgba(255,77,28,.4)}
+.pill.volt{background:rgba(232,255,58,.12);color:var(--volt);border:1px solid rgba(232,255,58,.35)}
+/* tables */
+.tblcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 8px 6px;overflow-x:auto;margin-bottom:14px}
+.tbl-title{font-size:13.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:10px 12px 4px}
+.tbl-title span{color:var(--blaze)}
+.tbl-title small{display:block;font-weight:600;font-size:10.5px;color:var(--dim);text-transform:none}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+td{padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.mut{color:var(--mut);font-size:11.5px}
+tr.tot td{font-weight:800;border-top:2px solid var(--line)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:920px){.twocol{grid-template-columns:1fr}}
+.callout{border:1px solid rgba(232,255,58,.4);background:linear-gradient(180deg,rgba(232,255,58,.07),transparent);border-radius:14px;padding:18px 20px;margin:16px 0}
+.callout .t{font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:var(--volt);margin-bottom:5px}
+.callout p{font-size:12.5px;color:var(--mut)}
+.callout p b{color:var(--txt)}
+footer{margin-top:70px;padding:28px 0 56px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="logo">TN&nbsp;ELITE&nbsp;<span>SL</span></span>
+  <a href="#chart">Org Chart</a>
+  <a href="#front">Front Office</a>
+  <a href="#bball">Basketball</a>
+  <a href="#gameday">Game Day</a>
+  <a href="#broadcast">Broadcast</a>
+  <a href="#comp">Comp Summary</a>
+  <a href="#hiring">Hiring Order</a>
+</div></nav>
+
+<header><div class="wrap">
+  <span class="eyebrow">The Team · Year 1 Staffing Plan &amp; Job Descriptions</span>
+  <h1>Who Runs<br><span>The League.</span></h1>
+  <p>Every role it takes to run Season 1 like a pro property: a lean 8-person front office, 32+ coaches, college officiating crews, and full game-day and broadcast teams. Each front-office job below is a real job description — mission, responsibilities, first 90 days, KPIs, who to hire, and where to find them in Nashville. <b>Year 1 comp shown; Full Vision (Yr 3+) takes the core full-time at ~$710K payroll.</b></p>
+</div></header>
+
+<section id="chart"><div class="wrap">
+  <div class="kick">The Shape</div>
+  <h2>Org Chart — Year 1</h2>
+  <div class="orgchart">
+    <div class="node top"><div class="r">Commissioner / League President</div><div class="s">Founder · Public Face · Final Authority</div></div>
+    <div class="vline"></div>
+    <div class="tier">
+      <div class="node"><div class="r">Dir. Basketball Operations</div><div class="s">The Product</div><div class="under">16 HC · 16 AC · interim pool · officiating coordinator · stats crew</div></div>
+      <div class="node"><div class="r">Dir. Media &amp; Content</div><div class="s">The Megaphone</div><div class="under">Broadcast crews · commentators · clip cutters · photographers · league pass</div></div>
+      <div class="node"><div class="r">Dir. Partnerships &amp; Revenue</div><div class="s">The Money</div><div class="under">Sponsor pipeline · activation · ticketing · merch · team owners program</div></div>
+      <div class="node"><div class="r">Dir. Events &amp; Logistics</div><div class="s">The Building</div><div class="under">Venue · game-day staff · security · vendors · hospitality · trainers (contracted)</div></div>
+      <div class="node"><div class="r">Compliance &amp; Player Welfare</div><div class="s">The Shield</div><div class="under">TSSAA/NCAA · eligibility · SafeSport · background checks · parent comms</div></div>
+      <div class="node"><div class="r">Finance &amp; Admin</div><div class="s">The Books</div><div class="under">Bookkeeping · payroll/stipends · registrations · insurance · 501(c)(3) records</div></div>
+    </div>
+  </div>
+  <div class="callout"><div class="t">The design principle</div>
+  <p>Six owners, not sixty helpers. Every function in the league reports up through exactly one director, and every director owns a number: <b>Basketball owns competition integrity, Media owns audience, Partnerships owns revenue, Events owns the night, Compliance owns zero-incidents, Finance owns the books.</b> Coordinators and interns (Belmont · Lipscomb · MTSU · TSU sport-management and broadcasting programs) plug in under all six — a built-in talent pipeline that also makes the league part of Nashville's campus fabric.</p></div>
+</div></section>
+
+<section id="front"><div class="wrap">
+  <div class="kick">Eight Roles · Full Job Descriptions</div>
+  <h2>Front Office</h2>
+
+  <div class="jd hot">
+    <div class="jdhead"><h3>Commissioner / League President <span class="pill orange">Founder</span></h3>
+      <div class="meta"><b>$25K Year 1</b> · founder stipend<br>Full Vision: $120K full-time<br>Reports to: Founding owners / board</div></div>
+    <p class="mission"><b>Mission:</b> Be the league. Set the vision, close the money, own the relationships that decide whether this becomes Tennessee's premier basketball property — and be the face families, sponsors, and media trust.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>Revenue leadership:</b> personally close the title partner, founding partners, and Founding Team Owners — the Commissioner sells the top of the pyramid, Partnerships runs the pipeline underneath</li>
+          <li><b>Institutional relationships:</b> Belmont administration, TSSAA, NCAA/ECAG, Nashville Sports Council, city officials — the rooms only the founder can be in</li>
+          <li><b>Media &amp; investor face:</b> every interview, every investor pitch, every draft-night podium moment</li>
+          <li><b>Final authority:</b> rulebook approval, discipline decisions, brand standards, budget sign-off</li>
+          <li><b>Culture:</b> the "legit, player-first, Sundays-off" promise is enforced from this chair or nowhere</li>
+        </ul>
+        <h4>First 90 Days (Jul–Sep 2026)</h4>
+        <ul>
+          <li>Form entity + 501(c)(3); send TSSAA letter; open Belmont negotiation personally</li>
+          <li>Verbally commit 5–6 Founding Team Owners before public launch</li>
+          <li>Lock the name/brand; front the announcement + hype video</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>Title + founding partners closed by Dec 2026 · $500K+ of the Million stack committed by Feb 2027 · Belmont contract signed by Sep 2026 · zero governance surprises</p>
+        <h4>Profile</h4>
+        <p>Founder energy with seller's discipline. Comfortable on camera, credible in a university boardroom and a high-school gym on the same day.</p>
+        <h4>This is you</h4>
+        <p>Diamond House principals hold this seat. The stipend is deliberately modest — the founder's real comp is the equity.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Director of Basketball Operations</h3>
+      <div class="meta"><b>$30K Year 1</b> · seasonal (Jan–Aug)<br>Full Vision: $90K full-time<br>Reports to: Commissioner</div></div>
+    <p class="mission"><b>Mission:</b> Own the product on the floor. If the basketball isn't real — real competition, real officiating, real development — nothing else matters. This person makes the "highest stage before college" claim true.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>Combine &amp; Draft:</b> design tryout evaluation criteria, run all five regional stops, build combine testing protocol, run the draft board and draft-night operations</li>
+          <li><b>Competition:</b> the master schedule (Thu/Sat games, Mon/Tue practices), standings, seeding/tiebreakers, playoff administration, trade-window rules</li>
+          <li><b>Officials:</b> recruit and contract 12–15 college (D2) officials through coordinator relationships; assign 3-man crews to all 156+ games; run mid-summer evaluations</li>
+          <li><b>Coaches:</b> run coach recruitment/vetting with the Commissioner; enforce the no-own-school-players draft rule; manage the interim coach pool</li>
+          <li><b>Player development standard:</b> require per-player development plans from every staff; publish the stats package every game night</li>
+        </ul>
+        <h4>First 90 Days (from Jan 2027)</h4>
+        <ul>
+          <li>All 32 coaches signed and announced; officiating letters of intent converted to contracts</li>
+          <li>Tryout registration live statewide; evaluation rubric locked</li>
+          <li>Rulebook finalized with the officiating coordinator (format, shot clock, bonus, point-diff cap)</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>100% of games with full 3-man college crews · zero eligibility incidents · schedule runs on time all summer · 600 tryout registrations · every team fields 10 players both seasons</p>
+        <h4>Profile</h4>
+        <p>Former college assistant / DOBO, or a decorated HS coach with administrative chops. Organized enough to run a draft, respected enough to tell a head coach no.</p>
+        <h4>Where to find them</h4>
+        <p>Belmont/Lipscomb/TSU/Vanderbilt basketball ops alumni; TN college assistants between jobs; the D2 officiating coordinators you already know will also point you to the right ops people.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Director of Media &amp; Content</h3>
+      <div class="meta"><b>$30K Year 1</b> · seasonal (Sep–Aug)<br>Full Vision: $85K full-time<br>Reports to: Commissioner</div></div>
+    <p class="mission"><b>Mission:</b> Build the audience before the league exists, then turn every game night into content. Unrivaled's $340M valuation is a media story, not a basketball story — this chair is why.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>The content engine:</b> daily social output from Sep 2026 launch onward — announcement, tryout tour, golden tickets, draft, grad series, all-summer highlights</li>
+          <li><b>Broadcast:</b> book and manage crews for 16 marquee games (Belmont/MTSU pipeline + Nashville freelance bench); run the streaming stack for all 156+ games; develop commentary talent ($200–400/game)</li>
+          <li><b>Same-night highlights:</b> every game clipped and posted before midnight; player-of-the-night graphics; weekly top-10</li>
+          <li><b>League pass:</b> own the paid streaming product, pricing, and subscriber growth</li>
+          <li><b>Sponsor content:</b> deliver every branded segment Partnerships sells ("Play of the Night by ___", mic'd-up series, combine station graphics)</li>
+          <li><b>Press:</b> local TV/radio/print relationships; draft night and championship media credentials</li>
+        </ul>
+        <h4>First 90 Days (from Sep 2026)</h4>
+        <ul>
+          <li>Brand launch + hype video shipped; social channels live with daily cadence</li>
+          <li>Broadcast plan costed and crewed for opening night; commentary auditions held</li>
+          <li>Content calendar built through the draft</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>Every game streamed · clips live same night 100% of games · 25K+ combined followers by first tip · league pass subscriber target · sponsor content delivered on schedule</p>
+        <h4>Profile</h4>
+        <p>A producer-editor hybrid who has shipped daily sports or music content. Must run a crew AND cut a reel.</p>
+        <h4>The Diamond House seat</h4>
+        <p>This is your home-field advantage — Diamond House Media can staff this function directly, converting a $30K salary line into an owned capability (and the production spend into your own rig and crews).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Director of Partnerships &amp; Revenue</h3>
+      <div class="meta"><b>$25K Year 1 + 10% commission</b> on new sponsor cash<br>Full Vision: $90K + commission<br>Reports to: Commissioner</div></div>
+    <p class="mission"><b>Mission:</b> Sell the sponsor universe and keep every partner so happy they renew before the summer ends. The Commissioner closes the crown jewels; this chair builds and runs the machine underneath.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>Pipeline:</b> 100+ qualified Nashville/TN prospects across the category map (banks, health systems, autos, QSR, HVAC, tutoring…); run the 4-tier packaging (Title / Founding / Official / Game Night)</li>
+          <li><b>Closing:</b> own Official Partner and Game Night tiers end-to-end; support Commissioner on Title/Founding; run the Founding Team Owner sales process</li>
+          <li><b>Activation:</b> every deliverable in every deal tracked and delivered — signage, PA reads, stream ads, booths, content segments (with Media)</li>
+          <li><b>Ticketing &amp; merch:</b> pricing, onsales, group sales, season memberships, merch program economics</li>
+          <li><b>Renewals:</b> mid-summer partner reviews with impression data; renewal paper in hands before championship weekend</li>
+        </ul>
+        <h4>First 90 Days (from Oct 2026)</h4>
+        <ul>
+          <li>Rate card + category map finalized; 50 first meetings booked off the announcement</li>
+          <li>4+ Official Partners closed; Founding Owner program at 10+ of 16 sold</li>
+          <li>Activation tracker live for every signed deal</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>$210K+ Year 1 sponsorship (base case) · 16/16 Founding Team Owners placed · 100% activation delivery · 70%+ renewal commitments by Aug 31 · gate revenue target $120K</p>
+        <h4>Profile</h4>
+        <p>A closer with a local book: radio/TV ad sales, minor-league or college sports sponsorship sales, chamber-of-commerce networks. Commission structure attracts the right ones.</p>
+        <h4>Where to find them</h4>
+        <p>Nashville sports properties (Sounds, Preds corporate sales alumni), local media ad sales, Nashville Sports Council network.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Director of Events &amp; Logistics</h3>
+      <div class="meta"><b>$25K Year 1</b> · seasonal (Feb–Aug)<br>Full Vision: $75K full-time<br>Reports to: Commissioner</div></div>
+    <p class="mission"><b>Mission:</b> Make every night feel big-league and run on time. Doors, courts, staff, security, medical, hospitality — 44 event days without a dropped ball.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>Venue:</b> execute the Belmont contract day-to-day — court schedules, arena conversions on marquee days, load-in/out with the broadcast crew</li>
+          <li><b>Game-day staffing:</b> hire and schedule scorekeepers, clock operators, PA/DJ, gate staff, and security for every event day ($800/day crew budget)</li>
+          <li><b>Medical:</b> contract certified athletic trainers for 100% of event days (ECAG requirement); emergency action plan per venue</li>
+          <li><b>Tentpoles:</b> run the combine, Draft Night, Fan Fest Eve, All-Star Saturdays, Championship Saturdays, and Summer Cup Night as produced events with run-of-shows</li>
+          <li><b>Vendors &amp; hospitality:</b> concessions, merch stands, host-hotel logistics, VIP/suite service on marquee nights, team meals on doubleheader Saturdays</li>
+        </ul>
+        <h4>First 90 Days (from Feb 2027)</h4>
+        <ul>
+          <li>All five tryout venues contracted and staffed; game-day staff hired and trained</li>
+          <li>Athletic trainer coverage contracted for the full calendar</li>
+          <li>Draft Night run-of-show locked with Media; security plan approved</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>Doors on time 100% of nights · zero uncovered trainer slots · incident-free summer · event-day costs on budget · tentpole events executed to run-of-show</p>
+        <h4>Profile</h4>
+        <p>An operations pro from live events — sports, concerts, or festivals. Nashville is full of tour/production managers who run far bigger nights than this.</p>
+        <h4>Where to find them</h4>
+        <p>Music-industry production networks, Belmont/Lipscomb athletics event staff, Bridgestone/Ascend event-ops alumni.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Compliance &amp; Player Welfare Coordinator <span class="pill volt">Part-time</span></h3>
+      <div class="meta"><b>$12K Year 1</b> · part-time (Oct–Aug)<br>Full Vision: $65K full-time<br>Reports to: Commissioner</div></div>
+    <p class="mission"><b>Mission:</b> Keep the league bulletproof. Every adult vetted, every player eligible, every rule followed — so no family, school, or governing body ever has a reason to doubt the "legit" claim.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>NCAA/ECAG:</b> operator registration, event certification filing (Dec deadline discipline), BBCS athlete/coach registration drives, live-period compliance on marquee weekends (coach seating, credentials)</li>
+          <li><b>TSSAA:</b> maintain the written ruling file; enforce the no-own-school-players rule at the draft; NIL education for players and parents (no school marks, no coach facilitation)</li>
+          <li><b>Safety stack:</b> background checks + SafeSport-style training for 100% of adults before first contact with players; insurance certificates current with NCAA as additional insured</li>
+          <li><b>Eligibility:</b> player files (age, school, transcripts where needed), roster verification each season</li>
+          <li><b>Parent &amp; school comms:</b> the official channel for questions, concerns, and the schedule promises (Sundays off, AP blackout, grad season untouched)</li>
+        </ul>
+        <h4>First 90 Days (from Oct 2026)</h4>
+        <ul>
+          <li>ECAG file opened, USAB Gold License process mapped for all future coaches</li>
+          <li>Background-check vendor + SafeSport training platform contracted</li>
+          <li>Parent handbook drafted (rules, safety, NIL, calendar promises)</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>NCAA certification granted on first filing · 100% adults screened before access · zero eligibility/compliance incidents · parent handbook in every family's hands by draft night</p>
+        <h4>Profile</h4>
+        <p>Detail-obsessed: a compliance coordinator from a college athletic department, a paralegal who loves sports, or a retired AD.</p>
+        <h4>Where to find them</h4>
+        <p>Mid-major compliance office alumni (Belmont, Lipscomb, TSU, Austin Peay), TSSAA-connected retired administrators.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Finance &amp; Admin <span class="pill volt">Fractional</span></h3>
+      <div class="meta"><b>$8K Year 1</b> · fractional bookkeeper/CPA<br>Full Vision: $65K full-time ops manager<br>Reports to: Commissioner</div></div>
+    <p class="mission"><b>Mission:</b> Clean books, paid people, current insurance. A league asking sponsors for six figures and families for trust must have unimpeachable finances from day one.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li><b>Books:</b> monthly close across the LLC and the 501(c)(3) arm (kept strictly separate); budget-vs-actual report to the Commissioner monthly</li>
+          <li><b>Payables &amp; payroll:</b> coach stipends, officials' game checks (paid within 7 days — refs talk, and fast pay is how you keep the good ones), staff, vendors</li>
+          <li><b>Registrations &amp; fees:</b> tryout and season-fee processing, scholarship-fund waivers, refund policy administration</li>
+          <li><b>Risk:</b> insurance policies current; W-9s/1099s for every contractor; charitable-solicitation registration for the foundation</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>KPIs</h4>
+        <p>Officials and staff paid within 7 days all summer · monthly close by the 10th · zero surprise liabilities · clean year-one books that survive investor diligence</p>
+        <h4>Where to find them</h4>
+        <p>A Nashville small-business CPA firm on a monthly retainer — this does not need to be a hire in Year 1.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jd">
+    <div class="jdhead"><h3>Coordinators &amp; Interns (4–8) <span class="pill volt">Stipend Pool</span></h3>
+      <div class="meta"><b>$6K Year 1 pool</b> · semester stipends<br>Full Vision: $120K · 4–6 paid coordinators<br>Report to: their director</div></div>
+    <p class="mission"><b>Mission:</b> The league's engine room — and Nashville's best sports internship. Recruited each semester from Belmont, Lipscomb, MTSU, and TSU sport-management and broadcasting programs.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>The Roles</h4>
+        <ul>
+          <li><b>Content coordinators (2–3, under Media):</b> clip cutting, social posting, graphics — the same-night highlight machine</li>
+          <li><b>Stats crew (2, under Basketball Ops):</b> live stats entry every game; box scores published same night</li>
+          <li><b>Team services (1–2, under Events):</b> team check-ins, locker rooms, meals, family liaison on game nights</li>
+          <li><b>Partnership coordinator (1, under Partnerships):</b> activation checklists, sponsor game-night hosting</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>The pitch to students</h4>
+        <p>Real broadcast reps, real front-office reps, a credit line on a real property — and the leagues, teams, and stations that hire in this town will all be in the building.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="bball"><div class="wrap">
+  <div class="kick">On The Floor</div>
+  <h2>Basketball Staff</h2>
+  <div class="jd">
+    <div class="jdhead"><h3>Head Coach <span class="pill orange">×16</span></h3>
+      <div class="meta"><b>$3,500/summer</b> (Full Vision $8,000)<br>Reports to: Dir. Basketball Operations</div></div>
+    <p class="mission"><b>Mission:</b> Coach a drafted team like a college program for ten weeks — real practices, real film, real development — and send every kid back to their school better than they arrived.</p>
+    <div class="jdgrid">
+      <div>
+        <h4>Core Responsibilities</h4>
+        <ul>
+          <li>Run the weekly rhythm: Monday/Tuesday 90-minute practice, optional Wednesday film, two games a week — <b>~20 practices and 18–23 games across the summer</b></li>
+          <li>Build a per-player development plan at the draft; deliver a written development report to each family at season's end (the anti-AAU receipt)</li>
+          <li>Draft-night participation: build the board, make the picks, wear the brand</li>
+          <li>Uphold league standards: bench conduct with college officials, equal-development rotation floors in regular season (playoffs are earned minutes), media availability after marquee games</li>
+          <li><b>Hard rule:</b> never rostered with players from your own school — enforced at the draft</li>
+        </ul>
+        <h4>Selection Criteria</h4>
+        <ul>
+          <li>College assistants and former pros first; decorated HS coaches welcome (cross-school only); skills trainers with team-coaching résumés considered</li>
+          <li>USA Basketball Gold License + background check + SafeSport training required before first practice</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h4>Why they say yes</h4>
+        <p>Streamed games with commentary = a public coaching reel · college staffs courtside on live-period weekends · a real draft, real standings, real championship · paid, unlike most summer gigs.</p>
+        <h4>Where to find them</h4>
+        <p>TN college assistant ranks (all levels), pro/overseas alumni back home in Nashville-Memphis-Knoxville, and the state's best HS coaches looking to coach elite talent without recruiting headaches.</p>
+      </div>
+    </div>
+  </div>
+  <div class="twocol">
+    <div class="jd" style="margin-bottom:14px">
+      <div class="jdhead"><h3 style="font-size:16px">Assistant Coach <span class="pill orange">×16</span></h3>
+        <div class="meta"><b>$1,750/summer</b> (FV $4,000)</div></div>
+      <p class="mission" style="margin-bottom:8px">One per team, hired with the head coach. Owns scouting the next opponent, running development stations in practice, and bench organization on game nights. Same licensing/screening stack as head coaches. The league's HC succession pipeline.</p>
+    </div>
+    <div class="jd" style="margin-bottom:14px">
+      <div class="jdhead"><h3 style="font-size:16px">Interim Coach Pool <span class="pill orange">4–6 floaters</span></h3>
+        <div class="meta"><b>$150–250/game</b> · league-wide</div></div>
+      <p class="mission" style="margin-bottom:8px">Fully licensed coaches with no team assignment who attend league nights ready to step in — illness, travel, ejection, emergency. No team ever goes uncoached; no game ever gets forfeited for a staffing gap. Between assignments they scout for the league's content and stats teams.</p>
+    </div>
+  </div>
+  <div class="jd">
+    <div class="jdhead"><h3 style="font-size:16px">Coordinator of Officials <span class="pill volt">Stipend · reports to Basketball Ops</span></h3>
+      <div class="meta"><b>~$4K stipend Year 1</b> (folded into officials budget)<br>Full Vision: dedicated part-time role</div></div>
+    <p class="mission" style="margin-bottom:8px">A working or recently retired college official who recruits the 12–15 D2 referee roster through coordinator networks, builds crew assignments for all 156+ games, runs a pre-season officials' clinic on the league rulebook (30-second clock, point-diff cap, bench standards), and grades crews mid-summer. This role is the guarantee behind the "no AAU refs, ever" promise — and your existing D2 relationships are exactly who fills it.</p>
+  </div>
+</div></section>
+
+<section id="gameday"><div class="wrap">
+  <div class="kick">Every Event Day</div>
+  <h2>Game-Day Crew</h2>
+  <div class="tblcard">
+    <div class="tbl-title">Per Event Day <span>· hired &amp; scheduled by Events &amp; Logistics</span><small>~44 event days in Year 1 · crew budget ~$800/day + trainers $450/day</small></div>
+    <table>
+      <tr><th>Role</th><th>Per Night</th><th>What They Own</th></tr>
+      <tr><td><b>Certified athletic trainer</b> (contracted)</td><td>1–2</td><td class="mut">Injury response, hydration protocol, emergency action plan — required at every facility by NCAA ECAG; sponsorable by an ortho/PT clinic</td></tr>
+      <tr><td><b>Scorekeeper + clock/shot-clock operators</b></td><td>2 per court</td><td class="mut">Official book, game clock, 30-second clock — trained on the league rulebook</td></tr>
+      <tr><td><b>PA announcer + DJ</b></td><td>1 + 1</td><td class="mut">Player intros, sponsor reads, music — the big-league sound of every night</td></tr>
+      <tr><td><b>Gate &amp; guest services</b></td><td>2–4</td><td class="mut">Ticket scanning, branded entry ("Doors by ___"), family seating, will-call</td></tr>
+      <tr><td><b>Security</b> (contracted)</td><td>2–4</td><td class="mut">Licensed staff; doubled on arena marquee nights and Draft Night</td></tr>
+      <tr><td><b>Stats crew</b> (interns)</td><td>2</td><td class="mut">Live entry, same-night box scores + play-by-play for the stats hub</td></tr>
+      <tr><td><b>Ball kids &amp; anthem program</b></td><td>4–6</td><td class="mut">Youth program (sponsorable) — future fans on the floor</td></tr>
+    </table>
+  </div>
+</div></section>
+
+<section id="broadcast"><div class="wrap">
+  <div class="kick">Marquee Nights</div>
+  <h2>Broadcast Crew</h2>
+  <div class="tblcard">
+    <div class="tbl-title">Per Marquee Game <span>· booked by Media &amp; Content</span><small>16 marquee games Year 1 at ~$3,500/game · standard streams run lean (operator + commentary)</small></div>
+    <table>
+      <tr><th>Role</th><th>Count</th><th>Market Rate</th><th>What They Own</th></tr>
+      <tr><td><b>Producer / Director</b></td><td>1</td><td class="r">$400–800/night</td><td class="mut">The show: run-of-show, camera cuts, sponsor segments landing on time</td></tr>
+      <tr><td><b>Camera operators</b> (broadcast glass)</td><td>3–4</td><td class="r">$300–500/night</td><td class="mut">Manned broadcast cameras — game, tight, slash, baseline</td></tr>
+      <tr><td><b>Replay / graphics operator</b></td><td>1–2</td><td class="r">$250–450/night</td><td class="mut">Instant replay, score bug, stat overlays, sponsor lower-thirds</td></tr>
+      <tr><td><b>Audio engineer</b></td><td>1</td><td class="r">$250–400/night</td><td class="mut">Commentary mix, court mics, PA feed</td></tr>
+      <tr><td><b>Commentary pair</b> (PxP + color)</td><td>2</td><td class="r">$200–400/game each</td><td class="mut">Developed from Belmont/Lipscomb/MTSU broadcasting programs + local radio — the league's voices</td></tr>
+      <tr><td><b>Highlight cutter</b> (intern/coordinator)</td><td>1</td><td class="r">stipend</td><td class="mut">Clips live before midnight, every game</td></tr>
+      <tr><td><b>Photographer</b></td><td>1</td><td class="r">$200–350/night</td><td class="mut">Editorial + sponsor-activation shots; the image library that sells Year 2</td></tr>
+    </table>
+  </div>
+  <div class="callout"><div class="t">Crew strategy</div>
+  <p><b>First call: the Belmont pipeline</b> (their games already stream on ESPN's platforms, produced on campus — negotiate crew access into the venue deal). <b>Second: Nashville's freelance broadcast bench</b> — this town is crawling with tour and TV crew between gigs. <b>Championship nights:</b> a crewed flypack rental ($5–10K/day) for the full-truck look. Diamond House staffs the producer chair and owns the reel.</p></div>
+</div></section>
+
+<section id="comp"><div class="wrap">
+  <div class="kick">The Payroll Picture</div>
+  <h2>Comp Summary</h2>
+  <div class="tblcard">
+    <div class="tbl-title">Year 1 vs Full Vision <span>· matches the budget model</span></div>
+    <table>
+      <tr><th>Role</th><th class="r">Year 1</th><th class="r">Full Vision</th></tr>
+      <tr><td>Commissioner / President</td><td class="r">$25,000</td><td class="r">$120,000</td></tr>
+      <tr><td>Dir. Basketball Operations</td><td class="r">$30,000</td><td class="r">$90,000</td></tr>
+      <tr><td>Dir. Media &amp; Content</td><td class="r">$30,000</td><td class="r">$85,000</td></tr>
+      <tr><td>Dir. Partnerships &amp; Revenue (+10% commission)</td><td class="r">$25,000</td><td class="r">$90,000</td></tr>
+      <tr><td>Dir. Events &amp; Logistics</td><td class="r">$25,000</td><td class="r">$75,000</td></tr>
+      <tr><td>Compliance &amp; Player Welfare</td><td class="r">$12,000</td><td class="r">$65,000</td></tr>
+      <tr><td>Finance &amp; Admin</td><td class="r">$8,000</td><td class="r">$65,000</td></tr>
+      <tr><td>Coordinators &amp; interns</td><td class="r">$6,000</td><td class="r">$120,000</td></tr>
+      <tr class="tot"><td>Front office total</td><td class="r">$161,000</td><td class="r">$710,000</td></tr>
+      <tr><td>Head coaches (16)</td><td class="r">$56,000</td><td class="r">$128,000</td></tr>
+      <tr><td>Assistant coaches (16)</td><td class="r">$28,000</td><td class="r">$64,000</td></tr>
+      <tr><td>Interim pool + officiating coordinator</td><td class="r">$6,000</td><td class="r">$12,000</td></tr>
+      <tr class="tot"><td>Basketball staff total</td><td class="r">$90,000</td><td class="r">$204,000</td></tr>
+      <tr><td class="mut">Officials, trainers, game-day &amp; broadcast crews</td><td class="r mut">paid per game/day in budget</td><td class="r mut">same</td></tr>
+    </table>
+  </div>
+</div></section>
+
+<section id="hiring"><div class="wrap">
+  <div class="kick">Sequence Matters</div>
+  <h2>Hiring Order</h2>
+  <div class="tblcard">
+    <table>
+      <tr><th>#</th><th>When</th><th>Hire</th><th>Why this order</th></tr>
+      <tr><td>1</td><td class="time" style="color:var(--volt);font-weight:700">Sep 2026</td><td><b>Dir. Media &amp; Content</b></td><td class="mut">The announcement and content engine can't wait — audience is built before a game exists</td></tr>
+      <tr><td>2</td><td class="time" style="color:var(--volt);font-weight:700">Sep–Oct 2026</td><td><b>Dir. Basketball Operations</b></td><td class="mut">Coaches, officials, rulebook, tryouts — the longest lead-time relationships</td></tr>
+      <tr><td>3</td><td class="time" style="color:var(--volt);font-weight:700">Oct 2026</td><td><b>Dir. Partnerships &amp; Revenue</b></td><td class="mut">Hired into announcement momentum with a rate card ready to sell</td></tr>
+      <tr><td>4</td><td class="time" style="color:var(--volt);font-weight:700">Oct 2026</td><td><b>Compliance Coordinator</b> (PT) + <b>CPA retainer</b></td><td class="mut">ECAG December filing and clean books can't slip</td></tr>
+      <tr><td>5</td><td class="time" style="color:var(--volt);font-weight:700">Nov 2026</td><td><b>Coordinator of Officials</b></td><td class="mut">College coordinators assign summers early — lock the D2 roster before winter</td></tr>
+      <tr><td>6</td><td class="time" style="color:var(--volt);font-weight:700">Jan 2027</td><td><b>All 32 coaches + interim pool</b></td><td class="mut">Signed and announced as content, one by one</td></tr>
+      <tr><td>7</td><td class="time" style="color:var(--volt);font-weight:700">Feb 2027</td><td><b>Dir. Events &amp; Logistics</b></td><td class="mut">Tryout venues, game-day staff, trainer contracts — the execution window opens</td></tr>
+      <tr><td>8</td><td class="time" style="color:var(--volt);font-weight:700">Feb–Mar 2027</td><td><b>Interns/coordinators + game-day &amp; broadcast crews</b></td><td class="mut">Spring-semester recruiting from the four campus programs; crews booked off the master schedule</td></tr>
+    </table>
+  </div>
+  <div class="callout"><div class="t">One honest note on Year 1 comp</div>
+  <p>These are <b>believer salaries</b> — seasonal money for people who want to build something. The offer that makes them fair: a written path to the Full Vision full-time role ("you build it, you run it at $85–120K when it scales"), a title they keep, and public credit on a property Nashville will be watching. Equity or bonus points for directors who hit their KPIs are worth considering — it's cheaper than cash and binds the core team to Year 2.</p></div>
+</div></section>
+
+<footer><div class="wrap">
+  Comp figures match the Year 1 budget model ($161K front office · $90K basketball staff) and Full Vision (~$710K / $204K). Officials, athletic trainers, game-day and broadcast crews are costed per game/day in the budget, not on payroll. All roles require background checks; all player-facing roles require SafeSport-style training; all coaches require USA Basketball Gold Licenses for NCAA-certified events. Franchise and league names are working placeholders.
+</div></footer>
+
+</body>
+</html>

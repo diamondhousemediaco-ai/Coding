@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — Concept, Budget & Sponsorship Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,-apple-system,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+/* NAV — rounded tabs + search */
+nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1180px;display:flex;align-items:center;gap:10px;min-height:60px;padding-top:9px;padding-bottom:9px;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+nav .logo{font-weight:900;font-size:14px;letter-spacing:.06em;margin-right:6px;flex:0 0 auto}
+nav .logo span{color:var(--blaze)}
+nav a.lnk{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);transition:all .15s}
+nav a.lnk:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+nav a.lnk.active{color:#0B0B0D;background:var(--blaze);border-color:var(--blaze)}
+.searchwrap{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin-left:auto}
+#leaguesearch{background:var(--panel2);border:1px solid var(--line);border-radius:999px;color:var(--txt);font-family:'Poppins',sans-serif;font-size:12px;padding:8px 16px;width:190px;outline:none;transition:all .15s}
+#leaguesearch:focus{border-color:var(--blaze);width:240px}
+#leaguesearch::placeholder{color:var(--dim)}
+#searchcount{font-size:10px;font-weight:800;color:var(--volt);letter-spacing:.08em;min-width:70px;display:none}
+.searchdim{display:none !important}
+.searchhit{outline:1px solid rgba(255,77,28,.55);border-radius:10px}
+.section-hidden{display:none}
+/* HERO */
+.hero{padding:84px 0 60px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(700px 340px at 85% -10%, rgba(255,77,28,.22), transparent 60%),
+  radial-gradient(500px 280px at 5% 110%, rgba(232,255,58,.10), transparent 60%)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(232,255,58,.35);padding:6px 14px;border-radius:999px;margin-bottom:26px}
+h1{font-size:clamp(42px,7.5vw,86px);font-weight:900;line-height:.98;letter-spacing:-.02em;text-transform:uppercase}
+h1 .o{color:var(--blaze)}
+.hero p.sub{margin-top:22px;max-width:640px;color:var(--mut);font-size:16.5px;font-weight:500}
+.hero p.sub b{color:var(--txt)}
+/* STAT BAND */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.band .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+.stat{padding:26px 18px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat .n{font-size:34px;font-weight:900;line-height:1;color:var(--txt)}
+.stat .n em{font-style:normal;color:var(--blaze)}
+.stat .l{margin-top:6px;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+/* SECTIONS */
+section{padding:74px 0 10px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:10px}
+h2{font-size:clamp(28px,4vw,44px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.05;margin-bottom:14px}
+.lede{color:var(--mut);max-width:760px;font-size:15px;margin-bottom:34px}
+.lede b{color:var(--txt)}
+/* CARDS */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card h3{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.card p{font-size:13px;color:var(--mut)}
+.card .num{font-size:12px;font-weight:800;color:var(--volt);letter-spacing:.18em;margin-bottom:10px}
+.card.hot{border-color:rgba(255,77,28,.5);background:linear-gradient(180deg,rgba(255,77,28,.10),var(--panel) 55%)}
+/* TIMELINE */
+.tl{border-left:2px solid rgba(255,77,28,.45);margin-left:8px;padding-left:26px;display:flex;flex-direction:column;gap:22px}
+.tl .ev{position:relative}
+.tl .ev:before{content:"";position:absolute;left:-33px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blaze);box-shadow:0 0 0 4px rgba(255,77,28,.18)}
+.tl .d{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--volt)}
+.tl .t{font-weight:700;font-size:15.5px;margin:2px 0}
+.tl p{font-size:13px;color:var(--mut);max-width:680px}
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--txt)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+td.mut{color:var(--mut);font-size:12px}
+tr.tot td{font-weight:800;border-top:2px solid var(--line);font-size:14px}
+tr.gap td{font-weight:800;color:var(--blaze)}
+.tblcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 8px 4px;overflow-x:auto}
+.tbl-title{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:12px 12px 4px}
+.tbl-title span{color:var(--blaze)}
+/* PILLS + TAGS */
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.pill.orange{background:rgba(255,77,28,.16);color:var(--blaze);border:1px solid rgba(255,77,28,.4)}
+.pill.volt{background:rgba(232,255,58,.12);color:var(--volt);border:1px solid rgba(232,255,58,.35)}
+.pill.ice{background:rgba(94,234,212,.1);color:var(--ice);border:1px solid rgba(94,234,212,.35)}
+/* SCENARIO */
+.scn{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:18px}
+.scn .card .big{font-size:30px;font-weight:900;margin:4px 0}
+.scn .card .gapn{font-size:14px;font-weight:800;color:var(--blaze)}
+.scn .card .gapn.ok{color:var(--volt)}
+/* SPONSOR LISTS */
+.sp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.sp h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--volt);margin-bottom:4px}
+.sp .cat-note{font-size:11.5px;color:var(--dim);margin-bottom:12px}
+.sp ul{list-style:none}
+.sp li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12.5px}
+.sp li:last-child{border-bottom:none}
+.sp li .a{color:var(--txt);font-weight:500}
+.sp li .a small{display:block;color:var(--dim);font-weight:400;font-size:11px}
+.sp li .p{color:var(--mut);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* CALLOUT */
+.callout{border:1px solid rgba(232,255,58,.4);background:linear-gradient(180deg,rgba(232,255,58,.07),transparent);border-radius:14px;padding:22px;margin-top:20px}
+.callout .t{font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.08em;color:var(--volt);margin-bottom:6px}
+.callout p{font-size:13.5px;color:var(--mut)}
+.callout p b{color:var(--txt)}
+/* ORG */
+.org .role{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.org .role:last-child{border:none}
+.org .role .rn{font-weight:700}
+.org .role .rn small{display:block;font-weight:400;color:var(--dim);font-size:11.5px}
+.org .role .rc{white-space:nowrap;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
+/* SCHEDULE + BRACKET */
+.slate td.time{color:var(--volt);font-weight:700;white-space:nowrap}
+.slate td.tv{color:var(--blaze);font-weight:800;font-size:11px;letter-spacing:.08em}
+.bracket{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
+.round{display:flex;flex-direction:column;justify-content:space-around;gap:12px}
+.round h4{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.match{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px}
+.match .tm{display:flex;justify-content:flex-start;gap:10px;padding:3px 0}
+.match .seed{color:var(--dim);font-weight:800;width:22px}
+.match .nm{font-weight:600}
+.match.champ{border-color:rgba(232,255,58,.55);background:linear-gradient(180deg,rgba(232,255,58,.08),var(--panel))}
+.match.champ .nm{color:var(--volt);font-weight:800}
+
+/* --- SWAPPABLE TAB MODE (JS-enhanced; no-JS falls back to scroll) --- */
+body.tabsmode section, body.tabsmode header.hero, body.tabsmode .band{display:none}
+body.tabsmode.home-active .band{display:block}
+body.tabsmode section.activepanel, body.tabsmode header.hero.activepanel{display:block;animation:panelin .28s ease}
+body.tabsmode section{padding-top:34px}
+@keyframes panelin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+body.tabsmode.searching section{display:block;animation:none}
+body.tabsmode.searching header.hero{display:none}
+/* --- APPLE BREAKPOINT (iPhone ~390-430px) --- */
+@media(max-width:440px){
+  .wrap{padding:0 16px}
+  nav .wrap{gap:8px;min-height:56px}
+  nav a.lnk{padding:10px 15px;font-size:11px}
+  #leaguesearch{width:150px;padding:9px 14px}
+  #leaguesearch:focus{width:170px}
+  .hero{padding:56px 0 44px}
+  .hero p.sub{font-size:14.5px}
+  .eyebrow{font-size:10px;padding:5px 12px;letter-spacing:.16em}
+  .band .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none;border-top:1px solid var(--line);padding:20px 14px}
+  .stat .n{font-size:28px}
+  section{padding:48px 0 8px}
+  .lede{font-size:13.5px}
+  .card{padding:18px}
+  .sp{padding:16px}
+  .sp li{flex-wrap:wrap}
+  .sp li .p{width:100%;text-align:left;color:var(--volt);font-size:11px;margin-top:2px}
+  .callout{padding:16px}
+  .tl{margin-left:4px;padding-left:20px}
+  .tl .ev:before{left:-27px}
+  table{font-size:12px}
+  td,th{padding:7px 9px}
+  .tbl-title{font-size:12.5px}
+  .scn .card .big{font-size:26px}
+  h2{margin-bottom:12px}
+  footer{font-size:10.5px}
+}
+footer{margin-top:80px;padding:34px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:11.5px}
+footer b{color:var(--mut)}
+.small-note{font-size:11.5px;color:var(--dim);margin-top:14px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="logo">TN&nbsp;ELITE&nbsp;<span>SL</span></span>
+  <a class="lnk" href="#home">Home</a>
+  <a class="lnk" href="#model">Model</a>
+  <a class="lnk" href="#calendar">Calendar</a>
+  <a class="lnk" href="#schedule">Schedule</a>
+  <a class="lnk" href="#rules">Rules</a>
+  <a class="lnk" href="#budget">Budget</a>
+  <a class="lnk" href="#broadcast">Broadcast</a>
+  <a class="lnk" href="#sponsors">Sponsors</a>
+  <a class="lnk" href="#revenue">Revenue</a>
+  <a class="lnk" href="#hotels">Housing</a>
+  <a class="lnk" href="#fundraising">The Million</a>
+  <a class="lnk" href="#team">Team</a>
+  <a class="lnk" href="#roadmap">Countdown</a>
+  <span class="searchwrap"><span id="searchcount"></span><input id="leaguesearch" type="search" placeholder="Search the plan…" autocomplete="off"></span>
+</div></nav>
+
+<header class="hero" id="home"><div class="wrap">
+  <span class="eyebrow">Confidential Concept Plan · First Tip: Summer 2027</span>
+  <h1>Real Teams.<br>Real Draft.<br><span class="o">Real Stakes.</span></h1>
+  <p class="sub"><b>The highest stage you can play on before college.</b> An elite high-school summer league built like a pro property — combine, draft, two seasons, a national invitational — hosted at <b>Belmont University, Nashville</b>. Unrivaled's brand playbook. OTE's stagecraft. Tennessee's talent. The antidote to AAU fatigue.</p>
+</div></header>
+
+<div class="band"><div class="wrap">
+  <div class="stat"><div class="n">16</div><div class="l">Teams · 8 Boys / 8 Girls</div></div>
+  <div class="stat"><div class="n">160</div><div class="l">Drafted · 80 Best Girls + 80 Best Boys in TN</div></div>
+  <div class="stat"><div class="n">156<em>+</em></div><div class="l">Games, All Streamed</div></div>
+  <div class="stat"><div class="n">2×5</div><div class="l">Week Seasons</div></div>
+  <div class="stat"><div class="n">5,085</div><div class="l">Seat Arena (Curb Center)</div></div>
+</div></div>
+
+<section id="model"><div class="wrap">
+  <div class="kick">Why This Exists</div>
+  <h2>The Anti-AAU</h2>
+  <p class="lede">Families are burned out on pay-to-play chaos: $3,000–$5,000 summers, five games a day in silent gyms, no development, no stakes. We flip every one of those. <b>One venue. One draft. Real coaching. Every game streamed with names on the back.</b> Unrivaled proved the formula — a $35M raise to a $340M valuation in 18 months on the strength of branding, scarcity, and player-first economics. OTE proved the content engine works for high-school-age hoops. Nobody has built it at the state level. We go first.</p>
+  <div class="grid g4">
+    <div class="card hot"><div class="num">01</div><h3>Open Tryouts</h3><p>Statewide tryouts, ~600 athletes. $50 tryout fee — credited toward the season fee for everyone who makes it.</p></div>
+    <div class="card"><div class="num">02</div><h3>The Combine</h3><p>Top ~300 invited. Measurements, athletic testing, 5-on-5 evaluation. Combine fee waived for invitees. College-style content moment #1.</p></div>
+    <div class="card"><div class="num">03</div><h3>Draft Night</h3><p>Produced draft at the Curb Event Center. Caps, cameras, families, sponsors. The single most clippable night of the year.</p></div>
+    <div class="card"><div class="num">04</div><h3>Two Seasons + Nationals</h3><p>Two 5-week seasons with playoffs, then (Year 2–3) a 10-day national invitational — real programs from across the country.</p></div>
+  </div>
+  <div class="callout" style="border-color:rgba(255,77,28,.55);background:linear-gradient(180deg,rgba(255,77,28,.08),transparent)"><div class="t" style="color:var(--blaze)">The feeling — why this will play like college ball</div>
+  <p style="font-size:14px;line-height:1.7"><b>Eighty of the best girls basketball players in Tennessee. Eighty of the best boys. One building.</b> Every player in the gym earned the jersey through a tryout, a combine, and a draft — nobody bought a roster spot, so there are no passengers on the floor. When all ten players in a game are top-of-the-state talent, every screen gets fought over, every closeout is real, every possession is contested — <b>the game plays at college speed because everyone on the floor forces it to.</b> Add practices against the best, film like a program, standings that count, D2 whistles, an arena crowd, and a summer where the only way to shine is to beat somebody as good as you — and what you get isn't a summer league. <b>It's college basketball, arriving two years early.</b> Kids will leave better because the water they swam in all summer was deeper. That's the product. Everything else in this plan is just how we deliver it.</p></div>
+  <div class="callout"><div class="t">The player deal</div>
+  <p>One season fee — <b>~$400 all-in for the whole summer</b> (tryout fee credited, combine free for invitees) vs. $3,000+ for an AAU summer. Uniforms, coaching, streaming, stats, and trainer coverage included. Endgame (Full Vision): <b>$0 — fully sponsor-funded</b>. And because TSSAA has allowed high-school NIL since Dec 2022 (no cap), sponsors can legally pay <b>players</b> for content and appearances — no school marks, no school-coach facilitation.</p></div>
+  <div class="tblcard" style="margin-top:16px">
+    <div class="tbl-title">The Unrivaled Dossier <span>· what the blueprint pays — and the Year-2 jump</span><small>The escalation story investors need to see: a well-run launch reprices everything in 12 months</small></div>
+    <table>
+      <tr><th></th><th>Year 1 (2025)</th><th>Year 2 (2026)</th></tr>
+      <tr><td class="mut">Player pay</td><td>$8M pool · <b>$220K average</b> · six-figure minimum, all 36 players</td><td>Raises confirmed — "the business outperformed every metric" · Bueckers deal <b>&gt;$350K</b></td></tr>
+      <tr><td class="mut">Equity</td><td><b>Every player received equity</b> — 36 stars became 36 co-owners promoting the league</td><td>Equity continues · player pool 36 → 54 across 8 teams</td></tr>
+      <tr><td class="mut">Bonuses</td><td>1-on-1 tourney: $200K to the winner · championship team: $50K/player</td><td>Championship bonus <b>doubled to $100K</b>/player</td></tr>
+      <tr><td class="mut">Life logistics</td><td colspan="2">Single-site Miami campus: league-provided housing, on-site childcare, meals, and training — friction removed is why the stars said yes</td></tr>
+      <tr><td class="mut">Coaches</td><td colspan="2">Big names (Teresa Weatherspoon, Phil Handy) on ~10-week seasonal contracts — comp undisclosed; single-site standard package is fee + travel + arranged housing</td></tr>
+      <tr><td class="mut"><b>Our translation</b></td><td colspan="2"><b>Pay above market where we legally can (coaches, refs, staff) and remove friction for everyone we can't pay</b> — housing handled, Sundays off, development receipts, gear included. Our Year-2 escalation: player fees fall toward $0 as sponsorship grows. Same curve, our scale.</td></tr>
+    </table>
+  </div>
+</div></section>
+
+<section id="calendar"><div class="wrap">
+  <div class="kick">Summer 2027</div>
+  <h2>The Calendar</h2>
+  <p class="lede">Because the league is fully independent of school programs — and no coach is ever paired with his or her own high-school players — the TSSAA dead period does <b>not</b> stop league play. Same rulebook AAU operates under all summer. We still design marquee weekends around <b>NCAA live periods</b> so college coaches can be in the building.</p>
+  <div class="tl">
+    <div class="ev"><div class="d">March – April 2027</div><div class="t">Statewide Tryouts</div><p>Regional tryout stops (Memphis, Knoxville, Chattanooga, Tri-Cities, Nashville). ~600 athletes.</p></div>
+    <div class="ev"><div class="d">Apr 30 – May 1, 2027</div><div class="t">The Combine — Belmont</div><p>Two days, wrapped before AP exams begin May 3. Testing stations (each one sellable — "Vertical Jump powered by ___"), scrimmages, interviews, media stations.</p></div>
+    <div class="ev"><div class="d">Fri May 14, 2027</div><div class="t">Draft Night — Curb Event Center</div><p>Deliberately placed: the evening the AP window closes, a week before graduation weekends peak. 16 teams, live-streamed, sponsor-branded green room, draft caps. Rule: no player may be drafted onto a team coached by anyone from their own school.</p></div>
+    <div class="ev"><div class="d">Jun 1 – Jul 3</div><div class="t">Season 1 <span class="pill orange">5 weeks</span></div><p>8 regular-season games per team + week-5 playoffs. Championship Saturday in the arena.</p></div>
+    <div class="ev"><div class="d">Jul 6 – Aug 7</div><div class="t">Season 2 <span class="pill orange">5 weeks</span></div><p>Fresh seed, same rosters (or a mid-summer trade window — a content goldmine). Marquee weekends Jul 8–11 &amp; Jul 15–18 aligned to NCAA men's live periods for max college-coach attendance.</p></div>
+    <div class="ev"><div class="d">Year 2–3 · Mid July</div><div class="t">The Nationals Invitational <span class="pill volt">10 days</span></div><p>16 invited programs nationally (8 boys / 8 girls), placed inside the live-period window. Entry fees + host-hotel economics fund it.</p></div>
+  </div>
+</div></section>
+
+<section id="schedule"><div class="wrap">
+  <div class="kick">Every Game Counts</div>
+  <h2>Mock Season Schedule</h2>
+  <p class="lede">This is what a season looks like on the ground. Eight franchise brands, each fielding a boys and a girls team — one identity, two divisions, double the fanbase. <b>Franchise names below are mock placeholders</b> (final brands TBD): <b>Forge · Delta · Ridge · Rhythm · Crush · Tri-Star · Summit · Gold Rush</b>. The rhythm is the college rhythm: <b>practices Monday &amp; Tuesday, games Thursday &amp; Saturday, Sundays off — always.</b> Full date-by-date detail lives in the Master Schedule page.</p>
+
+  <div class="grid g3">
+    <div class="card"><h3>Mon &amp; Tue · Practice Nights</h3><p>Boys Monday, girls Tuesday — full-court 90-minute slots on the twin courts, rotating weekly. Wednesday film/lift optional. Real practice-to-game ratio, the thing AAU never gives.</p></div>
+    <div class="card"><h3>Thursday · League Night</h3><p>All 16 teams play — 8 games on two courts, tips 4:45 / 6:15 / 7:45 / 9:15. Every game streamed with commentary.</p></div>
+    <div class="card hot"><h3>Saturday · Showcase Saturday</h3><p>All 16 teams again — franchise doubleheaders at 12:00 &amp; 1:45, then the marquee evening block (3:30 / 5:15 / 7:00 / 8:45) with full broadcast crews. Sunday: off, always.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tblcard">
+      <div class="tbl-title">Season 1 <span>· Week By Week (May 31 – Jul 3, 2027)</span></div>
+      <table>
+        <tr><th>Week</th><th>Dates</th><th>What Happens</th></tr>
+        <tr><td>1</td><td class="mut">May 31 – Jun 5</td><td>Opening Week — first tip Thu Jun 3; Opening Saturday at the Curb Event Center</td></tr>
+        <tr><td>2</td><td class="mut">Jun 7 – 12</td><td>Regular season · Thu + Sat slates</td></tr>
+        <tr><td>3</td><td class="mut">Jun 14 – 19</td><td>Regular season · All-Star Skills Saturday (3-point shootout + dunk contest)</td></tr>
+        <tr><td>4</td><td class="mut">Jun 21 – 26</td><td>Rivalry Rematch + Seeding Week — every game moves the bracket</td></tr>
+        <tr><td>5</td><td class="mut">Jun 28 – Jul 3</td><td><b>Playoffs:</b> QF Thursday · Championship Saturday at the arena (SFs afternoon, finals 7:00 &amp; 8:45)</td></tr>
+      </table>
+      <div class="tbl-title" style="margin-top:14px">Season 2 <span>· Jul 5 – Aug 7 (same shape)</span></div>
+      <table>
+        <tr><td class="mut">Jul 5 – 31</td><td>Regular season, weeks 1–4 — fresh 0–0, new seeding race. Weeks 1–2 land in NCAA live periods (Jul 8–11 &amp; 15–18): college coaches courtside.</td></tr>
+        <tr><td class="mut">Aug 2 – 7</td><td>Playoffs → <b>Championship Saturday II, Aug 7</b> · Summer Cup Night Mon Aug 9</td></tr>
+      </table>
+    </div>
+    <div class="tblcard">
+      <div class="tbl-title">Sample Saturday <span>· Week 1 Showcase (mock)</span></div>
+      <table class="slate">
+        <tr><th>Tip</th><th>Matchup</th><th></th></tr>
+        <tr><td class="time">12:00</td><td>Girls · Forge vs Gold Rush + Delta vs Summit</td><td></td></tr>
+        <tr><td class="time">1:45</td><td>Boys · Forge vs Gold Rush + Delta vs Summit</td><td></td></tr>
+        <tr><td class="time">3:30</td><td>Girls · Ridge vs Tri-Star</td><td class="tv">◉ MARQUEE</td></tr>
+        <tr><td class="time">5:15</td><td>Boys · Ridge vs Tri-Star</td><td class="tv">◉ MARQUEE</td></tr>
+        <tr><td class="time">7:00</td><td>Girls · Rhythm vs Crush</td><td class="tv">◉ MARQUEE</td></tr>
+        <tr><td class="time">8:45</td><td>Boys · Rhythm vs Crush</td><td class="tv">◉ MARQUEE</td></tr>
+      </table>
+      <div class="tbl-title" style="margin-top:14px">Seeding <span>· how stakes stay real</span></div>
+      <table>
+        <tr><td>Seeds 1–8 by record. Tiebreaks: head-to-head, then point differential <b>capped at ±15 per game</b> — so nobody runs up a score on kids, but every possession still matters.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="tblcard" style="margin-top:14px">
+    <div class="tbl-title">Playoff Bracket <span>· Week 5 — identical for boys &amp; girls</span></div>
+    <div class="bracket" style="padding:6px 12px 16px">
+      <div class="round"><h4>Quarterfinals · Thursday</h4>
+        <div class="match"><div class="tm"><span class="seed">1</span><span class="nm">Forge</span></div><div class="tm"><span class="seed">8</span><span class="nm">Gold Rush</span></div></div>
+        <div class="match"><div class="tm"><span class="seed">4</span><span class="nm">Rhythm</span></div><div class="tm"><span class="seed">5</span><span class="nm">Crush</span></div></div>
+        <div class="match"><div class="tm"><span class="seed">3</span><span class="nm">Ridge</span></div><div class="tm"><span class="seed">6</span><span class="nm">Tri-Star</span></div></div>
+        <div class="match"><div class="tm"><span class="seed">2</span><span class="nm">Delta</span></div><div class="tm"><span class="seed">7</span><span class="nm">Summit</span></div></div>
+      </div>
+      <div class="round"><h4>Semifinals · Saturday Afternoon</h4>
+        <div class="match"><div class="tm"><span class="seed">1</span><span class="nm">Forge</span></div><div class="tm"><span class="seed">4</span><span class="nm">Rhythm</span></div></div>
+        <div class="match"><div class="tm"><span class="seed">2</span><span class="nm">Delta</span></div><div class="tm"><span class="seed">3</span><span class="nm">Ridge</span></div></div>
+      </div>
+      <div class="round"><h4>Championship Saturday Night · Arena</h4>
+        <div class="match champ"><div class="tm"><span class="seed">🏆</span><span class="nm">Girls Final · 7:00</span></div><div class="tm"><span class="seed">🏆</span><span class="nm">Boys Final · 8:45</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout"><div class="t">The Summer Cup — closing night, Aug 7</div>
+  <p>If Season 1 and Season 2 crown <b>different champions</b>, they meet in a winner-take-all Champions Game to close the summer. If one team sweeps both seasons, they hang a <b>"Perfect Summer" banner</b> in the arena — and chase history gives every Season 2 game a storyline. Either way, the last night of the summer always has the biggest stakes.</p></div>
+</div></section>
+
+<section id="rules"><div class="wrap">
+  <div class="kick">Compliance, Handled</div>
+  <h2>Clean By Design</h2>
+  <p class="lede">Nothing about this league touches school-team rules — and we keep it that way with four hard guardrails.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Independent league <span class="pill ice">TSSAA</span></h3><p>Players sign up as individuals, outside their school programs — exactly like AAU, which runs all summer. TSSAA's independent-team restriction applies only during the school season. Dead-period rules restrict school coaches and their own players; our draft rule guarantees that pairing never exists. We'll still get written TSSAA confirmation on file — diligence, not a blocker.</p></div>
+    <div class="card"><h3>Amateurism &amp; NIL <span class="pill ice">TSSAA</span></h3><p>Players pay a (small) fee, keeping amateur status simple. Free-gear and expense questions get a written TSSAA ruling before launch. NIL is legal in TN with no cap — sponsor-to-player deals run direct, no school marks, no coach facilitation.</p></div>
+    <div class="card"><h3>NCAA event certification <span class="pill ice">ECAG</span></h3><p>We certify as a nonscholastic event so D-I coaches can attend during live periods: BBCS registration for all athletes/coaches, USA Basketball Gold Licenses (~$68/coach, background check included), $1M/$2M liability with NCAA as additional insured, athletic trainer at every venue. Total fees are trivial (~$430 first year) — it's the process that must be airtight.</p></div>
+    <div class="card"><h3>Safety stack</h3><p>Background checks + SafeSport-style training for every adult. Certified athletic trainers at every event day. This is the "legit" families are starving for — and it's a selling point, not a cost center.</p></div>
+    <div class="card hot"><h3>College-level officiating <span class="pill orange">No AAU refs</span></h3><p>The single loudest AAU complaint is terrible officiating — so we don't hire AAU crews, and we skip past HS crews too. <b>Three-man college crews (D2)</b> work every game, recruited through the college officiating coordinators we already know. Summer is their offseason; a full schedule of games at one venue is an easy yes. Budgeted at $150/official/game ($450/crew — ~$70K season) vs the $35–75 AAU pays. Players get taught the college whistle before they ever get to campus, and parents feel the difference in the first quarter.</p></div>
+    <div class="card"><h3>Coach quality bar</h3><p>Head coaches are recruited like a staff, not volunteers: college assistants, former pros, and decorated HS coaches (never with their own school's players). Every team also gets an assistant, and a league-wide interim pool guarantees no team ever goes uncoached. Real practices, real scouting, real film — development is the product.</p></div>
+  </div>
+</div></section>
+
+<section id="budget"><div class="wrap">
+  <div class="kick">The Money</div>
+  <h2>Two Budgets, One Roadmap</h2>
+  <p class="lede"><b>Year 1 is lean but legit</b> — every game streamed, arena marquee nights, pro-level safety. <b>Full Vision is the Unrivaled-scale version</b> — every game in the arena, broadcast-grade production, players fully sponsored, Nationals live. The gap between revenue and cost is not a problem; it's the size of the raise. (Unrivaled raised $35M before its first game and nearly broke even in season one.)</p>
+
+  <div class="grid g2">
+    <div class="tblcard">
+      <div class="tbl-title">Year 1 — Summer 2027 <span>· Expenses</span></div>
+      <table>
+        <tr><th>Line</th><th class="r">Cost</th></tr>
+        <tr><td>Front office (7 seasonal staff + interns)</td><td class="r">$161,000</td></tr>
+        <tr><td>Coaches — 16 HC + 16 AC + interim pool</td><td class="r">$90,000</td></tr>
+        <tr><td>Production — 16 marquee games, real broadcast crews</td><td class="r">$56,000</td></tr>
+        <tr><td>Production — all other games streamed</td><td class="r">$56,000</td></tr>
+        <tr><td>Curb Event Center — 6 marquee days</td><td class="r">$45,000</td></tr>
+        <tr><td>Practice facility court time (320 hrs)</td><td class="r">$28,800</td></tr>
+        <tr><td>Officials — college-level (D2) 3-man crews × 156</td><td class="r">$70,200</td></tr>
+        <tr><td>Uniforms &amp; player gear (160 × $220)</td><td class="r">$35,200</td></tr>
+        <tr><td>Marketing &amp; brand engine</td><td class="r">$45,000</td></tr>
+        <tr><td>Game-day ops (44 event days)</td><td class="r">$35,200</td></tr>
+        <tr><td>Combine + Draft Night production</td><td class="r">$30,000</td></tr>
+        <tr><td>Athletic trainers (every event day)</td><td class="r">$19,800</td></tr>
+        <tr><td>Insurance ($1M/$2M + accident)</td><td class="r">$18,000</td></tr>
+        <tr><td>Tech, stats &amp; recruiting profiles</td><td class="r">$15,000</td></tr>
+        <tr><td>Legal, 501(c)(3) &amp; accounting</td><td class="r">$12,000</td></tr>
+        <tr><td>Travel, awards, equipment, compliance</td><td class="r">$26,000</td></tr>
+        <tr><td class="mut">Contingency (10%)</td><td class="r">$74,320</td></tr>
+        <tr class="tot"><td>TOTAL EXPENSES</td><td class="r">$817,520</td></tr>
+      </table>
+    </div>
+    <div class="tblcard">
+      <div class="tbl-title">Year 1 <span>· Revenue (base case)</span></div>
+      <table>
+        <tr><th>Line</th><th class="r">Revenue</th></tr>
+        <tr><td>Sponsorships (title, presenting, category, jerseys)</td><td class="r">$210,000</td></tr>
+        <tr><td>Gate / tickets (6 arena days + weeknights)</td><td class="r">$120,000</td></tr>
+        <tr><td>Vendor fees — Curb lobby vendor village</td><td class="r">$18,000</td></tr>
+        <tr><td>Player season fees (160 × $400)</td><td class="r">$64,000</td></tr>
+        <tr><td>Donations &amp; grants (501c3 arm)</td><td class="r">$60,000</td></tr>
+        <tr><td>Tryout fees (600 × $50)</td><td class="r">$30,000</td></tr>
+        <tr><td>Merch (net)</td><td class="r">$20,000</td></tr>
+        <tr><td>Streaming rev share / league pass</td><td class="r">$15,000</td></tr>
+        <tr class="tot"><td>TOTAL REVENUE</td><td class="r">$537,000</td></tr>
+        <tr class="gap"><td>FOUNDING CAPITAL NEEDED</td><td class="r">~$281,000</td></tr>
+      </table>
+      <div class="tbl-title" style="margin-top:18px">Full Vision (Yr 3+) <span>· Snapshot</span></div>
+      <table>
+        <tr><td>Total expenses (arena every night, broadcast-grade, Nationals, players free, NIL pool)</td><td class="r">$2,884,750</td></tr>
+        <tr><td>Revenue (sponsors $1M, gate $500K, media $150K, Nationals fees, grants)</td><td class="r">$1,890,000</td></tr>
+        <tr class="gap"><td>INVESTOR CAPITAL / GROWTH GAP</td><td class="r">~$995,000</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="scn">
+    <div class="card"><h3>Conservative</h3><p>Sell 60% of sponsor/gate/vendor targets</p><div class="big">$359.8K</div><div class="gapn">Gap: $457.7K</div></div>
+    <div class="card hot"><h3>Base</h3><p>The plan above</p><div class="big">$537.0K</div><div class="gapn">Gap: $280.5K</div></div>
+    <div class="card"><h3>Stretch</h3><p>Sell 140% — full sponsor menu is worth ~$518K alone</p><div class="big">$714.2K</div><div class="gapn ok">Gap: $103.3K</div></div>
+  </div>
+  <div class="callout"><div class="t">The Belmont play — turn the landlord into a sponsor</div>
+  <p>Before signing a rental, pitch Belmont as <b>"Official Home of the League"</b> — facilities in-kind as their founding sponsorship (~$74K of venue cost at market rates). What they get: exclusive higher-ed category, "Live from Belmont University" on 150+ broadcasts, their court in every highlight, an <b>admissions booth in Vendor Row</b> in front of 600 tryout athletes and their college-shopping families all summer, and summer production practicum for Curb College media students. Even a hybrid (half rent + student production support) swings this budget $35–50K. Offer the menu — full in-kind, hybrid, or straight rental — and sign date holds under whichever they'll do fastest.</p></div>
+  <p class="small-note">Full editable model in the interactive budget page and Excel workbook. Biggest unknowns needing real quotes: Belmont rental (no published rates — Belmont Strategic Venues), production vendor bids, and title-sponsor appetite.</p>
+</div></section>
+
+<section id="broadcast"><div class="wrap">
+  <div class="kick">The Stage &amp; The Stream</div>
+  <h2>Built For Broadcast</h2>
+  <p class="lede">"The highest stage before college" is a production claim, not a slogan. Every game streams from day one, and there's a deliberate ladder from our own channels to ESPN. Here's where games live, what real production costs, and how to make every night <b>read</b> big-league on camera.</p>
+
+  <div class="grid g4">
+    <div class="card hot"><div class="num">LEVEL 1 · YEAR 1</div><h3>Own Channels</h3><p>League YouTube for full games + TikTok/IG/YT Shorts highlight engine. This is OTE's actual model — 23M views on opening weekend, all owned audience and data. Free distribution, and sponsors buy the clips.</p></div>
+    <div class="card"><div class="num">LEVEL 2 · YEAR 1</div><h3>League Pass</h3><p>Summer pass ($10–15/mo) or per-season pass on our site. Parents, relatives, and college staffs subscribe — BallerTV built an entire business on exactly this. Revenue, plus emails of every fan.</p></div>
+    <div class="card"><div class="num">LEVEL 3 · YEAR 2</div><h3>Local TV</h3><p>Nashville independent stations sell airtime — a weekly "Game of the Week" time-buy runs low four figures a night and instantly reprices every sponsor asset ("as seen on TV").</p></div>
+    <div class="card"><div class="num">LEVEL 4 · YEAR 2–3</div><h3>ESPN+ / National</h3><p>High-school hoops reaches ESPN through packagers — Paragon Marketing has curated ESPN's HS slate since the LeBron game in 2002. ESPN airs only ~12 HS games a year, anchored on ESPN-100 recruits. The route in is star power + a broadcast-quality feed, not a check.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="tblcard">
+      <div class="tbl-title">Production Cost Menu <span>· per game, real market rates</span></div>
+      <table>
+        <tr><th>Tier</th><th>What it is</th><th class="r">Cost/game</th></tr>
+        <tr><td><b>Auto-cam</b></td><td class="mut">AI camera (Pixellot-style), fixed angle, auto-follow — every game's floor</td><td class="r">$150–400</td></tr>
+        <tr><td><b>Standard</b></td><td class="mut">2 cameras + student commentary crew</td><td class="r">$800–1,200</td></tr>
+        <tr><td><b>Marquee</b></td><td class="mut">3–4 manned broadcast cameras, switcher, graphics, replay, 2 commentators</td><td class="r">$3,500–6,000</td></tr>
+        <tr><td><b>Broadcast</b></td><td class="mut">8–12 cameras, full crew/truck — championship, Nationals, TV nights</td><td class="r">$15,000+</td></tr>
+      </table>
+      <div class="tbl-title" style="margin-top:14px">Crew Rates <span>· if hiring piecemeal</span></div>
+      <table>
+        <tr><td class="mut">Camera operator $500–1,500/day · Technical director $1,000–5,000/day · Audio $400–1,200/day · Commentary pair $400–1,600/game · Graphics package $500–2,500 · Live graphics/replay op $500–1,000/day</td></tr>
+      </table>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+      <h3 style="color:var(--volt)">Real broadcast cameras. Four ways to get them.</h3>
+      <p style="margin-top:10px"><b style="color:var(--txt)">1 · The Belmont play (first call).</b> Belmont's D-I games already stream on ESPN's platforms, produced on campus — meaning camera positions, cabling, and control-room infrastructure live in the building we're renting, and Belmont's Curb College trains sports-broadcast students who need summer reps. Negotiate production access + a student/faculty crew pipeline <b style="color:var(--txt)">into the venue deal itself</b>.</p>
+      <p style="margin-top:10px"><b style="color:var(--txt)">2 · Nashville's freelance broadcast bench.</b> This is Music City — the town is full of broadcast-grade camera ops, TDs, and replay operators between tours and TV gigs. A crewed flypack (4–6 broadcast cameras with CCUs, switcher, replay) rents for roughly $5–10K/day — reserve it for championship nights and anything a network might see.</p>
+      <p style="margin-top:10px"><b style="color:var(--txt)">3 · School gear partnerships.</b> MTSU's media college runs one of the biggest broadcast programs in the South with mobile production units; local schools own camera kits that sit idle in June and July. Trade crew credits, stipends, and demo-reel footage for gear and hands.</p>
+      <p style="margin-top:10px"><b style="color:var(--txt)">4 · Own used broadcast glass.</b> If we buy, we buy real: used ENG/system cameras with proper lenses and tripods run $3–8K each — a manned 4-camera kit lands ~$25–50K one-time and becomes a Diamond House asset billable year-round. Operated by real shooters, every night.</p>
+      <p style="margin-top:12px"><b style="color:var(--txt)">Commentator pipeline:</b> Belmont/Lipscomb/MTSU broadcasting programs + local radio talent hungry for reps. Pay $200–400/game, develop your own voices — they become part of the brand like OTE's crew did.</p>
+    </div>
+  </div>
+
+  <div class="callout"><div class="t">Big-stage feel — cheap, but loud on camera</div>
+  <p>Walkout tunnel + smoke/light player intros · per-team hype videos on the board · DJ + PA personality · printed court-apron branding · live stat overlays · postgame press-conference backdrop wall (sponsor logos behind every quote) · media-day portraits used in every graphic. <b>None of these cost real money. All of them read "pro" in every clip that leaves the building</b> — and clips are the product.</p></div>
+</div></section>
+
+<section id="sponsors"><div class="wrap">
+  <div class="kick">Everything Is Sellable</div>
+  <h2>The Sponsor Universe</h2>
+  <p class="lede">The full inventory — including the assets most local properties never think to sell. Pricing method: audience value ($0.10–$2.00/head) × visibility multiplier (jersey 2–4×, PA/banner 1.5×), with <b>category exclusivity commanding a 2–5× premium</b>. Streamed-game impressions are the upsell on every line. Ranges shown are Year 1; Full Vision reprices 2–4× higher.</p>
+  <div class="grid g2">
+
+    <div class="sp"><h3>Naming &amp; Title</h3><div class="cat-note">The crown jewels — sell these first, everything else prices off them.</div><ul>
+      <li><span class="a">League title / naming rights<small>"The ___ League" — in the name, center court, every broadcast &amp; post</small></span><span class="p">$50–75K</span></li>
+      <li><span class="a">Presenting partner (×2)<small>"presented by" lockup on all media + category exclusivity</small></span><span class="p">$20–30K</span></li>
+      <li><span class="a">Season title (×2)<small>"Season 1 fueled by ___" — one per 5-week season</small></span><span class="p">$10–15K</span></li>
+      <li><span class="a">Nationals title (Yr 2–3)</span><span class="p">$25–50K</span></li>
+      <li><span class="a">"Official Home of the League" — Belmont University<small>The in-kind crown jewel: facilities contributed as sponsorship. Belmont gets higher-ed exclusivity, "Live from Belmont" on every broadcast, an admissions booth in Vendor Row all summer (600 tryout athletes + families = enrollment gold), and Curb College production practicum. Values-aligned too: Sundays off, AP blackout, grad season untouched.</small></span><span class="p">in-kind ≈ $50–75K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Apparel &amp; Equipment</h3><div class="cat-note">Everything a player wears or touches is inventory.</div><ul>
+      <li><span class="a">Official uniform / apparel partner<small>Every kit, warm-up, and travel piece — Nike/adidas/UA or regional dealer</small></span><span class="p">$10–20K + product</span></li>
+      <li><span class="a">Jersey front patch (per team ×16)<small>A local business on one team's chest in every game + highlight</small></span><span class="p">$4–6K</span></li>
+      <li><span class="a">Jersey back / shorts-leg patch (×16)</span><span class="p">$2–3K</span></li>
+      <li><span class="a">Official ball (Wilson/Spalding)<small>Product in every frame of every stream</small></span><span class="p">$8–15K + product</span></li>
+      <li><span class="a">Shooting-shirt &amp; warm-up partner</span><span class="p">$5–8K</span></li>
+      <li><span class="a">Gear-bag sponsor<small>Logo on the bag every player carries all summer, everywhere</small></span><span class="p">$4–8K + product</span></li>
+      <li><span class="a">Sock / footwear partner</span><span class="p">$3–6K + product</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>In-Venue &amp; Game Night</h3><div class="cat-note">The ones people forget — doors, tickets, seats, moments.</div><ul>
+      <li><span class="a">Court center-logo decal</span><span class="p">$5–7.5K</span></li>
+      <li><span class="a">Baseline / apron decals (×4)</span><span class="p">$3–5K</span></li>
+      <li><span class="a">Entry gate / door sponsor<small>"Doors by ___" — branded entry arches, wristbands, ticket scan screens</small></span><span class="p">$2–4K</span></li>
+      <li><span class="a">Ticket-back &amp; digital-ticket sponsor<small>Coupon/offer on every ticket — trackable redemptions</small></span><span class="p">$2–4K</span></li>
+      <li><span class="a">Scorer's table wrap / LED</span><span class="p">$4–6K</span></li>
+      <li><span class="a">Shot-clock &amp; game-clock sponsor<small>"Crunch time by ___" PA read at every final 2:00</small></span><span class="p">$2–3K</span></li>
+      <li><span class="a">Halftime show / skills contest<small>Dunk contest, 3-point shootout, fan half-court shot for sponsor prize</small></span><span class="p">$2–4K</span></li>
+      <li><span class="a">T-shirt toss / giveaway nights</span><span class="p">$1.5–3K + product</span></li>
+      <li><span class="a">Hype-cam / dance-cam sponsor</span><span class="p">$1–2K</span></li>
+      <li><span class="a">Concourse activation booths (per night)</span><span class="p">$500–1K</span></li>
+      <li><span class="a">Courtside seat-back branding</span><span class="p">$2–4K</span></li>
+      <li><span class="a">Hospitality / VIP suite partner<small>Branded suite for sponsor's clients on marquee nights</small></span><span class="p">$3–6K</span></li>
+      <li><span class="a">Lobby vendor village — "Vendor Row presented by ___"<small>The Curb's lobby as a merchant market: food, gear, local makers — booth fees + a title sponsor on the whole row</small></span><span class="p">$150–300/booth/day + $3–5K title</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Broadcast &amp; Digital</h3><div class="cat-note">Unrivaled's real lesson: partnerships, not logo slaps — build sponsors INTO content.</div><ul>
+      <li><span class="a">Stream presenting sponsor (per season)</span><span class="p">$5–10K</span></li>
+      <li><span class="a">Broadcast ad packages (30s spots + lower-thirds)</span><span class="p">$2.5–5K</span></li>
+      <li><span class="a">"Play of the Night by ___"<small>Samsung's "Galaxy Game Winner" model — a branded recurring segment</small></span><span class="p">$2–4K</span></li>
+      <li><span class="a">Replay / slo-mo sponsor</span><span class="p">$2–3K</span></li>
+      <li><span class="a">Stats graphics sponsor<small>"Points powered by ___" on every score bug &amp; box score</small></span><span class="p">$2–4K</span></li>
+      <li><span class="a">Halftime report sponsor</span><span class="p">$1.5–3K</span></li>
+      <li><span class="a">Mic'd-up / all-access series partner<small>OTE's growth engine — episodic, branded, clippable</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Website / app / stats-hub partner</span><span class="p">$3–6K</span></li>
+      <li><span class="a">Fantasy / pick'em game sponsor</span><span class="p">$1–3K</span></li>
+      <li><span class="a">Podcast / weekly show sponsor</span><span class="p">$1–3K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Tentpole Events</h3><div class="cat-note">Each event is its own sellable property with sub-inventory.</div><ul>
+      <li><span class="a">Combine title sponsor</span><span class="p">$10–15K</span></li>
+      <li><span class="a">Combine testing stations (×6)<small>"Vertical Jump powered by ___", "Lane Agility by ___" — each station branded</small></span><span class="p">$1–2K each</span></li>
+      <li><span class="a">Draft Night title sponsor</span><span class="p">$10–15K</span></li>
+      <li><span class="a">Draft green room + draft caps sponsor</span><span class="p">$3–5K</span></li>
+      <li><span class="a">Media Day sponsor<small>Backdrop logo in every player portrait used all summer</small></span><span class="p">$2–4K</span></li>
+      <li><span class="a">Awards banquet / MVP sponsor</span><span class="p">$4–6K</span></li>
+      <li><span class="a">All-Star / skills night sponsor</span><span class="p">$5–10K</span></li>
+      <li><span class="a">Watch-party series (sports bars/restaurants)</span><span class="p">$1–2K each</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Player-Benefit &amp; Community</h3><div class="cat-note">The anti-AAU story sponsors love — and it's 501(c)(3) deductible.</div><ul>
+      <li><span class="a">Scholarship fund partner<small>Directly funds player-fee waivers for families in need</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Team meal sponsor<small>"Post-game fuel by ___" — restaurant/grocery feeds teams weekly</small></span><span class="p">$3–6K + in-kind</span></li>
+      <li><span class="a">Recovery lounge partner<small>Branded recovery corner: hydration, ice, massage guns</small></span><span class="p">$2–5K + product</span></li>
+      <li><span class="a">Athletic-training / sports-med sponsor<small>Local ortho or PT clinic brands the trainer coverage — natural fit</small></span><span class="p">$5–10K</span></li>
+      <li><span class="a">Transportation partner (dealership)<small>"Official vehicle of ___" + shuttle wraps</small></span><span class="p">$5–10K + vehicles</span></li>
+      <li><span class="a">Youth clinic series sponsor<small>Players give back — clinics for kids, branded by sponsor</small></span><span class="p">$2–5K</span></li>
+      <li><span class="a">Ball-kid &amp; anthem program sponsor</span><span class="p">$1–2K</span></li>
+      <li><span class="a">Theme nights (military, first responders, teachers)</span><span class="p">$1.5–3K each</span></li>
+      <li><span class="a">Direct player NIL deals<small>Sponsor ↔ player content deals, legal under TSSAA NIL — league facilitates the marketplace, not the school</small></span><span class="p">market</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Category Partners (exclusivity)</h3><div class="cat-note">One per category, 2–5× premium for owning it. Obvious + non-obvious categories:</div><ul>
+      <li><span class="a">Bank / credit union</span><span class="p">$7.5–15K</span></li>
+      <li><span class="a">Healthcare system / urgent care</span><span class="p">$7.5–15K</span></li>
+      <li><span class="a">Auto dealership group</span><span class="p">$7.5–15K</span></li>
+      <li><span class="a">QSR / pizza / chicken</span><span class="p">$5–12K</span></li>
+      <li><span class="a">Sports drink / hydration</span><span class="p">$5–12K</span></li>
+      <li><span class="a">Grocery chain</span><span class="p">$5–10K</span></li>
+      <li><span class="a">Telecom / wireless</span><span class="p">$5–10K</span></li>
+      <li><span class="a">Insurance agency</span><span class="p">$4–8K</span></li>
+      <li><span class="a">Real estate / homebuilder</span><span class="p">$4–8K</span></li>
+      <li><span class="a">HVAC / home services<small>Huge local ad budgets, starving for community visibility</small></span><span class="p">$3–6K</span></li>
+      <li><span class="a">Tutoring / test prep / trade schools<small>Perfect audience match — parents of teens</small></span><span class="p">$3–6K</span></li>
+      <li><span class="a">Barbershop / grooming collective</span><span class="p">$1–3K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Hospitality &amp; Travel</h3><div class="cat-note">Detailed strategy below — hotels are both a sponsor AND a revenue stream.</div><ul>
+      <li><span class="a">Official host hotel<small>Cash/trade: rooms for staff &amp; visiting teams + branding</small></span><span class="p">$5–10K + rooms</span></li>
+      <li><span class="a">Airline / travel agency partner (Nationals)</span><span class="p">$5–10K</span></li>
+      <li><span class="a">Rental car / rideshare partner</span><span class="p">$3–6K</span></li>
+      <li><span class="a">"Restaurant Row" partners (×6)<small>Official pre-game &amp; post-game spots, player discounts, family maps</small></span><span class="p">$1–2K each</span></li>
+      <li><span class="a">Family hospitality lounge sponsor</span><span class="p">$2–4K</span></li>
+      <li><span class="a">Visit Music City / Nashville Sports Council<small>Not a sponsor — a co-funder. Sports commissions pay bid fees &amp; grants for room-night-generating events</small></span><span class="p">grants</span></li>
+    </ul></div>
+
+  </div>
+  <div class="callout"><div class="t">How to package it</div>
+  <p>Don't sell 60 line items — sell <b>4 tiers</b>: Title (1), Founding Partners (4–6 at $20–30K, category-exclusive, first-refusal on renewals forever), Official Partners (8–10 at $5–15K), and Game Night Partners ($1–5K). Every deal includes streamed-game impressions, social content, and a community story. Lead every pitch with the anti-AAU mission — sponsors aren't buying signage, they're buying the side of the story parents already agree with.</p></div>
+</div></section>
+
+<section id="revenue"><div class="wrap">
+  <div class="kick">Beyond Tickets &amp; Merch</div>
+  <h2>The Revenue Engine — Every Stream</h2>
+  <p class="lede">Every way this property can make money, staged honestly: <b>NOW</b> = bookable in Year 1 · <b>YR2</b> = needs one season of proof · <b>YR3</b> = needs scale. The Year-1 "NOW" column below is worth an extra <b>$80–150K on top of the current budget</b> — camps, media packages, and gala VIP alone can outearn the ticket gate.</p>
+  <div class="grid g2">
+
+    <div class="sp"><h3>Media &amp; Content <span class="pill orange">Diamond House's lane</span></h3><div class="cat-note">You're a media company that owns a league — act like it.</div><ul>
+      <li><span class="a">League Pass subscriptions <small>NOW · $10–15/summer per family; grandparents &amp; scouts subscribe too</small></span><span class="p">$10–25K</span></li>
+      <li><span class="a">Player media packages <small>NOW · pro portraits, season highlight reel, recruiting video — shot by Diamond House, optional $150–300/player</small></span><span class="p">$15–40K</span></li>
+      <li><span class="a">Family photo &amp; video sales <small>NOW · game galleries, printed posters, senior banners</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">YouTube ad revenue <small>NOW · monetized channel from day one</small></span><span class="p">$2–5K</span></li>
+      <li><span class="a">Podcast / weekly show ads <small>NOW</small></span><span class="p">$1–3K</span></li>
+      <li><span class="a">PPV championship nights <small>YR2 · finals behind a one-night paywall once audience is proven</small></span><span class="p">$10–30K</span></li>
+      <li><span class="a">Highlight licensing to media outlets <small>YR2</small></span><span class="p">$2–8K</span></li>
+      <li><span class="a">Docuseries sale <small>YR3 · the OTE/Amazon play — season one's footage is the pitch tape</small></span><span class="p">$50K+</span></li>
+      <li><span class="a">Local TV rights flip <small>YR3 · today you buy airtime; with ratings, they pay you</small></span><span class="p">market</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Camps, Clinics &amp; Programs <span class="pill volt">The sleeping giant</span></h3><div class="cat-note">The league brand mints credibility — rent it out 46 weeks a year.</div><ul>
+      <li><span class="a">League youth camps <small>NOW · Aug day-camps coached by league coaches &amp; players; 2 weeks × 100 kids × $250</small></span><span class="p">$25–60K</span></li>
+      <li><span class="a">Fall/winter skills academy <small>YR2 · year-round training under the league shield — turns a summer brand into a 12-month business</small></span><span class="p">$30–80K/yr</span></li>
+      <li><span class="a">Middle-school feeder league <small>YR2 · the farm system; parents beg for this once the brand exists</small></span><span class="p">$40–100K/yr</span></li>
+      <li><span class="a">Coaching clinic <small>NOW · your D2 refs + college coaches teach a paid clinic for local coaches</small></span><span class="p">$3–8K</span></li>
+      <li><span class="a">Officiating development course <small>YR2 · train the next crews, charge tuition, fix your own pipeline</small></span><span class="p">$3–8K</span></li>
+      <li><span class="a">Girls-only elite clinic series <small>NOW · underserved market, on-brand</small></span><span class="p">$5–15K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Events &amp; Experiences</h3><div class="cat-note">Every tentpole has a premium layer to sell.</div><ul>
+      <li><span class="a">Draft Night VIP + Gala <small>NOW · $250/plate courtside dinner, meet the picks, paddle raise</small></span><span class="p">$15–40K</span></li>
+      <li><span class="a">All-Star Saturday ticket premium <small>NOW · skills night upcharge + separate stream sponsor</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Celebrity + alumni exhibition <small>NOW · one August night, sells itself</small></span><span class="p">$25–75K</span></li>
+      <li><span class="a">Combine spectator passes <small>NOW · parents + junkies pay $10–15 to watch testing day</small></span><span class="p">$3–8K</span></li>
+      <li><span class="a">Group &amp; birthday packages <small>NOW · team outings, youth-team nights, suite parties</small></span><span class="p">$3–10K</span></li>
+      <li><span class="a">Corporate nights <small>YR2 · sponsor client entertainment packages, court time + suite</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Watch-party licensing <small>YR2 · bars pay a flat fee to be official watch sites w/ trivia kits</small></span><span class="p">$2–6K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Game-Night Commerce</h3><div class="cat-note">Everything sold inside the building beyond the ticket itself.</div><ul>
+      <li><span class="a">Concessions rev-share / food-truck fees <small>NOW · negotiate a cut with Belmont or curate a truck row at $150–300/night</small></span><span class="p">$8–20K</span></li>
+      <li><span class="a">Vendor Row booth fees <small>NOW · already in the budget</small></span><span class="p">$18K ✓</span></li>
+      <li><span class="a">Ticketing service fee <small>NOW · $1.50–2 per ticket, invisible and standard</small></span><span class="p">$10–20K</span></li>
+      <li><span class="a">50/50 raffle <small>NOW · run through the 501(c)(3), registered under TN charitable gaming rules — half the pot funds scholarships</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Game-worn jersey auctions <small>NOW · championship + draft-class jerseys, auctioned online</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Trading cards <small>YR2 · local draft-class set (the OTE × Topps play, Nashville-sized) — mind NIL rules, players share</small></span><span class="p">$3–10K</span></li>
+      <li><span class="a">Parking <small>only if the Belmont deal grants it</small></span><span class="p">$0–10K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>B2B, Licensing &amp; Expansion <span class="pill ice">Where the real money lives</span></h3><div class="cat-note">Year 1 proves the model; then the model itself becomes the product.</div><ul>
+      <li><span class="a">Market expansion licensing <small>YR3 · "League-in-a-Box" — Memphis division, then other states license the format, brand &amp; playbook. This is the franchise-fee endgame</small></span><span class="p">$50–250K/market</span></li>
+      <li><span class="a">Founding Team Owner sales <small>NOW · already in the Million playbook</small></span><span class="p">$240–400K ✓</span></li>
+      <li><span class="a">Production services <small>NOW · the Diamond House rig + crews bill out year-round to schools, churches, corporates — league-adjacent cash flow</small></span><span class="p">offsets</span></li>
+      <li><span class="a">Nationals hosting economics <small>YR2–3 · entry fees + housing rebates + city event grants stack on one event</small></span><span class="p">$100K+</span></li>
+      <li><span class="a">App / newsletter sponsorships <small>YR2 · the stats hub audience is pure gold demo</small></span><span class="p">$3–8K</span></li>
+      <li><span class="a">Stats-platform premium tier <small>YR2 · advanced stats + film access for superfans and trainers</small></span><span class="p">$2–6K</span></li>
+    </ul></div>
+
+    <div class="sp"><h3>Travel &amp; Hospitality Commissions</h3><div class="cat-note">Money that moves because the league exists.</div><ul>
+      <li><span class="a">Hotel room-block rebates <small>NOW · $10–25/room-night on every league-booked stay</small></span><span class="p">$5–15K</span></li>
+      <li><span class="a">Stay-to-play tournament housing <small>NOW · visiting teams must book league blocks</small></span><span class="p">$10–30K</span></li>
+      <li><span class="a">Sports-commission event grants <small>NOW · Nashville Sports Council / Visit Music City fund room-night generators</small></span><span class="p">$10–50K</span></li>
+      <li><span class="a">Restaurant partner program <small>NOW · official spots pay in + give player discounts</small></span><span class="p">$5–12K</span></li>
+    </ul></div>
+
+  </div>
+  <div class="callout"><div class="t">The Year 1 stack, prioritized</div>
+  <p>Don't chase all of it — sequence it. <b>Add these four to the budget now:</b> youth camps (~$40K), player media packages (~$25K — nobody is better positioned than Diamond House), Draft Night VIP/gala (~$25K), and concessions + ticket fees + 50/50 (~$30K). That's <b>~$120K of new revenue</b> with the team you already have — enough to erase the remaining Option B raise entirely. Everything tagged YR2/YR3 goes in the investor deck as the growth story.</p></div>
+</div></section>
+
+<section id="hotels"><div class="wrap">
+  <div class="kick">Room Nights = Leverage</div>
+  <h2>Hotels &amp; Housing</h2>
+  <p class="lede">Youth sports is the hotel industry's favorite customer — predictable blocks, summer dates, families who eat out every meal. That gives us three plays, and Nationals turns them into serious money.</p>
+  <div class="grid g3">
+    <div class="card"><h3>1 · Official Host Hotel</h3><p>One flagship property near Belmont (Midtown/Music Row corridor) becomes "Official Hotel of the League": cash + trade deal — discounted staff/visiting-team rooms and comp suites in exchange for branding, in-arena signage, and first call on all league business. Trade value often beats cash at this tier.</p></div>
+    <div class="card"><h3>2 · Room-Block Rebates</h3><p>League-managed booking links ("Stay with the League") for every out-of-town family, with a <b>$10–25 per room-night rebate</b> paid back to the league — standard youth-sports housing economics. For Nationals, make it stay-to-play: invited teams must book through league housing to compete. 16 traveling teams × ~14 people × 9 nights ≈ <b>2,000+ room-nights</b> before families and fans — worth $20–50K in rebates alone, plus real leverage on rates.</p></div>
+    <div class="card"><h3>3 · The Tourism Machine</h3><p>Room-night-generating events are exactly what the <b>Nashville Sports Council</b> and Visit Music City exist to fund — bid fees, marketing grants, and services for events that fill hotels. Nationals is a textbook application. This is free institutional money most youth operators never ask for.</p></div>
+  </div>
+  <div class="tblcard" style="margin-top:20px">
+    <div class="tbl-title">The Housing Plan <span>· who stays where, who pays</span><small>A statewide league means Memphis and Tri-Cities kids can't commute twice a week — housing is what makes "Tennessee's league" true, not just Nashville's</small></div>
+    <table>
+      <tr><th>Who</th><th>Where They Stay</th><th>Cost &amp; Who Pays</th></tr>
+      <tr><td><b>Out-of-market players (~20–30)</b><br><span style="color:var(--dim);font-size:11px">West/East TN kids, 3+ hrs from Nashville</span></td><td>"The League Residence" — a supervised Belmont summer-dorm block: league staff RA coverage, curfew, nightly check-in, meal plan option, girls and boys on separate floors with separate staff</td><td class="mut">Universities rent empty summer beds cheap (~$30–40/night). Families pay at cost (~$250/wk); the scholarship fund covers need-based spots; the league negotiates the block but doesn't carry the cost. Sellable: "Residence outfitted by ___" — the Unrivaled/Wayfair play</td></tr>
+      <tr><td><b>Host-family alternative (billet program)</b></td><td>Vetted volunteer families near Belmont — the junior-hockey model, done right</td><td class="mut">Full vetting stack: background checks, SafeSport training, home visits, written agreements, league check-ins. Host stipend ~$50/wk from family fees. Only runs if enough homes clear vetting — the Residence is the default</td></tr>
+      <tr><td><b>Out-of-market coaches (2–4 national names)</b></td><td>Host-hotel extended stay (trade) or Belmont summer apartments</td><td class="mut">League-covered via host-hotel trade — ~$0–8K cash. Package: stipend + housing + $75–100/wk meals + one round-trip</td></tr>
+      <tr><td><b>In-state commuters (1–2 hrs out)</b></td><td>Home — with league support</td><td class="mut">Organized regional carpools, Thu-night host meal, Saturday team dinner between doubleheader sessions</td></tr>
+      <tr><td><b>Visiting tournament teams</b></td><td>Stay-to-play league hotel blocks</td><td class="mut">Teams book through league housing to compete; $10–25/room-night rebates flow back to the league</td></tr>
+      <tr><td><b>Nationals teams (Yr 2–3)</b></td><td>Belmont dorms + host-hotel blocks, "outfitted by" sponsor</td><td class="mut">2,000+ room-nights of leverage; Nashville Sports Council grants attach to exactly this</td></tr>
+    </table>
+  </div>
+  <div class="callout" style="border-color:rgba(94,234,212,.4)"><div class="t" style="color:var(--ice)">Housing safety — non-negotiables</div>
+  <p>Minors living away from home is the highest-trust thing this league will ever do, so the rules are absolute: <b>every adult with residence access is background-checked and SafeSport-trained</b> · girls' and boys' floors fully separated with separate supervising staff · nightly check-in log · written parent consent + 24/7 league contact line · zero-tolerance policy in the parent handbook, published before tryouts. Done right, the Residence isn't a liability — it's the loudest possible proof that this league takes care of kids, and it's what unlocks statewide talent no Nashville-only operation could touch.</p></div>
+</div></section>
+
+<section id="fundraising"><div class="wrap">
+  <div class="kick">Bread &amp; Butter</div>
+  <h2>The Million-Dollar Playbook</h2>
+  <p class="lede">Stop aiming at $500K. Stack the sources below and <b>$1M is a plan, not a stretch</b> — the conservative column alone clears ~$975K, and it changes what Year 1 looks like: arena nights every week, owned broadcast rig, a real NIL pool, zero corners cut. Sequenced right, each wave sells the next.</p>
+
+  <div class="tblcard">
+    <div class="tbl-title">The Stack <span>· ten sources, biggest first</span></div>
+    <table>
+      <tr><th>#</th><th>Source</th><th class="r">Conservative</th><th class="r">Aggressive</th><th>The play</th></tr>
+      <tr><td>1</td><td><b>Founding Team Owners</b></td><td class="r">$240,000</td><td class="r">$400,000</td><td class="mut">The Big3/TBT move: sell "ownership" of each of the 16 franchises at $15–25K to local business owners, athletes, music-industry names. They get naming input, courtside hospitality, merch rev-share, a founders plaque — and first refusal if teams ever become real equity. Owners recruit each other; nobody wants to be the one without a team.</td></tr>
+      <tr><td>2</td><td><b>Angel / athlete equity round</b></td><td class="r">$250,000</td><td class="r">$500,000</td><td class="mut">A SAFE round selling the Full Vision (the $2.9M property), not Year 1. Unrivaled's cap table is athletes + operators; Nashville has NBA/WNBA alumni, Titans/Preds players, and country-music money who all know the AAU problem personally.</td></tr>
+      <tr><td>3</td><td><b>Founding partners (4–6 brands)</b></td><td class="r">$100,000</td><td class="r">$180,000</td><td class="mut">$20–30K each, category-exclusive, "Founding Partner — est. 2027" forever, first-refusal renewals. Scarcity + legacy is the pitch.</td></tr>
+      <tr><td>4</td><td><b>Community investment round (Reg CF)</b></td><td class="r">$100,000</td><td class="r">$250,000</td><td class="mut">Regulated crowdfunding (Wefunder/StartEngine-style) legally lets fans invest up to $5M/yr. "Own a piece of Tennessee's league" — Green Bay Packers energy, and every investor becomes a season-long evangelist.</td></tr>
+      <tr><td>5</td><td><b>Title partner — 3-year prepay</b></td><td class="r">$75,000</td><td class="r">$150,000</td><td class="mut">Sell the title as a 3-year deal with Year 1 paid upfront at a discount. Sponsors love locked pricing on a property about to grow; you love the cash now.</td></tr>
+      <tr><td>6</td><td><b>Founding memberships / seat licenses</b></td><td class="r">$70,000</td><td class="r">$150,000</td><td class="mut">200 "Day One" memberships at $350–750: lifetime courtside priority, founders wall in the arena, exclusive merch drop, draft-night invite. Fans buy identity, not tickets.</td></tr>
+      <tr><td>7</td><td><b>Grants &amp; institutional money</b></td><td class="r">$50,000</td><td class="r">$150,000</td><td class="mut">Nashville Sports Council / Visit Music City event funds (room-nights = their mandate), community foundations, retailer youth-sports foundations, Metro youth programs — all via the 501(c)(3) arm. Free money most operators never apply for.</td></tr>
+      <tr><td>8</td><td><b>Draft Night Gala + paddle raise</b></td><td class="r">$40,000</td><td class="r">$100,000</td><td class="mut">Sell draft night twice: public spectacle + a $250/plate VIP experience — courtside dinner, meet the draft class, live paddle raise for the scholarship fund.</td></tr>
+      <tr><td>9</td><td><b>Celebrity + college alumni game</b></td><td class="r">$25,000</td><td class="r">$75,000</td><td class="mut">One August exhibition: Nashville celebrities + TN college stars home for summer. Ticketed, streamed, sponsored — it sells itself and doubles as a league commercial.</td></tr>
+      <tr><td>10</td><td><b>Sponsor-a-Player + corporate match</b></td><td class="r">$25,000</td><td class="r">$75,000</td><td class="mut">"$400 covers one kid's entire summer" is a devastatingly effective ask — run it through employers with matching-gift programs and churches/civic clubs to double every dollar.</td></tr>
+      <tr class="tot"><td></td><td>TOTAL RAISED</td><td class="r">~$975,000</td><td class="r">~$2,030,000</td><td></td></tr>
+    </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3 style="color:var(--volt)">Plus the invisible line: in-kind</h3><p>Host hotel rooms, dealership vehicles, team meals, printing, and production trade don't show up as cash — but $100K+ of budget relief hits the bottom line exactly the same. Every in-kind deal you close makes the cash stack go further. As a media company, Diamond House can trade content production for almost anything.</p></div>
+    <div class="card hot"><h3>Sequencing is the whole game</h3><p><b style="color:var(--txt)">Wave 1:</b> Founding Team Owners — scarcity sells itself and gives you ~$300K of social proof. <b style="color:var(--txt)">Wave 2:</b> title + founding partners, priced off that momentum ("the owners are already in"). <b style="color:var(--txt)">Wave 3:</b> the equity round, pitched with $500K+ of commitments as traction. <b style="color:var(--txt)">Wave 4:</b> community round + memberships at brand launch, when hype peaks. Each wave is the proof for the next one.</p></div>
+  </div>
+</div></section>
+
+<section id="team"><div class="wrap">
+  <div class="kick">Who Runs It</div>
+  <h2>The Team</h2>
+  <p class="lede">Lean front office, serious bench coverage. Year 1 comp shown; Full Vision takes the core full-time (~$710K payroll).</p>
+  <div class="grid g2">
+    <div class="card org"><h3 style="margin-bottom:12px">Front Office — $161K Year 1</h3>
+      <div class="role"><span class="rn">Commissioner / President<small>Vision, sponsors, media, public face</small></span><span class="rc">$25K</span></div>
+      <div class="role"><span class="rn">Dir. of Basketball Ops<small>Combine, draft, schedules, officials, rosters</small></span><span class="rc">$30K</span></div>
+      <div class="role"><span class="rn">Dir. of Media &amp; Content<small>Streams, social, the highlight engine</small></span><span class="rc">$30K</span></div>
+      <div class="role"><span class="rn">Dir. of Partnerships<small>Sponsor sales + 10% commission on new money</small></span><span class="rc">$25K</span></div>
+      <div class="role"><span class="rn">Dir. of Events &amp; Logistics<small>Venue, game day, vendors, security</small></span><span class="rc">$25K</span></div>
+      <div class="role"><span class="rn">Compliance &amp; Player Welfare<small>TSSAA/NCAA, eligibility, SafeSport, parents</small></span><span class="rc">$12K</span></div>
+      <div class="role"><span class="rn">Finance &amp; Admin (fractional)</span><span class="rc">$8K</span></div>
+      <div class="role"><span class="rn">Interns — Belmont/Lipscomb/TSU sport mgmt<small>Clips, stats, team services — a built-in talent pipeline</small></span><span class="rc">$6K</span></div>
+    </div>
+    <div class="card org"><h3 style="margin-bottom:12px">Basketball &amp; Game Day — $90K + per-game</h3>
+      <div class="role"><span class="rn">16 Head Coaches<small>College assistants, former pros, decorated HS coaches — never paired with their own school's players</small></span><span class="rc">$3.5K ea</span></div>
+      <div class="role"><span class="rn">16 Assistant Coaches</span><span class="rc">$1.75K ea</span></div>
+      <div class="role"><span class="rn">Interim coach pool (4–6 floaters)<small>League-wide substitutes — no team ever goes uncoached</small></span><span class="rc">per game</span></div>
+      <div class="role"><span class="rn">Officials — college-level (D2) 3-man crews<small>Recruited via college officiating coordinators — no AAU whistles</small></span><span class="rc">$450/game</span></div>
+      <div class="role"><span class="rn">Athletic trainers (every event day)</span><span class="rc">$450/day</span></div>
+      <div class="role"><span class="rn">Game ops — scorers, clock, PA/DJ, gate, security</span><span class="rc">$800/day</span></div>
+      <div class="role"><span class="rn">Production — producer, cameras, commentary, cutters</span><span class="rc">in budget</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <div class="kick">11 Months To First Tip</div>
+  <h2>The Launch Countdown</h2>
+  <p class="lede">Season One is June 1, 2027. Working backward from that date, here is every month between now and tip-off — and the five moves that have to happen <b>this month</b> for the rest of the machine to work.</p>
+
+  <div class="callout" style="margin-top:0;margin-bottom:30px"><div class="t">⚡ Do these five things right now — July 2026</div>
+  <p><b>1 · Form the entity</b> — TN LLC for the league + start the 501(c)(3) arm (charter $100, IRS 1023 $600; the clock on tax-exempt approval is months, start it now).&nbsp;
+  <b>2 · Email Belmont Strategic Venues</b> (osves@belmont.edu) — Curb Event Center + practice-facility quote and Summer 2027 date holds. Everything prices off this answer.&nbsp;
+  <b>3 · Send the TSSAA letter</b> — written confirmation that an independent summer league with no coach-own-player pairing is clean, plus the free-gear question. Diligence now = sales weapon later.&nbsp;
+  <b>4 · Lock the name</b> — pick it, run the trademark search, buy the domains and handles. Every week without a name is a week the content engine can't start.&nbsp;
+  <b>5 · Open the NCAA ECAG file</b> — operator registration + USA Basketball Gold License process for yourselves, so certification is a formality, not a scramble.</p></div>
+
+  <div class="tl">
+    <div class="ev"><div class="d">August 2026</div><div class="t">Brand + Ammunition</div><p>Finish the brand identity: logo, colors, uniform mockups, franchise name concepts — this is the whole Unrivaled lesson, spend real money here. Rebuild the sponsor deck with actual Belmont quotes. Start quiet Founding Team Owner conversations (Wave 1 of the Million playbook) — you want 5–6 verbally committed before anything goes public.</p></div>
+    <div class="ev"><div class="d">September 2026</div><div class="t">Announce Loud</div><p>Belmont contract signed. Public announcement with a hype video — the content engine starts before a single game exists. Founding Owner sales open publicly off the announcement heat. Commit your Director of Basketball Ops and Director of Media (even part-time) — the next six months need owners, not helpers.</p></div>
+    <div class="ev"><div class="d">October 2026</div><div class="t">Sell The Crown Jewels</div><p>Title partner + founding partner meetings off announcement momentum — 3-year title prepay on the table. Begin recruiting the officiating roster through your D2 contacts: coordinators assign summers early, get letters of intent from 12–15 college officials. Open production talks: Belmont Curb College, MTSU media, Nashville freelance market.</p></div>
+    <div class="ev"><div class="d">November 2026</div><div class="t">Coaches + Cause</div><p>Coach applications open — college assistants, former pros, decorated HS coaches (never their own players). Launch the scholarship fund publicly through the 501(c)(3). Nashville Sports Council / Visit Music City meetings for grant and event-fund money. Draft Night Gala planning starts.</p></div>
+    <div class="ev"><div class="d">December 2026</div><div class="t">The Raise, Round Two</div><p>Angel/athlete equity conversations — pitched with founding-owner and sponsor commitments as traction. Submit the NCAA ECAG event application early (deadlines are unforgiving, 11:59 PM ET means it). Bind insurance ($1M/$2M, NCAA as additional insured). Year-end giving push for the scholarship fund.</p></div>
+    <div class="ev"><div class="d">January 2027</div><div class="t">Staff The Machine</div><p>All 32 coaches + interim pool signed and announced (each announcement is content). Statewide tryout registration opens with real marketing spend behind it. League pass / streaming platform build begins. Launch the Reg CF community round if the stack needs it.</p></div>
+    <div class="ev"><div class="d">February 2027</div><div class="t">Lock Logistics</div><p>Regional tryout venues locked: Memphis, Knoxville, Chattanooga, Tri-Cities, Nashville. Officials roster signed. Uniform order placed — premium kits run 10–12 week lead times, this is the deadline. Host-hotel deal signed. Athletic trainer coverage contracted.</p></div>
+    <div class="ev"><div class="d">March 2027</div><div class="t">Tryouts Begin — Mar 20</div><p>Statewide tryouts roll city by city starting after the TSSAA state tournaments wrap (Memphis Mar 20 → Nashville finale Apr 17) — every stop is a content day (arrival videos, testing clips, local news). BBCS athlete registration drive so NCAA certification stays clean. Broadcast crew assignments and run-of-show drafted.</p></div>
+    <div class="ev"><div class="d">April 2027</div><div class="t">The Cut → The Combine</div><p>Nashville tryout finale Apr 17; combine invites drop Apr 21 — 300 golden tickets, each one a social moment tagging schools, towns, families. The Combine runs Apr 30–May 1, wrapped before AP exams begin. Ticket onsale for Draft Night and Opening Week. Gala tables sold.</p></div>
+    <div class="ev"><div class="d">May 2027</div><div class="t">Draft → Grad Season → Camp</div><p>League goes quiet during AP exams (May 3–14), then Draft Night at the Curb on Fri May 14 — the evening the exam window closes, before graduation weekends. Grads celebrated, never scheduled against (May 15–23 fully off). Training Camp May 24–28, Media Day May 26, Fan Fest Eve Jun 2, full broadcast dress rehearsal with the college crews.</p></div>
+    <div class="ev"><div class="d">June 3, 2027</div><div class="t">First Tip 🏀</div><p>Opening Night, Thursday Jun 3 at Belmont. College refs. Broadcast cameras. Names on backs. The highest stage before college — live.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <b>Sources &amp; basis:</b> Unrivaled financials/valuation — ESPN, SportsPro, Front Office Sports, PRNewswire (2024–26) · OTE model — TIME, Forbes, Variety · TSSAA Handbook &amp; NIL policy (tssaa.org) · NCAA ECAG guidelines &amp; fee schedule (ncaa.org) · Officials pay — ZebraWeb 2025 · Production tiers — ArenaMediaCloud, DJC West · Sponsorship pricing — Prep Athletic Director method, ZipSprout local-sponsorship dataset, SponsorUnited/Sportico · Venue — Belmont Strategic Venues, Curb Event Center (5,085 cap.), 2021 practice facility (2 courts).
+  <br><br>All venue, production, and sponsorship figures are planning estimates pending signed quotes. This document is a concept plan, not an offer of securities. Consult a TN attorney on entity formation, NIL, and TSSAA/NCAA compliance before launch.
+</div></footer>
+
+<script>
+(function(){
+  var input = document.getElementById('leaguesearch');
+  var count = document.getElementById('searchcount');
+  var ITEMS = Array.from(document.querySelectorAll('.card, .sp li, .ev, .match, .callout, .org .role, .scn > .card'));
+  var ROWS = Array.from(document.querySelectorAll('.tblcard tr')).filter(function(r){ return !r.querySelector('th'); });
+  var SECTIONS = Array.from(document.querySelectorAll('section'));
+  var searchables = ITEMS.concat(ROWS);
+  var home = document.getElementById('home');
+  var footer = document.querySelector('footer');
+  var links = Array.from(document.querySelectorAll('nav a.lnk'));
+  var PANELS = [home].concat(SECTIONS);
+
+  // --- Swappable tab mode ---
+  document.body.classList.add('tabsmode');
+  function show(id){
+    document.body.classList.remove('searching');
+    if(input.value){ input.value=''; resetSearch(); }
+    PANELS.forEach(function(p){ p.classList.toggle('activepanel', p.id === id); });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); });
+    footer.style.display = (id === 'home') ? '' : 'none';
+    document.body.classList.toggle('home-active', id === 'home');
+    window.scrollTo({top:0});
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+  }
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      show(a.getAttribute('href').slice(1));
+      a.scrollIntoView({block:'nearest', inline:'nearest'});
+    });
+  });
+  // internal anchor links inside content also swap tabs
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('a[href^="#"]');
+    if(t && !t.classList.contains('lnk')){
+      var id = t.getAttribute('href').slice(1);
+      if(document.getElementById(id) && PANELS.some(function(p){return p.id===id;})){
+        e.preventDefault(); show(id);
+      }
+    }
+  });
+  var initial = (location.hash || '#home').slice(1);
+  show(PANELS.some(function(p){return p.id===initial;}) ? initial : 'home');
+
+  // --- Search (reveals all panels while active) ---
+  function resetSearch(){
+    searchables.forEach(function(el){ el.classList.remove('searchdim','searchhit'); });
+    SECTIONS.forEach(function(s){ s.classList.remove('section-hidden'); });
+    count.style.display='none';
+    document.body.classList.remove('searching');
+  }
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    if(q.length < 2){ resetSearch(); return; }
+    document.body.classList.add('searching');
+    var hits = 0;
+    searchables.forEach(function(el){
+      var match = el.textContent.toLowerCase().indexOf(q) !== -1;
+      el.classList.toggle('searchdim', !match);
+      el.classList.toggle('searchhit', match);
+      if(match) hits++;
+    });
+    SECTIONS.forEach(function(s){
+      s.classList.toggle('section-hidden', !s.querySelector('.searchhit'));
+    });
+    count.textContent = hits + ' RESULT' + (hits===1?'':'S');
+    count.style.display='inline';
+  });
+  input.addEventListener('keydown', function(e){ if(e.key==='Escape'){ input.value=''; resetSearch(); } });
+})();
+</script>
+</body>
+</html>

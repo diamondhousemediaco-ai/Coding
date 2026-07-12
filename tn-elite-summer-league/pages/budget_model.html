@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — Interactive Budget Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#121216; --panel2:#17171C; --line:rgba(255,255,255,.09);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#71717A;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1150px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:10px;min-height:60px;padding-top:9px;padding-bottom:9px;overflow-x:auto;white-space:nowrap}
+nav .logo{font-weight:900;font-size:14px;letter-spacing:.06em;margin-right:6px}
+nav .logo span{color:var(--blaze)}
+nav a{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);text-decoration:none;transition:all .15s}
+nav a:hover{color:var(--volt);border-color:rgba(232,255,58,.45)}
+nav button{margin-left:auto;flex:0 0 auto;font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0B0B0D;background:var(--volt);border:none;border-radius:999px;padding:8px 18px;cursor:pointer}
+header{padding:52px 0 8px}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--volt);border:1px solid rgba(232,255,58,.35);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+h1{font-size:clamp(30px,5vw,54px);font-weight:900;text-transform:uppercase;line-height:1.02;letter-spacing:-.01em}
+h1 span{color:var(--blaze)}
+header p{margin-top:14px;color:var(--mut);max-width:760px;font-size:14.5px}
+header p b{color:var(--txt)}
+section{padding:56px 0 6px}
+.kick{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blaze);margin-bottom:8px}
+h2{font-size:clamp(24px,3.4vw,36px);font-weight:900;text-transform:uppercase;margin-bottom:18px}
+/* score band */
+.band{position:sticky;top:60px;z-index:40;background:rgba(11,11,13,.96);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden;margin-top:26px}
+.band .cell{padding:16px 20px;border-left:1px solid var(--line)}
+.band .cell:first-child{border-left:none}
+.band .l{font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.band .v{font-size:clamp(18px,2.6vw,30px);font-weight:900;font-variant-numeric:tabular-nums}
+.band .v.exp{color:var(--txt)} .band .v.rev{color:var(--ice)}
+.band .v.gap{color:var(--blaze)} .band .v.gap.ok{color:var(--volt)}
+/* layout */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 20px 14px}
+.panel h3{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--volt);margin-bottom:12px}
+.panel h3 small{color:var(--dim);font-weight:600;letter-spacing:.04em;text-transform:none}
+/* inputs */
+.inrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.inrow:last-child{border-bottom:none}
+.inrow label{font-size:12px;color:var(--txt);font-weight:500}
+.inrow label small{display:block;color:var(--dim);font-size:10px;font-weight:400}
+.inrow input{width:110px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--volt);font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;padding:8px 12px;text-align:right;outline:none}
+.inrow input:focus{border-color:var(--blaze)}
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.05)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.mut{color:var(--mut);font-size:11.5px}
+tr.tot td{font-weight:800;border-top:2px solid var(--line);font-size:13.5px}
+tr.gap td{font-weight:800;color:var(--blaze)}
+.note{font-size:11px;color:var(--dim);margin-top:12px}
+/* scenario chips */
+.chips{display:flex;gap:8px;margin:14px 0 4px}
+.chip{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--mut);cursor:pointer;font-family:'Poppins',sans-serif}
+.chip.on{background:var(--blaze);border-color:var(--blaze);color:#0B0B0D}
+.callout{border:1px solid rgba(232,255,58,.4);background:linear-gradient(180deg,rgba(232,255,58,.07),transparent);border-radius:14px;padding:18px 20px;margin-top:16px}
+.callout .t{font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.08em;color:var(--volt);margin-bottom:5px}
+.callout p{font-size:12.5px;color:var(--mut)}
+.callout p b{color:var(--txt)}
+footer{margin-top:70px;padding:30px 0 56px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="logo">TN&nbsp;ELITE&nbsp;<span>SL</span></span>
+  <a href="#levers">Levers</a>
+  <a href="#year1">Year 1</a>
+  <a href="#optionb">Option B</a>
+  <a href="#vision">Full Vision</a>
+  <a href="#menu">Sponsor Menu</a>
+  <a href="#staff">Staffing</a>
+  <button id="resetbtn">↺ Reset</button>
+</div></nav>
+
+<header><div class="wrap">
+  <span class="eyebrow">Interactive Model · Season One 2027</span>
+  <h1>The Budget, <span>Live.</span></h1>
+  <p>Every number below is a lever — change any input and the whole model recalculates instantly. Defaults are the base plan: <b>college-level (D2) officials, real broadcast crews on 16 marquee nights, every game streamed.</b> Venue rates are estimates until Belmont quotes (osves@belmont.edu).</p>
+
+  <div class="band" id="scoreband">
+    <div class="cell"><div class="l">Total Expenses</div><div class="v exp" id="s_exp">$817,520</div></div>
+    <div class="cell"><div class="l">Total Revenue <span id="s_scn" style="color:var(--blaze)"></span></div><div class="v rev" id="s_rev">$537,000</div></div>
+    <div class="cell"><div class="l">Surplus / (Raise Needed)</div><div class="v gap" id="s_gap">($280,520)</div></div>
+  </div>
+</div></header>
+
+<section id="levers"><div class="wrap">
+  <div class="kick">Pull These</div>
+  <h2>The Levers</h2>
+  <div class="cols">
+    <div class="panel"><h3>League Structure</h3>
+      <div class="inrow"><label>Teams per gender</label><input type="number" id="i_tpg" value="8"></div>
+      <div class="inrow"><label>Roster size</label><input type="number" id="i_roster" value="10"></div>
+      <div class="inrow"><label>Seasons per summer</label><input type="number" id="i_sessions" value="2"></div>
+      <div class="inrow"><label>Reg-season games / team / season</label><input type="number" id="i_gpt" value="8"></div>
+      <div class="inrow"><label>Event days<small>game + combine + draft days</small></label><input type="number" id="i_days" value="44"></div>
+    </div>
+    <div class="panel"><h3>Officiating &amp; Game Day <small>· the anti-AAU standard</small></h3>
+      <div class="inrow"><label>$ per official per game<small>college D2 crews — AAU pays $35–75</small></label><input type="number" id="i_refrate" value="150"></div>
+      <div class="inrow"><label>Officials per game</label><input type="number" id="i_refs" value="3"></div>
+      <div class="inrow"><label>Athletic trainer $ / event day</label><input type="number" id="i_trainer" value="450"></div>
+      <div class="inrow"><label>Game-day ops crew $ / day</label><input type="number" id="i_ops" value="800"></div>
+    </div>
+    <div class="panel"><h3>Venue <small>· estimates pending Belmont quote</small></h3>
+      <div class="inrow"><label>Curb Event Center days</label><input type="number" id="i_arenadays" value="6"></div>
+      <div class="inrow"><label>Arena $ / event day</label><input type="number" id="i_arenarate" value="7500"></div>
+      <div class="inrow"><label>Practice facility court-hours</label><input type="number" id="i_pfhours" value="320"></div>
+      <div class="inrow"><label>$ / court-hour</label><input type="number" id="i_pfrate" value="90"></div>
+      <p class="note"><b style="color:var(--volt)">The Belmont play:</b> pitch Belmont as "Official Home of the League" — facilities contributed <b style="color:var(--txt)">in-kind as their sponsorship</b> (higher-ed category exclusivity, "Live from Belmont" on every broadcast, admissions booth in Vendor Row, Curb College production practicum). The full venue package is worth ~$74K at market rates — set the two rates above toward $0 to see what any level of Belmont trade does to the raise. Every dollar they trade is a dollar off the gap.</p>
+    </div>
+    <div class="panel"><h3>Broadcast <small>· real cameras, real crews</small></h3>
+      <div class="inrow"><label>Marquee broadcast games<small>manned broadcast cams, replay, commentary</small></label><input type="number" id="i_marquee" value="16"></div>
+      <div class="inrow"><label>$ per marquee game</label><input type="number" id="i_marqrate" value="3500"></div>
+      <div class="inrow"><label>$ per standard-stream game<small>coverage cams + student commentary</small></label><input type="number" id="i_stdrate" value="400"></div>
+    </div>
+    <div class="panel"><h3>People &amp; Player Experience</h3>
+      <div class="inrow"><label>Head coach stipend (×16)</label><input type="number" id="i_hc" value="3500"></div>
+      <div class="inrow"><label>Assistant stipend (×16)</label><input type="number" id="i_ac" value="1750"></div>
+      <div class="inrow"><label>Front office total<small>7 seasonal staff + interns — see Staffing</small></label><input type="number" id="i_fo" value="161000"></div>
+      <div class="inrow"><label>Uniform/gear $ per player</label><input type="number" id="i_kit" value="220"></div>
+      <div class="inrow"><label>Marketing &amp; brand</label><input type="number" id="i_mktg" value="45000"></div>
+    </div>
+    <div class="panel"><h3>Revenue Levers</h3>
+      <div class="inrow"><label>Player season fee<small>vs $3,000+ AAU; tryout fee credited</small></label><input type="number" id="i_fee" value="400"></div>
+      <div class="inrow"><label>Tryout participants × $50</label><input type="number" id="i_tryouts" value="600"></div>
+      <div class="inrow"><label>Title sponsor</label><input type="number" id="i_title" value="50000"></div>
+      <div class="inrow"><label>Presenting (2×)</label><input type="number" id="i_pres" value="25000"></div>
+      <div class="inrow"><label>Category partners (5×)</label><input type="number" id="i_cat" value="10000"></div>
+      <div class="inrow"><label>Jersey partners (12×)</label><input type="number" id="i_jers" value="5000"></div>
+      <div class="inrow"><label>Gate / tickets</label><input type="number" id="i_gate" value="120000"></div>
+      <div class="inrow"><label>Vendor fees — lobby vendor village<small>booth fees in the Curb lobby: arena days, Saturdays, combine &amp; draft</small></label><input type="number" id="i_vendor" value="18000"></div>
+      <div class="inrow"><label>Grants &amp; donations</label><input type="number" id="i_grants" value="60000"></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="year1"><div class="wrap">
+  <div class="kick">Season One · Summer 2027</div>
+  <h2>Year 1 — Live P&amp;L</h2>
+  <div class="chips">
+    <button class="chip" data-m="0.6">Conservative ×0.6</button>
+    <button class="chip on" data-m="1">Base ×1.0</button>
+    <button class="chip" data-m="1.4">Stretch ×1.4</button>
+  </div>
+  <p class="note" style="margin-bottom:12px">Scenario multiplier applies to sponsorship, gate, streaming, merch &amp; grants. Player and tryout fees stay flat.</p>
+  <div class="cols">
+    <div class="panel"><h3>Expenses</h3><table id="t_exp"><tbody><tr><th>Line</th><th class="r">Cost</th></tr><tr><td>Front office (7 seasonal staff + interns)</td><td class="r">$161,000</td></tr><tr><td>Coaches — 16 HC + 16 AC + interim pool</td><td class="r">$90,000</td></tr><tr><td>Officials — college crews × 156 games</td><td class="r">$70,200</td></tr><tr><td>Production — 16 marquee broadcast games</td><td class="r">$56,000</td></tr><tr><td>Production — 140 standard streams</td><td class="r">$56,000</td></tr><tr><td>Curb Event Center — 6 days</td><td class="r">$45,000</td></tr><tr><td>Marketing &amp; brand</td><td class="r">$45,000</td></tr><tr><td>Uniforms &amp; gear — 160 players</td><td class="r">$35,200</td></tr><tr><td>Game-day ops — 44 event days</td><td class="r">$35,200</td></tr><tr><td>Combine + Draft Night</td><td class="r">$30,000</td></tr><tr><td>Practice facility — 320 court-hours</td><td class="r">$28,800</td></tr><tr><td>Athletic trainers — 44 event days</td><td class="r">$19,800</td></tr><tr><td>Insurance</td><td class="r">$18,000</td></tr><tr><td>Tech &amp; stats</td><td class="r">$15,000</td></tr><tr><td>Legal &amp; accounting</td><td class="r">$12,000</td></tr><tr><td>Travel &amp; hospitality</td><td class="r">$8,000</td></tr><tr><td>Balls &amp; equipment</td><td class="r">$6,000</td></tr><tr><td>Compliance (NCAA cert, USAB, checks)</td><td class="r">$6,000</td></tr><tr><td>Awards</td><td class="r">$6,000</td></tr><tr><td class="mut">Contingency (10%)</td><td class="r">$74,320</td></tr><tr class="tot"><td>TOTAL EXPENSES</td><td class="r">$817,520</td></tr></tbody></table></div>
+    <div class="panel"><h3>Revenue</h3><table id="t_rev"><tbody><tr><th>Line</th><th class="r">Revenue</th></tr><tr><td>Tryout fees (600 × $50)</td><td class="r">$30,000</td></tr><tr><td>Player season fees (160 × $400)</td><td class="r">$64,000</td></tr><tr><td>Title sponsor</td><td class="r">$50,000</td></tr><tr><td>Presenting sponsors (2×)</td><td class="r">$50,000</td></tr><tr><td>Category partners (5×)</td><td class="r">$50,000</td></tr><tr><td>Jersey partners (12×)</td><td class="r">$60,000</td></tr><tr><td>Gate / tickets</td><td class="r">$120,000</td></tr><tr><td>Vendor fees (lobby vendor village)</td><td class="r">$18,000</td></tr><tr><td>Streaming / league pass</td><td class="r">$15,000</td></tr><tr><td>Merch (net)</td><td class="r">$20,000</td></tr><tr><td>Grants &amp; donations</td><td class="r">$60,000</td></tr><tr class="tot"><td>TOTAL REVENUE</td><td class="r">$537,000</td></tr><tr class="gap"><td>RAISE NEEDED</td><td class="r">($280,520)</td></tr></tbody></table>
+      <div class="callout"><div class="t">The gap is the raise</div>
+      <p>Whatever shows as (Raise Needed) above maps straight to the <b>Million-Dollar Playbook</b> in the main plan — Founding Team Owners alone (~$240K conservative) covers most of the base-case gap.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="optionb"><div class="wrap">
+  <div class="kick">Structure Alternative · Your Question, Answered</div>
+  <h2>Option B — One Season + Buy-In Tournaments</h2>
+  <p style="color:var(--mut);max-width:820px;font-size:14px;margin-bottom:22px">Does one summer season plus paid buy-in tournaments bring the total down? <b style="color:var(--txt)">Yes — with the confirmed structure (one season + one post-season tournament), expenses drop ~$184K and the raise you need drops ~$196K.</b> The current call: <b style="color:var(--txt)">one buy-in tournament confirmed after the season; a second is optional</b> (decide by May 1 off Tournament 1 registration — if it runs, the raise falls to ~$52K). Streaming stays EXCLUSIVE to the league season — tournaments are unstreamed, in-the-building-only events with <b style="color:var(--txt)">2-man officiating crews drawn from the same college roster</b> (finals upgrade to 3-man).</p>
+
+  <div class="cols">
+    <div class="panel"><h3>Head to Head</h3>
+      <table>
+        <tr><th></th><th class="r">Option A · Two Seasons</th><th class="r">Option B · One Season + 2 Tournaments</th></tr>
+        <tr><td>Total expenses</td><td class="r">$817,520</td><td class="r">~$633,300</td></tr>
+        <tr><td>Total revenue (base, incl. vendors)</td><td class="r">$537,000</td><td class="r">~$548,500</td></tr>
+        <tr class="gap"><td>RAISE NEEDED</td><td class="r">($280,520)</td><td class="r">(~$84,800)</td></tr>
+        <tr><td class="mut">If optional Tournament 2 runs</td><td class="r mut">—</td><td class="r" style="color:var(--volt)">raise falls to ~$52,000</td></tr>
+        <tr><td class="mut">League games / summer</td><td class="r">156 + playoffs</td><td class="r">78 league + ~150 tournament</td></tr>
+        <tr><td class="mut">Games per drafted player</td><td class="r">18–23</td><td class="r">9–11 (league only)</td></tr>
+        <tr><td class="mut">Streamed sponsor inventory</td><td class="r">Full summer</td><td class="r">~60% of Option A</td></tr>
+        <tr><td class="mut">Summer Cup / two-title storyline</td><td class="r">Yes</td><td class="r">No — one champion + tournament belts</td></tr>
+        <tr><td class="mut">Outside teams in your building</td><td class="r">Not until Nationals</td><td class="r">64+ team entries Year 1 — instant pipeline</td></tr>
+      </table>
+      <p class="note"><b style="color:var(--txt)">The Option B calendar:</b> the league season runs Jun 1 – Jul 3 exactly as scheduled — every game streamed, that's the season's exclusive. <b style="color:var(--txt)">Tournament 1 (CONFIRMED): Jul 15–17, after the season</b>, inside the NCAA live period — with no stream, being in the building is the ONLY way to see it: coaches show up, teams pay up. <b style="color:var(--txt)">Tournament 2 (OPTIONAL): Jul 29–31</b> — green-light by May 1 if T1 registration proves demand. All Thu–Sat, Sundays off. Season 2 returns in Year 2 from a position of strength.</p>
+    </div>
+    <div class="panel"><h3>"The Run" — Tournament Unit Economics <small>· per 3-day event</small></h3>
+      <table>
+        <tr><th>Line</th><th class="r">32 teams @ $1,000</th><th class="r">40 teams @ $1,250</th></tr>
+        <tr><td>Team entry fees</td><td class="r">$32,000</td><td class="r">$50,000</td></tr>
+        <tr><td>Gate (3 days)</td><td class="r">$10,000</td><td class="r">$12,000</td></tr>
+        <tr><td>Vendor row (lobby booths)</td><td class="r">$6,000</td><td class="r">$6,000</td></tr>
+        <tr><td>Tournament title sponsor</td><td class="r">$7,500</td><td class="r">$7,500</td></tr>
+        <tr class="tot"><td>Revenue</td><td class="r">$55,500</td><td class="r">$75,500</td></tr>
+        <tr><td>Officials — 2-man crews from the college roster (3-man for finals)</td><td class="r">$18,000</td><td class="r">$22,500</td></tr>
+        <tr><td>Venue (3 days, twin courts + finals)</td><td class="r">$6,500</td><td class="r">$7,500</td></tr>
+        <tr><td>Trainers + game-day ops</td><td class="r">$5,700</td><td class="r">$6,700</td></tr>
+        <tr><td>Streaming</td><td class="r">$0 — not streamed</td><td class="r">$0 — not streamed</td></tr>
+        <tr><td>Champions package (trophies, belts, gear — no cash)</td><td class="r">$2,000</td><td class="r">$2,500</td></tr>
+        <tr><td>Admin & misc</td><td class="r">$3,000</td><td class="r">$3,500</td></tr>
+        <tr class="tot"><td>Cost</td><td class="r">$35,200</td><td class="r">$42,700</td></tr>
+        <tr class="gap"><td>NET PER TOURNAMENT</td><td class="r" style="color:var(--volt)">+$20,300</td><td class="r" style="color:var(--volt)">+$32,800</td></tr>
+      </table>
+      <p class="note">No cash prizes — <b style="color:var(--txt)">winners take hardware, a banner in the building, champion gear, and an automatic invite back next year.</b> Officiating stays college-quality but tournament-sized: <b style="color:var(--txt)">2-man crews pulled from the same D2 roster</b> (two-person college mechanics is a real system, not a downgrade — and still miles above any AAU run), with 3-man crews for semifinals and finals. That makes tournaments genuinely profitable: <b style="color:var(--txt)">~$20K net at 32 teams, ~$33K at 40.</b> Every visiting team is next year's draft pipeline, hotel room-nights, and vendor traffic. Option B totals assume one confirmed 40-team event; the optional second adds another ~$33K net.</p>
+    </div>
+  </div>
+  <div class="callout"><div class="t">Two rules that keep Option B clean</div>
+  <p><b>1 · No cash prizes, period.</b> Champions take trophies, belts, a banner in the building, champion gear, and an automatic invite back — never money. That removes every amateur-status question before it's asked, and it prices the tournament honestly: teams are buying exposure and competition, not chasing a purse. <b>2 · Tournament weekends get NCAA event certification</b> just like league marquee weekends, so the live-period college-coach draw is legal and loud. Also fold in: entry discounts for teams that book through league housing (stay-to-play) — room-night leverage starts Year 1.</p></div>
+</div></section>
+
+<section id="vision"><div class="wrap">
+  <div class="kick">Year 3+</div>
+  <h2>Full Vision Snapshot</h2>
+  <div class="cols">
+    <div class="panel"><h3>Expenses — $2,884,750</h3>
+      <table>
+        <tr><td>Front office (full-time, 8 roles)</td><td class="r">$710,000</td></tr>
+        <tr><td>Production — 60 broadcast games + 120 streams</td><td class="r">$540,000</td></tr>
+        <tr><td>Coaches (HC $8K / AC $4K + pool)</td><td class="r">$204,000</td></tr>
+        <tr><td>Curb Event Center — 20 days (every game in the arena)</td><td class="r">$150,000</td></tr>
+        <tr><td>Nationals — travel subsidies + event ops</td><td class="r">$180,000</td></tr>
+        <tr><td>Marketing &amp; brand</td><td class="r">$150,000</td></tr>
+        <tr><td>Player NIL/appearance pool (sponsor-funded)</td><td class="r">$100,000</td></tr>
+        <tr><td>Officials — college crews, 180 games</td><td class="r">$89,100</td></tr>
+        <tr><td>Player meals &amp; transport</td><td class="r">$80,000</td></tr>
+        <tr><td>Combine + Draft (televised-scale)</td><td class="r">$75,000</td></tr>
+        <tr><td>Uniforms — team-catalog tier</td><td class="r">$56,000</td></tr>
+        <tr><td>Everything else (venue, medical, ops, insurance, tech, legal, awards)</td><td class="r">$288,400</td></tr>
+        <tr><td class="mut">Contingency (10%)</td><td class="r">$262,250</td></tr>
+        <tr class="tot"><td>TOTAL</td><td class="r">$2,884,750</td></tr>
+      </table>
+    </div>
+    <div class="panel"><h3>Revenue — $1,890,000</h3>
+      <table>
+        <tr><td>Title sponsor</td><td class="r">$250,000</td></tr>
+        <tr><td>All other sponsorship</td><td class="r">$750,000</td></tr>
+        <tr><td>Gate (20 arena days × ~1,800 × $14)</td><td class="r">$500,000</td></tr>
+        <tr><td>Media / streaming</td><td class="r">$150,000</td></tr>
+        <tr><td>Nationals entry fees (16 × $5K)</td><td class="r">$80,000</td></tr>
+        <tr><td>Merch (net)</td><td class="r">$60,000</td></tr>
+        <tr><td>Grants &amp; donations</td><td class="r">$100,000</td></tr>
+        <tr><td>Player fees — <b>$0, fully sponsored</b></td><td class="r">$0</td></tr>
+        <tr class="tot"><td>TOTAL</td><td class="r">$1,890,000</td></tr>
+        <tr class="gap"><td>INVESTOR CAPITAL / GROWTH GAP</td><td class="r">~$995,000</td></tr>
+      </table>
+      <div class="callout"><div class="t">That gap is the pitch, not the problem</div>
+      <p>Unrivaled raised <b>$35M before its first game</b> and hit a $340M valuation in 18 months. A ~$1M growth gap on a property with a proven Year 1 is an investor conversation, not a bake sale.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="menu"><div class="wrap">
+  <div class="kick">Sellable Assets</div>
+  <h2>Sponsor Menu — Year 1 Prices</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Asset</th><th class="r"># Avail</th><th class="r">Price Range</th><th class="r">Potential (mid)</th></tr>
+      <tr><td>Title / naming rights</td><td class="r">1</td><td class="r">$50–75K</td><td class="r">$62,500</td></tr>
+      <tr><td>Presenting partner</td><td class="r">2</td><td class="r">$20–30K</td><td class="r">$50,000</td></tr>
+      <tr><td>Official ball / apparel / footwear</td><td class="r">3</td><td class="r">$10–20K</td><td class="r">$45,000</td></tr>
+      <tr><td>Category partners (bank, auto, health, QSR, drink)</td><td class="r">5</td><td class="r">$7.5–15K</td><td class="r">$56,250</td></tr>
+      <tr><td>Team jersey front partners</td><td class="r">16</td><td class="r">$4–6K</td><td class="r">$80,000</td></tr>
+      <tr><td>Court logo decals</td><td class="r">4</td><td class="r">$5–7.5K</td><td class="r">$25,000</td></tr>
+      <tr><td>Combine title + testing stations</td><td class="r">1+6</td><td class="r">$10–15K + $1–2K/station</td><td class="r">$21,500</td></tr>
+      <tr><td>Draft Night title + green room</td><td class="r">1+1</td><td class="r">$10–15K + $3–5K</td><td class="r">$16,500</td></tr>
+      <tr><td>Broadcast segments ("Play of the Night by ___")</td><td class="r">6</td><td class="r">$2–4K</td><td class="r">$18,000</td></tr>
+      <tr><td>Stream ad packages (per season)</td><td class="r">8</td><td class="r">$2.5–5K</td><td class="r">$30,000</td></tr>
+      <tr><td>Door/gate, ticket-back, scorer's table, clock reads</td><td class="r">~8</td><td class="r">$2–6K</td><td class="r">$28,000</td></tr>
+      <tr><td>Scholarship / community fund partners</td><td class="r">3</td><td class="r">$5–15K</td><td class="r">$30,000</td></tr>
+      <tr><td>Content series (mic'd up, all-access)</td><td class="r">3</td><td class="r">$5–15K</td><td class="r">$30,000</td></tr>
+      <tr><td>Hospitality: host hotel, restaurants, travel</td><td class="r">~9</td><td class="r">$1–10K</td><td class="r">$25,500</td></tr>
+      <tr class="tot"><td>FULL MENU POTENTIAL</td><td class="r"></td><td class="r"></td><td class="r">~$518,000</td></tr>
+    </table>
+    <p class="note">Pricing method: audience value ($0.10–$2.00/head) × visibility multiplier (jersey 2–4×, PA/banner 1.5×); category exclusivity commands a 2–5× premium. Streaming impressions are the upsell on every line.</p>
+  </div>
+</div></section>
+
+<section id="staff"><div class="wrap">
+  <div class="kick">Who Runs It</div>
+  <h2>Staffing Cost Detail</h2>
+  <div class="cols">
+    <div class="panel"><h3>Front Office — $161K Year 1 · $710K Full Vision</h3>
+      <table>
+        <tr><th>Role</th><th class="r">Year 1</th><th class="r">Full Vision</th></tr>
+        <tr><td>Commissioner / President</td><td class="r">$25,000</td><td class="r">$120,000</td></tr>
+        <tr><td>Dir. Basketball Operations</td><td class="r">$30,000</td><td class="r">$90,000</td></tr>
+        <tr><td>Dir. Partnerships (+10% commission)</td><td class="r">$25,000</td><td class="r">$90,000</td></tr>
+        <tr><td>Dir. Media &amp; Content</td><td class="r">$30,000</td><td class="r">$85,000</td></tr>
+        <tr><td>Dir. Events &amp; Logistics</td><td class="r">$25,000</td><td class="r">$75,000</td></tr>
+        <tr><td>Compliance &amp; Player Welfare</td><td class="r">$12,000</td><td class="r">$65,000</td></tr>
+        <tr><td>Finance &amp; Admin</td><td class="r">$8,000</td><td class="r">$65,000</td></tr>
+        <tr><td>Coordinators &amp; interns</td><td class="r">$6,000</td><td class="r">$120,000</td></tr>
+      </table>
+    </div>
+    <div class="panel"><h3>Basketball &amp; Game Day</h3>
+      <table>
+        <tr><th>Role</th><th class="r">Year 1 Rate</th></tr>
+        <tr><td>16 Head Coaches<br><span class="mut">college assistants, former pros, decorated HS coaches — never their own players</span></td><td class="r">$3,500 ea</td></tr>
+        <tr><td>16 Assistant Coaches</td><td class="r">$1,750 ea</td></tr>
+        <tr><td>Interim coach pool (4–6 floaters)</td><td class="r">per game</td></tr>
+        <tr><td>Officials — college D2 three-man crews</td><td class="r">$450 / game</td></tr>
+        <tr><td>Certified athletic trainers</td><td class="r">$450 / day</td></tr>
+        <tr><td>Game ops (scorers, clock, PA/DJ, gate, security)</td><td class="r">$800 / day</td></tr>
+        <tr><td>Broadcast crew (producer, cam ops, commentary, replay)</td><td class="r">in production lines</td></tr>
+      </table>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Basis: ZebraWeb officials survey · ArenaMediaCloud production tiers · Prep Athletic Director sponsorship method · NCAA ECAG requirements · TSSAA Handbook &amp; NIL policy · Unrivaled/OTE public reporting. Planning-grade model — replace estimates with signed quotes as they land. Matching Excel workbook available with the same levers.
+</div></footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var fmt = function(n){ var neg = n < 0; n = Math.round(Math.abs(n));
+    var s = '$' + n.toLocaleString('en-US'); return neg ? '(' + s + ')' : s; };
+  var mult = 1;
+  var DEFAULTS = {};
+  var IDS = ['i_tpg','i_roster','i_sessions','i_gpt','i_days','i_refrate','i_refs','i_trainer','i_ops',
+             'i_arenadays','i_arenarate','i_pfhours','i_pfrate','i_marquee','i_marqrate','i_stdrate',
+             'i_hc','i_ac','i_fo','i_kit','i_mktg','i_fee','i_tryouts','i_title','i_pres','i_cat','i_jers','i_gate','i_vendor','i_grants'];
+  IDS.forEach(function(id){ DEFAULTS[id] = $(id).value; });
+  var FIXED = { combine:30000, equip:6000, insurance:18000, compliance:6000, tech:15000, legal:12000, awards:6000, travel:8000, interim:6000, stream:15000, merch:20000 };
+
+  function v(id){ return parseFloat($(id).value) || 0; }
+
+  function calc(){
+    var tpg=v('i_tpg'), roster=v('i_roster'), sessions=v('i_sessions'), gpt=v('i_gpt');
+    var teams=tpg*2, players=teams*roster;
+    var gamesSession=(tpg*gpt/2+7)*2, games=gamesSession*sessions;
+    var marquee=Math.min(v('i_marquee'), games);
+
+    var E = [];
+    E.push(['Front office (7 seasonal staff + interns)', v('i_fo')]);
+    E.push(['Coaches — 16 HC + 16 AC + interim pool', 16*v('i_hc')+16*v('i_ac')+FIXED.interim]);
+    E.push(['Officials — college crews × '+games+' games', games*v('i_refs')*v('i_refrate')]);
+    E.push(['Production — '+marquee+' marquee broadcast games', marquee*v('i_marqrate')]);
+    E.push(['Production — '+(games-marquee)+' standard streams', (games-marquee)*v('i_stdrate')]);
+    E.push(['Curb Event Center — '+v('i_arenadays')+' days', v('i_arenadays')*v('i_arenarate')]);
+    E.push(['Practice facility — '+v('i_pfhours')+' court-hours', v('i_pfhours')*v('i_pfrate')]);
+    E.push(['Uniforms & gear — '+players+' players', players*v('i_kit')]);
+    E.push(['Marketing & brand', v('i_mktg')]);
+    E.push(['Game-day ops — '+v('i_days')+' event days', v('i_days')*v('i_ops')]);
+    E.push(['Athletic trainers — '+v('i_days')+' event days', v('i_days')*v('i_trainer')]);
+    E.push(['Combine + Draft Night', FIXED.combine]);
+    E.push(['Insurance', FIXED.insurance]);
+    E.push(['Balls & equipment', FIXED.equip]);
+    E.push(['Compliance (NCAA cert, USAB, checks)', FIXED.compliance]);
+    E.push(['Tech & stats', FIXED.tech]);
+    E.push(['Legal & accounting', FIXED.legal]);
+    E.push(['Awards', FIXED.awards]);
+    E.push(['Travel & hospitality', FIXED.travel]);
+    var sub = E.reduce(function(a,x){ return a+x[1]; }, 0);
+    var cont = sub*0.10, totExp = sub+cont;
+
+    var fees = v('i_tryouts')*50 + players*v('i_fee');
+    var R = [];
+    R.push(['Tryout fees ('+v('i_tryouts')+' × $50)', v('i_tryouts')*50, false]);
+    R.push(['Player season fees ('+players+' × $'+v('i_fee')+')', players*v('i_fee'), false]);
+    R.push(['Title sponsor', v('i_title'), true]);
+    R.push(['Presenting sponsors (2×)', 2*v('i_pres'), true]);
+    R.push(['Category partners (5×)', 5*v('i_cat'), true]);
+    R.push(['Jersey partners (12×)', 12*v('i_jers'), true]);
+    R.push(['Gate / tickets', v('i_gate'), true]);
+    R.push(['Vendor fees (lobby vendor village)', v('i_vendor'), true]);
+    R.push(['Streaming / league pass', FIXED.stream, true]);
+    R.push(['Merch (net)', FIXED.merch, true]);
+    R.push(['Grants & donations', v('i_grants'), true]);
+    var totRev = R.reduce(function(a,x){ return a + (x[2] ? x[1]*mult : x[1]); }, 0);
+
+    var eh = '<tr><th>Line</th><th class="r">Cost</th></tr>';
+    E.sort(function(a,b){ return b[1]-a[1]; }).forEach(function(x){ eh += '<tr><td>'+x[0]+'</td><td class="r">'+fmt(x[1])+'</td></tr>'; });
+    eh += '<tr><td class="mut">Contingency (10%)</td><td class="r">'+fmt(cont)+'</td></tr>';
+    eh += '<tr class="tot"><td>TOTAL EXPENSES</td><td class="r">'+fmt(totExp)+'</td></tr>';
+    $('t_exp').innerHTML = eh;
+
+    var rh = '<tr><th>Line</th><th class="r">Revenue</th></tr>';
+    R.forEach(function(x){ var val = x[2] ? x[1]*mult : x[1];
+      rh += '<tr><td>'+x[0]+(x[2]&&mult!==1?' <span class="mut">×'+mult+'</span>':'')+'</td><td class="r">'+fmt(val)+'</td></tr>'; });
+    rh += '<tr class="tot"><td>TOTAL REVENUE</td><td class="r">'+fmt(totRev)+'</td></tr>';
+    var gap = totRev - totExp;
+    rh += '<tr class="gap"><td>'+(gap>=0?'SURPLUS':'RAISE NEEDED')+'</td><td class="r">'+fmt(gap)+'</td></tr>';
+    $('t_rev').innerHTML = rh;
+
+    $('s_exp').textContent = fmt(totExp);
+    $('s_rev').textContent = fmt(totRev);
+    var g = $('s_gap'); g.textContent = fmt(gap);
+    g.classList.toggle('ok', gap >= 0);
+    $('s_scn').textContent = mult===1 ? '' : '· ×'+mult;
+  }
+
+  IDS.forEach(function(id){ $(id).addEventListener('input', calc); });
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('on'); });
+      c.classList.add('on'); mult = parseFloat(c.dataset.m); calc();
+    });
+  });
+  $('resetbtn').addEventListener('click', function(){
+    IDS.forEach(function(id){ $(id).value = DEFAULTS[id]; });
+    mult = 1;
+    document.querySelectorAll('.chip').forEach(function(x){ x.classList.toggle('on', x.dataset.m==='1'); });
+    calc();
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

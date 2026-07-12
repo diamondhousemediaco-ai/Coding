@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TN Elite Summer League — Sponsor Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090B; --panel:#15151A; --panel2:#1B1B21; --line:rgba(255,255,255,.1);
+  --txt:#F5F5F4; --mut:#A1A1AA; --dim:#6B6B74;
+  --blaze:#FF4D1C; --volt:#E8FF3A; --ice:#5EEAD4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--txt);font-family:'Poppins',system-ui,sans-serif}
+#deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:70px 0}
+.inner{width:min(1060px,92vw);margin:0 auto}
+.kick{font-size:11px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--volt);margin-bottom:12px}
+h2{font-size:clamp(26px,4.4vw,48px);font-weight:900;text-transform:none;letter-spacing:-.01em;line-height:1.05;margin-bottom:22px}
+.glow{position:absolute;border-radius:50%;filter:blur(10px);pointer-events:none}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card.hot{border-color:rgba(255,77,28,.5);background:linear-gradient(180deg,rgba(255,77,28,.10),var(--panel) 55%)}
+.card h3{font-size:14px;font-weight:800;margin-bottom:7px}
+.card p{font-size:12.5px;color:var(--mut);line-height:1.5}
+.tag{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.big{font-size:clamp(22px,2.6vw,30px);font-weight:900}
+.strap{font-size:clamp(12px,1.4vw,15px);font-weight:800;color:var(--volt);margin-top:22px}
+ul.cl{list-style:none;margin-top:8px}
+ul.cl li{font-size:12.5px;color:var(--txt);padding:5px 0 5px 18px;position:relative;line-height:1.45}
+ul.cl li:before{content:"▸";position:absolute;left:0;color:var(--blaze);font-weight:900}
+/* dots nav */
+#dots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:9px}
+#dots a{width:9px;height:9px;border-radius:50%;background:var(--line);display:block;transition:all .2s}
+#dots a.on{background:var(--blaze);transform:scale(1.5)}
+#counter{position:fixed;left:18px;bottom:16px;z-index:60;font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--dim)}
+#hint{position:fixed;right:18px;bottom:16px;z-index:60;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+.brand{position:fixed;left:18px;top:16px;z-index:60;font-size:12px;font-weight:900;letter-spacing:.06em}
+.brand span{color:var(--blaze)}
+@media(max-width:700px){#dots{display:none}}
+</style>
+</head>
+<body>
+<div class="brand">TN ELITE <span>SUMMER LEAGUE</span></div>
+<div id="counter">01 / 13</div>
+<div id="hint">Scroll or ← → keys</div>
+<div id="dots"></div>
+
+<div id="deck">
+
+<!-- 1 COVER -->
+<section class="slide" id="s1">
+  <div class="glow" style="width:560px;height:400px;right:-140px;top:-160px;background:rgba(255,77,28,.20)"></div>
+  <div class="glow" style="width:420px;height:300px;left:-160px;bottom:-120px;background:rgba(232,255,58,.10)"></div>
+  <div class="inner">
+    <div class="kick">Sponsorship Opportunities · Summer 2027 · Belmont University, Nashville</div>
+    <h2 style="font-size:clamp(44px,8vw,96px);text-transform:uppercase;line-height:.98">Real Teams.<br>Real Draft.<br><span style="color:var(--blaze)">Real Stakes.</span></h2>
+    <p style="color:var(--mut);max-width:620px;font-size:15px;margin-top:10px">The elite high-school summer basketball league built like a pro property — the highest stage you can play on before college. Combine. Draft. Two seasons. Nationals.</p>
+  </div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide" id="s2"><div class="inner">
+  <div class="kick">The Opening</div>
+  <h2>Families are done with AAU chaos.</h2>
+  <div class="grid g3">
+    <div class="card"><div class="big" style="color:var(--blaze)">$3,000–5,000</div><p style="margin-top:8px">for one AAU summer — before travel. Pay-to-play with no guarantees.</p></div>
+    <div class="card"><div class="big" style="color:var(--blaze)">5 games a day</div><p style="margin-top:8px">in silent gyms. No development, no stakes, no story.</p></div>
+    <div class="card"><div class="big" style="color:var(--blaze)">Zero structure</div><p style="margin-top:8px">No draft, no standings that matter, no production, no accountability — and the worst refs in basketball.</p></div>
+  </div>
+  <div class="card hot" style="margin-top:16px"><p style="font-size:13.5px"><b style="color:var(--volt)">The opening:</b> <span style="color:var(--txt)">parents are actively looking for the legit alternative. The first property that feels college/pro level owns the market — and the sponsors who join first own the story.</span></p></div>
+</div></section>
+
+<!-- 3 LEAGUE -->
+<section class="slide" id="s3"><div class="inner">
+  <div class="kick">The Product</div>
+  <h2>A league that feels like the pros.</h2>
+  <div class="grid g4" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:16px">
+    <div><div class="big">16</div><div class="tag" style="color:var(--dim)">Teams · 8 boys / 8 girls</div></div>
+    <div><div class="big">160</div><div class="tag" style="color:var(--dim)">80 best girls + 80 best boys in TN</div></div>
+    <div><div class="big" style="color:var(--blaze)">156+</div><div class="tag" style="color:var(--dim)">Games, all streamed</div></div>
+    <div><div class="big">2×5</div><div class="tag" style="color:var(--dim)">Week seasons</div></div>
+    <div><div class="big">5,085</div><div class="tag" style="color:var(--dim)">Seat arena at Belmont</div></div>
+  </div>
+  <div class="grid g4">
+    <div class="card"><div class="tag" style="color:var(--volt)">01 · Tryouts</div><p>Statewide, ~600 athletes. Every region of Tennessee.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">02 · Combine</div><p>Top 300. Testing, measurements, media day — every station brandable.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">03 · Draft Night</div><p>Produced, live-streamed, in the arena. The most clippable night of the year.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">04 · Seasons + Nationals</div><p>Two 5-week seasons with playoffs; a 10-day national invitational (Yr 2–3).</p></div>
+  </div>
+  <div class="card hot" style="margin-top:16px"><p style="font-size:13.5px;line-height:1.6"><b style="color:var(--blaze)">Why it plays like college ball:</b> <span style="color:var(--txt)">80 of the best girls and 80 of the best boys in Tennessee, in one building, every one of them drafted — no bought roster spots, no passengers. When everyone on the floor is top-of-the-state talent, every possession is contested and the game plays at college speed because the players force it to. That energy is the product sponsors are attaching to.</span></p></div>
+</div></section>
+
+<!-- 4 PROOF -->
+<section class="slide" id="s4"><div class="inner">
+  <div class="kick">The Proof</div>
+  <h2>This model already works.</h2>
+  <div class="grid g2">
+    <div class="card"><h3 style="color:var(--blaze);font-size:16px">UNRIVALED <span style="color:var(--dim);font-weight:600;font-size:11px">— 3v3 women's pro league, our brand inspiration</span></h3>
+      <ul class="cl">
+        <li>$35M raised before its first game</li>
+        <li>$95M → $340M valuation in ~18 months</li>
+        <li>~$27–30M revenue season one — near break-even</li>
+        <li>~$100M / 6-year TNT media deal</li>
+        <li>14+ sponsors: Ally, Samsung, Under Armour, State Farm, Sephora, Wilson, Miller Lite…</li>
+      </ul>
+    </div>
+    <div class="card"><h3 style="color:var(--ice);font-size:16px">OVERTIME ELITE <span style="color:var(--dim);font-weight:600;font-size:11px">— HS-age league built as a content engine</span></h3>
+      <ul class="cl">
+        <li>$250M+ raised (Bezos, Drake, KD, Liberty Media)</li>
+        <li>Gatorade &amp; State Farm multi-year, multimillion deals</li>
+        <li>Amazon Prime Video global rights + docuseries</li>
+        <li>23M views on opening weekend</li>
+        <li>4 NBA lottery picks produced in 3 years</li>
+      </ul>
+    </div>
+  </div>
+  <div class="strap">Nobody has built this at the state level. Tennessee goes first.</div>
+</div></section>
+
+<!-- 5 AUDIENCE -->
+<section class="slide" id="s5"><div class="inner">
+  <div class="kick">Who You Reach</div>
+  <h2>The audience money can't usually buy.</h2>
+  <div class="grid g3">
+    <div class="card"><h3>160 elite athletes</h3><p>The most-followed teenagers in their towns — and TSSAA allows direct sponsor-to-player NIL deals.</p></div>
+    <div class="card"><h3>Thousands of families</h3><p>Parents of teens: peak spending years — autos, insurance, healthcare, tutoring, food.</p></div>
+    <div class="card"><h3>Every game streamed</h3><p>Season-long impressions, not one-night signage. Highlights clipped and shared all summer.</p></div>
+    <div class="card"><h3>College coaches courtside</h3><p>Marquee weekends aligned to NCAA live periods put D-I staffs in the building.</p></div>
+    <div class="card"><h3>Statewide footprint</h3><p>Tryouts in every region make this Tennessee's league, not just Nashville's.</p></div>
+    <div class="card"><h3>Earned media</h3><p>Draft night, combine, a girls' league equal to the boys' — stories local press wants to cover.</p></div>
+  </div>
+</div></section>
+
+<!-- 6 STAGE -->
+<section class="slide" id="s6"><div class="inner">
+  <div class="kick">The Stage</div>
+  <h2>Real cameras. Real crews. Real refs.</h2>
+  <div class="grid g2">
+    <div class="card hot"><div class="tag" style="color:var(--blaze)">Broadcast cameras — no shortcuts</div><p>Manned broadcast cameras on every marquee night — via Belmont's in-house ESPN-platform production infrastructure, Nashville's deep freelance broadcast bench, and school media-program partnerships (MTSU, Curb College).</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">College officiating (D2)</div><p>The #1 AAU complaint is the refs — so ours are college crews, recruited through college officiating coordinators. Players learn the college whistle before campus; parents feel it in the first quarter.</p></div>
+    <div class="card"><div class="tag" style="color:var(--ice)">The distribution ladder</div><p>Year 1: league YouTube + TikTok engine and a paid league pass. Year 2: local TV Game of the Week. Year 2–3: ESPN+ through packagers (Paragon has curated ESPN's HS slate since 2002) — the road there is star recruits + a broadcast-grade feed.</p></div>
+    <div class="card"><div class="tag" style="color:var(--txt)">Big-stage feel, every night</div><p>Walkout tunnel intros, per-team hype videos, DJ + PA, live stat overlays, press-conference backdrop. Cheap to run — reads pro in every clip. And clips are the product.</p></div>
+  </div>
+  <div class="strap">Every game streamed. 16 full-broadcast marquee nights in Year 1 — 60+ in the Full Vision.</div>
+</div></section>
+
+<!-- 7 TIERS -->
+<section class="slide" id="s7"><div class="inner">
+  <div class="kick">Partnership Tiers</div>
+  <h2>Four ways in.</h2>
+  <div class="grid g4">
+    <div class="card hot"><div class="tag" style="color:var(--blaze)">Title Partner</div><div class="big">$50–75K</div><div class="tag" style="color:var(--dim);margin-top:4px">1 available</div><p>Your name in the league's name. Center court, every jersey patchline, every broadcast, every post. Category exclusivity everywhere.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">Founding Partner</div><div class="big">$20–30K</div><div class="tag" style="color:var(--dim);margin-top:4px">4–6 available</div><p>"Founding Partner — est. 2027" forever. Category exclusivity, first-refusal renewal rights, premium inventory across venue + broadcast.</p></div>
+    <div class="card"><div class="tag" style="color:var(--ice)">Official Partner</div><div class="big">$5–15K</div><div class="tag" style="color:var(--dim);margin-top:4px">8–10 available</div><p>Official category status (bank, health, auto, QSR, drink…), court + stream presence, activation nights.</p></div>
+    <div class="card"><div class="tag" style="color:var(--mut)">Game Night Partner</div><div class="big">$1–5K</div><div class="tag" style="color:var(--dim);margin-top:4px">Flexible</div><p>Owned moments: door/gate branding, halftime contests, t-shirt toss, play-of-the-night segments, theme nights.</p></div>
+  </div>
+  <p style="color:var(--dim);font-style:italic;font-size:12px;margin-top:16px">Every tier includes streamed-game impressions, social content, and a community story — partnerships, not logo slaps.</p>
+</div></section>
+
+<!-- 8 FRANCHISE -->
+<section class="slide" id="s8">
+  <div class="glow" style="width:480px;height:340px;right:-120px;top:-120px;background:rgba(255,77,28,.16)"></div>
+  <div class="inner">
+  <div class="kick">The Premium Play</div>
+  <h2>Own a franchise.</h2>
+  <p style="color:var(--mut);font-style:italic;margin-bottom:16px">16 founding ownerships. One per team. Never available again at this price.</p>
+  <div class="grid" style="grid-template-columns:280px 1fr;gap:14px">
+    <div class="card hot" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="big" style="color:var(--blaze);font-size:34px">$15–25K</div>
+      <div class="tag" style="color:var(--dim)">Founding Team Owner</div>
+      <p style="margin-top:10px">One brand, two teams — your franchise fields both a boys and a girls squad. The Big3 / TBT model, brought to Tennessee.</p>
+    </div>
+    <div class="grid g3" style="gap:10px">
+      <div class="card"><h3 style="color:var(--volt);font-size:12.5px">Naming input</h3><p style="font-size:11.5px">Help name and brand your franchise — your business woven into the identity.</p></div>
+      <div class="card"><h3 style="color:var(--volt);font-size:12.5px">Courtside hospitality</h3><p style="font-size:11.5px">Owner seats + suite access on marquee nights, for you and your clients.</p></div>
+      <div class="card"><h3 style="color:var(--volt);font-size:12.5px">Merch revenue share</h3><p style="font-size:11.5px">A cut of your franchise's jersey and merch sales, every season.</p></div>
+      <div class="card"><h3 style="color:var(--volt);font-size:12.5px">Founders wall + legacy</h3><p style="font-size:11.5px">"Founding Owner — est. 2027" permanently in the arena and on every team page.</p></div>
+      <div class="card"><h3 style="color:var(--volt);font-size:12.5px">Draft night on the floor</h3><p style="font-size:11.5px">You're on camera when your team makes its picks.</p></div>
+      <div class="card"><h3 style="color:var(--volt);font-size:12.5px">First refusal, forever</h3><p style="font-size:11.5px">If franchises ever become true equity, founding owners get the first call.</p></div>
+    </div>
+  </div>
+  <div class="strap" style="color:var(--blaze)">Owners recruit each other — nobody wants to be the one without a team.</div>
+</div></section>
+
+<!-- 9 INVENTORY -->
+<section class="slide" id="s9"><div class="inner">
+  <div class="kick">The Inventory</div>
+  <h2>What you can own.</h2>
+  <div class="grid g2">
+    <div class="card"><div class="tag" style="color:var(--volt)">On the player</div><p>Jersey front &amp; back patches · warm-ups · gear bags · official ball · shoes &amp; socks</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">In the venue</div><p>Court decals · scorer's table · entry gates &amp; doors · ticket-backs · suites · seat-backs</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">On the stream</div><p>Presenting sponsor · 30-sec spots · replay &amp; stats graphics · "Play of the Night by ___"</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">Tentpole events</div><p>Combine title &amp; testing stations · Draft Night + green room · Media Day · Awards · All-Star night</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">In the content</div><p>Mic'd-up series · all-access doc · podcast · fantasy pick'em · player NIL collabs</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">In the community</div><p>Scholarship fund · team meals · recovery lounge · youth clinics · theme nights · host hotel</p></div>
+  </div>
+  <div class="strap" style="color:var(--blaze)">60+ sellable assets. Category exclusivity available on every one.</div>
+</div></section>
+
+<!-- 10 ACTIVATION -->
+<section class="slide" id="s10"><div class="inner">
+  <div class="kick">Built-In Activation</div>
+  <h2>Partnerships, not logo slaps.</h2>
+  <div class="grid g2">
+    <div class="card hot"><h3>"Play of the Night by ___"</h3><p>A branded recurring broadcast segment — the exact model Samsung ran with Unrivaled's "Galaxy Game Winner." Your brand inside the moment fans rewatch.</p></div>
+    <div class="card"><h3>"Vertical Jump powered by ___"</h3><p>Combine testing stations carry your brand in every measurement graphic — numbers that get quoted in recruiting posts all year.</p></div>
+    <div class="card"><h3>The Scholarship Story</h3><p>Your dollars visibly waive player fees for families in need. 501(c)(3) deductible — and it's the side of the anti-pay-to-play story parents already agree with.</p></div>
+    <div class="card"><h3>Draft Night Green Room</h3><p>Your brand behind every hug, hat, and handshake — the most-shared images of the entire summer.</p></div>
+  </div>
+</div></section>
+
+<!-- 11 LEGIT -->
+<section class="slide" id="s11"><div class="inner">
+  <div class="kick">Why It's Safe To Attach Your Brand</div>
+  <h2>Legit, by design.</h2>
+  <div class="grid g2">
+    <div class="card"><h3 style="color:var(--ice)">Fully independent</h3><p>Outside all school programs — the same lane AAU operates in, run at a far higher standard. No coach is ever paired with players from their own school.</p></div>
+    <div class="card"><h3 style="color:var(--ice)">NCAA-certified events</h3><p>Certified so D-I coaches can attend live-period weekends: registered athletes, licensed coaches, background checks on every adult.</p></div>
+    <div class="card"><h3 style="color:var(--ice)">Pro-level safety</h3><p>Certified athletic trainers at every event day. College-level (D2) officiating crews — not AAU refs. $1M/$2M liability coverage.</p></div>
+    <div class="card"><h3 style="color:var(--ice)">Mission with receipts</h3><p>~$400 all-in for a player's whole summer vs $3,000+ AAU — and a scholarship fund that takes it to $0 for families who need it.</p></div>
+  </div>
+</div></section>
+
+<!-- 12 TIMELINE -->
+<section class="slide" id="s12"><div class="inner">
+  <div class="kick">The Road To Tip-Off</div>
+  <h2>Founding partners lock in now.</h2>
+  <div class="grid g4">
+    <div class="card"><div class="tag" style="color:var(--volt)">Fall 2026</div><p>Brand launch + hype video. Founding partners announced with the league itself — maximum earned media.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">Winter 2026–27</div><p>Coaches signed. Tryout registration opens statewide. Partner content begins.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">Spring 2027</div><p>Tryouts → Combine → Draft Night at the arena. Partner brands in every frame.</p></div>
+    <div class="card"><div class="tag" style="color:var(--volt)">Jun 1, 2027</div><p>First tip at Belmont. Two seasons, playoffs, every game streamed.</p></div>
+  </div>
+  <div class="card hot" style="margin-top:16px"><p style="font-size:13.5px"><b style="color:var(--txt)">Founding-era pricing ends at brand launch.</b> After Fall 2026, every tier reprices against real audience numbers.</p></div>
+</div></section>
+
+<!-- 13 CLOSE -->
+<section class="slide" id="s13">
+  <div class="glow" style="width:560px;height:420px;right:-140px;bottom:-160px;background:rgba(255,77,28,.20)"></div>
+  <div class="inner">
+    <div class="kick">Be A Founding Partner</div>
+    <h2 style="font-size:clamp(40px,7vw,84px);line-height:1">Own the story<br><span style="color:var(--blaze)">from day one.</span></h2>
+    <p style="color:var(--mut);max-width:640px;font-size:14.5px;margin-top:14px">Every league that made it — Unrivaled, OTE, TBT — was built with partners who got in before the first game. This is that moment for Tennessee.</p>
+    <p style="margin-top:34px;font-weight:800;font-size:14px">Diamond House Media &nbsp;·&nbsp; diamondhousemediaco@gmail.com &nbsp;·&nbsp; Nashville, TN</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var deck = document.getElementById('deck');
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('dots');
+  var counter = document.getElementById('counter');
+  slides.forEach(function(s,i){
+    var a = document.createElement('a');
+    a.href = '#'+s.id;
+    a.addEventListener('click', function(e){ e.preventDefault(); s.scrollIntoView({behavior:'smooth'}); });
+    dots.appendChild(a);
+  });
+  var dotEls = Array.from(dots.children);
+  function pad(n){ return (n<10?'0':'')+n; }
+  var current = 0;
+  var obs = new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(en.isIntersecting){
+        current = slides.indexOf(en.target);
+        dotEls.forEach(function(d,i){ d.classList.toggle('on', i===current); });
+        counter.textContent = pad(current+1)+' / '+pad(slides.length);
+      }
+    });
+  }, { root: deck, threshold: 0.55 });
+  slides.forEach(function(s){ obs.observe(s); });
+  document.addEventListener('keydown', function(e){
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key) !== -1){ e.preventDefault(); slides[Math.min(current+1, slides.length-1)].scrollIntoView({behavior:'smooth'}); }
+    if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key) !== -1){ e.preventDefault(); slides[Math.max(current-1, 0)].scrollIntoView({behavior:'smooth'}); }
+  });
+})();
+</script>
+</body>
+</html>
