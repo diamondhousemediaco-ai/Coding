@@ -5,12 +5,13 @@ similar image-to-video engines). This is the reusable version of the huge
 "Style: …" blocks we hand-retype for every scene. Read this once, then build any
 new scene from `PROMPT_TEMPLATE.md` and one of the looks in `presets.md`.
 
-**Source of truth:** the finished prompts in `reference/` — the gunslinger and
-snowboarder scenes (gouache look), Ancient Champions (2.5D comic look), and the
-blizzard drama (hand-drawn 2D look). When this guide and a reference prompt
-disagree, the reference prompt wins; then fix this guide.
+**Source of truth:** the working session log
+`sessions/gouache-film-old-man-porsche.md` (the old-man-and-Porsche film), plus the
+format-model prompts in `reference/` that the session studied. When this guide and
+the session/reference prompts disagree, the prompts win; then fix this guide.
 
-Last synced from Claude history: **2026-07-25** ("Tim prompts").
+Last synced from Claude history: **2026-07-25** (session: "Gouache Animation — Full
+Session Log & Prompt Bible").
 
 ---
 

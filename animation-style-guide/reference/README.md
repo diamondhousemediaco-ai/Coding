@@ -1,9 +1,17 @@
-# Reference prompts (gold-standard examples)
+# Reference prompts (format models)
 
-Finished, field-tested scene prompts — the source of truth the `STYLE_GUIDE.md`
-was distilled from. Synced from Diamond House Media's Claude history / Google
-Drive on **2026-07-25**. Text is verbatim except for un-escaping the doc's
-backslashes (`@\[Image 2\]` → `@[Image 2]`, `1\.` → `1.`).
+The finished gouache action-scene prompts that the **Porsche short-film session
+studied to establish the format and the house laws** — a different world
+(gunslinger, snowboarder), same house style. The session's own Appendix (§8) lists
+these four as its templates. Kept verbatim as format models.
+
+> The project's **source of truth** is the session log itself —
+> `../sessions/gouache-film-old-man-porsche.md`. These are the reference prompts it
+> was built on top of.
+
+Synced from Diamond House Media's Claude history / Google Drive on **2026-07-25**.
+Text is verbatim except for un-escaping the doc's backslashes (`@\[Image 2\]` →
+`@[Image 2]`, `1\.` → `1.`).
 
 | File | Look | Drive source |
 |---|---|---|
