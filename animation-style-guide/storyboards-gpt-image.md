@@ -38,7 +38,7 @@ A six-panel storyboard sheet of hand-painted gouache animation film stills, arra
 
 Panel 1, wide establishing at dawn: a lone boxy white flat-roofed one-bay garage alone in a vast red-sand desert, one bay door open as a dark rectangle glowing warm inside, potted cacti out front, long soft dawn shadows.
 Panel 2, interior wide, low 24mm: a white narrow-body vintage Porsche 911 up on jack stands in the bay, an old man's two worn boots and lower legs sticking out from under it, warm sun raking through tall multi-pane windows with painted dust motes.
-Panel 3, tight close-up under the chassis: the old man's weathered hands turning a wrench against the flat matte-painted underside of the car, a warm hanging work light pooling in the dark.
+Panel 3, tight low angle from ground level: the old man is lying flat on his back on a low wheeled creeper on the concrete garage floor, down underneath the car, the flat matte-painted underside of the chassis looming directly above him and filling the top of the frame — his weathered hands and forearms reach straight UP overhead to work a wrench on the undercarriage, his chest and face visible just below his hands, a warm hanging work light glowing above him. Clearly lying on the ground beneath the car, not standing.
 Panel 4, medium interior: the old man rolls out from under the car on a creeper and sits up, wiping his hands on a rag.
 Panel 5, medium: he stands and quietly appraises the finished car, keys in one hand, calm pride.
 Panel 6, close-up: his hand lowering the rear engine deck and resting on the small body-colored ducktail spoiler.
