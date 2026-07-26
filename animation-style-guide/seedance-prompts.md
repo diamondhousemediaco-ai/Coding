@@ -17,10 +17,6 @@ ext · **E** garage int · **F** desert plate · **G** desert road · **H** dese
 📎 Attach: garage ext · garage int · old man · car front · car rear
 
 ```
-Seedance 2.0 · mode std · 1080p+ · bitrate high · genre drama · audio on. Generate several takes and cull.
-
-Reference set: @Image 1 = GARAGE EXTERIOR · @Image 2 = GARAGE INTERIOR · @Image 3 = OLD MAN · @Image 4 = CAR FRONT · @Image 5 = CAR REAR (ducktail).
-
 Style: 8K stylized animated feature film, hand-painted gouache animation — every frame a matte painted image with CLEAN ECONOMICAL RENDERING: simplified shapes, confident flat color planes, no over-detailing, painted like a production film still. Completely matte, zero specular highlights, zero gloss, no 3D render gloss, no CGI smoothness, no Pixar or DreamWorks face rendering.
 
 DIRECTOR'S NOTES — non-negotiable for every frame:
@@ -68,10 +64,6 @@ UPLOAD KEY — Image 1 GARAGE EXT · Image 2 GARAGE INT · Image 3 OLD MAN · Im
 📎 Attach: garage int · old man · car front · car rear
 
 ```
-Seedance 2.0 · mode std · 1080p+ · bitrate high · genre drama · audio on. Generate several takes and cull.
-
-Reference set: @Image 1 = GARAGE INTERIOR · @Image 2 = OLD MAN · @Image 3 = CAR FRONT · @Image 4 = CAR REAR (ducktail).
-
 Style: 8K stylized animated feature film, hand-painted gouache animation — matte painted, clean economical rendering, flat color planes, zero gloss, no 3D render, no CGI smoothness, no Pixar or DreamWorks face rendering.
 
 DIRECTOR'S NOTES — non-negotiable for every frame:
@@ -119,10 +111,6 @@ UPLOAD KEY — Image 1 GARAGE INT · Image 2 OLD MAN · Image 3 CAR FRONT · Ima
 📎 Attach: garage int · old man · car front · car rear
 
 ```
-Seedance 2.0 · mode std · 1080p+ · bitrate high · genre action · audio on. Generate several takes and cull.
-
-Reference set: @Image 1 = GARAGE INTERIOR · @Image 2 = OLD MAN · @Image 3 = CAR FRONT · @Image 4 = CAR REAR.
-
 Style: 8K stylized animated feature film, hand-painted gouache animation — matte painted, clean economical rendering, flat color planes, zero gloss, no 3D render, no CGI smoothness, no Pixar or DreamWorks face rendering.
 
 DIRECTOR'S NOTES — non-negotiable for every frame:
@@ -170,10 +158,6 @@ UPLOAD KEY — Image 1 GARAGE INT · Image 2 OLD MAN · Image 3 CAR FRONT · Ima
 📎 Attach: garage int · desert plate · old man · car front · car rear
 
 ```
-Seedance 2.0 · mode std · 1080p+ · bitrate high · genre action · audio on. Generate several takes and cull.
-
-Reference set: @Image 1 = GARAGE INTERIOR · @Image 2 = DESERT PLATE · @Image 3 = OLD MAN · @Image 4 = CAR FRONT · @Image 5 = CAR REAR.
-
 Style: 8K stylized animated feature film, hand-painted gouache animation — matte painted, clean economical rendering, flat color planes, zero gloss, no 3D render, no CGI smoothness, no Pixar or DreamWorks face rendering.
 
 DIRECTOR'S NOTES — non-negotiable for every frame:
@@ -221,10 +205,6 @@ UPLOAD KEY — Image 1 GARAGE INT · Image 2 DESERT PLATE · Image 3 OLD MAN · 
 📎 Attach: desert road · old man · car front · car rear
 
 ```
-Seedance 2.0 · mode std · 1080p+ · bitrate high · genre action · audio on. Generate several takes and cull.
-
-Reference set: @Image 1 = DESERT ROAD · @Image 2 = OLD MAN · @Image 3 = CAR FRONT · @Image 4 = CAR REAR.
-
 Style: 8K stylized animated feature film, hand-painted gouache animation — matte painted, clean economical rendering, flat color planes, zero gloss, no 3D render, no CGI smoothness, no Pixar or DreamWorks face rendering.
 
 DIRECTOR'S NOTES — non-negotiable for every frame:
@@ -272,10 +252,6 @@ UPLOAD KEY — Image 1 DESERT ROAD · Image 2 OLD MAN · Image 3 CAR FRONT · Im
 📎 Attach: desert aerial · desert road · old man · car front · car rear
 
 ```
-Seedance 2.0 · mode std · 1080p+ · bitrate high · genre action · audio on. Generate several takes and cull.
-
-Reference set: @Image 1 = DESERT AERIAL · @Image 2 = DESERT ROAD · @Image 3 = OLD MAN · @Image 4 = CAR FRONT · @Image 5 = CAR REAR.
-
 Style: 8K stylized animated feature film, hand-painted gouache animation — matte painted, clean economical rendering, flat color planes, zero gloss, no 3D render, no CGI smoothness, no Pixar or DreamWorks face rendering.
 
 DIRECTOR'S NOTES — non-negotiable for every frame:
