@@ -5,9 +5,11 @@ the calm ritual; Boards 2–3 are "go time" — low hero angles, close-ups on th
 shifter, and gas pedal, exploding dust, dutch tilts.
 
 **GPT Image notes:** reads plain prose + **attached references** (no `@Image` tags),
-one still, tops out at **3:2 (1536×1024)**, and mangles text — so gauges are painted
-with **blank ticks, no readable numbers** (keeps the no-text law). Attach the refs
-listed above each prompt.
+one still, and mangles text — so gauges are painted with **blank ticks, no readable
+numbers** (keeps the no-text law). Attach the refs listed above each prompt.
+**Orientation: 16:9.** GPT Image's native landscape cap is 3:2 (1536×1024); if it
+won't produce true 16:9, generate at the widest it allows — the panels still read
+widescreen — or crop the sheet to 16:9.
 
 Ref library: **A** old man · **B** car front · **C** car rear (ducktail) · **D** garage
 ext · **E** garage int · **F** desert plate · **G** desert road · **H** desert aerial.
@@ -43,7 +45,7 @@ Panel 4, medium interior: the old man rolls out from under the car on a creeper 
 Panel 5, medium: he stands and quietly appraises the finished car, keys in one hand, calm pride.
 Panel 6, close-up: his hand lowering the rear engine deck and resting on the small body-colored ducktail spoiler.
 
-Match the attached references exactly — the garage matches the garage references, the surrounding desert in Panel 1 matches the desert plate, the old man matches the old man reference, the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal with no chrome, gloss or reflections. Single soft motivated light per panel, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% warm sunlit concrete and pale walls, 30% cool shadow and dark tires, 10% warm window light on the white body. Wide cinematic 3:2 landscape (1536×1024).
+Match the attached references exactly — the garage matches the garage references, the surrounding desert in Panel 1 matches the desert plate, the old man matches the old man reference, the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal with no chrome, gloss or reflections. Single soft motivated light per panel, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% warm sunlit concrete and pale walls, 30% cool shadow and dark tires, 10% warm window light on the white body. Output in a wide 16:9 landscape, each of the six panels a 16:9 widescreen cinematic film frame.
 ```
 
 ---
@@ -61,7 +63,7 @@ Panel 4, extreme close-up in the footwell: his boot STOMPING the gas pedal flat 
 Panel 5, low hero angle exterior: the white 911 noses hard out of the open bay into flooding daylight, a puff of exhaust, dust kicking off the tires.
 Panel 6, wide low exterior with a hard dutch tilt: the car BLASTS out onto the open red sand, a big fantail of chunky painted dust exploding behind it as it swings toward the road.
 
-Match the attached references exactly — the old man matches the old man reference, the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal, no chrome, gloss or reflections; the desert matches the desert reference. Hard motivated daylight, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% warm daylight and white body, 30% deep interior shadow, 10% hot exhaust-and-dust accent. Wide cinematic 3:2 landscape (1536×1024).
+Match the attached references exactly — the old man matches the old man reference, the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal, no chrome, gloss or reflections; the desert matches the desert reference. Hard motivated daylight, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% warm daylight and white body, 30% deep interior shadow, 10% hot exhaust-and-dust accent. Output in a wide 16:9 landscape, each of the six panels a 16:9 widescreen cinematic film frame.
 ```
 
 ---
@@ -79,7 +81,7 @@ Panel 4, high aerial drone view: the tiny car carving along the winding road thr
 Panel 5, low three-quarter action: the car powersliding through a bend on the sand, rear ducktail stepping out, a huge chunky-painted dust fantail thrown wide.
 Panel 6, close-up — the button: the old man at the wheel, warm golden-hour light raking across his face, eyes on the road ahead. He holds a straight, composed face and the faintest grin is just beginning to break at the corners of his mouth. (Performance for the shot: he holds a straight face first, then it breaks into a grin — the release.)
 
-Match the attached references exactly — the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal with no chrome, gloss or reflections; the road and aerial desert match the desert references; the old man matches the old man reference. Low glancing golden-hour sun, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% saturated red rock and road, 30% deep blue sky, 10% warm skin and white body. Wide cinematic 3:2 landscape (1536×1024).
+Match the attached references exactly — the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal with no chrome, gloss or reflections; the road and aerial desert match the desert references; the old man matches the old man reference. Low glancing golden-hour sun, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% saturated red rock and road, 30% deep blue sky, 10% warm skin and white body. Output in a wide 16:9 landscape, each of the six panels a 16:9 widescreen cinematic film frame.
 ```
 
 ---
