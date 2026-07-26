@@ -77,7 +77,7 @@ Panel 2, extreme close-up of the dashboard: a round matte-painted speedometer, i
 Panel 3, close inside the cabin: both the old man's weathered hands gripping and working the wheel, arms driving, total focus.
 Panel 4, high aerial drone view: the tiny car carving along the winding road through the vast red rock desert, a long raking shadow and a curl of dust behind it.
 Panel 5, low three-quarter action: the car powersliding through a bend on the sand, rear ducktail stepping out, a huge chunky-painted dust fantail thrown wide.
-Panel 6, close-up — the button: the old man at the wheel, warm golden-hour light raking across his face, a faint satisfied smile, the release.
+Panel 6, close-up — the button: the old man at the wheel, warm golden-hour light raking across his face, eyes on the road ahead. He holds a straight, composed face and the faintest grin is just beginning to break at the corners of his mouth. (Performance for the shot: he holds a straight face first, then it breaks into a grin — the release.)
 
 Match the attached references exactly — the car matches both car references (front and rear, including the ducktail), rendered as flat matte painted metal with no chrome, gloss or reflections; the road and aerial desert match the desert references; the old man matches the old man reference. Low glancing golden-hour sun, flat painted shadow shapes, no rim glow, no lens flare. Color about 60% saturated red rock and road, 30% deep blue sky, 10% warm skin and white body. Wide cinematic 3:2 landscape (1536×1024).
 ```
