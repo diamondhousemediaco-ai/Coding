@@ -52,8 +52,8 @@ he counts.
 - Spills coffee on himself at his job
 - Boss yelling at him — default volume is a shout
 - Dating apps, none of it goes anywhere
-- One real date — wrecked by a **one-wheel accident**. Not a car accident. Same
-  machine that later makes him famous, planted here small and private
+- One real date — wrecked by something stupid. *(Open: what exactly. It can't be an
+  accident — the one-wheel is the movie's only accident.)*
 - **Fortnite:** playing with a squad of young kids, he's the last one alive and dies
   to *fall damage*. Narration over it: *"yeah, those are actually some of the
   closest friends I've had in a long time."* Cut back to: *"come on, come on Tre,
@@ -132,10 +132,10 @@ So the laugh count is a curve, not a line: high → hollow → warm.
 
 ## Motifs to plant and pay off
 
-- **The one-wheel** — the movie's central prop. It wrecks his date in act one
-  (nobody watching, costs him a night) and makes him famous at the end of act one
-  (two kids watching, gives him everything). *The same accident. Nothing about Bill
-  changed — only who was filming.* Open: does he still ride it at the end?
+- **The one-wheel** — there is exactly **one accident** in the movie and this is it.
+  Act one has plenty of small daily disasters, but only one real accident. Keeping it
+  singular is what makes it *the* fall instead of one more pratfall. Open: does he
+  still ride it at the end?
 - **"The Fall"** — the literal wipeout · the fall from grace · Fortnite *fall damage*
 - **"Bob," not Bill** — known but not seen. Pays off at the end when she says his
   real name and means it.
@@ -153,7 +153,8 @@ So the laugh count is a curve, not a line: high → hollow → warm.
    him anymore.)
 5. Is it Nashville for real? The twins' line suggests yes — worth committing to.
 6. Who's at the wedding?
-7. Does he still ride the one-wheel at the end? (Riding it in the final scene —
+7. What exactly wrecks the date? (Small, stupid, his fault — and not an accident.)
+8. Does he still ride the one-wheel at the end? (Riding it in the final scene —
    wobbling, no audience, happy — would be the whole movie in one image.)
 
 **Not** open: the ending. He marries her.
