@@ -84,7 +84,7 @@
   .badge.res{background:rgba(227,96,74,.16);color:var(--accent);border:1px solid rgba(227,96,74,.42)}
 
   .seq .body{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s;opacity:0}
-  .seq.open .body{max-height:1400px;opacity:1}
+  .seq.open .body{max-height:3200px;opacity:1}
   .seq .body-in{padding:2px 18px 18px;border-top:1px solid var(--line);margin-top:2px}
   .kv{display:flex;gap:10px;margin-top:14px;font-size:14px}
   .kv .k{flex:0 0 62px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
@@ -106,6 +106,21 @@
   .tone .bar{flex:1;height:6px;border-radius:4px;background:var(--panel2);overflow:hidden}
   .tone .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--cool),var(--gold),var(--accent))}
   .tone .val{font-size:11.5px;color:var(--muted);flex:0 0 auto;letter-spacing:.5px}
+
+  /* options block */
+  .opts{margin-top:18px;border:1px solid rgba(240,184,110,.3);border-radius:12px;
+    padding:15px 16px;background:rgba(240,184,110,.05)}
+  .opts .h{font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--gold);font-weight:800;margin-bottom:4px}
+  .opts .sub{color:var(--muted);font-size:12.5px;font-style:italic;margin-bottom:12px}
+  .opt{border-top:1px solid var(--line);padding:12px 0 2px}
+  .opt:first-of-type{border-top:0;padding-top:2px}
+  .opt .nm{font-weight:800;font-size:14.5px}
+  .opt .nm .lean{font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
+    background:var(--gold);color:#1a1206;padding:3px 7px;border-radius:5px;
+    margin-left:8px;vertical-align:2px;font-weight:800}
+  .opt p{color:var(--muted);font-size:13px;margin-top:5px}
+  .opt p b{color:#d6d6e4}
 
   /* scene slot */
   .slot{margin-top:18px;border:1px dashed var(--line);border-radius:12px;
@@ -280,9 +295,8 @@
     <li><b>What wrecks the date?</b> Still open. It should be small, stupid and entirely his
     fault — and it can't be an accident, because the one-wheel is the movie's only accident
     and it needs to stay singular.</li>
-    <li><b>Does he still ride the one-wheel at the end?</b> It made him famous and the fame
-    ate itself. Him riding it in the final scene — wobbling, nobody filming, happy — would be
-    the whole movie in one image.</li>
+    <li><b>The final image.</b> Three versions on the table — see Stage 11. Leaning toward
+    <em>she buys him a bike</em>, he immediately falls off it, and they both laugh.</li>
     <li><b>Does she get a name?</b> Strong option: she's "the barista" to us through most of
     act one because Bill has never asked. Him finally asking is its own scene.</li>
     <li><b>Do the twins come back?</b> Best payoff: they run into him at the end and don't
@@ -409,8 +423,19 @@ const ACTS = [
         fn:"The resolution: he wins the barista with the only thing he has left — himself — and marries her.",
         opens:"Back to the coffee shop with nothing to offer but himself. No money, no fame, no crowd. Just the man, asking.",
         lands:"<b>They get married.</b> She says his <b>real name</b> and means it. Then a small apartment, no crowds — ending exactly where it began. He never got known the way he wanted. He got something better.",
-        mat:["winning her with himself","the real name paid off","<b>the wedding</b>","the small apartment","the coffee shop again","“nothing ever goes my way” — as a joke now"],
-        tone:88, toneNote:"the funny is back — she brought it back"
+        mat:["winning her with himself","the real name paid off","<b>the wedding</b>","the small apartment","the coffee shop again","“nothing ever goes my way” — as a joke now","<b>she buys him a bike</b>"],
+        tone:88, toneNote:"the funny is back — she brought it back",
+        opts:{
+          title:"Final image", sub:"Not locked. All three end on him falling in front of her — the question is who put him on the thing.",
+          list:[
+            ["She buys him a bike", true,
+             "Her gift, in the small apartment. A bike has <b>two</b> wheels — the joke is she's quietly looking after him, and it's affectionate instead of mocking. He's touched. He gets on. He immediately eats it. She loses it laughing, and <b>he laughs too</b> — the first time in the movie he laughs at his own fall. The first fall was filmed by strangers laughing <em>at</em> him and cost him everything; this one has an audience of one laughing <em>with</em> him and costs him nothing. Same man, same clumsiness, different witness. No dialogue required."],
+            ["A bike with training wheels", false,
+             "Same beat, bigger swing. Funnier on the gift reveal and it gets a real laugh in a theater — but it makes her a little more teasing and him a little more of a child, which slightly undercuts \"she sees the man.\" Worth shooting both if it comes to it."],
+            ["He still rides the one-wheel", false,
+             "Simplest and the most defiant: the thing that made and unmade him, and he never gave it up. Reads as unchanged rather than at peace, and it's <b>his</b> choice instead of <b>her</b> gesture — so it closes his arc but not theirs. Weaker as a last image for a love story."]
+          ]
+        }
       }
     ]
   }
@@ -442,6 +467,12 @@ ACTS.forEach(act=>{
            <div class="t">Not broken out yet. Next pass this stage becomes <b>${s.sceneGuess||"3–5"} scenes</b>,
            each with a location, who's in it, and what changes by the end of it.</div></div>`;
 
+    const opts = s.opts
+      ? `<div class="opts"><div class="h">${s.opts.title}</div><div class="sub">${s.opts.sub}</div>
+           ${s.opts.list.map(([nm,lean,txt])=>`<div class="opt"><div class="nm">${nm}${lean?'<span class="lean">leaning</span>':''}</div><p>${txt}</p></div>`).join('')}
+         </div>`
+      : '';
+
     const el = document.createElement('div');
     el.className='seq';
     el.innerHTML = `
@@ -458,6 +489,7 @@ ACTS.forEach(act=>{
         <div class="tone"><div class="lbl">Tone</div>
           <div class="bar"><div class="fill" style="width:${s.tone}%"></div></div>
           <div class="val">${s.toneNote}</div></div>
+        ${opts}
         ${scenes}
       </div></div>`;
     el.querySelector('.top').addEventListener('click',()=>el.classList.toggle('open'));

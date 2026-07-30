@@ -122,6 +122,25 @@ the love of his life. He never got known the way he wanted. He got something bet
 Open: who's actually at the wedding. Since it's the resolution, the guest list *is*
 the theme — a tiny wedding with almost nobody says he stopped needing a crowd.
 
+### The final image — the bike
+
+**Leaning:** in the small apartment, **she buys him a bike.** A bike has *two*
+wheels — the joke is that she's quietly looking after him, affectionate instead of
+mocking. He's touched. He gets on it. He immediately eats it. She loses it laughing,
+and **he laughs too.**
+
+Why it's the right ending: it's the first time in the movie he laughs at his own
+fall. The first fall was filmed by strangers laughing *at* him and it cost him
+everything. This one has an audience of one laughing *with* him and it costs him
+nothing. **Same man, same clumsiness — different witness.** The whole theme lands
+as a physical gag with no dialogue.
+
+Variants:
+- **Training wheels on the bike** — funnier reveal, bigger laugh, but makes her more
+  teasing and him more childlike, which slightly undercuts "she sees the man"
+- **He still rides the one-wheel** — simplest and most defiant, but it's *his* choice
+  instead of *her* gesture, so it closes his arc and not theirs
+
 ## Tone rule (important)
 
 The beginning is **funny**. As he gets more money and more famous it gets **less
@@ -154,7 +173,7 @@ So the laugh count is a curve, not a line: high → hollow → warm.
 5. Is it Nashville for real? The twins' line suggests yes — worth committing to.
 6. Who's at the wedding?
 7. What exactly wrecks the date? (Small, stupid, his fault — and not an accident.)
-8. Does he still ride the one-wheel at the end? (Riding it in the final scene —
-   wobbling, no audience, happy — would be the whole movie in one image.)
+8. Final image — the bike, the bike with training wheels, or the one-wheel?
+   (Leaning: the bike. See "The final image" above.)
 
 **Not** open: the ending. He marries her.
