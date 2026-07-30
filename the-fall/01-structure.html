@@ -81,6 +81,7 @@
     font-weight:800;padding:3px 7px;border-radius:5px;margin-left:7px;vertical-align:2px}
   .badge.turn{background:rgba(240,184,110,.16);color:var(--gold);border:1px solid rgba(240,184,110,.35)}
   .badge.low{background:rgba(111,168,199,.14);color:var(--cool);border:1px solid rgba(111,168,199,.35)}
+  .badge.res{background:rgba(227,96,74,.16);color:var(--accent);border:1px solid rgba(227,96,74,.42)}
 
   .seq .body{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s;opacity:0}
   .seq.open .body{max-height:1400px;opacity:1}
@@ -166,7 +167,8 @@
   <p class="lede">Bill wants to be <b>known</b>. He gets known — as a punchline, under a name
   that isn't even his. The fall gives him everything and shows him it's nothing. The second
   fall takes it all back and hands him himself. <b>Known is what he wanted. Seen is what he
-  needed</b>, and she was behind the counter in frame one.</p>
+  needed</b>, and she was behind the counter in frame one. It resolves on <b>him marrying
+  her</b> — with nothing, in a small apartment, exactly where he started.</p>
 
   <div class="falls">
     <div class="f f1">
@@ -258,21 +260,26 @@
 <section>
   <div class="sec-kicker">Before Stage 2</div>
   <h2 class="title">Six things to decide</h2>
-  <p class="lede">None of these block the structure, but each one changes scenes we'd be
-  writing, so they're worth calling now.</p>
+  <p class="lede">The ending is locked — <b>he marries the barista</b>. These are the open
+  choices that change actual scenes, so they're worth calling before we break them out.</p>
   <ol class="q">
     <li><b>Bill's job.</b> What does he do in act one? It sets the boss, the coffee run, and
     what he has to lose. A job with a uniform is funnier — and it makes the fame contrast land.</li>
-    <li><b>Life insurance — selling or buying?</b> Selling it door to door is much funnier:
-    the least safe man alive pitching peace of mind, wrecking every living room he walks into.</li>
-    <li><b>The bad date's freak accident.</b> You said "the one we were accident." If it's a
-    car accident, it should be small and absurd, not scary — the movie can't get dark this early.</li>
-    <li><b>Does she get a name?</b> Strong option: she's "the barista" to us for most of act
-    one because Bill has never asked. Him finally asking is a scene.</li>
-    <li><b>Do the twins come back?</b> Best payoff: they meet him at the end and don't
+    <li><b>The life-insurance scheme.</b> Is he <em>selling</em> policies door to door — the
+    least safe man alive pitching peace of mind, wrecking every living room he enters — or
+    <em>buying</em> them hoping for a payout? Selling is funnier and safer; buying is darker.</li>
+    <li><b>The bad date's accident.</b> Small and absurd, not scary. The movie can't get dark
+    this early, so a fender-bender that's somehow entirely his fault beats anything with real
+    damage in it.</li>
+    <li><b>Does she get a name?</b> Strong option: she's "the barista" to us through most of
+    act one because Bill has never asked. Him finally asking is its own scene.</li>
+    <li><b>Do the twins come back?</b> Best payoff: they run into him at the end and don't
     recognize him — the two people who made him famous can't pick him out of a crowd.</li>
     <li><b>Nashville — committing?</b> The twins' line says yes. It gives us a real city, a
-    music-money world for the rapper, and a specific texture instead of Anytown.</li>
+    music-money world the rapper comes from, and specific texture instead of Anytown.</li>
+    <li><b>The wedding — who's there?</b> Since it's the resolution, the guest list <em>is</em>
+    the theme. A tiny wedding with almost nobody says he stopped needing a crowd. Worth deciding
+    now because it's the last image before the apartment.</li>
   </ol>
 </section>
 
@@ -367,7 +374,7 @@ const ACTS = [
   },
   {
     no:"Act Three", name:"The Truth", pages:"pp. 85–108",  share:"~25%",
-    job:"Take back everything the first fall gave him, and let what's left be enough.",
+    job:"Take back everything the first fall gave him, let what's left be enough — and resolve on him marrying the barista.",
     stages:[
       {
         n:9, title:"The Second Fall",
@@ -386,11 +393,11 @@ const ACTS = [
         tone:40, toneNote:"quiet, honest, small smiles"
       },
       {
-        n:11, title:"Her, With Nothing",
-        fn:"Pay off every plant. He wins her with the only thing he has left.",
-        opens:"Back to the coffee shop with nothing to offer but himself.",
-        lands:"They marry — and she says his <b>real name</b> and means it. Small apartment, no crowds, ends exactly where it began. He never got known the way he wanted. He got something better.",
-        mat:["winning her with himself","the real name paid off","the wedding","the small apartment","the coffee shop again","“nothing ever goes my way” — as a joke now"],
+        n:11, title:"He Marries Her", badge:["res","Resolution"],
+        fn:"The resolution: he wins the barista with the only thing he has left — himself — and marries her.",
+        opens:"Back to the coffee shop with nothing to offer but himself. No money, no fame, no crowd. Just the man, asking.",
+        lands:"<b>They get married.</b> She says his <b>real name</b> and means it. Then a small apartment, no crowds — ending exactly where it began. He never got known the way he wanted. He got something better.",
+        mat:["winning her with himself","the real name paid off","<b>the wedding</b>","the small apartment","the coffee shop again","“nothing ever goes my way” — as a joke now"],
         tone:88, toneNote:"the funny is back — she brought it back"
       }
     ]

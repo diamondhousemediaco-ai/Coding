@@ -1,7 +1,11 @@
 # THE FALL — Story Notes (everything on one sheet)
 
 Raw thinking, organized. This is the source of truth for the idea; the HTML pages are
-built from this. Nothing here is locked.
+built from this. Nothing here is locked **except the ending** (see below).
+
+> Source was dictated, so the original notes had transcription typos. Those are
+> normalized here — read for intent, not for literal wording. Dialogue in quotes is
+> kept close to how it was said, because the rhythm is the point.
 
 ---
 
@@ -36,15 +40,20 @@ barista, and she was there in the first frame.
 
 - Lottery tickets — buys them by the fistful
 - Stock market — buys in, it immediately craters
-- Life insurance — *(open question: is he selling it door to door, or buying a
-  policy? Selling is funnier — the least safe man alive pitching peace of mind)*
+- Life insurance — *(open question: selling policies door to door, or buying one
+  hoping for a payout? Selling is funnier and safer: the least safe man alive
+  pitching peace of mind)*
+
+All of it is chasing the same thing: **validation.** He's trying to buy proof that
+he counts.
 
 ## Mess-ups / set pieces in hand
 
 - Spills coffee on himself at his job
 - Boss yelling at him — default volume is a shout
 - Dating apps, none of it goes anywhere
-- One real date — detonated by some freak accident (a car accident?)
+- One real date — detonated by a freak accident (a car accident). Keep it small and
+  absurd, not scary; the movie can't go dark this early
 - **Fortnite:** playing with a squad of young kids, he's the last one alive and dies
   to *fall damage*. Narration over it: *"yeah, those are actually some of the
   closest friends I've had in a long time."* Cut back to: *"come on, come on Tre,
@@ -102,11 +111,16 @@ failing.**
 - She's the one who brings the funniness back out of him. The clumsiness is what
   makes him him, and she's the only one who ever knew that.
 
-## The ending
+## The ending — LOCKED
 
-He marries the girl of his dreams and they move into a small apartment. The movie
-ends where it started — but he's okay with himself, and he has the love of his life.
-He never got known the way he wanted. He got something better.
+**The resolution is that he marries the barista.**
+
+He wins her with nothing but himself, they get married, and they move into a small
+apartment. The movie ends where it started — but he's okay with himself, and he has
+the love of his life. He never got known the way he wanted. He got something better.
+
+Open: who's actually at the wedding. Since it's the resolution, the guest list *is*
+the theme — a tiny wedding with almost nobody says he stopped needing a crowd.
 
 ## Tone rule (important)
 
@@ -128,10 +142,12 @@ So the laugh count is a curve, not a line: high → hollow → warm.
 ## Open questions
 
 1. What's Bill's actual job in act one?
-2. Life insurance — selling it, or buying a policy on himself?
-3. What is the freak accident on the bad date?
-4. Does the barista have a name we use, or is she "the barista" until he finally
-   asks?
-5. Do the twins come back at the end? (They could be the ones who don't recognize
+2. Life insurance — selling policies, or buying one?
+3. Does the barista have a name we use, or is she "the barista" until he finally
+   asks? (Him asking is its own scene.)
+4. Do the twins come back at the end? (They could be the ones who don't recognize
    him anymore.)
-6. Is it Nashville for real? The twins' line suggests yes — worth committing to.
+5. Is it Nashville for real? The twins' line suggests yes — worth committing to.
+6. Who's at the wedding?
+
+**Not** open: the ending. He marries her.
