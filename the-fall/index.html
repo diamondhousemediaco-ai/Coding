@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>THE FALL — Build Room</title>
+<style>
+  :root{--bg:#0a0a0f;--panel:#14141f;--panel2:#1b1b29;--ink:#edecf2;--muted:#9a9ab4;
+    --line:#2a2a3c;--accent:#e3604a;--gold:#f0b86e;--cool:#6fa8c7;--maxw:760px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);line-height:1.6;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:70px 22px 90px}
+  .kicker{color:var(--gold);letter-spacing:5px;text-transform:uppercase;font-size:11px;
+    font-weight:800;margin-bottom:16px}
+  h1{font-size:clamp(46px,15vw,96px);font-weight:900;letter-spacing:3px;line-height:.92;
+    background:linear-gradient(180deg,#fff 30%,#b8b8cc);-webkit-background-clip:text;
+    background-clip:text;color:transparent}
+  .tag{color:var(--muted);font-style:italic;margin-top:18px;font-size:clamp(14.5px,3.6vw,17px);max-width:560px}
+  .rule{width:64px;height:3px;background:var(--accent);margin:26px 0 0;box-shadow:0 0 16px var(--accent)}
+
+  h2{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);
+    font-weight:800;margin:54px 0 16px}
+
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);
+    border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:12px;
+    transition:.28s;position:relative}
+  a.card:hover{transform:translateY(-3px);border-color:var(--accent);
+    box-shadow:0 18px 44px rgba(0,0,0,.5)}
+  a.card.todo{background:transparent;border-style:dashed;cursor:default}
+  a.card.todo:hover{transform:none;border-color:var(--line);box-shadow:none}
+  .row{display:flex;gap:14px;align-items:flex-start}
+  .n{flex:0 0 34px;height:34px;border-radius:10px;background:var(--panel2);
+    border:1px solid var(--line);display:grid;place-items:center;font-weight:900;
+    font-size:13px;color:var(--accent)}
+  a.card.todo .n{color:var(--muted)}
+  .t{flex:1;min-width:0}
+  .t .h{font-weight:800;font-size:17px}
+  .t .d{color:var(--muted);font-size:13.5px;margin-top:3px}
+  .st{flex:0 0 auto;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
+    font-weight:800;padding:4px 9px;border-radius:20px;margin-top:3px}
+  .st.done{background:rgba(227,96,74,.16);color:var(--accent);border:1px solid rgba(227,96,74,.4)}
+  .st.next{background:rgba(240,184,110,.14);color:var(--gold);border:1px solid rgba(240,184,110,.35)}
+  .st.wait{background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .facts span{background:var(--panel2);border:1px solid var(--line);border-radius:20px;
+    padding:7px 13px;font-size:12.5px;color:#cdcdda}
+  .facts span b{color:var(--gold)}
+  footer{color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);
+    margin-top:56px;padding-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">A comedy that becomes a fable</div>
+  <h1>THE FALL</h1>
+  <p class="tag">A walking disaster accidentally gets everything he ever wanted — and finds out
+  the only person who ever really saw him was there in the very first frame.</p>
+  <div class="rule"></div>
+  <div class="facts">
+    <span><b>Bill</b> · late 40s–50s</span>
+    <span>Three acts · <b>11 stages</b></span>
+    <span>Comedy → fable</span>
+    <span><b>Known</b> vs. <b>seen</b></span>
+  </div>
+
+  <h2>The build</h2>
+
+  <a class="card" href="01-structure.html">
+    <div class="row">
+      <div class="n">1</div>
+      <div class="t"><div class="h">Structure</div>
+        <div class="d">Three acts broken into eleven stages, each with a job, a way in, and a way out. Plus the tone curve and the two falls.</div></div>
+      <div class="st done">Done</div>
+    </div>
+  </a>
+
+  <a class="card todo">
+    <div class="row">
+      <div class="n">2</div>
+      <div class="t"><div class="h">Scenes</div>
+        <div class="d">Cut each of the eleven stages into its scenes — roughly 40–50 across the movie. Location, who's in it, what changes.</div></div>
+      <div class="st next">Next</div>
+    </div>
+  </a>
+
+  <a class="card todo">
+    <div class="row">
+      <div class="n">3</div>
+      <div class="t"><div class="h">Scene cards</div>
+        <div class="d">One card per scene: the want, the obstacle, the turn, the exit line. This is the blueprint we write from.</div></div>
+      <div class="st wait">Waiting</div>
+    </div>
+  </a>
+
+  <a class="card todo">
+    <div class="row">
+      <div class="n">4</div>
+      <div class="t"><div class="h">Pages</div>
+        <div class="d">Write each scene for real — slug lines, action, dialogue.</div></div>
+      <div class="st wait">Waiting</div>
+    </div>
+  </a>
+
+  <h2>Reference</h2>
+
+  <a class="card" href="notes/story-notes.md">
+    <div class="row">
+      <div class="n">·</div>
+      <div class="t"><div class="h">Story notes</div>
+        <div class="d">Every thought on one sheet — the man, the schemes, the mess-ups, her, the ending, the tone rule, motifs, open questions.</div></div>
+    </div>
+  </a>
+
+  <a class="card" href="archive/story-hub-v1.html">
+    <div class="row">
+      <div class="n">·</div>
+      <div class="t"><div class="h">Story Hub v1</div>
+        <div class="d">The first one-sheet — logline, treatment, 20-beat sheet, character bible. Kept for reference.</div></div>
+    </div>
+  </a>
+
+  <footer>THE FALL · Diamond House Media · Stage 1 complete</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FALL — Story Hub</title>
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#101019; --panel:#14141f; --panel2:#1b1b29;
+    --ink:#edecf2; --muted:#9a9ab4; --line:#2a2a3c;
+    --accent:#e3604a;      /* fall / coral-red */
+    --gold:#f0b86e;        /* fame / warmth */
+    --cool:#6fa8c7;        /* the barista / calm */
+    --shadow:0 20px 60px rgba(0,0,0,.55);
+    --maxw:880px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.65;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+  /* film grain + vignette overlay */
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%);
+    mix-blend-mode:multiply;}
+  .grain{position:fixed;inset:-50%;z-index:8;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 6s steps(6) infinite;}
+  @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-5%,3%)}40%{transform:translate(3%,-4%)}60%{transform:translate(-3%,5%)}80%{transform:translate(4%,2%)}100%{transform:translate(0,0)}}
+
+  /* scroll progress */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;
+    background:linear-gradient(90deg,var(--accent),var(--gold));box-shadow:0 0 12px var(--accent);}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;
+    justify-content:space-between;align-items:center;padding:16px 26px;
+    background:linear-gradient(180deg,rgba(10,10,15,.92),rgba(10,10,15,0));
+    backdrop-filter:blur(6px);transition:padding .3s, background .3s;}
+  nav.solid{background:rgba(10,10,15,.92);padding:11px 26px;border-bottom:1px solid var(--line);}
+  nav .brand{font-weight:800;letter-spacing:3px;font-size:14px;}
+  nav .brand span{color:var(--accent);}
+  nav .links{display:flex;gap:6px;}
+  nav .links a{color:var(--muted);text-decoration:none;font-size:12.5px;letter-spacing:1px;
+    text-transform:uppercase;padding:7px 13px;border-radius:20px;transition:.25s;}
+  nav .links a:hover{color:var(--ink);background:var(--panel2);}
+  nav .links a.active{color:var(--bg);background:var(--accent);font-weight:700;}
+  @media(max-width:640px){nav .links a{padding:6px 8px;font-size:10.5px;letter-spacing:0;}}
+
+  /* hero */
+  header.hero{height:100vh;min-height:600px;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;position:relative;
+    padding:0 22px;overflow:hidden;}
+  .hero .glow{position:absolute;width:900px;height:900px;border-radius:50%;
+    background:radial-gradient(circle,rgba(227,96,74,.22),transparent 60%);
+    top:-15%;filter:blur(20px);animation:float 12s ease-in-out infinite;}
+  .hero .glow.g2{background:radial-gradient(circle,rgba(111,168,199,.16),transparent 60%);
+    bottom:-25%;right:-10%;top:auto;left:auto;animation-delay:-6s;}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-40px)}}
+  .hero .kicker{color:var(--gold);letter-spacing:6px;font-size:13px;text-transform:uppercase;
+    margin-bottom:22px;opacity:0;animation:rise .9s .2s forwards;}
+  .hero h1{font-size:clamp(64px,16vw,170px);font-weight:900;letter-spacing:6px;line-height:.9;
+    background:linear-gradient(180deg,#fff 30%,#b8b8cc);-webkit-background-clip:text;
+    background-clip:text;color:transparent;opacity:0;animation:rise 1s .35s forwards;
+    text-shadow:0 0 60px rgba(227,96,74,.15);}
+  .hero .tag{max-width:620px;color:var(--muted);font-size:clamp(15px,2.3vw,19px);
+    margin-top:26px;font-style:italic;opacity:0;animation:rise 1s .6s forwards;}
+  .hero .rule{width:70px;height:3px;background:var(--accent);margin:30px auto 0;
+    opacity:0;animation:rise 1s .75s forwards;box-shadow:0 0 16px var(--accent);}
+  .hero .scroll{position:absolute;bottom:34px;color:var(--muted);font-size:11px;
+    letter-spacing:2px;text-transform:uppercase;opacity:0;animation:rise 1s 1.1s forwards,bob 2s 2s infinite;}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* layout */
+  section{max-width:var(--maxw);margin:0 auto;padding:90px 26px;}
+  .sec-kicker{color:var(--accent);letter-spacing:4px;text-transform:uppercase;font-size:12px;
+    font-weight:700;margin-bottom:10px;}
+  h2.title{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:1px;line-height:1.05;
+    margin-bottom:26px;}
+  p.big{font-size:clamp(17px,2.4vw,21px);color:#d6d6e4;line-height:1.6;}
+  p{color:#cdcdda;margin-bottom:15px;}
+  .muted{color:var(--muted);}
+  .em{color:var(--gold);font-style:italic;}
+  strong{color:#fff;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:.8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* theme pills: known vs seen */
+  .vs{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px;}
+  .vs .card{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--line);
+    border-radius:16px;padding:26px;transition:.35s;position:relative;overflow:hidden;}
+  .vs .card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:var(--shadow);}
+  .vs .card h4{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .vs .card .word{font-size:34px;font-weight:900;margin-bottom:10px;}
+  .vs .known .word{color:var(--gold);} .vs .seen .word{color:var(--cool);}
+
+  /* divider */
+  .divider{display:flex;align-items:center;gap:18px;max-width:var(--maxw);margin:10px auto;padding:0 26px;}
+  .divider .l{flex:1;height:1px;background:var(--line);}
+  .divider .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+
+  /* treatment acts */
+  .act{background:linear-gradient(135deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:18px;padding:34px 32px;margin-bottom:22px;position:relative;overflow:hidden;}
+  .act::before{content:attr(data-num);position:absolute;top:-22px;right:6px;font-size:150px;
+    font-weight:900;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;}
+  .act .label{color:var(--accent);letter-spacing:3px;text-transform:uppercase;font-size:12px;
+    font-weight:700;margin-bottom:6px;}
+  .act h3{font-size:24px;font-weight:800;margin-bottom:14px;}
+
+  /* beat timeline */
+  .timeline{position:relative;margin-top:34px;padding-left:30px;}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,var(--accent),var(--gold),var(--cool));}
+  .actband{margin:26px 0 14px;font-size:13px;letter-spacing:3px;text-transform:uppercase;
+    font-weight:800;color:var(--muted);}
+  .beat{position:relative;margin-bottom:12px;cursor:pointer;}
+  .beat .node{position:absolute;left:-25px;top:5px;width:14px;height:14px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);transition:.3s;z-index:2;}
+  .beat:hover .node,.beat.open .node{background:var(--accent);box-shadow:0 0 14px var(--accent);transform:scale(1.25);}
+  .beat .head{display:flex;align-items:baseline;gap:10px;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;padding:13px 16px;transition:.3s;}
+  .beat:hover .head{border-color:var(--accent);background:var(--panel2);}
+  .beat .n{color:var(--accent);font-weight:800;font-size:13px;min-width:22px;}
+  .beat .t{font-weight:700;font-size:15px;}
+  .beat .plus{margin-left:auto;color:var(--muted);font-size:18px;transition:.3s;line-height:1;}
+  .beat.open .plus{transform:rotate(45deg);color:var(--accent);}
+  .beat .body{max-height:0;overflow:hidden;transition:max-height .4s ease, padding .4s, opacity .4s;
+    opacity:0;padding:0 16px;}
+  .beat.open .body{max-height:300px;opacity:1;padding:12px 16px 4px;}
+  .beat .body p{color:var(--muted);font-size:14px;margin:0;}
+  .hint{color:var(--muted);font-size:12.5px;margin-top:8px;letter-spacing:.5px;}
+
+  /* character cards */
+  .chars{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:30px;}
+  .char{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;
+    cursor:pointer;transition:.4s;position:relative;overflow:hidden;}
+  .char::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% -10%,var(--c,rgba(227,96,74,.18)),transparent 55%);opacity:.7;transition:.4s;pointer-events:none;}
+  .char:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:var(--shadow);}
+  .char .role{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .char h3{font-size:22px;font-weight:800;margin-bottom:10px;}
+  .char .snap{color:#cdcdda;font-size:14.5px;}
+  .char .more{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .4s,margin .4s;opacity:0;}
+  .char.open .more{max-height:600px;opacity:1;margin-top:14px;}
+  .char .more .k{color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    display:block;margin:12px 0 3px;}
+  .char .more p{font-size:13.5px;color:var(--muted);margin:0;}
+  .char .tap{position:absolute;bottom:14px;right:18px;font-size:11px;color:var(--muted);letter-spacing:1px;}
+  .char.open .tap{color:var(--accent);}
+
+  /* motif chips */
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+  .chip{background:var(--panel2);border:1px solid var(--line);border-radius:30px;
+    padding:11px 18px;font-size:13.5px;transition:.3s;}
+  .chip:hover{border-color:var(--gold);transform:translateY(-3px);}
+  .chip b{color:var(--gold);}
+
+  footer{text-align:center;padding:70px 26px 90px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:40px;}
+  footer .big{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:4px;margin-bottom:10px;}
+  ::selection{background:var(--accent);color:#fff;}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div id="progress"></div>
+
+<nav id="nav">
+  <div class="brand">THE<span>·</span>FALL</div>
+  <div class="links">
+    <a href="#overview">Overview</a>
+    <a href="#treatment">Treatment</a>
+    <a href="#beats">Beats</a>
+    <a href="#characters">Characters</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="glow"></div><div class="glow g2"></div>
+  <div class="kicker">A comedy that becomes a fable</div>
+  <h1>THE FALL</h1>
+  <p class="tag">A walking disaster accidentally gets everything he ever wanted — and finds out the only person who ever really saw him was there from the very first frame.</p>
+  <div class="rule"></div>
+  <div class="scroll">↓ Scroll</div>
+</header>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="reveal">
+    <div class="sec-kicker">Logline &amp; Theme</div>
+    <h2 class="title">Everything he wanted.<br>Nothing he needed.</h2>
+    <p class="big">A walking disaster of a man in his 40s–50s — motto: <em class="em">“nothing ever goes my way”</em> — accidentally goes viral and gets it all: money, fame, validation. Then he discovers it’s empty, and that the one person who truly sees him is the barista he never had to impress.</p>
+  </div>
+  <div class="reveal vs">
+    <div class="card known">
+      <h4>The world gives him</h4>
+      <div class="word">KNOWN</div>
+      <p class="muted">Millions adore him — as “the klutz,” the punchline, the fall. A name that isn’t even his.</p>
+    </div>
+    <div class="card seen">
+      <h4>What he actually needs</h4>
+      <div class="word">SEEN</div>
+      <p class="muted">One person who loves the exact thing the world laughed at. The clumsiness <em>is</em> the man.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="l"></span><span class="dot"></span><span class="l"></span></div>
+
+<!-- TREATMENT -->
+<section id="treatment">
+  <div class="reveal">
+    <div class="sec-kicker">Full Treatment</div>
+    <h2 class="title">The story, act by act</h2>
+    <p class="muted">Genre: comedy-drama / modern fable. Tone: starts broad and slapstick, lands sincere and warm.</p>
+  </div>
+
+  <div class="reveal act" data-num="1">
+    <div class="label">Act One</div>
+    <h3>Walking Disaster</h3>
+    <p>We open inside Bill’s daily disaster — and we’re in <strong>his coffee shop</strong> when the coffee hits his shirt, because the barista is here from the very first scene: the one warm, steady face in a life of small catastrophes. A boss who shouts by default. Dating apps that curdle before they start. A real date detonated by a freak accident.</p>
+    <p>Bill wants one thing: to be rich, famous, known, popular, and loved — ideally by tomorrow. So he schemes. Fistfuls of lottery tickets. A stock that craters the instant he buys. <strong>Trying to sell life insurance</strong> door to door — the least safe man alive pitching peace of mind, wrecking every living room he enters.</p>
+    <p>Then the long shot lands. Chasing one more gamble on his one-wheel, Bill wipes out catastrophically — and this time the universe is filming. Two kids in flat-bills catch it: <em class="em">“yo, look at this guy — happy birthday Mom!”</em> They post at the same instant. The clip detonates. Overnight, Bill <em>is</em> the fall.</p>
+  </div>
+
+  <div class="reveal act" data-num="2">
+    <div class="label">Act Two</div>
+    <h3>Everything He Ever Wanted</h3>
+    <p>Money floods in, and at first it’s glorious and very funny — the big house, the cars, cannonballs into his own pool. Then the film tightens. The parties get bigger and Bill gets smaller. At his birthday a hired rapper bellows “happy birthday” — to <strong>“Bob.”</strong> Not his name. A thousand strangers scream it back. Total adoration, total isolation.</p>
+    <p>So he keeps coming back to the one place that was never about any of this: the coffee shop, and the barista who’s been there since minute one. Now he comes flush with cash and tries to <em>buy</em> her — gestures, money, the stuff. She doesn’t care. The thing he’s missing was standing behind that counter the entire time.</p>
+  </div>
+
+  <div class="reveal act" data-num="3">
+    <div class="label">Act Three</div>
+    <h3>The Barista</h3>
+    <p>The carnival date is the whole movie in miniature: Bill tries to win her a prize, fails humiliatingly, gets furious at himself — and she lights up. The exact quality the world reduced to a punchline is the quality she’s falling for. The real Bill comes back, and she’s the one who pulled him out.</p>
+    <p>It surfaces as a fight. He snaps — <em class="em">nobody likes me for who I really am.</em> She tears up and says <em>she</em> does… and Bill, true to his deepest law, somehow blows it. Then the <strong>other</strong> fall arrives: stocks to zero, real estate up in flames, a car blown sky-high. He loses all of it — the same disaster that defined him before he had a thing.</p>
+    <p>And it’s the making of him. Stripped of money, fame, and a name that wasn’t his, Bill is finally just Bill — and okay with that man. He wins her back with nothing but himself. The film ends where it began: a small apartment, no crowds. But he’s at peace, and he has the love of his life. He never got known the way he wanted. He got something better.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="l"></span><span class="dot"></span><span class="l"></span></div>
+
+<!-- BEATS -->
+<section id="beats">
+  <div class="reveal">
+    <div class="sec-kicker">Beat Sheet</div>
+    <h2 class="title">20 beats, three acts</h2>
+    <p class="hint">Tap any beat to expand →</p>
+  </div>
+  <div class="reveal timeline" id="timeline"></div>
+</section>
+
+<div class="divider"><span class="l"></span><span class="dot"></span><span class="l"></span></div>
+
+<!-- CHARACTERS -->
+<section id="characters">
+  <div class="reveal">
+    <div class="sec-kicker">Character Bible</div>
+    <h2 class="title">The people of the film</h2>
+    <p class="hint">Tap a card to read more →</p>
+  </div>
+  <div class="reveal chars" id="chars"></div>
+
+  <div class="reveal">
+    <div class="sec-kicker" style="margin-top:50px">Recurring Motifs</div>
+    <div class="chips">
+      <div class="chip"><b>“The Fall”</b> — literal wipeout · fall from grace · Fortnite “fall damage”</div>
+      <div class="chip"><b>“Bob,” not Bill</b> — known but not seen; paid off at the wedding</div>
+      <div class="chip"><b>The schemes</b> — lottery · the tanking stock · selling life insurance</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="big">THE FALL</div>
+  Story Hub · Diamond House Media · Draft — June 2026
+</footer>
+
+<script>
+// ---- data ----
+const beats = [
+  ["Act One — Setup", [
+    ["1","Opening Image — Meet the Barista","The coffee-on-the-shirt spill happens in her coffee shop. We meet the barista in frame one — the warm constant of Bill’s world. Narration sets the motto: “nothing ever goes my way.”"],
+    ["2","Theme Stated — The Want","Bill names the dream: rich, famous, known, popular, loved — all at once, ideally tomorrow. The real question is planted: known vs. seen."],
+    ["3","The Bad Date","One real date. A freak accident — pure Bill — blows it up."],
+    ["4","The Schemes","Lottery by the fistful; a stock that tanks on contact; Bill selling life insurance door-to-door and wrecking every living room."],
+    ["5","The Fortnite Game","Last one alive, he dies to fall damage and the kids drop him cold. “Those were some of the closest friends I’d had in a while.”"],
+    ["6","Catalyst — The Fall","One more gamble on the one-wheel; a catastrophic wipeout. Two kids film it — “happy birthday Mom!” — and post at the same moment."],
+    ["7","Break Into Two — Overnight Virality","The clip explodes. Brand deals, commercials, the morning news. The jackpot he never hit by trying, hit by failing."],
+  ]],
+  ["Act Two — Confrontation", [
+    ["8","Fun &amp; Games","The big house, the cars, the early parties — cannonballs and chaos. The funniest stretch of the film."],
+    ["9","B-Story Resurfaces — Back to the Barista","She’s been there since beat 1; now, mid-fame, Bill keeps returning to her shop. The one fixed point in the circus."],
+    ["10","Escalation — Bigger Parties, Smaller Bill","The parties grow; Bill shrinks inside them. The comedy gains an undertow."],
+    ["11","Midpoint — The “Bob” Birthday","A hired rapper hypes the crowd for “Bob” — not his name. A thousand strangers scream it back. Adoration and isolation at once."],
+    ["12","Bad Guys Close In — The Emptiness","Everything he wanted, and he’s hollow — known only as the punchline. He circles back to the coffee shop."],
+    ["13","Trying to Buy Her","Newly-rich Bill courts the barista with money and stuff. She genuinely doesn’t care. Only he moves her, and he can’t see it."],
+  ]],
+  ["Act Three — Resolution", [
+    ["14","The Carnival Date","He fails to win her a prize and gets mad at himself — she finds it the cutest, funniest thing ever. The clumsiness becomes the thing she loves."],
+    ["15","All Is Lost — The Fight","“Nobody likes me for who I really am.” She tears up and says she does — and he somehow blows it. The emotional bottom."],
+    ["16","The Financial Fall","Stocks to zero, real estate burns, a car gets blown up. He loses everything — the same disaster that defined him before he had it."],
+    ["17","Dark Night of the Soul — Just Bill","Stripped of money, fame, and the borrowed name, Bill is finally himself — and starts to be okay with that man."],
+    ["18","Break Into Three — Winning Her Back","He returns to the barista with nothing to offer but himself. Just the man."],
+    ["19","Finale — The Wedding / The Real Name","They marry. The name motif pays off: she says his real name — Bill — and means it. Seen, at last."],
+    ["20","Final Image — Back Where He Started","A small apartment, no crowds — mirroring the opening. But he’s at peace and has the love of his life."],
+  ]],
+];
+
+const chars = [
+  ["Protagonist","Bill","rgba(227,96,74,.20)","Late 40s–50s. A lovable loser — good-hearted, earnest, catastrophically clumsy. His whole life runs on one sentence: “nothing ever goes my way.”",[
+    ["Want vs. Need","Want: to be rich, famous, known, popular, loved — overnight. Need: to be seen for who he is, and to like that man himself. Getting the want pushes him further from the need."],
+    ["The Comedy Engine","A middle-aged man living out a rich teenager’s fantasy. The clumsiness isn’t a bug — it’s his soul."],
+    ["Arc","Walking disaster → viral sensation → hollow celebrity → a man who loses it all → a man at peace, seen by the one who counts."],
+  ]],
+  ["The Spine of the Film","The Barista","rgba(111,168,199,.22)","Works the counter at the shop Bill’s gone to for years. Warm, grounded, quietly funny. Never a fantasy — a real person who treated him like one.",[
+    ["Start to Finish","Not a third-act love interest — the throughline. On screen in the opening minutes, recurring through Act Two, carrying the finale. The constant the whole story is measured against."],
+    ["Key Trait","Completely unmoved by money — not as a pose, she just doesn’t care. The carnival date defines her: his failure is the cutest thing she’s ever seen."],
+    ["Why She Matters","She’s the bridge across the film’s tonal divide — the human who laughs WITH him at what the world laughed AT."],
+  ]],
+  ["Catalyst","The Twins","rgba(240,184,110,.20)","Two kids in flat-bills who film Bill’s fall — “happy birthday Mom!” — and post at the same moment, detonating his virality.",[
+    ["Function","The random mechanism of fate: the internet deciding Bill’s life for him, indifferent to who he is."],
+  ]],
+  ["Hollow-Fame Set Piece","The Rapper","rgba(227,96,74,.18)","Hired to headline the birthday, he bellows happy birthday to “Bob.”",[
+    ["Function","The transactional emptiness of bought adoration: he doesn’t know Bill’s name, and neither does the crowd screaming it."],
+  ]],
+  ["Act One","The Boss","rgba(154,154,180,.18)","Bill’s pre-fame authority figure, whose default volume is a shout.",[
+    ["Function","Establishes the daily indignity Bill is so desperate to escape."],
+  ]],
+  ["Loneliness, for Laughs","The Fortnite Squad","rgba(111,168,199,.18)","Tre, Jacob &amp; co. — the young kids Bill games with and calls his closest friends.",[
+    ["Function","They drop him cold the moment he dies to fall damage. A sharp little portrait of Bill’s loneliness — laughs that ache."],
+  ]],
+];
+
+// ---- render beats ----
+const tl = document.getElementById('timeline');
+beats.forEach(([act,list])=>{
+  const band=document.createElement('div');band.className='actband';band.innerHTML=act;tl.appendChild(band);
+  list.forEach(([n,t,body])=>{
+    const b=document.createElement('div');b.className='beat';
+    b.innerHTML=`<span class="node"></span>
+      <div class="head"><span class="n">${n}</span><span class="t">${t}</span><span class="plus">+</span></div>
+      <div class="body"><p>${body}</p></div>`;
+    b.querySelector('.head').addEventListener('click',()=>b.classList.toggle('open'));
+    tl.appendChild(b);
+  });
+});
+
+// ---- render chars ----
+const cg=document.getElementById('chars');
+chars.forEach(([role,name,c,snap,more])=>{
+  const el=document.createElement('div');el.className='char';el.style.setProperty('--c',c);
+  el.innerHTML=`<div class="role">${role}</div><h3>${name}</h3><p class="snap">${snap}</p>
+    <div class="more">${more.map(([k,v])=>`<span class="k">${k}</span><p>${v}</p>`).join('')}</div>
+    <span class="tap">tap +</span>`;
+  el.addEventListener('click',()=>el.classList.toggle('open'));
+  cg.appendChild(el);
+});
+
+// ---- scroll progress + nav ----
+const prog=document.getElementById('progress'), nav=document.getElementById('nav');
+const navLinks=[...document.querySelectorAll('nav .links a')];
+const secs=['overview','treatment','beats','characters'].map(id=>document.getElementById(id));
+function onScroll(){
+  const h=document.documentElement;
+  const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  prog.style.width=(sc*100)+'%';
+  nav.classList.toggle('solid',h.scrollTop>40);
+  let cur=secs[0].id;
+  secs.forEach(s=>{if(s.getBoundingClientRect().top<=160)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// ---- reveal on scroll ----
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

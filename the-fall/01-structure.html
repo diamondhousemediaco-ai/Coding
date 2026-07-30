@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>THE FALL — Stage 1: Structure</title>
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#101019; --panel:#14141f; --panel2:#1b1b29;
+    --ink:#edecf2; --muted:#9a9ab4; --line:#2a2a3c;
+    --accent:#e3604a;   /* the fall */
+    --gold:#f0b86e;     /* fame */
+    --cool:#6fa8c7;     /* her */
+    --maxw:900px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;
+    background:linear-gradient(90deg,var(--accent),var(--gold),var(--cool))}
+
+  /* ---- header ---- */
+  header{padding:64px 22px 40px;max-width:var(--maxw);margin:0 auto;text-align:center}
+  .stage-chip{display:inline-block;border:1px solid var(--accent);color:var(--accent);
+    border-radius:30px;padding:6px 16px;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;font-weight:800;margin-bottom:20px}
+  header h1{font-size:clamp(34px,8vw,60px);font-weight:900;letter-spacing:1px;line-height:1.02}
+  header h1 em{font-style:normal;color:var(--accent)}
+  header .sub{color:var(--muted);margin-top:16px;font-size:clamp(14px,3.4vw,16.5px);
+    max-width:600px;margin-left:auto;margin-right:auto}
+
+  /* ---- pipeline ---- */
+  .pipe{max-width:var(--maxw);margin:0 auto 10px;padding:0 22px;
+    display:flex;gap:8px;align-items:stretch;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none}
+  .pipe::-webkit-scrollbar{display:none}
+  .step{flex:1 0 auto;min-width:132px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px}
+  .step.now{border-color:var(--accent);background:linear-gradient(160deg,#20141a,var(--panel))}
+  .step .lv{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .step .nm{font-weight:800;font-size:15px;margin-top:3px}
+  .step.now .nm{color:var(--accent)}
+  .step .st{font-size:11px;color:var(--muted);margin-top:4px}
+
+  /* ---- layout ---- */
+  section{max-width:var(--maxw);margin:0 auto;padding:44px 22px}
+  .sec-kicker{color:var(--accent);letter-spacing:4px;text-transform:uppercase;
+    font-size:11px;font-weight:800;margin-bottom:10px}
+  h2.title{font-size:clamp(24px,5.4vw,36px);font-weight:800;line-height:1.1;margin-bottom:14px}
+  p.lede{color:#cdcdda;font-size:clamp(15px,3.4vw,17px)}
+  .hint{color:var(--muted);font-size:12.5px;margin-top:10px}
+
+  /* ---- act band ---- */
+  .act-band{max-width:var(--maxw);margin:38px auto 0;padding:0 22px}
+  .act-band .inner{border-top:1px solid var(--line);padding-top:22px;
+    display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+  .act-band .no{font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    font-weight:800;color:var(--accent)}
+  .act-band .nm{font-size:clamp(21px,5vw,30px);font-weight:900;letter-spacing:.5px;width:100%}
+  .act-band .meta{font-size:12px;color:var(--muted);letter-spacing:1px}
+  .act-band .job{color:#cdcdda;font-size:14.5px;width:100%;margin-top:6px}
+
+  /* ---- sequence card ---- */
+  .seqs{max-width:var(--maxw);margin:0 auto;padding:16px 22px 0}
+  .seq{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    margin-bottom:14px;overflow:hidden;transition:border-color .3s}
+  .seq.open{border-color:var(--accent)}
+  .seq .top{display:flex;gap:13px;align-items:flex-start;padding:17px 18px;cursor:pointer}
+  .seq .num{flex:0 0 30px;height:30px;border-radius:9px;background:var(--panel2);
+    border:1px solid var(--line);display:grid;place-items:center;
+    font-weight:900;font-size:13px;color:var(--accent)}
+  .seq.open .num{background:var(--accent);color:#12070a;border-color:var(--accent)}
+  .seq .head{flex:1;min-width:0}
+  .seq .nm{font-weight:800;font-size:16.5px;letter-spacing:.2px}
+  .seq .fn{color:var(--muted);font-size:13px;margin-top:3px}
+  .seq .plus{flex:0 0 auto;color:var(--muted);font-size:20px;line-height:1;
+    transition:transform .3s,color .3s;padding-top:3px}
+  .seq.open .plus{transform:rotate(45deg);color:var(--accent)}
+  .badge{display:inline-block;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
+    font-weight:800;padding:3px 7px;border-radius:5px;margin-left:7px;vertical-align:2px}
+  .badge.turn{background:rgba(240,184,110,.16);color:var(--gold);border:1px solid rgba(240,184,110,.35)}
+  .badge.low{background:rgba(111,168,199,.14);color:var(--cool);border:1px solid rgba(111,168,199,.35)}
+
+  .seq .body{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .35s;opacity:0}
+  .seq.open .body{max-height:1400px;opacity:1}
+  .seq .body-in{padding:2px 18px 18px;border-top:1px solid var(--line);margin-top:2px}
+  .kv{display:flex;gap:10px;margin-top:14px;font-size:14px}
+  .kv .k{flex:0 0 62px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--muted);font-weight:800;padding-top:3px}
+  .kv .v{flex:1;color:#d6d6e4}
+  .kv .v b{color:#fff}
+
+  .mat{margin-top:16px}
+  .mat .lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--muted);font-weight:800;margin-bottom:8px}
+  .mat .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .mat .chips span{background:var(--panel2);border:1px solid var(--line);border-radius:20px;
+    padding:6px 11px;font-size:12.5px;color:#cdcdda}
+
+  /* tone meter */
+  .tone{margin-top:16px;display:flex;align-items:center;gap:10px}
+  .tone .lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--muted);font-weight:800;flex:0 0 62px}
+  .tone .bar{flex:1;height:6px;border-radius:4px;background:var(--panel2);overflow:hidden}
+  .tone .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--cool),var(--gold),var(--accent))}
+  .tone .val{font-size:11.5px;color:var(--muted);flex:0 0 auto;letter-spacing:.5px}
+
+  /* scene slot */
+  .slot{margin-top:18px;border:1px dashed var(--line);border-radius:12px;
+    padding:14px 15px;background:rgba(255,255,255,.015)}
+  .slot .h{font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--muted);font-weight:800}
+  .slot .t{color:var(--muted);font-size:13px;margin-top:5px;font-style:italic}
+  .slot .t b{color:var(--gold);font-style:normal}
+
+  /* ---- tone curve ---- */
+  .curve-wrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px 12px;margin-top:22px}
+  .curve-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+  .curve-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;
+    font-size:12px;color:var(--muted)}
+  .curve-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+
+  /* ---- two falls ---- */
+  .falls{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+  .falls .f{flex:1;min-width:250px;background:var(--panel);border:1px solid var(--line);
+    border-radius:16px;padding:20px}
+  .falls .f .n{font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--muted);font-weight:800}
+  .falls .f .w{font-size:22px;font-weight:900;margin:5px 0 8px}
+  .falls .f1 .w{color:var(--accent)} .falls .f2 .w{color:var(--gold)}
+  .falls .f p{color:var(--muted);font-size:13.5px}
+
+  /* ---- questions ---- */
+  ol.q{margin-top:18px;padding-left:20px}
+  ol.q li{color:#cdcdda;font-size:14.5px;margin-bottom:11px}
+  ol.q li b{color:var(--gold);font-weight:700}
+
+  footer{text-align:center;padding:56px 22px 80px;color:var(--muted);font-size:12.5px;
+    border-top:1px solid var(--line);margin-top:34px}
+  footer .b{font-size:19px;font-weight:900;color:var(--ink);letter-spacing:4px;margin-bottom:8px}
+  ::selection{background:var(--accent);color:#fff}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header>
+  <div class="stage-chip">Stage 1 of 4 · Structure</div>
+  <h1>Three acts,<br>eleven <em>stages</em>.</h1>
+  <p class="sub">The skeleton of the movie. Each stage below is a chunk of story with one
+  job to do. Next pass, every stage gets broken into scenes — then we write them.</p>
+</header>
+
+<div class="pipe">
+  <div class="step now"><div class="lv">Stage 1</div><div class="nm">Structure</div><div class="st">Acts &amp; stages — this page</div></div>
+  <div class="step"><div class="lv">Stage 2</div><div class="nm">Scenes</div><div class="st">Break each stage into scenes</div></div>
+  <div class="step"><div class="lv">Stage 3</div><div class="nm">Scene Cards</div><div class="st">Who / where / what turns</div></div>
+  <div class="step"><div class="lv">Stage 4</div><div class="nm">Pages</div><div class="st">Write the script</div></div>
+</div>
+
+<section>
+  <div class="sec-kicker">The spine</div>
+  <h2 class="title">Want it → get it → lose it → be it.</h2>
+  <p class="lede">Bill wants to be <b>known</b>. He gets known — as a punchline, under a name
+  that isn't even his. The fall gives him everything and shows him it's nothing. The second
+  fall takes it all back and hands him himself. <b>Known is what he wanted. Seen is what he
+  needed</b>, and she was behind the counter in frame one.</p>
+
+  <div class="falls">
+    <div class="f f1">
+      <div class="n">Act One ends with</div>
+      <div class="w">THE FIRST FALL</div>
+      <p>He wipes out on the one-wheel and the internet is filming. It gives him money,
+      fame, and a fake name. The jackpot he could never hit by trying, hit by failing.</p>
+    </div>
+    <div class="f f2">
+      <div class="n">Act Three opens with</div>
+      <div class="w">THE SECOND FALL</div>
+      <p>Stocks to zero, the building burns, a car goes up. It takes back everything the
+      first fall gave him — and leaves the only thing he actually needed.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="sec-kicker">Tone map</div>
+  <h2 class="title">The laughs are a curve, not a line.</h2>
+  <p class="lede">Your rule, drawn: broad and funny up front, drier and heavier as the money
+  piles up, and then <b>she</b> brings the funny back — because the clumsiness was never the
+  problem, it was him.</p>
+
+  <div class="curve-wrap">
+    <svg viewBox="0 0 700 250" role="img" aria-label="Tone curve across eleven stages">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#e3604a"/>
+          <stop offset="45%" stop-color="#f0b86e"/>
+          <stop offset="70%" stop-color="#6fa8c7"/>
+          <stop offset="100%" stop-color="#e3604a"/>
+        </linearGradient>
+        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(227,96,74,.22)"/>
+          <stop offset="100%" stop-color="rgba(227,96,74,0)"/>
+        </linearGradient>
+      </defs>
+      <!-- grid -->
+      <line x1="40" y1="20"  x2="690" y2="20"  stroke="#2a2a3c" stroke-width="1"/>
+      <line x1="40" y1="105" x2="690" y2="105" stroke="#2a2a3c" stroke-width="1" stroke-dasharray="4 5"/>
+      <line x1="40" y1="190" x2="690" y2="190" stroke="#2a2a3c" stroke-width="1"/>
+      <text x="0" y="24"  fill="#9a9ab4" font-size="10" font-family="Helvetica,Arial">FUNNY</text>
+      <text x="0" y="194" fill="#9a9ab4" font-size="10" font-family="Helvetica,Arial">HEAVY</text>
+      <!-- act separators -->
+      <line x1="217" y1="14" x2="217" y2="196" stroke="#2a2a3c" stroke-width="1"/>
+      <line x1="510" y1="14" x2="510" y2="196" stroke="#2a2a3c" stroke-width="1"/>
+      <text x="112" y="216" fill="#9a9ab4" font-size="10" letter-spacing="2" text-anchor="middle" font-family="Helvetica,Arial">ACT I</text>
+      <text x="363" y="216" fill="#9a9ab4" font-size="10" letter-spacing="2" text-anchor="middle" font-family="Helvetica,Arial">ACT II</text>
+      <text x="600" y="216" fill="#9a9ab4" font-size="10" letter-spacing="2" text-anchor="middle" font-family="Helvetica,Arial">ACT III</text>
+      <!-- fill + curve: 11 points -->
+      <path d="M55,32 L120,26 L185,20 L250,34 L315,24 L380,122 L445,80 L510,182 L575,114 L640,138 L690,48 L690,190 L55,190 Z" fill="url(#fg)"/>
+      <path d="M55,32 L120,26 L185,20 L250,34 L315,24 L380,122 L445,80 L510,182 L575,114 L640,138 L690,48"
+            fill="none" stroke="url(#cg)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- nodes -->
+      <g fill="#0a0a0f" stroke="#e3604a" stroke-width="2.5">
+        <circle cx="55" cy="32" r="5"/><circle cx="120" cy="26" r="5"/><circle cx="185" cy="20" r="5"/>
+        <circle cx="250" cy="34" r="5"/><circle cx="315" cy="24" r="5"/>
+        <circle cx="380" cy="122" r="6" stroke="#f0b86e"/>
+        <circle cx="445" cy="80" r="5" stroke="#6fa8c7"/>
+        <circle cx="510" cy="182" r="6" stroke="#6fa8c7"/>
+        <circle cx="575" cy="114" r="5"/><circle cx="640" cy="138" r="5"/><circle cx="690" cy="48" r="6"/>
+      </g>
+      <!-- labels -->
+      <text x="185" y="245" fill="#e3604a" font-size="10.5" text-anchor="middle" font-family="Helvetica,Arial">the fall</text>
+      <text x="380" y="146" fill="#f0b86e" font-size="10.5" text-anchor="middle" font-family="Helvetica,Arial">“Bob”</text>
+      <text x="510" y="245" fill="#6fa8c7" font-size="10.5" text-anchor="middle" font-family="Helvetica,Arial">the fight</text>
+      <text x="686" y="245" fill="#e3604a" font-size="10.5" text-anchor="end" font-family="Helvetica,Arial">her</text>
+    </svg>
+    <div class="curve-legend">
+      <span><i style="background:#e3604a"></i>slapstick / broad</span>
+      <span><i style="background:#f0b86e"></i>laughs that ache</span>
+      <span><i style="background:#6fa8c7"></i>no laughs — feel it</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:0">
+  <div class="sec-kicker">Stage 1 deliverable</div>
+  <h2 class="title">The eleven stages</h2>
+  <p class="lede">Every stage has one job, a way in, and a way out. The <b>raw material</b>
+  chips are the bits from your notes that live inside that stage — that's what we'll cut
+  into scenes next.</p>
+  <p class="hint">Tap any stage to open it →</p>
+</section>
+
+<div id="board"></div>
+
+<section>
+  <div class="sec-kicker">Before Stage 2</div>
+  <h2 class="title">Six things to decide</h2>
+  <p class="lede">None of these block the structure, but each one changes scenes we'd be
+  writing, so they're worth calling now.</p>
+  <ol class="q">
+    <li><b>Bill's job.</b> What does he do in act one? It sets the boss, the coffee run, and
+    what he has to lose. A job with a uniform is funnier — and it makes the fame contrast land.</li>
+    <li><b>Life insurance — selling or buying?</b> Selling it door to door is much funnier:
+    the least safe man alive pitching peace of mind, wrecking every living room he walks into.</li>
+    <li><b>The bad date's freak accident.</b> You said "the one we were accident." If it's a
+    car accident, it should be small and absurd, not scary — the movie can't get dark this early.</li>
+    <li><b>Does she get a name?</b> Strong option: she's "the barista" to us for most of act
+    one because Bill has never asked. Him finally asking is a scene.</li>
+    <li><b>Do the twins come back?</b> Best payoff: they meet him at the end and don't
+    recognize him — the two people who made him famous can't pick him out of a crowd.</li>
+    <li><b>Nashville — committing?</b> The twins' line says yes. It gives us a real city, a
+    music-money world for the rapper, and a specific texture instead of Anytown.</li>
+  </ol>
+</section>
+
+<footer>
+  <div class="b">THE FALL</div>
+  Stage 1 · Structure · Diamond House Media<br>
+  Next: Stage 2 — break each of the eleven into scenes.
+</footer>
+
+<script>
+/* ============================================================
+   DATA — the eleven stages.
+   To advance to Stage 2, add a `scenes: [ ["1A","Slug","what happens"], ... ]`
+   array to any stage object below; the board renders it automatically.
+   ============================================================ */
+const ACTS = [
+  {
+    no:"Act One", name:"The Want", pages:"pp. 1–27", share:"~25%",
+    job:"Prove the world is a machine that produces small catastrophes for this man — then have it accidentally make him a star.",
+    stages:[
+      {
+        n:1, title:"Nothing Ever Goes My Way",
+        fn:"Meet Bill mid-disaster. Establish the motto, and put her in the first frame.",
+        opens:"Coffee hits his shirt — <b>in her coffee shop</b>, so the one warm face in his life is there before the story even starts.",
+        lands:"A boss who shouts by default, apps that go nowhere, and one real date detonated by a freak accident. Rock bottom, but ordinary.",
+        mat:["coffee on the shirt","the barista, frame one","the boss yelling","dating apps montage","the real date + the accident","“nothing ever goes my way”"],
+        tone:96, toneNote:"broad, fast, funny"
+      },
+      {
+        n:2, title:"The Schemes",
+        fn:"Say the want out loud, then burn every shortcut to it.",
+        opens:"Bill names the dream: rich, famous, known, popular, <b>loved by everybody</b> — ideally by tomorrow.",
+        lands:"Lottery tickets by the fistful, a stock that craters on contact, life insurance he can't sell. Every shortcut is dead. Then the Fortnite squad drops him for dying to <b>fall damage</b> — the loneliest laugh in the movie.",
+        mat:["lottery by the fistful","the stock that tanks","life insurance","Fortnite: fall damage","“some of the closest friends I've had”","Tre &amp; Jacob drop him"],
+        tone:90, toneNote:"funny, first ache underneath"
+      },
+      {
+        n:3, title:"The Fall",
+        fn:"Inciting incident. The universe finally films him.",
+        opens:"One more gamble, on the one-wheel. Two twins in flat-bills: <em>“look at this guy on the one-wheel vibing — this is Nashville baby, record it.”</em>",
+        lands:"<em>“OHHHHH.”</em> — <em>“Should I post it? I kinda feel bad.”</em> — <em>“Definitely post it.”</em> Thumb hits post. Act one is over.",
+        mat:["the one-wheel","the twins","“record it”","“should I post it?”","the post button"],
+        tone:98, toneNote:"biggest laugh in act one"
+      }
+    ]
+  },
+  {
+    no:"Act Two", name:"The Have", pages:"pp. 27–85", share:"~50%",
+    job:"Give him everything he asked for, on purpose make it hilarious, and then let the same footage of joy turn hollow while she quietly becomes the only real thing in it.",
+    stages:[
+      {
+        n:4, title:"Overnight",
+        fn:"Break into two. The world rearranges around him in a week.",
+        opens:"The clip detonates. Influencers, brand deals, commercials, the morning news.",
+        lands:"The first big check. He got the jackpot he could never hit by trying — by failing.",
+        mat:["the clip explodes","brand deals","commercials","morning news","first check"],
+        tone:92, toneNote:"euphoric, still very funny"
+      },
+      {
+        n:5, title:"The Rise",
+        fn:"Cash out the premise. A man in his fifties spending like a rich fifteen-year-old.",
+        opens:"The big house. All the cars. The first party — cannonball into his own pool.",
+        lands:"Top of the world, and the last time the movie is this loud and this happy.",
+        mat:["the big house","all the cars","first parties","cannonball in the pool","a 50-year-old teenager"],
+        tone:97, toneNote:"peak comedy — spend it all here"
+      },
+      {
+        n:6, title:"“Bob”", badge:["turn","Midpoint"],
+        fn:"False victory. The crack. Known ≠ seen — stated in one line by a stranger.",
+        opens:"His own birthday, a hired rapper on the mic: <em>“big happy birthday to our guy — BOB!”</em>",
+        lands:"A thousand strangers scream a name that isn't his. Total adoration, total isolation. From here the movie starts to cost something.",
+        mat:["hired rapper","“let's go Bob!”","the crowd screaming a wrong name","nobody knows who he is"],
+        tone:52, toneNote:"the tone turns here — first laugh that hurts"
+      },
+      {
+        n:7, title:"The Carnival", badge:["low","B-story"],
+        fn:"Hand the audience the answer while Bill still can't see it.",
+        opens:"He goes back to the shop with money in his pocket and tries to <b>buy</b> her — gestures, gifts, the stuff. She genuinely does not care.",
+        lands:"The carnival date: he fails to win her a prize, gets furious at himself — and she thinks it's the cutest, funniest thing she's ever seen. <b>The thing the world laughed at is the thing she's falling for.</b>",
+        mat:["trying to buy her","“I don't care about that”","the carnival / amusement park","failing to win the prize","she lights up"],
+        tone:74, toneNote:"warm — funny again, but gentle"
+      },
+      {
+        n:8, title:"The Fight", badge:["low","All Is Lost"],
+        fn:"Emotional bottom. He is handed exactly what he needed and destroys it.",
+        opens:"The parties get bigger and Bill gets smaller inside them. He's got everything and he is empty.",
+        lands:"He snaps at her — <em>“nobody likes me for who I really am.”</em> She tears up and says <b>she does</b>. And Bill, true to his deepest law, somehow blows it. Alone in a huge house.",
+        mat:["bigger parties, smaller Bill","the emptiness","“nobody likes me for who I really am”","“I do”","he blows it"],
+        tone:14, toneNote:"no laughs — this is the one you feel"
+      }
+    ]
+  },
+  {
+    no:"Act Three", name:"The Truth", pages:"pp. 85–108",  share:"~25%",
+    job:"Take back everything the first fall gave him, and let what's left be enough.",
+    stages:[
+      {
+        n:9, title:"The Second Fall",
+        fn:"Strip him. The same disaster as act one, now expensive.",
+        opens:"Stocks to zero. The real estate burns down. One of his cars gets blown up.",
+        lands:"Broke. The clumsiness he was famous for eats the fame that paid for it.",
+        mat:["stocks to zero","the building burns","the car blows up","blowing all of it","the same stupid stuff, but expensive"],
+        tone:58, toneNote:"laughs come back — rueful ones"
+      },
+      {
+        n:10, title:"Just Bill",
+        fn:"The turn inside him. He stops auditioning for the crowd.",
+        opens:"No money, no cars, no crowd — and nobody screaming the wrong name.",
+        lands:"He realizes the whole thing was never for him, and he's okay with that man. The quietest stretch of the movie.",
+        mat:["everything gone","no crowd","“this isn't for me”","okay with himself"],
+        tone:40, toneNote:"quiet, honest, small smiles"
+      },
+      {
+        n:11, title:"Her, With Nothing",
+        fn:"Pay off every plant. He wins her with the only thing he has left.",
+        opens:"Back to the coffee shop with nothing to offer but himself.",
+        lands:"They marry — and she says his <b>real name</b> and means it. Small apartment, no crowds, ends exactly where it began. He never got known the way he wanted. He got something better.",
+        mat:["winning her with himself","the real name paid off","the wedding","the small apartment","the coffee shop again","“nothing ever goes my way” — as a joke now"],
+        tone:88, toneNote:"the funny is back — she brought it back"
+      }
+    ]
+  }
+];
+
+/* ---------- render ---------- */
+const board = document.getElementById('board');
+
+ACTS.forEach(act=>{
+  const band = document.createElement('div');
+  band.className='act-band';
+  band.innerHTML = `<div class="inner">
+      <div class="no">${act.no}</div>
+      <div class="nm">${act.name}</div>
+      <div class="meta">${act.pages} · ${act.share} of the movie · ${act.stages.length} stages</div>
+      <div class="job">${act.job}</div>
+    </div>`;
+  board.appendChild(band);
+
+  const wrap = document.createElement('div');
+  wrap.className='seqs';
+  act.stages.forEach(s=>{
+    const badge = s.badge ? `<span class="badge ${s.badge[0]}">${s.badge[1]}</span>` : '';
+    const scenes = s.scenes && s.scenes.length
+      ? `<div class="mat"><div class="lbl">Scenes (${s.scenes.length})</div>
+           ${s.scenes.map(([id,slug,txt])=>`<div class="kv"><div class="k">${id}</div><div class="v"><b>${slug}</b><br>${txt}</div></div>`).join('')}
+         </div>`
+      : `<div class="slot"><div class="h">Scenes — Stage 2</div>
+           <div class="t">Not broken out yet. Next pass this stage becomes <b>${s.sceneGuess||"3–5"} scenes</b>,
+           each with a location, who's in it, and what changes by the end of it.</div></div>`;
+
+    const el = document.createElement('div');
+    el.className='seq';
+    el.innerHTML = `
+      <div class="top">
+        <div class="num">${s.n}</div>
+        <div class="head"><div class="nm">${s.title}${badge}</div><div class="fn">${s.fn}</div></div>
+        <div class="plus">+</div>
+      </div>
+      <div class="body"><div class="body-in">
+        <div class="kv"><div class="k">Way in</div><div class="v">${s.opens}</div></div>
+        <div class="kv"><div class="k">Way out</div><div class="v">${s.lands}</div></div>
+        <div class="mat"><div class="lbl">Raw material from your notes</div>
+          <div class="chips">${s.mat.map(m=>`<span>${m}</span>`).join('')}</div></div>
+        <div class="tone"><div class="lbl">Tone</div>
+          <div class="bar"><div class="fill" style="width:${s.tone}%"></div></div>
+          <div class="val">${s.toneNote}</div></div>
+        ${scenes}
+      </div></div>`;
+    el.querySelector('.top').addEventListener('click',()=>el.classList.toggle('open'));
+    wrap.appendChild(el);
+  });
+  board.appendChild(wrap);
+});
+
+/* ---------- scroll progress ---------- */
+const prog=document.getElementById('progress');
+function onScroll(){
+  const h=document.documentElement;
+  const d=h.scrollHeight-h.clientHeight;
+  prog.style.width=(d>0?(h.scrollTop/d)*100:0)+'%';
+}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>
