@@ -201,6 +201,18 @@
       instead of one more pratfall: same clumsy man he's always been, except this time
       somebody was filming.</p>
     </div>
+    <div class="f f1" style="flex-basis:100%">
+      <div class="n">The rule that makes the ending work</div>
+      <div class="w" style="color:var(--gold)">TWO KINDS OF DISASTER</div>
+      <p><b>Clumsiness</b> — the coffee, the wipeout, the prize he can't win at the carnival.
+      Lovable, and it never actually takes anything from him. It's what she falls for.<br><br>
+      <b>Reaching</b> — the pitch on the date, trying to buy her, snapping at her in the fight.
+      This is the real flaw, and it's the <em>only</em> thing in the movie that ever costs him
+      something.<br><br>
+      Every disaster should be sortable into one of those two. The ending only lands if the
+      audience has quietly learned to tell them apart — because the whole point is that the
+      thing the world laughed at was never the problem.</p>
+    </div>
     <div class="f f2">
       <div class="n">Act Three opens with</div>
       <div class="w">THE SECOND FALL</div>
@@ -283,19 +295,17 @@
 
 <section>
   <div class="sec-kicker">Before Stage 2</div>
-  <h2 class="title">Six things to decide</h2>
-  <p class="lede">The ending is locked — <b>he marries the barista</b>. These are the open
-  choices that change actual scenes, so they're worth calling before we break them out.</p>
+  <h2 class="title">What's left to decide</h2>
+  <p class="lede"><b>Locked:</b> he marries the barista · he works a corporate office job that
+  doesn't pay much · he is <em>selling</em> life insurance, not buying it. Here's the rest.</p>
   <ol class="q">
-    <li><b>Bill's job.</b> What does he do in act one? It sets the boss, the coffee run, and
-    what he has to lose. A job with a uniform is funnier — and it makes the fame contrast land.</li>
-    <li><b>The life-insurance scheme.</b> Is he <em>selling</em> policies door to door — the
-    least safe man alive pitching peace of mind, wrecking every living room he enters — or
-    <em>buying</em> them hoping for a payout? Selling is funnier and safer; buying is darker.</li>
-    <li><b>What wrecks the date?</b> Still open. It should be small, stupid and entirely his
-    fault — and it can't be an accident, because the one-wheel is the movie's only accident
-    and it needs to stay singular.</li>
-    <li><b>The final image.</b> Three versions on the table — see Stage 11. Leaning toward
+    <li><b>Which corporate job?</b> Three options inside Stage 1. Leaning toward the insurance
+    back office — it makes the scheme grow out of his actual life instead of arriving from
+    nowhere, and he spends his days reading other people's accidents before becoming one.</li>
+    <li><b>Which version of the date?</b> Three options inside Stage 1. Leaning toward him
+    pitching her a policy while it's <em>going well</em> — same flaw he'll repeat on the
+    barista twice more.</li>
+    <li><b>The final image.</b> Three versions in Stage 11. Leaning toward
     <em>she buys him a bike</em>, he immediately falls off it, and they both laugh.</li>
     <li><b>Does she get a name?</b> Strong option: she's "the barista" to us through most of
     act one because Bill has never asked. Him finally asking is its own scene.</li>
@@ -330,16 +340,40 @@ const ACTS = [
         n:1, title:"Nothing Ever Goes My Way",
         fn:"Meet Bill mid-disaster. Establish the motto, and put her in the first frame.",
         opens:"Coffee hits his shirt — <b>in her coffee shop</b>, so the one warm face in his life is there before the story even starts.",
-        lands:"A boss who shouts by default, apps that go nowhere, and one real date wrecked by something stupid — pure Bill. Rock bottom, but ordinary.",
-        mat:["coffee on the shirt","the barista, frame one","the boss yelling","dating apps montage","the real date, wrecked","“nothing ever goes my way”"],
-        tone:96, toneNote:"broad, fast, funny"
+        lands:"A corporate office where nobody's noticed him in nineteen years, a boss who shouts by default, apps that go nowhere — and one real date that's <b>going well</b> until he tries to sell her a life-insurance policy. Rock bottom, but ordinary.",
+        mat:["coffee on the shirt","the barista, frame one","the corporate office","the boss yelling","dating apps montage","<b>the date he pitches</b>","“nothing ever goes my way”"],
+        tone:96, toneNote:"broad, fast, funny",
+        opts:[
+          {
+            title:"His job — corporate office, not much money", sub:"Needs to do four things: pay badly, hand us a shouting boss, make him invisible at work too, and set up the life-insurance scheme.",
+            list:[
+              ["Back office at an insurance company", true,
+               "He processes claims in a cubicle — nineteen years, still an associate, a title with \"junior\" or \"assistant\" in it at fifty. Two things make this the strongest option. One: <b>the life-insurance scheme stops being random</b> — he watches the commission agents pull real money and signs up for the agent track everyone in the building knows is a trap. His boss even warns him. Two: <b>he reads other people's accidents for a living, then becomes the most famous accident in the country.</b> The irony is free and you never have to say it out loud."],
+              ["Forgettable corporate job + insurance as a side hustle", false,
+               "Mid-tier company, some function nobody can explain at parties. The life insurance is a separate MLM-style pitch he got sold at a hotel-ballroom seminar — \"be your own boss.\" Funnier and more random, and closer to how these schemes actually reach people. Costs you the built-in irony and needs an extra scene to set the seminar up."],
+              ["Corporate office at a company he can't describe", false,
+               "The joke <em>is</em> that he can't explain what he does — a runner for a full act when someone asks and he trails off. Great texture, weak engine: it does nothing for the insurance scheme, so it'd have to sit on top of one of the options above rather than replace it."]
+            ]
+          },
+          {
+            title:"The date he ruins", sub:"Constraint: it can't be an accident (the one-wheel is the movie's only one) and it can't be another spill. It should be him reaching, not him tripping.",
+            list:[
+              ["He pitches her life insurance", true,
+               "<b>The date is going well.</b> She likes him, he's being himself, it's working — and he can't leave it alone, because in his head this is an opportunity. <em>\"Can I ask you something? Do you have anybody who depends on you financially?\"</em> And she's gone. This is the entire movie in ninety seconds: he kills a real thing to chase the thing he thinks he wants. It's the same move he makes on the barista in Stage 7 and the same move that blows it in Stage 8 — the flaw stated once in act one, then escalated twice."],
+              ["He lies about his job and gets caught in the same breath", false,
+               "He inflates the title — \"I run a team\" — and someone from the office walks past the table. Plants the theme cleanly (he can't be liked as himself, so he invents someone). But it's a smaller laugh and it doesn't braid the scheme in, so the insurance needs its own scene."],
+              ["He books a restaurant he can't afford and the card declines", false,
+               "Very human, ties money to worth, and it's a real feeling. Also the most familiar version of this scene in movies, and it makes him a bit pitiable this early — we want him funny first, sad later."]
+            ]
+          }
+        ]
       },
       {
         n:2, title:"The Schemes",
         fn:"Say the want out loud, then burn every shortcut to it.",
         opens:"Bill names the dream: rich, famous, known, popular, <b>loved by everybody</b> — ideally by tomorrow.",
-        lands:"Lottery tickets by the fistful, a stock that craters on contact, life insurance he can't sell. Every shortcut is dead. Then the Fortnite squad drops him for dying to <b>fall damage</b> — the loneliest laugh in the movie.",
-        mat:["lottery by the fistful","the stock that tanks","life insurance","Fortnite: fall damage","“some of the closest friends I've had”","Tre &amp; Jacob drop him"],
+        lands:"Lottery tickets by the fistful, a stock that craters on contact, and <b>life insurance he cannot sell</b> — the least safe man alive going door to door pitching peace of mind. Every shortcut is dead. Then the Fortnite squad drops him for dying to <b>fall damage</b> — the loneliest laugh in the movie.",
+        mat:["lottery by the fistful","the stock that tanks","<b>selling life insurance</b>","wrecking every living room","Fortnite: fall damage","“some of the closest friends I've had”","Tre &amp; Jacob drop him"],
         tone:90, toneNote:"funny, first ache underneath"
       },
       {
@@ -425,7 +459,7 @@ const ACTS = [
         lands:"<b>They get married.</b> She says his <b>real name</b> and means it. Then a small apartment, no crowds — ending exactly where it began. He never got known the way he wanted. He got something better.",
         mat:["winning her with himself","the real name paid off","<b>the wedding</b>","the small apartment","the coffee shop again","“nothing ever goes my way” — as a joke now","<b>she buys him a bike</b>"],
         tone:88, toneNote:"the funny is back — she brought it back",
-        opts:{
+        opts:[{
           title:"Final image", sub:"Not locked. All three end on him falling in front of her — the question is who put him on the thing.",
           list:[
             ["She buys him a bike", true,
@@ -435,7 +469,7 @@ const ACTS = [
             ["He still rides the one-wheel", false,
              "Simplest and the most defiant: the thing that made and unmade him, and he never gave it up. Reads as unchanged rather than at peace, and it's <b>his</b> choice instead of <b>her</b> gesture — so it closes his arc but not theirs. Weaker as a last image for a love story."]
           ]
-        }
+        }]
       }
     ]
   }
@@ -467,11 +501,10 @@ ACTS.forEach(act=>{
            <div class="t">Not broken out yet. Next pass this stage becomes <b>${s.sceneGuess||"3–5"} scenes</b>,
            each with a location, who's in it, and what changes by the end of it.</div></div>`;
 
-    const opts = s.opts
-      ? `<div class="opts"><div class="h">${s.opts.title}</div><div class="sub">${s.opts.sub}</div>
-           ${s.opts.list.map(([nm,lean,txt])=>`<div class="opt"><div class="nm">${nm}${lean?'<span class="lean">leaning</span>':''}</div><p>${txt}</p></div>`).join('')}
-         </div>`
-      : '';
+    const opts = (s.opts||[]).map(o=>
+      `<div class="opts"><div class="h">${o.title}</div><div class="sub">${o.sub}</div>
+         ${o.list.map(([nm,lean,txt])=>`<div class="opt"><div class="nm">${nm}${lean?'<span class="lean">leaning</span>':''}</div><p>${txt}</p></div>`).join('')}
+       </div>`).join('');
 
     const el = document.createElement('div');
     el.className='seq';

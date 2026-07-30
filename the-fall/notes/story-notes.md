@@ -40,20 +40,39 @@ barista, and she was there in the first frame.
 
 - Lottery tickets — buys them by the fistful
 - Stock market — buys in, it immediately craters
-- Life insurance — *(open question: selling policies door to door, or buying one
-  hoping for a payout? Selling is funnier and safer: the least safe man alive
-  pitching peace of mind)*
+- **Life insurance — he's SELLING it.** Door to door. The least safe man alive
+  pitching peace of mind, wrecking every living room he walks into
 
 All of it is chasing the same thing: **validation.** He's trying to buy proof that
 he counts.
+
+## His job
+
+**Corporate office, doesn't pay much.** He's invisible at work the same way he's
+invisible everywhere else.
+
+Leaning: **back office at an insurance company** — processing claims in a cubicle,
+nineteen years in, still an associate. Two reasons it's the strongest version:
+
+1. The life-insurance scheme grows out of his actual life instead of arriving from
+   nowhere. He watches the commission agents make real money and signs up for the
+   agent track everyone in the building knows is a trap. His boss warns him.
+2. **He reads other people's accidents for a living, then becomes the most famous
+   accident in the country.** The irony is free and never has to be said out loud.
+
+Alternates: a forgettable corporate job with the insurance as a hotel-ballroom MLM
+side hustle (funnier, more random, loses the irony); or a company he genuinely
+can't describe (great texture, does nothing for the scheme — should sit on top of
+one of the others rather than replace it).
 
 ## Mess-ups / set pieces in hand
 
 - Spills coffee on himself at his job
 - Boss yelling at him — default volume is a shout
 - Dating apps, none of it goes anywhere
-- One real date — wrecked by something stupid. *(Open: what exactly. It can't be an
-  accident — the one-wheel is the movie's only accident.)*
+- One real date — **it's going well**, and he tries to sell her a life-insurance
+  policy. *"Can I ask you something? Do you have anybody who depends on you
+  financially?"* She's gone. Not an accident, not a spill — him reaching
 - **Fortnite:** playing with a squad of young kids, he's the last one alive and dies
   to *fall damage*. Narration over it: *"yeah, those are actually some of the
   closest friends I've had in a long time."* Cut back to: *"come on, come on Tre,
@@ -149,6 +168,22 @@ funny back, because that clumsiness is what makes him him.
 
 So the laugh count is a curve, not a line: high → hollow → warm.
 
+## The rule that makes the ending work: two kinds of disaster
+
+Every disaster in the movie should sort into one of two buckets.
+
+- **Clumsiness** — the coffee, the one-wheel wipeout, the carnival prize he can't
+  win. Lovable. It never actually takes anything from him. **It's what she falls
+  for.**
+- **Reaching** — the pitch on the date, trying to buy her with money, snapping at
+  her in the fight. This is the real flaw, and it is the *only* thing in the movie
+  that ever costs him something.
+
+The date, the barista in act two, and the fight are the same move three times,
+escalating. The ending only lands if the audience has quietly learned to tell the
+two apart — because the whole point is that the thing the world laughed at was
+never the problem.
+
 ## Motifs to plant and pay off
 
 - **The one-wheel** — there is exactly **one accident** in the movie and this is it.
@@ -162,18 +197,23 @@ So the laugh count is a curve, not a line: high → hollow → warm.
   happily, at the end.
 - **The coffee shop** — first scene and last scene.
 
+## Locked
+
+- The ending: **he marries the barista**
+- His job: **corporate office, doesn't pay much**
+- The insurance scheme: **he's selling it**
+- One accident in the whole movie: **the one-wheel**
+
 ## Open questions
 
-1. What's Bill's actual job in act one?
-2. Life insurance — selling policies, or buying one?
+1. Which corporate job? (Leaning: insurance back office.)
+2. Which version of the date? (Leaning: he pitches her a policy while it's going
+   well.)
 3. Does the barista have a name we use, or is she "the barista" until he finally
    asks? (Him asking is its own scene.)
 4. Do the twins come back at the end? (They could be the ones who don't recognize
    him anymore.)
 5. Is it Nashville for real? The twins' line suggests yes — worth committing to.
 6. Who's at the wedding?
-7. What exactly wrecks the date? (Small, stupid, his fault — and not an accident.)
-8. Final image — the bike, the bike with training wheels, or the one-wheel?
-   (Leaning: the bike. See "The final image" above.)
-
-**Not** open: the ending. He marries her.
+7. Final image — the bike, the bike with training wheels, or the one-wheel?
+   (Leaning: the bike.)
