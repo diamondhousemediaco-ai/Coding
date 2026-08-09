@@ -84,6 +84,12 @@ wording is quoted and my read is in brackets — correct me, don't work around m
   because she actually loves him and **he's been missing it the whole time**
 - Order matters here: she blows up at him *first*, then the rapper says "Bob." So he's
   already raw when the crowd screams a name that isn't his
+- **What triggers her crash out: she warns him about the gold digger and he takes it as
+  jealousy.** The one person who's known him since childhood can see straight through
+  the woman who's robbing him — and he throws it back in her face. So it isn't out of
+  nowhere: he picks the woman stealing from him over the woman who's loved him his whole
+  life, *and* accuses her of being bitter about it. Then he walks into the party and a
+  stranger calls him Bob. **See Thread B.**
 
 ## Bucket 6 — He loses everything
 ## Bucket 7 — And he loses the people with it
@@ -116,11 +122,11 @@ then all at once.
    whatever's in the driveway. This is the real reason people in his position go broke:
    not the purchase, the *carrying*. He can stop buying cars. He can't stop owning a
    house
-3. **Her spending is the burn he can't see and won't stop.** And it's the same flaw as
-   everything else he does — **he's paying for affection.** The move to make it hurt:
-   **she doesn't ask. He offers.** She never has to manipulate him; he hands her the
-   card because her attention is the validation he's been chasing since scene one. Every
-   receipt is him buying what he already had for free from the barista
+3. **Her spending is the burn he refuses to see.** She's a gold digger and she's working
+   him — she asks, she pushes, she gets, and it never stops. He hands the card over every
+   time because her attention is the validation he's been chasing since scene one.
+   **Every receipt is him buying what the barista was giving him for free.** And the
+   audience can see exactly what's happening while he can't
 
 Why the burn is the strongest version of Bucket 6: **nobody does this to him.** There's
 no company to blame, no verdict to be angry at. It's the same man making the same
@@ -167,16 +173,15 @@ Why it works so hard for one small scene:
   stores and gets *special treatment*. This is the same world reversing — the staff who
   fell over themselves for him now watching a card get handed back. Same store is even
   better than a new one
-- **Best version: he isn't there.** She's alone at the counter. She doesn't call him
-  furious, she doesn't confront him — she says something small like *"can you try it
-  again?"*, then *"…it's fine,"* hands the item back, and walks out. **And that's the
-  last we ever see of her.** Colder and truer than a fight. She doesn't leave him, she
-  just stops appearing
+- **The mask comes off at the counter.** She's a gold digger, so the decline isn't a sad
+  surprise — it's the job ending. Whatever warmth she's been performing switches off in
+  one beat. She isn't cruel for sport; she's just **done**, immediately, and she doesn't
+  pretend otherwise for another second
 - **The cut that makes it hurt:** her card declining at the counter → **his phone
   lighting up** with the notification, somewhere else entirely. He finds out he's broke
   and finds out he's alone **in the same instant**, and he's by himself for both
-- She never says anything cruel. She doesn't have to. That's what keeps her from being a
-  villain — she was never lying to him, and he knew what it was
+- **Open: does she leave with something?** A car, jewelry, anything he put in her name.
+  It makes her exit a theft rather than a fade-out, and it deepens the hole he's in
 
 ### Two things Option A knocks loose
 
@@ -268,30 +273,71 @@ decided early.
 - **What she loves about him:** he's determined and persistent, he does not give up
   easily
 
-## Thread B — The superficial girl
-*New character. She's the counterweight to the barista.*
+## Thread B — The gold digger
+*The counterweight to the barista. **She is actively working him**, and he cannot see it.*
 
 - He likes his friend — but once he's famous, **somebody puts it in his ear that he can
   get whatever girl he wants now, because of the money**
-- **He loves that idea**, and ends up falling for a **superficial girl who doesn't
-  actually like him**
-- **Her line:** something like *"how long are these brand deals gonna last?"* — used to
-  push him toward more
+- **He loves that idea.** That's the hook — he goes looking for the fantasy, and she is
+  exactly what he ordered
+- **She wants everything he has.** Not drifting, not indifferent — she's after the
+  money, the house, the cars, the access. **And he's too blind to see it**
+- **Her line:** *"how long are these brand deals gonna last?"* — pressure, aimed at
+  getting more out of him before it dries up
 - **What she pushes him toward depends on Bucket 6:**
   - Under **Option B (lawsuit)** — she talks him into **suing the one-wheel company**
-  - Under **Option A (he burns through it)** — she's the **accelerant on the spending**.
-    Same line, aimed differently: spend it while it's here. She's why the parties get
-    bigger and why the yacht happens, and she's **buying designer constantly** on his
-    money. Key beat: **she doesn't ask for it, he offers** — he's paying for affection,
-    which is the same reaching that ruins everything else he touches
-- Either way she's a direct cause of Bucket 6 — **the fake love interest causes the
-  fall**. Under Option A she's arguably better, because she isn't scheming, she just
-  genuinely doesn't care what happens to him
-- **Her exit: the declined card.** She's at a designer store, tries to buy something,
-  the card declines — and she's gone. No fight, no scene, she just stops appearing. See
-  Bucket 6 for the full beat
-- She never says anything cruel and she never lies to him. He always knew what it was.
-  That's what keeps her a person instead of a villain
+  - Under **Option A (he burns through it)** — she's the **engine of the spending**.
+    She's why the parties get bigger, why the yacht happens, and she is **buying designer
+    constantly** on his money. She asks, she pushes, she gets
+
+### He isn't blind by accident — he's blind on purpose
+
+This is the key to playing her. It isn't that Bill is stupid. It's that **somebody told
+him money would get him a girl like this, and she proves it.** Seeing her clearly would
+mean admitting the fantasy isn't real — that the money didn't actually make him
+lovable. So he doesn't look. Every time the evidence is right in front of him, he
+chooses the story instead.
+
+**And that is exactly the same flaw as everything else in the movie.** He wants to be
+seen — and he can't see. He misreads both women in his life at the same time: he can't
+see the one who loves him, and he can't see the one who's robbing him. Same blindness,
+two directions.
+
+### The audience must be ahead of him
+
+The comedy and the ache both come from dramatic irony — **we clock her in five seconds
+and he never does.** Plant the tells where the audience catches them and Bill doesn't:
+
+- She's affectionate **exactly when there are cameras or people**, and flat the moment
+  there aren't
+- She's on the phone talking about him in a completely different voice
+- She's specific about objects and vague about him
+- She never once asks him a question about himself
+- **The barista clocks her instantly** — see below, this is the big one
+
+### The barista's warning → the crash out (Bucket 5)
+
+This gives Bucket 5 a trigger. **The barista tries to warn him about her**, because the
+one person who's known him since childhood can see it immediately — and **Bill takes it
+as jealousy.** He dismisses her, maybe throws it back at her, and *that's* what makes
+her crash out. It's not out of nowhere: he chose a woman who's stealing from him over
+the woman who's loved him his whole life, **and then accused her of being bitter about
+it.** Then he walks into the party and the rapper calls him Bob.
+
+### Her exit — the declined card
+
+At a designer store, the card declines. **The mask comes off right there.** She isn't
+sad and she isn't cruel-for-sport — she's just **done**, instantly, the way someone is
+done with a job that stopped paying. Whatever warmth she had is simply switched off in
+front of him or in front of the store, and she's gone.
+
+**Open: does she leave with anything?** A gold digger doesn't usually walk out
+empty-handed — a car, jewelry, something he put in her name. It raises the loss and it
+makes her exit an actual theft instead of a fade-out.
+
+*(Superseded: an earlier pass framed her as passive and honest — "she never asks, he
+just offers," "she never lies to him." That is wrong now. She asks, she works him, and
+he's the mark.)*
 
 ## Thread C — The job, the boss, and the CEO payoff
 *Prayer's idea. Runs from the very beginning to the very last scene.*
@@ -378,10 +424,11 @@ that aren't filed anywhere yet.*
    may not be needed. It's still on the list, unassigned.
 3. **What's the sentimental backstory for the job?** Flagged by you as required, not yet
    filled in. It's the thing the CEO ending hangs on.
-4. ~~Does the superficial girl get a comeuppance?~~ **Answered — she evaporates.** The
-   declined card is her last scene. No comeuppance, no confrontation. Remaining
-   sub-question: does Bill ever try to contact her afterward, or does he understand
-   immediately that she's gone?
+4. **Does the gold digger get a comeuppance?** Currently she just walks — the declined
+   card is her last scene. Open sub-questions: does she leave with something of his
+   (car, jewelry, anything in her name)? Does Bill try to contact her afterward, or does
+   he understand immediately? And **is there a version where he clocks her *before* the
+   money runs out** — which would be his first real act of seeing clearly?
 5. **How does the corporate fraud get discovered** — offscreen, or does Bill trigger it?
 6. **How much of the burn do we see?** Option A needs a shape — is it one montage that
    goes from euphoric to sickening, or is it tracked across the act so the audience is
