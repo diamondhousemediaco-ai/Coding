@@ -54,6 +54,31 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 ## Bucket 3 — He enjoys it
 *The spending, the parties, the fame.*
 
+- ### ⚠️ HE DOESN'T BUY ANY OF IT — HE LEASES IT
+  **Locked.** Bill never actually owns a single thing. He signs monthly payments.
+  - The **mansion** is rented, or a mortgage he barely qualified for
+  - The **Ferraris and Lamborghinis** are **leased** — a few thousand a month each, and
+    he has several
+  - The **yacht** is chartered by the day, not owned
+  - The designer clothes and the parties go on **credit cards** with a balance
+  - He signs all of it **without reading anything**, because reading would slow down the
+    part where he gets to feel rich
+
+  **It fixes the math.** A viral fall realistically pays mid-six figures across a stack
+  of brand deals — nowhere near enough to *buy* a mansion and four supercars. But it's
+  more than enough to **qualify** him for the payments. The audience never has to do
+  arithmetic that doesn't work, and lenders are thrilled to hand keys to a guy who's on
+  the news.
+
+  **It gives Act Two the clock it's missing.** The brand money is **one-time**. The
+  payments are **forever**. So the second the deals slow down — and viral fame always
+  slows down — he's underwater, and the audience can watch it coming from a long way
+  off. **The paperwork is the antagonist.** No rival or villain required.
+
+  **It's the whole theme in one word: he was renting a life.** The house wasn't his, the
+  cars weren't his, the girl wasn't his, the crowd wasn't his, and the name they screamed
+  at his birthday wasn't his either. **The only thing he ever actually owned was a
+  friendship he'd had since he was a kid — and it's the one thing he never paid for.**
 - Mansion
 - Fast cars
 - Maybe a boat or a yacht
@@ -120,14 +145,16 @@ audience, but never the explanation.
 separate category, it's the description of all of it. A man with sudden money, no taste
 and nobody advising him, buying because he *can*.
 
-1. **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them. **The
+1. **The cars.** Lamborghinis, Ferraris — plural, and he keeps signing for them. **The
    visible burn.** The audience can count them, and they're the best collapse footage in
-   the movie: they don't vanish in a montage, they get taken **one at a time**, and he
-   watches each one go
+   the movie: they don't vanish in a montage, **he misses payments and they get
+   repossessed one at a time**, and he watches each one go. Because they're leased, this
+   is active and humiliating instead of a sad sell-off
 2. **The mansion.** The burn that actually kills him, because it's a **fixed cost** — it
-   keeps charging every month after the brand deals dry up. Upkeep, staff, taxes. This is
-   the real reason people in his position go broke: not the purchase, the *carrying*. He
-   can stop buying things. He can't stop owning a house
+   keeps charging every month after the brand deals dry up. Rent or mortgage, upkeep,
+   staff, taxes. This is the real reason people in his position go broke: not the
+   purchase, the *carrying*. He can stop signing for things. He can't stop owing on the
+   house. **He gets evicted or foreclosed on** — again, taken, not sold
 3. **The parties and the yacht.** Bought for a crowd that isn't his
 4. **Her.** Designer, constantly, on his money. She asks, she pushes, she gets — and he
    hands the card over every time, because her attention is the validation he's been
@@ -197,9 +224,14 @@ Why it works so hard for one small scene:
 ## Bucket 7.5 — THE CRASH OUT
 *The bottom of the movie. Between losing everything and the rebuild.*
 
-He's lost it all and has about **$10,000 left**. He puts it into a stock. **It crashes —
-exactly like it did in the opening montage.** But this time he needed it, and he
-completely loses it. Full breakdown.
+**The beat right before it: he does the math and realizes he never owned anything.**
+Everything was leased, rented, financed or charged. He had a mansion, a fleet and a
+yacht, and when it's all taken there is no equity, no sale, nothing left over — because
+none of it was ever his. **He rented a life for a year and gave it back.**
+
+Then: he's lost it all and has about **$10,000 left**. He puts it into a stock. **It
+crashes — exactly like it did in the opening montage.** But this time he needed it, and
+he completely loses it. Full breakdown.
 
 **Why this is the strongest beat in the movie: you planted it ninety minutes earlier.**
 The same event, played twice, opposite ways.
