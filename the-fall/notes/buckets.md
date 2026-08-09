@@ -95,22 +95,22 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 ## Bucket 7 — And he loses the people with it
 *Also one event, or at least back to back. Suggest pairing.*
 
-He loses the people along with the money. **How** he loses the money is an open choice
-with three options on the table.
+**LOCKED: he loses it because he burned through it.** No lawsuit. No fire, no exploding
+car, no investments going bad. He spends it, and that's the whole mechanism.
 
-### ▶ OPTION A — He just burns through it *(your pick)*
+He loses the people along with the money.
 
-No lawsuit, no villain, no event. **He spends it all.** The parties get bigger, the
-cars keep coming, the yacht, the crowd, the girl — and the brand-deal money was never
-as big as it looked. It runs out the way it actually runs out for people: gradually,
-then all at once.
+**He gets big-headed** *(your words: "he'll get big hit")* — and the parties get bigger,
+the cars keep coming, the yacht, the crowd, the girl. The brand-deal money was never as
+big as it looked. It runs out the way it actually runs out for people: gradually, then
+all at once.
 
 **Where the money actually goes:**
 
 - **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them
 - **The mansion**
 - **Her.** The gold digger, buying designer, constantly, on his money
-- Plus the parties, the yacht, and the bad investments from Option C
+- Plus the parties and the yacht
 
 **These three burn at different speeds, which is the whole engine of the act:**
 
@@ -128,36 +128,23 @@ then all at once.
    **Every receipt is him buying what the barista was giving him for free.** And the
    audience can see exactly what's happening while he can't
 
-Why the burn is the strongest version of Bucket 6: **nobody does this to him.** There's
-no company to blame, no verdict to be angry at. It's the same man making the same
-mistake he's made the whole movie — reaching — just with more zeroes. The movie keeps
-him responsible, which is the only way the ending earns anything.
+**Why this is the right and only mechanism: nobody does this to him.** There's no
+company to blame, no verdict to be angry at, no fire, no accident. It's the same man
+making the same mistake he's made the whole movie — reaching — just with more zeroes.
+The movie keeps him responsible, which is the only way the ending earns anything.
 
-It also solves a pacing problem: a lawsuit takes over a movie. Discovery, hearings, a
-verdict — that's twenty minutes of plot machinery in an act that should be about a man
-quietly running out of road.
+It also protects the pace. A lawsuit takes over a movie — discovery, hearings, a verdict
+is twenty minutes of plot machinery in an act that should be about a man quietly running
+out of road.
 
-### ▷ OPTION B — The lawsuit *(kept, not chosen)*
+**Cut and not coming back:** the lawsuit against the one-wheel company, the defamation
+countersuit, the scooter-company setups, the real estate burning down, the car getting
+blown up, and any bad investments during the rich stretch.
 
-- After he gets rich, **"he'll get big hit"** *[reading this as: he gets big-headed /
-  greedy]* and tries to **make more money by suing the one-wheel company**
-- **He loses the case** — and then **they countersue him for defamation**
-- **How the defamation gets grounded — the two versions you gave:**
-  1. **He starts his own scooter company** that openly trashes the one-wheel company —
-     *"one-wheels suck, you need two"* — and that's the grounds for the suit
-  2. **An established scooter company** reaches out to him for commercials and has him
-     say things about the one-wheel company. When *they* get sued, **he gets sued along
-     with them**
-
-### ▷ OPTION C — The old texture *(kept)*
-
-Stocks going to zero, real estate burning down, one of his cars getting blown up.
-
-**These don't have to be a separate option.** They work as *texture inside Option A* —
-the burn isn't only parties, it's also every dumb investment a newly rich man with no
-advisors makes. The stock crash especially, since it rhymes with the one in his opening
-montage: he did the exact same thing when he was broke, and being rich didn't teach him
-anything.
+> Note: the two stock crashes are **not** part of what was cut. The one in the opening
+> montage and the one in Bucket 7.5 are separate — they're the movie's spine rhyme, and
+> both stay. What's gone is him losing the *fortune* to investments. He loses the
+> fortune by spending it.
 
 ### How she finds out — THE DECLINED CARD
 
@@ -183,20 +170,19 @@ Why it works so hard for one small scene:
 - **Open: does she leave with something?** A car, jewelry, anything he put in her name.
   It makes her exit a theft rather than a fade-out, and it deepens the hole he's in
 
-### Two things Option A knocks loose
+### Two things the burn locks in
 
-1. **The gold digger needs a new job.** In Option B she's the one who talks him into
-   suing. Without the lawsuit she gets a better function: **she's the engine of the
-   burn.** She's why the parties get bigger, why the yacht happens, why he keeps buying.
-   Same character, same line re-aimed (*"how long is this gonna last?"* — pushing him to
-   spend it on her while it's here, instead of pushing him to sue). This is the stronger
-   version, because she isn't a legal subplot, she's **the hole the money goes down** —
-   and the audience watches it drain while Bill calls it a relationship. See Thread B.
-2. **The courthouse gag loses its courtroom.** The wedding joke depends on him having
-   lost something in that room in front of that judge. Fix: **he still ends up in
-   court — bankruptcy.** Same room, same judge, and the judge watching him lose
-   everything and then marrying him two years later plays exactly the same. You keep
-   the gag and you don't need a lawsuit to get it.
+1. **The gold digger is the engine of the burn.** She's why the parties get bigger, why
+   the yacht happens, why he keeps buying. Her line — *"how long is this gonna last?"* —
+   pushes him to spend it on her while it's here. She isn't a subplot, she's **the hole
+   the money goes down**, and the audience watches it drain while Bill calls it a
+   relationship. See Thread B.
+2. **The courthouse gag needs a courtroom — so he files bankruptcy.** The wedding joke
+   depends on him having lost something in that room in front of that judge. With no
+   lawsuit, **bankruptcy court is the room.** Same judge watches him lose everything,
+   then marries him two years later. The gag lands identically and it costs one short
+   scene instead of a legal subplot. **This is now the required version, not an
+   alternative.**
 
 ## Bucket 7.5 — THE CRASH OUT
 *The bottom of the movie. Between losing everything and the rebuild.*
@@ -284,11 +270,9 @@ decided early.
   money, the house, the cars, the access. **And he's too blind to see it**
 - **Her line:** *"how long are these brand deals gonna last?"* — pressure, aimed at
   getting more out of him before it dries up
-- **What she pushes him toward depends on Bucket 6:**
-  - Under **Option B (lawsuit)** — she talks him into **suing the one-wheel company**
-  - Under **Option A (he burns through it)** — she's the **engine of the spending**.
-    She's why the parties get bigger, why the yacht happens, and she is **buying designer
-    constantly** on his money. She asks, she pushes, she gets
+- **She is the engine of the spending.** She's why the parties get bigger, why the yacht
+  happens, and she is **buying designer constantly** on his money. She asks, she pushes,
+  she gets. She's the single biggest reason the money is gone
 
 ### He isn't blind by accident — he's blind on purpose
 
@@ -381,10 +365,8 @@ he's the mark.)*
    her up, kisses her — **that's how it ends**
 3. **The wedding is a small courthouse wedding** — and it's hilarious if it's the **same
    courtroom he lost in, with the same judge**
-   - Under **Option B**, that's the room he lost the lawsuit in
-   - Under **Option A**, it's the room he filed **bankruptcy** in. Same room, same
-     judge, same joke — the judge watched him lose everything and then marries him two
-     years later. **The gag survives without the lawsuit**
+   - That room is now his **bankruptcy** hearing. Same room, same judge, same joke — the
+     judge watched him lose everything and then marries him two years later
 4. **A closing montage** — two years later, the marriage, buying a house, all of it
 
 **The sequencing question you raised, unresolved:** does he get the job *before* the
@@ -430,7 +412,7 @@ that aren't filed anywhere yet.*
    he understand immediately? And **is there a version where he clocks her *before* the
    money runs out** — which would be his first real act of seeing clearly?
 5. **How does the corporate fraud get discovered** — offscreen, or does Bill trigger it?
-6. **How much of the burn do we see?** Option A needs a shape — is it one montage that
+6. **How much of the burn do we see?** The burn needs a shape — is it one montage that
    goes from euphoric to sickening, or is it tracked across the act so the audience is
    ahead of him and watching it come?
 7. **"He'll get big hit"** — confirm this means he gets big-headed/greedy.
