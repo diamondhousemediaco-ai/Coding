@@ -19,7 +19,13 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 - **Narration over it** — style reference: the opening of *Free Guy*. He narrates while
   we're shown the reality of it
 - Get-rich-quick schemes shown in the montage:
-  - Dumps his life savings into a stock — it goes up, then immediately crashes
+  - **Dumps his life savings into a stock — it goes up, then immediately crashes.**
+    ⚠️ **This is a setup, not a throwaway.** It gets repeated shot-for-shot in Bucket
+    7.5 as the crash out. Stage it here knowing you'll repeat it: same app, same
+    framing, same sound. Here it's four seconds and a laugh; there it's the bottom of
+    the movie
+  - Note the exact amount — Bucket 7.5 works best if the $10,000 he has left at the
+    bottom is the *same* number he dumps here
   - "different stuff like that" *(other schemes to fill in — lottery tickets and
     selling life insurance are already on the list from earlier notes)*
 - **Video games with the kids.** He plays with kids — they troll him:
@@ -158,6 +164,57 @@ anything.
    court — bankruptcy.** Same room, same judge, and the judge watching him lose
    everything and then marrying him two years later plays exactly the same. You keep
    the gag and you don't need a lawsuit to get it.
+
+## Bucket 7.5 — THE CRASH OUT
+*The bottom of the movie. Between losing everything and the rebuild.*
+
+He's lost it all and has about **$10,000 left**. He puts it into a stock. **It crashes —
+exactly like it did in the opening montage.** But this time he needed it, and he
+completely loses it. Full breakdown.
+
+**Why this is the strongest beat in the movie: you planted it ninety minutes earlier.**
+The same event, played twice, opposite ways.
+
+- **In the opening montage** it's fast and funny — narration over the top, the line goes
+  up, crashes, he shrugs, cut to the next scheme. It's a *joke*, and it's over in four
+  seconds
+- **Here it is the identical shot with everything stripped out.** No narration. No
+  music. No cut away. The camera does not leave him. The audience recognizes the
+  framing instantly and knows exactly how it ends before it happens
+
+**Shoot the opening version knowing you're repeating it.** Same app, same framing, same
+sound design, same chair if possible. The rhyme only works if it's visually identical —
+that's a production note that affects how you stage the *opening*, so it has to be
+decided early.
+
+### What makes it land
+
+- **$10,000 is the right number.** Not nothing — enough to restart on, enough to matter.
+  And humiliating right after Lamborghinis
+- **Strong option: make it the exact amount he dumped into the stock in the opening.**
+  His original life savings. He ends up with precisely what he started with and loses it
+  precisely the same way. The whole movie was a round trip
+- **This is the first disaster in the movie with no audience.** Every other one had
+  witnesses — the coffee shop, the office, two kids with a phone, a thousand people
+  screaming the wrong name. The movie is *about* being seen, and his lowest moment is
+  the one nobody watches. Nobody films this one
+- **He has nobody to call, because he already lost her.** She crashed out on him back at
+  the party in Bucket 5. That's why this is the bottom and not just a bad day
+- **The catchphrase fails him.** He's been saying *"nothing ever goes my way"* as a
+  shrug for the entire film — it's how he survives everything. Here he reaches for it
+  and **it doesn't work**. He can't make it funny anymore. That's the breakdown: not the
+  money, the moment the joke stops working
+- **The only scene in the movie with no laugh in it.** Per the tone rule — this is the
+  floor of the curve
+
+### Staging options *(pick later)*
+
+- **The last car.** He's sitting in the final Lamborghini, parked, watching the number
+  go to zero on his phone — and the tow truck pulls up
+- **The empty mansion.** No furniture left, one man on the floor of a room built for two
+  hundred people
+- **The small apartment.** He's already back where he started — which means this is the
+  same room he'll build a life in later. Same walls, two completely different meanings
 
 ## Bucket 8 — The rebuild with his friend
 - They go out and have fun
