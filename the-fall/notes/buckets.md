@@ -105,28 +105,44 @@ the cars keep coming, the yacht, the crowd, the girl. The brand-deal money was n
 big as it looked. It runs out the way it actually runs out for people: gradually, then
 all at once.
 
+### ⚠️ HE is the reason. Not her.
+
+**Bill loses the money because Bill buys stupid crap.** That's the headline and it can't
+get diluted. The gold digger is *part* of it — one line item among many — but she is not
+the cause. If she were, he'd be a victim, and this movie doesn't work if anything
+happens *to* him. Same reason the lawsuit is gone: **nobody does this to him.**
+
+The correct proportion on screen is something like: the overwhelming majority is Bill
+buying things, and she's a recurring drain inside that — visible, infuriating to the
+audience, but never the explanation.
+
 **Where the money actually goes:**
 
-- **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them
-- **The mansion**
-- **Her.** The gold digger, buying designer, constantly, on his money
-- Plus the parties and the yacht
+1. **Stupid crap.** The main event. A man with sudden money, no taste, and nobody
+   advising him — buying things because he *can*, because it'll look good, because
+   somebody at a party had one. Every purchase is him trying to buy proof that he
+   counts. **This is where the comedy of the act lives**, and it should be the biggest
+   category by far
+   - *(Texture to fill in — your call. The rule that makes them funny: each one should
+     be something nobody needs, bought instantly, used once or never.)*
+2. **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them. **The
+   visible burn.** The audience can count them, and they're the best collapse footage in
+   the movie: they don't vanish in a montage, they get taken **one at a time**, and he
+   watches each one go
+3. **The mansion.** The burn that actually kills him, because it's a **fixed cost** — it
+   keeps charging every month after the brand deals dry up. Upkeep, staff, taxes. This is
+   the real reason people in his position go broke: not the purchase, the *carrying*. He
+   can stop buying things. He can't stop owning a house
+4. **The parties and the yacht.** Bought for a crowd that isn't his
+5. **Her.** Designer, constantly, on his money. She asks, she pushes, she gets — and he
+   hands the card over every time, because her attention is the validation he's been
+   chasing since scene one. **Every receipt is him buying what the barista was giving
+   him for free.** The audience sees exactly what's happening and he doesn't
 
-**These three burn at different speeds, which is the whole engine of the act:**
-
-1. **The cars are the visible burn.** Impulse buys, and the audience can count them.
-   They're also the best collapse footage in the movie — they don't vanish in a
-   montage, they get taken **one at a time**, and he watches each one go
-2. **The mansion is the burn that actually kills him.** It's a fixed cost. It keeps
-   charging him every month after the brand deals dry up — upkeep, staff, taxes,
-   whatever's in the driveway. This is the real reason people in his position go broke:
-   not the purchase, the *carrying*. He can stop buying cars. He can't stop owning a
-   house
-3. **Her spending is the burn he refuses to see.** She's a gold digger and she's working
-   him — she asks, she pushes, she gets, and it never stops. He hands the card over every
-   time because her attention is the validation he's been chasing since scene one.
-   **Every receipt is him buying what the barista was giving him for free.** And the
-   audience can see exactly what's happening while he can't
+**The distinction that matters:** she's the part of the burn the audience gets *angry*
+about. The stupid crap is the part they *laugh* at. Both are him spending — but only one
+of them has someone else's hand in his pocket, so she's the emotional sting inside a
+much bigger, dumber, self-inflicted collapse.
 
 **Why this is the right and only mechanism: nobody does this to him.** There's no
 company to blame, no verdict to be angry at, no fire, no accident. It's the same man
@@ -172,11 +188,10 @@ Why it works so hard for one small scene:
 
 ### Two things the burn locks in
 
-1. **The gold digger is the engine of the burn.** She's why the parties get bigger, why
-   the yacht happens, why he keeps buying. Her line — *"how long is this gonna last?"* —
-   pushes him to spend it on her while it's here. She isn't a subplot, she's **the hole
-   the money goes down**, and the audience watches it drain while Bill calls it a
-   relationship. See Thread B.
+1. **The gold digger is part of the burn, not the cause of it.** She's a steady drain and
+   she pushes — *"how long is this gonna last?"* — but Bill spending on stupid crap is
+   the main event and has to stay that way. She's the part the audience gets angry
+   about, inside a much bigger collapse they're laughing at. See Thread B.
 2. **The courthouse gag needs a courtroom — so he files bankruptcy.** The wedding joke
    depends on him having lost something in that room in front of that judge. With no
    lawsuit, **bankruptcy court is the room.** Same judge watches him lose everything,
@@ -270,9 +285,10 @@ decided early.
   money, the house, the cars, the access. **And he's too blind to see it**
 - **Her line:** *"how long are these brand deals gonna last?"* — pressure, aimed at
   getting more out of him before it dries up
-- **She is the engine of the spending.** She's why the parties get bigger, why the yacht
-  happens, and she is **buying designer constantly** on his money. She asks, she pushes,
-  she gets. She's the single biggest reason the money is gone
+- **She's part of the spending, not the reason for it.** She is **buying designer
+  constantly** on his money — she asks, she pushes, she gets. But **Bill is the reason
+  Bill goes broke.** He's buying stupid crap at a scale she never touches. She's a
+  drain, not the drain
 
 ### He isn't blind by accident — he's blind on purpose
 
