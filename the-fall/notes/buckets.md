@@ -70,7 +70,7 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 - **His appearance changes.** Earrings. Freshening up. Designer stores, designer
   clothes, **special treatment when he shops**
   - ⚠️ **The special treatment is a plant.** It pays off in Bucket 6 when the
-    superficial girl's card declines in one of these stores. Ideally the *same* store,
+    gold digger's card declines in one of these stores. Ideally the *same* store,
     same staff — so we've watched them fawn before we watch them hand the card back
 - News interviews
 - Throwing out a **first pitch**?
@@ -109,7 +109,7 @@ then all at once.
 
 - **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them
 - **The mansion**
-- **Her.** The superficial girl, buying designer, constantly
+- **Her.** The gold digger, buying designer, constantly, on his money
 - Plus the parties, the yacht, and the bad investments from Option C
 
 **These three burn at different speeds, which is the whole engine of the act:**
@@ -162,7 +162,7 @@ anything.
 ### How she finds out — THE DECLINED CARD
 
 **She's at a designer store or boutique, tries to buy something, and the card declines.**
-That's how the superficial girl learns they're broke, and it's how she exits the movie.
+That's how the gold digger learns they're broke, and it's how she exits the movie.
 
 Why it works so hard for one small scene:
 
@@ -420,7 +420,7 @@ that aren't filed anywhere yet.*
    bowling) — are those the *rebuild* dates with the barista in Bucket 8, or does one of
    them still cover the bad date early on?
 2. **Is the bad early date still in the movie?** Now that the barista is a lifelong
-   friend and there's a superficial girl in Act Two, the app-date from the earlier notes
+   friend and there's a gold digger in Act Two, the app-date from the earlier notes
    may not be needed. It's still on the list, unassigned.
 3. **What's the sentimental backstory for the job?** Flagged by you as required, not yet
    filled in. It's the thing the CEO ending hangs on.
