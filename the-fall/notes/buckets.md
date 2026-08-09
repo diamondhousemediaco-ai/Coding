@@ -68,7 +68,10 @@ wording is quoted and my read is in brackets — correct me, don't work around m
   three** — the face he made when he fell — and they make him do it with them. Funny
   for the audience, **embarrassing for him**
 - **His appearance changes.** Earrings. Freshening up. Designer stores, designer
-  clothes, special treatment when he shops
+  clothes, **special treatment when he shops**
+  - ⚠️ **The special treatment is a plant.** It pays off in Bucket 6 when the
+    superficial girl's card declines in one of these stores. Ideally the *same* store,
+    same staff — so we've watched them fawn before we watch them hand the card back
 - News interviews
 - Throwing out a **first pitch**?
 
@@ -149,6 +152,31 @@ the burn isn't only parties, it's also every dumb investment a newly rich man wi
 advisors makes. The stock crash especially, since it rhymes with the one in his opening
 montage: he did the exact same thing when he was broke, and being rich didn't teach him
 anything.
+
+### How she finds out — THE DECLINED CARD
+
+**She's at a designer store or boutique, tries to buy something, and the card declines.**
+That's how the superficial girl learns they're broke, and it's how she exits the movie.
+
+Why it works so hard for one small scene:
+
+- **It's the theme in a single sound.** He was paying for affection — that's what her
+  whole relationship is. **The transaction fails, so the relationship fails.** No
+  dialogue required, no argument, no villain speech
+- **It pays off a plant already in Bucket 3.** You wrote that he shops at designer
+  stores and gets *special treatment*. This is the same world reversing — the staff who
+  fell over themselves for him now watching a card get handed back. Same store is even
+  better than a new one
+- **Best version: he isn't there.** She's alone at the counter. She doesn't call him
+  furious, she doesn't confront him — she says something small like *"can you try it
+  again?"*, then *"…it's fine,"* hands the item back, and walks out. **And that's the
+  last we ever see of her.** Colder and truer than a fight. She doesn't leave him, she
+  just stops appearing
+- **The cut that makes it hurt:** her card declining at the counter → **his phone
+  lighting up** with the notification, somewhere else entirely. He finds out he's broke
+  and finds out he's alone **in the same instant**, and he's by himself for both
+- She never says anything cruel. She doesn't have to. That's what keeps her from being a
+  villain — she was never lying to him, and he knew what it was
 
 ### Two things Option A knocks loose
 
@@ -259,6 +287,11 @@ decided early.
 - Either way she's a direct cause of Bucket 6 — **the fake love interest causes the
   fall**. Under Option A she's arguably better, because she isn't scheming, she just
   genuinely doesn't care what happens to him
+- **Her exit: the declined card.** She's at a designer store, tries to buy something,
+  the card declines — and she's gone. No fight, no scene, she just stops appearing. See
+  Bucket 6 for the full beat
+- She never says anything cruel and she never lies to him. He always knew what it was.
+  That's what keeps her a person instead of a villain
 
 ## Thread C — The job, the boss, and the CEO payoff
 *Prayer's idea. Runs from the very beginning to the very last scene.*
@@ -345,8 +378,10 @@ that aren't filed anywhere yet.*
    may not be needed. It's still on the list, unassigned.
 3. **What's the sentimental backstory for the job?** Flagged by you as required, not yet
    filled in. It's the thing the CEO ending hangs on.
-4. **Does the superficial girl get a comeuppance,** or does she just evaporate when the
-   money does?
+4. ~~Does the superficial girl get a comeuppance?~~ **Answered — she evaporates.** The
+   declined card is her last scene. No comeuppance, no confrontation. Remaining
+   sub-question: does Bill ever try to contact her afterward, or does he understand
+   immediately that she's gone?
 5. **How does the corporate fraud get discovered** — offscreen, or does Bill trigger it?
 6. **How much of the burn do we see?** Option A needs a shape — is it one montage that
    goes from euphoric to sickening, or is it tracked across the act so the audience is
