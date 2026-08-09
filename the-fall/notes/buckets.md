@@ -80,19 +80,61 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 ## Bucket 7 — And he loses the people with it
 *Also one event, or at least back to back. Suggest pairing.*
 
+He loses the people along with the money. **How** he loses the money is an open choice
+with three options on the table.
+
+### ▶ OPTION A — He just burns through it *(your pick)*
+
+No lawsuit, no villain, no event. **He spends it all.** The parties get bigger, the
+cars keep coming, the yacht, the crowd, the girl — and the brand-deal money was never
+as big as it looked. It runs out the way it actually runs out for people: gradually,
+then all at once.
+
+Why it's the strongest version: **nobody does this to him.** There's no company to
+blame, no verdict to be angry at. It's the same man making the same mistake he's made
+the whole movie — reaching — just with more zeroes. The movie keeps him responsible,
+which is the only way the ending earns anything.
+
+It also solves a pacing problem: a lawsuit takes over a movie. Discovery, hearings, a
+verdict — that's twenty minutes of plot machinery in an act that should be about a man
+quietly running out of road.
+
+### ▷ OPTION B — The lawsuit *(kept, not chosen)*
+
 - After he gets rich, **"he'll get big hit"** *[reading this as: he gets big-headed /
   greedy]* and tries to **make more money by suing the one-wheel company**
 - **He loses the case** — and then **they countersue him for defamation**
-- He loses the people along with the money
-- **How the defamation gets grounded — two options you gave:**
+- **How the defamation gets grounded — the two versions you gave:**
   1. **He starts his own scooter company** that openly trashes the one-wheel company —
-     *"one-wheels suck, you need two"* — and that's the grounds for the defamation suit
+     *"one-wheels suck, you need two"* — and that's the grounds for the suit
   2. **An established scooter company** reaches out to him for commercials and has him
      say things about the one-wheel company. When *they* get sued, **he gets sued along
      with them**
-- *(Earlier version of losing it, still on the table and not removed: stocks going to
-  zero, real estate burning down, one of his cars getting blown up. These can coexist
-  with the lawsuit — the lawsuit is the mechanism, that stuff is the texture.)*
+
+### ▷ OPTION C — The old texture *(kept)*
+
+Stocks going to zero, real estate burning down, one of his cars getting blown up.
+
+**These don't have to be a separate option.** They work as *texture inside Option A* —
+the burn isn't only parties, it's also every dumb investment a newly rich man with no
+advisors makes. The stock crash especially, since it rhymes with the one in his opening
+montage: he did the exact same thing when he was broke, and being rich didn't teach him
+anything.
+
+### Two things Option A knocks loose
+
+1. **The superficial girl loses her job.** In Option B she's the one who talks him into
+   suing. Without the lawsuit she needs a new function — and there's a better one
+   available: **she's the accelerant on the burn.** She's why the parties get bigger,
+   why the yacht happens, why he keeps buying. Same character, same line reworked
+   (*"how long is this gonna last?"* — used to push him to spend it while it's here
+   instead of to sue). Arguably a stronger version, because now she's not scheming, she
+   just genuinely doesn't care what happens to him.
+2. **The courthouse gag loses its courtroom.** The wedding joke depends on him having
+   lost something in that room in front of that judge. Fix: **he still ends up in
+   court — bankruptcy.** Same room, same judge, and the judge watching him lose
+   everything and then marrying him two years later plays exactly the same. You keep
+   the gag and you don't need a lawsuit to get it.
 
 ## Bucket 8 — The rebuild with his friend
 - They go out and have fun
@@ -125,10 +167,16 @@ wording is quoted and my read is in brackets — correct me, don't work around m
   get whatever girl he wants now, because of the money**
 - **He loves that idea**, and ends up falling for a **superficial girl who doesn't
   actually like him**
-- **She's the one who talks him into suing the one-wheel company.** Her line is
-  something like *"how long are these brand deals gonna last?"* — she uses that to push
-  him to chase more
-- So she is the direct cause of Bucket 6. The fake love interest causes the fall
+- **Her line:** something like *"how long are these brand deals gonna last?"* — used to
+  push him toward more
+- **What she pushes him toward depends on Bucket 6:**
+  - Under **Option B (lawsuit)** — she talks him into **suing the one-wheel company**
+  - Under **Option A (he burns through it)** — she's the **accelerant on the spending**.
+    Same line, aimed differently: spend it while it's here. She's why the parties get
+    bigger and why the yacht happens
+- Either way she's a direct cause of Bucket 6 — **the fake love interest causes the
+  fall**. Under Option A she's arguably better, because she isn't scheming, she just
+  genuinely doesn't care what happens to him
 
 ## Thread C — The job, the boss, and the CEO payoff
 *Prayer's idea. Runs from the very beginning to the very last scene.*
@@ -171,7 +219,11 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 2. **He races home to his wife.** She's about **30 weeks pregnant**. He tells her, picks
    her up, kisses her — **that's how it ends**
 3. **The wedding is a small courthouse wedding** — and it's hilarious if it's the **same
-   courtroom he lost his lawsuit in, with the same judge**
+   courtroom he lost in, with the same judge**
+   - Under **Option B**, that's the room he lost the lawsuit in
+   - Under **Option A**, it's the room he filed **bankruptcy** in. Same room, same
+     judge, same joke — the judge watched him lose everything and then marries him two
+     years later. **The gag survives without the lawsuit**
 4. **A closing montage** — two years later, the marriage, buying a house, all of it
 
 **The sequencing question you raised, unresolved:** does he get the job *before* the
@@ -214,8 +266,9 @@ that aren't filed anywhere yet.*
 4. **Does the superficial girl get a comeuppance,** or does she just evaporate when the
    money does?
 5. **How does the corporate fraud get discovered** — offscreen, or does Bill trigger it?
-6. **The old loss material** (stocks, fire, car explosion) — texture alongside the
-   lawsuit, or replaced by it?
+6. **How much of the burn do we see?** Option A needs a shape — is it one montage that
+   goes from euphoric to sickening, or is it tracked across the act so the audience is
+   ahead of him and watching it come?
 7. **"He'll get big hit"** — confirm this means he gets big-headed/greedy.
 8. **Prayer** — credited on two ideas (the corny-slogan commercials and the whole
    boss/CEO thread). Spelled it as heard.
