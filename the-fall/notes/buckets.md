@@ -185,13 +185,13 @@ Why it works so hard for one small scene:
 
 ### Two things Option A knocks loose
 
-1. **The superficial girl loses her job.** In Option B she's the one who talks him into
-   suing. Without the lawsuit she needs a new function — and there's a better one
-   available: **she's the accelerant on the burn.** She's why the parties get bigger,
-   why the yacht happens, why he keeps buying. Same character, same line reworked
-   (*"how long is this gonna last?"* — used to push him to spend it while it's here
-   instead of to sue). Arguably a stronger version, because now she's not scheming, she
-   just genuinely doesn't care what happens to him.
+1. **The gold digger needs a new job.** In Option B she's the one who talks him into
+   suing. Without the lawsuit she gets a better function: **she's the engine of the
+   burn.** She's why the parties get bigger, why the yacht happens, why he keeps buying.
+   Same character, same line re-aimed (*"how long is this gonna last?"* — pushing him to
+   spend it on her while it's here, instead of pushing him to sue). This is the stronger
+   version, because she isn't a legal subplot, she's **the hole the money goes down** —
+   and the audience watches it drain while Bill calls it a relationship. See Thread B.
 2. **The courthouse gag loses its courtroom.** The wedding joke depends on him having
    lost something in that room in front of that judge. Fix: **he still ends up in
    court — bankruptcy.** Same room, same judge, and the judge watching him lose
