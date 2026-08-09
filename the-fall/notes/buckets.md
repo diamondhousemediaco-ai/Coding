@@ -90,10 +90,33 @@ cars keep coming, the yacht, the crowd, the girl — and the brand-deal money wa
 as big as it looked. It runs out the way it actually runs out for people: gradually,
 then all at once.
 
-Why it's the strongest version: **nobody does this to him.** There's no company to
-blame, no verdict to be angry at. It's the same man making the same mistake he's made
-the whole movie — reaching — just with more zeroes. The movie keeps him responsible,
-which is the only way the ending earns anything.
+**Where the money actually goes:**
+
+- **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them
+- **The mansion**
+- **Her.** The superficial girl, buying designer, constantly
+- Plus the parties, the yacht, and the bad investments from Option C
+
+**These three burn at different speeds, which is the whole engine of the act:**
+
+1. **The cars are the visible burn.** Impulse buys, and the audience can count them.
+   They're also the best collapse footage in the movie — they don't vanish in a
+   montage, they get taken **one at a time**, and he watches each one go
+2. **The mansion is the burn that actually kills him.** It's a fixed cost. It keeps
+   charging him every month after the brand deals dry up — upkeep, staff, taxes,
+   whatever's in the driveway. This is the real reason people in his position go broke:
+   not the purchase, the *carrying*. He can stop buying cars. He can't stop owning a
+   house
+3. **Her spending is the burn he can't see and won't stop.** And it's the same flaw as
+   everything else he does — **he's paying for affection.** The move to make it hurt:
+   **she doesn't ask. He offers.** She never has to manipulate him; he hands her the
+   card because her attention is the validation he's been chasing since scene one. Every
+   receipt is him buying what he already had for free from the barista
+
+Why the burn is the strongest version of Bucket 6: **nobody does this to him.** There's
+no company to blame, no verdict to be angry at. It's the same man making the same
+mistake he's made the whole movie — reaching — just with more zeroes. The movie keeps
+him responsible, which is the only way the ending earns anything.
 
 It also solves a pacing problem: a lawsuit takes over a movie. Discovery, hearings, a
 verdict — that's twenty minutes of plot machinery in an act that should be about a man
@@ -173,7 +196,9 @@ anything.
   - Under **Option B (lawsuit)** — she talks him into **suing the one-wheel company**
   - Under **Option A (he burns through it)** — she's the **accelerant on the spending**.
     Same line, aimed differently: spend it while it's here. She's why the parties get
-    bigger and why the yacht happens
+    bigger and why the yacht happens, and she's **buying designer constantly** on his
+    money. Key beat: **she doesn't ask for it, he offers** — he's paying for affection,
+    which is the same reaching that ruins everything else he touches
 - Either way she's a direct cause of Bucket 6 — **the fake love interest causes the
   fall**. Under Option A she's arguably better, because she isn't scheming, she just
   genuinely doesn't care what happens to him
