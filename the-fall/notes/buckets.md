@@ -116,33 +116,28 @@ The correct proportion on screen is something like: the overwhelming majority is
 buying things, and she's a recurring drain inside that — visible, infuriating to the
 audience, but never the explanation.
 
-**Where the money actually goes:**
+**Where the money actually goes.** These four *are* the stupid crap — it isn't a
+separate category, it's the description of all of it. A man with sudden money, no taste
+and nobody advising him, buying because he *can*.
 
-1. **Stupid crap.** The main event. A man with sudden money, no taste, and nobody
-   advising him — buying things because he *can*, because it'll look good, because
-   somebody at a party had one. Every purchase is him trying to buy proof that he
-   counts. **This is where the comedy of the act lives**, and it should be the biggest
-   category by far
-   - *(Texture to fill in — your call. The rule that makes them funny: each one should
-     be something nobody needs, bought instantly, used once or never.)*
-2. **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them. **The
+1. **The cars.** Lamborghinis, Ferraris — plural, and he keeps buying them. **The
    visible burn.** The audience can count them, and they're the best collapse footage in
    the movie: they don't vanish in a montage, they get taken **one at a time**, and he
    watches each one go
-3. **The mansion.** The burn that actually kills him, because it's a **fixed cost** — it
+2. **The mansion.** The burn that actually kills him, because it's a **fixed cost** — it
    keeps charging every month after the brand deals dry up. Upkeep, staff, taxes. This is
    the real reason people in his position go broke: not the purchase, the *carrying*. He
    can stop buying things. He can't stop owning a house
-4. **The parties and the yacht.** Bought for a crowd that isn't his
-5. **Her.** Designer, constantly, on his money. She asks, she pushes, she gets — and he
+3. **The parties and the yacht.** Bought for a crowd that isn't his
+4. **Her.** Designer, constantly, on his money. She asks, she pushes, she gets — and he
    hands the card over every time, because her attention is the validation he's been
    chasing since scene one. **Every receipt is him buying what the barista was giving
    him for free.** The audience sees exactly what's happening and he doesn't
 
-**The distinction that matters:** she's the part of the burn the audience gets *angry*
-about. The stupid crap is the part they *laugh* at. Both are him spending — but only one
-of them has someone else's hand in his pocket, so she's the emotional sting inside a
-much bigger, dumber, self-inflicted collapse.
+**The distinction that matters:** the cars, the house and the parties are what the
+audience *laughs* at. She's the one they get *angry* about. All four are him spending —
+but only one has someone else's hand in his pocket, so she's the emotional sting inside
+a much bigger, dumber, self-inflicted collapse.
 
 **Why this is the right and only mechanism: nobody does this to him.** There's no
 company to blame, no verdict to be angry at, no fire, no accident. It's the same man
