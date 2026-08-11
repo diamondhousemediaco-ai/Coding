@@ -64,6 +64,59 @@ wording is quoted and my read is in brackets — correct me, don't work around m
 ## Bucket 2 — He accidentally gets it when he falls
 *The fall, and the money that follows.*
 
+### ▶ THE OFFICE, THEN THE DING — the real turn of the movie
+
+The morning after the fall, **he goes into work and the video is already viral.** A
+colleague pulls it up and plays it. They make fun of him. He has a miserable day, can't
+take it, **leaves early.** Home, alone, down and depressed.
+
+Then — **ding. ding-ding. ding.** The notifications start stacking up. And that's the
+hit. **That's the dopamine.**
+
+**Why this is the most important scene in Act One, more than the fall:**
+
+- **The fall is just an event. This is where he becomes an addict.** Everything that
+  follows — the parties, the spending, the crowd, the girl — is him chasing this exact
+  feeling again
+- **The order is doing all the work, and it's the right order.** Humiliation *first*,
+  then the hit. That's precisely how addiction takes hold: the low is what makes the
+  high irresistible. If the notifications came first he'd just be delighted. Because
+  he's at his lowest, they land as **rescue**
+- **The same video does both.** It humiliates him at work and rewards him at home —
+  one event, two opposite effects, four hours apart. That's why he can never work out
+  whether being famous is good or bad, and it's the movie's central confusion delivered
+  in a single afternoon
+- **He learns the wrong lesson, and it's a true one:** being laughed at by people who
+  know him is just humiliation. Being laughed at by strangers **pays**. So he picks
+  strangers, and he'll keep picking them for the rest of the movie
+
+### ⚠️ This reframes Act Two: it's an addiction arc
+
+Once the ding is a drug, the whole middle of the film stops being about greed and starts
+being about **chasing a high that keeps needing to be bigger.** The parties escalating,
+the spending escalating, him getting smaller inside all of it — that's tolerance. And
+**the crash out isn't just sadness, it's withdrawal.** Same shape, better engine.
+
+### The ding is a sound motif — plant it here
+
+- **Plant:** this scene. The first hit
+- **Escalate:** during the fame, constant, overwhelming, eventually oppressive
+- **⚠️ The payoff nobody expects: the silence.** When the fame dies, **the phone stops.**
+  No dings. An absence where a sound used to be, in a movie that trained the audience to
+  hear it for an hour. That's free devastation and it costs one sound-design decision
+- Consider: the last ding he gets is something worthless — an automated notification, a
+  spam text — right as everything else has gone quiet
+
+### Notes
+
+- **This should be the last we see of the office until the end.** The job dies for him
+  emotionally right here, whether or not he formally quits later
+- The colleagues laughing ties to the boss thread — see Thread C
+- He goes home to nobody. Worth deciding whether the mom calls during this scene and he
+  doesn't pick up — see Thread E
+
+### Then the money starts
+
 - Brand deals from **safety companies** — helmets, knee pads, elbow pads
 - Commercials with **the corniest slogans and catchphrases ever** *("we'll figure it
   out later but that's a great idea" — credited to Prayer)*
