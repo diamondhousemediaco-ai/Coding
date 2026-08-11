@@ -26,6 +26,28 @@ wording is quoted and my read is in brackets — correct me, don't work around m
     the movie
   - Note the exact amount — Bucket 7.5 works best if the $10,000 he has left at the
     bottom is the *same* number he dumps here
+  - **THE DRUG DEAL.** Quick cut inside the montage. Bill in a **hoodie**, walks up to a
+    car, leans in and tries to sell the guy drugs. The guy **flips his badge** — undercover
+    cop. Cut to Bill **bent over the hood getting arrested.** Narration, completely
+    unbothered: *"Yeah… tried that. Didn't work."*
+    - The narration is what makes it. The arrest is treated as one more line item on a
+      list, which is funnier than playing the panic
+    - **It's the only illegal thing he does in the movie**, and that's the point — it
+      shows how badly he wants out, in four seconds, without a speech
+    - Keep him visibly terrible at it. He has to stay likable, so play him as a man
+      with no idea how any of this works rather than someone dangerous
+    - ⚠️ **Logic to decide: does this arrest follow him?** A drug charge is a felony,
+      and he later gets national brand deals and ends the movie being handed a
+      company. Three ways out:
+      1. **What he's selling isn't actually a drug** — he got scammed, or it's
+         oregano. The cop has to let him go, annoyed. Funniest option, no consequences
+      2. Charges dropped / it never sticks, and nobody mentions it again
+      3. **Keep it real and pay it off** — it surfaces when he's famous, or on a
+         background check at the promotion. Riskiest, but there's a payoff in it
+  - **The hoodie is a costume, and that's a thread.** Him dressing as a drug dealer in
+    Act One is the same behavior as the earrings and designer clothes in Bucket 3 —
+    **he's always wearing a costume of whoever he thinks he needs to be.** He only
+    stops at the end
   - "different stuff like that" *(other schemes to fill in — lottery tickets and
     selling life insurance are already on the list from earlier notes)*
 - **Video games with the kids.** He plays with kids — they troll him:
