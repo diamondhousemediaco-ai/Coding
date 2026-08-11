@@ -189,6 +189,51 @@ the spending escalating, him getting smaller inside all of it — that's toleran
 ## Bucket 3 — He enjoys it
 *The spending, the parties, the fame.*
 
+### ▶ HOW HE QUITS — "I QUIT" IN TIRE MARKS
+
+First money in, and the first thing he does is get the cars. Then he drives to the
+office, pulls up outside and **lays on the horn — beep beep beeeep** — until **the boss
+appears at the window.**
+
+Then he shreds it. Donuts, burnouts, smoke everywhere, the whole street watching. And
+when he's done, **the tire marks on the ground read "I QUIT."** He peels off.
+
+**He never says a word.** The car says it.
+
+> **⚠️ It's the perfect resignation for this character, and it's also indicting.** He
+> doesn't quit privately, or in a room, or on paper. He quits **as a performance, for an
+> audience.** He needs to be *seen* doing it — which is the exact thing that's about to
+> ruin his life. The audience should be cheering and the movie should know better.
+
+> **⚠️ This is the point of no return.** The moment he quits, the only income left is
+> brand deals — which are one-time — against lease payments that are forever. **The trap
+> closes right here**, in the middle of the biggest laugh in the act. Play the beat as a
+> triumph and let the structure do the damage.
+
+> **⚠️ THIS IS WHERE THE MOM BEAT LANDS.** Per Thread C, **she got him that job** and
+> was proud of it for twenty years. So he isn't just quitting — **he's burning the thing
+> his mother gave him**, in public, laughing, with no idea that's what he's doing. She's
+> the only person in the movie who isn't delighted. One phone call, or one look, is all
+> it takes.
+
+> **⚠️ Leasing pays off immediately as a joke.** He just destroyed four tires on **a car
+> he doesn't own.** Consider a small beat later — a bill, an excess-wear charge, a call
+> from the dealership. The consequence arriving in the mail is funnier than any line.
+
+> **⚠️ Tone flag — this is the broadest, most cartoon moment in the movie so far.** Tire
+> marks physically cannot spell words. In a comedy that's completely fine and it's a
+> great, shareable image, but it's a deliberate step up in heightening from the
+> grounded texture around it. Take it knowingly. *(Grounded alternative if you ever want
+> it: the marks are just chaotic circles and he shouts it out the window. Weaker image.)*
+
+**Does the stunt work perfectly, or does he botch it?** Recommendation: **it works
+perfectly** — the one time in his entire life the universe fully cooperates, which is
+funnier than a fumble because it's such a break from his luck. Then give him one small
+scrape or clipped curb **on the way out, off-screen or just at the edge of frame**, so
+he's still himself.
+
+- Last we see of the boss until the fraud comes out
+
 - ### ⚠️ HE DOESN'T BUY ANY OF IT — HE LEASES IT
   **Locked.** Bill never actually owns a single thing. He signs monthly payments.
   - The **mansion** is rented, or a mortgage he barely qualified for
