@@ -48,6 +48,41 @@ wording is quoted and my read is in brackets — correct me, don't work around m
     Act One is the same behavior as the earrings and designer clothes in Bucket 3 —
     **he's always wearing a costume of whoever he thinks he needs to be.** He only
     stops at the end
+  - **⭐ THE LOTTERY / THE OLDER LADY.** Gas station or convenience store. Bill's in line
+    to buy scratch-offs. **He lets an older lady go ahead of him.** She buys the tickets
+    that would have been his. She scratches one right there at the counter while he's
+    still paying for his — **and she wins.** Big. Life-changing.
+    - **He doesn't get bitter. He's genuinely happy for her.** Congratulates her, maybe
+      takes a photo for her. That's who he is, and it's why the audience will follow him
+      anywhere
+    - **Best sting: she never realizes he let her go.** She isn't ungrateful, she just
+      has no idea. Nobody in this movie notices Bill, including the woman he just handed
+      a fortune
+    - Then he scratches his. Nothing.
+
+    > **⚠️ THIS IS THE MOST IMPORTANT BEAT IN THE MONTAGE, AND HERE'S WHY.** Every other
+    > scheme shows him being desperate or dumb. **This one shows that his bad luck is
+    > caused by his own decency.** He didn't lose because he's a loser. **He lost
+    > because he was kind**, and the movie states it without a word of dialogue.
+    >
+    > That does three jobs at once:
+    > 1. It makes the audience love him inside the first five minutes
+    > 2. It proves he was a good man **before** the money, so when he behaves badly in
+    >    Act Two we know the fame did that to him — it didn't reveal something rotten
+    > 3. It's what the barista has always seen. She's loved this exact quality since
+    >    they were kids
+    >
+    > **And it's the precise inverse of the fall.** Here, being *good* costs him a
+    > jackpot. Later, being *humiliated* wins him one. **This world punishes his kindness
+    > and rewards his degradation** — which is the whole argument of the movie, made
+    > twice, forty minutes apart, with no speech either time.
+
+    - *Optional, use only if it doesn't feel cute: the older lady turns up once more
+      late in the film. A billboard, a news clip, or just in the coffee shop. Handle
+      with care — the beat is already complete without her.*
+  - **Range check:** the montage now has him attempting a crime *and* quietly giving away
+    a fortune out of politeness. That's a whole person in ninety seconds, and it's why
+    the montage will play as character rather than a gag reel
   - "different stuff like that" *(other schemes to fill in — lottery tickets and
     selling life insurance are already on the list from earlier notes)*
 - **Video games with the kids.** He plays with kids — they troll him:
