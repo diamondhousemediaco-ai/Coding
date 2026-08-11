@@ -388,6 +388,63 @@ makes her exit an actual theft instead of a fade-out.
 just offers," "she never lies to him." That is wrong now. She asks, she works him, and
 he's the mark.)*
 
+## Thread E — THE MOM
+
+### Why she matters more than she looks
+
+Bill has a problem the movie hasn't explained yet: **he can't accept love he didn't
+earn.** A mother's love is the definition of unearned — so he discounts it. And that is
+*exactly* why he can't see the barista, a woman who has loved him since childhood, for
+free, for nothing.
+
+It isn't cowardice. It's a belief: **if I didn't earn it, it doesn't count.** Which is
+why he needs a million strangers instead, and why the ending is genuinely hard for him —
+being loved as-is is the one thing he has no idea how to accept.
+
+**She's the answer to "why is he like this," and right now the movie doesn't have one.**
+
+Say it plainly somewhere: *he wanted a million strangers to love him, and the whole time
+he had someone who always did — and he didn't count it.*
+
+### What she also fixes
+
+- **The 50-year-old with nobody problem.** A man that age with no friends and no family
+  is one line away from unbelievable. She solves it without softening him
+- **The sentimental job backstory you asked for.** See below — she's the reason he's at
+  that company, which is what makes the CEO ending loop
+- **She's known the barista since they were kids.** They're allies. The mom knows what
+  those two should have figured out twenty years ago and has to watch them not do it
+- **She calls him Bill.** Always his real name, often his full name. Third leg of the
+  name motif alongside "Bob" and the wedding
+
+### Which version — open
+
+- **▶ Alive, proud, a little embarrassing** *(leaning)*. She's thrilled about the fame.
+  He's mortified by her. The one person whose approval he already has and doesn't value
+- **Alive, and he's quietly been helping her** — explains why he's stuck and broke, and
+  gives him something noble under the flailing. Risk: makes him sympathetic a bit too
+  early, when the movie needs him partly responsible for his own smallness
+- **Passed away, and the job is her legacy** — he's stayed nineteen years because
+  leaving would mean letting her go, and he ends up running the company she worked at.
+  Huge payoff, but a dead mother is a well-worn device and it costs you every scene
+  below
+
+### The beats she gives you
+
+1. **He stops calling her when he gets famous.** Possibly the most damning small thing
+   in the movie, and it costs one shot: a phone buzzing at a party, "Mom," declined
+2. **She's the only person not celebrating** when he quits the job in the boss's face
+3. **After the crash out, he goes home to her.** Fifty years old, moving back into his
+   mother's house. Rock bottom and safety in the same image
+4. **She never says I told you so.** Not once. That's the whole character
+5. **She's at the courthouse wedding.** Tiny room, almost nobody — and she's there
+6. **She's about to be a grandmother.** The pregnancy at the end closes her circle too
+
+### Guardrail
+
+Don't let her become the device that fixes him. She needs a life, an opinion, and
+something she wants that isn't about her son — or she's a plot function with a casserole.
+
 ## Thread C — The job, the boss, and the CEO payoff
 *Prayer's idea. Runs from the very beginning to the very last scene.*
 
@@ -401,6 +458,16 @@ he's the mark.)*
 - **Requirement you flagged:** wherever Bill works, there needs to be a **backstory on
   why he works there**, it needs to be **sentimental**, and it needs to **loop back
   around at the promotion**
+- **▶ Strongest answer available: the mom got him the job.** She pulled a favor
+  twenty-odd years ago and was *so* proud of it. That's why he's still there — quitting
+  would hurt her, so he never did. Which means:
+  - Act One, the job is a nineteen-year humiliation to him and an achievement to her
+  - When he quits in the boss's face during the fame stretch, **she's the only person
+    not celebrating**
+  - At the end he isn't just handed a title — **he ends up running the company his
+    mother got him into.** The loop closes on her, which is what makes it sentimental
+    instead of a status prize
+  - See **Thread E**
 
 ## Thread D — Validation
 *The actual subject of the movie, stated in Bucket 3 but running through all of it.*
@@ -469,8 +536,11 @@ that aren't filed anywhere yet.*
 2. **Is the bad early date still in the movie?** Now that the barista is a lifelong
    friend and there's a gold digger in Act Two, the app-date from the earlier notes
    may not be needed. It's still on the list, unassigned.
-3. **What's the sentimental backstory for the job?** Flagged by you as required, not yet
-   filled in. It's the thing the CEO ending hangs on.
+3. **What's the sentimental backstory for the job?** Proposed answer on the table: **his
+   mom got him the job** and was proud of it, so he never left. See Threads C and E.
+   Confirm or replace.
+3b. **Which version of the mom?** Alive and proud *(leaning)*, alive and being quietly
+   supported by him, or passed away with the job as her legacy. See Thread E.
 4. **Does the gold digger get a comeuppance?** Currently she just walks — the declined
    card is her last scene. Open sub-questions: does she leave with something of his
    (car, jewelry, anything in her name)? Does Bill try to contact her afterward, or does
