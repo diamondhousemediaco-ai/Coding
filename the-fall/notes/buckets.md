@@ -90,6 +90,51 @@ hit. **That's the dopamine.**
   know him is just humiliation. Being laughed at by strangers **pays**. So he picks
   strangers, and he'll keep picking them for the rest of the movie
 
+### The run that follows — alone → confident → deflated → the call
+
+**1. Alone, dancing.** He's by himself. Notifications flooding in. Music up. *"Let's
+go!"* Dancing around, genuinely, ecstatically happy.
+
+> **⚠️ This is the thesis image of the movie and it should be shot like one.** Nobody is
+> watching. **He is alone in a room celebrating being watched.** That's the entire film
+> in one shot, it's funny and sad at once, and you don't have to say a word about it.
+>
+> It also **bookends the crash out** — same man, same solitude, same room, opposite
+> direction. If 7.5 is staged in the apartment, use the same setup deliberately. High
+> point and low point, identical framing.
+
+**2. The next morning — new confidence.** He walks out different. People clock him on
+the street: *"Hey — you're the guy!"* Selfies. **He eats it up.** First time in his life
+anyone has wanted a piece of him.
+
+**3. Into the coffee shop, swaggering.** He's loving it in front of her.
+
+> **This is the first crack with the barista and it should play as one.** She's known
+> him since they were kids and this is not him. She's watching the beginning of the
+> thing that's going to take him away. Don't make her hostile — just make her *notice*.
+> The audience should feel a small drop that Bill doesn't.
+
+**4. Then work, and reality.** He sits down at his desk — and **the boss drops a stack
+of paper on it.** Nothing about this building cares that he's famous. And the thought
+lands: **I have to get out of here.**
+
+> **⚠️ That stack is the CEO ending.** It's the boss dumping his own work on Bill —
+> Thread C, already in your notes. So the same stack of paper that **drives him out of
+> the job in Act One** is the reason **he gets handed the company in Act Three.** Plant
+> it here without comment; it pays off ninety minutes later. That's the loop you asked
+> for.
+>
+> It's also the perfect deflation joke: going viral changes everything **except the
+> thing that actually structures your life.**
+
+**5. The segue — the call comes in.** Text, call, or email from an **agent** or a brand.
+That's the door out.
+
+> **Consider making this agent a recurring character** — the one who later tells him he
+> can have any girl he wants, books every deal, takes a cut, and encourages every
+> purchase. Friendly, never cruel, never lying, and quietly dependent on Bill remaining
+> a spectacle. It costs nothing and gives Act Two a human face.
+
 ### ⚠️ This reframes Act Two: it's an addiction arc
 
 Once the ding is a drug, the whole middle of the film stops being about greed and starts
@@ -118,6 +163,21 @@ the spending escalating, him getting smaller inside all of it — that's toleran
 ### Then the money starts
 
 - Brand deals from **safety companies** — helmets, knee pads, elbow pads
+- **⭐ THE LIFE ALERT DEAL.** A parody of Life Alert — the medical alert pendant for the
+  elderly. The commercial is built on ***"Have you fallen and can't get up?"***
+  - **Why it's the best brand deal on the list:** it's literally about falling, so the
+    product and his fame are the same joke — and **it's a product for old people.** A
+    man in his fifties, desperate to be seen as somebody, becomes the national face of
+    a device for people who can't get off the floor. It stings, and **he takes it
+    anyway, because it pays.** That's Act Two in one commercial
+  - It also quietly sets up the second fall: he's advertising a product that gets you
+    help after you go down. Nobody comes when *he* goes down
+  - **Parody names to pick from** — the established pattern is a small phonetic twist
+    (Neosporin → Neokay, Bell → Fell):
+    - **LifeAlarm** · **LifeCall** · **FallSafe** · **SafeLine** · **Life Alert →
+      "Life Alart"** · or name the brand after the line itself: **"I'VE FALLEN"**
+  - The tag should be the corniest possible read, delivered by a man who is trying very
+    hard to sound dignified
 - Commercials with **the corniest slogans and catchphrases ever** *("we'll figure it
   out later but that's a great idea" — credited to Prayer)*
 - He could sell **merchandise**
@@ -534,7 +594,8 @@ something she wants that isn't about her son — or she's a plot function with a
 # PART 3 — RUNNING GAGS & THE BRAND WORLD
 
 - **Ripoff brand names.** Instead of Neosporin → **Neokay**, with *"Make your knee OK
-  with Neokay."* Instead of Bell helmets → **Fell**
+  with Neokay."* Instead of Bell helmets → **Fell**. Plus the **Life Alert** parody —
+  name TBD — built on ***"Have you fallen and can't get up?"*** (see Bucket 2)
 - **The corniest slogans and catchphrases ever** across all the commercials
 - **"The face on three"** — strangers making him recreate his falling face
 - **"You're the guy! You're the guy!"**
