@@ -652,31 +652,47 @@ Memes to consider *(fill in — expect to replace these late)*:
 
 ## A) Bill vents to the kids about his boss
 
-**Act One, on the headset.** Bill is complaining about his boss, his job, his
-life — to a squad of twelve-year-olds. They give him advice with total
-confidence, and it is terrible.
+### ⚠️ PLACEMENT: **AFTER THE MONEY, BEFORE HE QUITS.**
+
+Not Act One. This sits in the narrow window where **the brand-deal money is
+already coming in and he is still sitting at that desk taking abuse.** Roughly
+between the agent's call and the burnout.
+
+That window is the whole point of the scene. He doesn't have to be there
+anymore — and he still is, because nineteen years of being nobody doesn't
+evaporate the second a check clears.
+
+**On the headset.** Bill is complaining about his boss, his job, his life — to a
+squad of twelve-year-olds. They give him advice with total confidence, and it is
+terrible.
 
 *"Bro. Show him who's boss."*
 
-The comedy is the mismatch: a fifty-year-old man taking career counsel from
-children who cannot drive. Play his side completely sincere — **he's actually
-listening.** That's what makes it funny and what makes it sad.
+The comedy is the mismatch: a man in his fifties, newly rich, taking career
+counsel from children who cannot drive. Play his side completely sincere —
+**he's actually listening.** That's what makes it funny and what makes it sad.
 
-### ⚠️ THIS IS A PLANT, AND IT'S A GOOD ONE
+### ⚠️ THIS IS A PLANT, AND MOVING IT LATE MAKES IT BETTER
 
 **The "I QUIT" burnout is a twelve-year-old's idea of quitting a job — because a
-twelve-year-old gave it to him.**
+twelve-year-old gave it to him, minutes earlier.**
 
-He takes their advice. Literally. That's why he doesn't hand in a notice, doesn't
-have a conversation, doesn't do anything an adult would do: he gets the boss to
-the window and burns rubber, because that's what the kids told him to do.
+He takes their advice. Literally, and immediately. That's why he doesn't hand in
+a notice, doesn't have a conversation, doesn't do anything an adult would do: he
+gets the boss to the window and burns rubber, **because that's what the kids told
+him to do.**
 
-It also feeds the movie's engine perfectly — a man in his fifties living out a
-teenager's fantasy. Now we know exactly where he got the script.
+Setting it up right before the payoff instead of forty pages earlier means the
+audience connects it instantly — and it feeds the movie's engine perfectly: a man
+in his fifties living out a teenager's fantasy. Now we know exactly where he got
+the script.
 
-- Nothing needs to be added at the burnout. It just retroactively means something
+- Nothing needs to change at the burnout. It just means something now
 - **Bonus:** the kids see the video afterward. *"Yooo, he actually did it."*
   First time in the movie anyone is impressed by him
+- **Possible order:** vents to the kids → the shopping montage → buys the cars →
+  drives straight to the office. One continuous escalation from a headset
+  conversation to tire marks on the pavement
 
 ---
 
