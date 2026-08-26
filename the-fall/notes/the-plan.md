@@ -547,3 +547,101 @@ hole, and it's one more version of the same behavior: **he's performing.**
 - Does he film it, or does someone else? He's an addict now — he probably films
   it himself, which is sadder
 - Nobody at the store recognizes him yet. Later they will. That's the whole point
+
+---
+
+# ADDITION — MEMES, AND HOW TO USE THEM WITHOUT DATING THE MOVIE
+
+## The hazard, stated plainly
+
+A film takes two to four years from script to screen. **A meme that's enormous
+today will be dead and embarrassing by release**, and dated references age a
+movie faster than anything else in it. Half the comedies of any given decade are
+unwatchable for exactly this reason.
+
+That's not a reason to skip it. It's a reason to be deliberate.
+
+---
+
+## ⚠️ THE BIG IDEA — BILL *IS* THE MEME. USE THE MEME CYCLE AS PLOT.
+
+Don't decorate the movie with memes. **Make the meme lifecycle the shape of his
+fame**, because that's literally what the story is about. His clip should move
+through the whole cycle on screen:
+
+1. **The raw clip.** Just the fall.
+2. **Edited to music.** Somebody sets it to a song. It gets bigger than the original.
+3. **A reaction image.** One frame of his face, captioned about something else.
+4. **A sound.** People use the audio of him hitting the ground. The image is gone.
+5. **A template.** The format has nothing to do with him anymore.
+6. **Dead.** Nobody posts it. That's the silence.
+
+**That is his entire arc, told in a language the audience already speaks, without
+a line of dialogue.**
+
+### ⚠️ The devastating beat this hands you
+
+Late in the movie, **Bill sees his own fall used as a meme by someone who has no
+idea it's a real person** — a stranger's phone, a stranger's post, his face
+detached from him entirely, being used to mean something completely unrelated.
+
+**That's the "Bob" moment in visual form.** His face is famous and it isn't his
+anymore. Put it near the comedown or right before the crash out.
+
+---
+
+## THE FOUR RULES FOR ACTUALLY DOING IT
+
+**1. Invent anything load-bearing.**
+If a meme has to carry a scene, make it up. Then it can't date you, you control
+it completely, and — better — it can be **about Bill**, which is what you want
+anyway.
+
+**2. Put real memes only in the kids' mouths.**
+Coming from the gaming kids and the twins, a current reference reads as
+*characterization* — kids talk like this. If it's stale by release, it's stale in
+a way that still tells you who they are. Coming from the movie itself, it reads
+as the film trying to be cool and failing.
+
+> **The model is already in the script:** *"You have no aura."* That's exactly
+> right, because a kid says it to a fifty-year-old who doesn't understand it.
+> The joke is the gap, not the reference.
+
+**3. Use meme *grammar*, not meme *specifics*.**
+The structure of how something spreads — the edit, the sound, the caption, the
+remix, the ironic repost — is durable. The specific format is not.
+
+**4. Easter eggs stay in the background, where they can be replaced.**
+Comment sections, phone screens, a t-shirt, a party banner, background TV.
+Nothing important depends on the audience catching them, and **anything shot as
+background can be swapped late** if something better exists by the time you make
+it.
+
+---
+
+## WHERE THEY GO
+
+- **The gaming kids' voice chat** — their natural habitat, best density
+- **The twins**, before and after the fall
+- **Comment sections** — pause-and-read gags, freeze-frame Easter eggs
+- **"The face on three"** — this is already a meme behavior, it just isn't
+  labelled as one. Strangers performing his format at him
+- **The brand commercials** — a corporate ad clumsily using a dead meme is
+  eternally funny and ages *well*, because being out of touch is the joke
+- **The party** — banners and decorations built on his own meme, which he now
+  hates
+
+---
+
+## THE TEST
+
+> **If the joke needs the audience to know the meme, it will break.**
+> **If the joke is that Bill doesn't know it, it will last.**
+
+He's fifty. Everything about this world is already foreign to him. Point the
+comedy at that gap and it stays funny in 2035.
+
+Memes to consider *(fill in — expect to replace these late)*:
+- _______________________________________________________________
+- _______________________________________________________________
+- _______________________________________________________________
