@@ -1104,3 +1104,148 @@ Do it with three things and you never need a line about him changing:
 - Where does the conversation happen? *(A rich man's environment is best — the
   mansion, a set, a party. Clyde standing somewhere he doesn't belong, having
   come a long way to ask.)*
+
+---
+
+# THE SCENE — CLYDE AT THE PARTY
+
+## How it plays
+
+Clyde turns up at one of Bill's parties **in a baseball cap, trying not to be
+seen.** Bill spots him and is delighted:
+
+  BILL:   Clyde! I've invited you to like ten of these —
+          he finally shows up!
+
+Clyde isn't there for the party.
+
+  CLYDE:  Bill. I need to talk to you.
+
+Bill's trying to have fun. Brushes past it. Clyde presses.
+
+  CLYDE:  No — Bill. I need to talk to you.
+          I think you're the only one who can help.
+
+He pulls Bill aside and lays it out: **we think he's stealing. We think you're
+the only person who can prove it. They're going to lay us off.**
+
+And Bill brushes it off.
+
+  BILL:   Man, you can just move in with me.
+
+Back to the party.
+
+Then the confrontation.
+
+  CLYDE:  You let them change you.
+          ...This is reality, man. We're about to lose our jobs.
+          Our pensions.
+          Not everybody can fall off a one-wheel and get rich like you.
+          I would've died.
+
+---
+
+## ⚠️ THE BASEBALL CAP
+
+Clyde came to a place he doesn't belong, dressed to not be looked at. He swallowed
+his pride to be there, and he's ashamed of needing to be.
+
+**And he's making himself invisible at the party of a man whose entire life has
+been ruined by being invisible.** Bill doesn't notice, because Bill never notices.
+Don't say a word about it — just put the cap on him.
+
+## ⚠️ "I'VE INVITED YOU TO TEN OF THESE"
+
+That one line is a gift, because of what it reveals.
+
+**Bill kept inviting him.** He wanted Clyde there. But look at *why* — he wanted
+Clyde to **see him rich.** He wanted an audience, not a friend.
+
+So the one time Clyde actually comes, it isn't to admire him — **it's to need
+him.** And Bill has no idea what to do with that, because he never wanted Clyde's
+attention. He wanted Clyde's applause.
+
+> **He wanted to be seen by Clyde. He never once considered seeing Clyde.**
+> That's the theme, in a hello.
+
+## ⚠️ "YOU CAN JUST MOVE IN WITH ME" — KEEP THIS LINE
+
+It's the best line in the scene and it should stay exactly as you said it.
+
+**It's generous.** Bill isn't being cruel — he's offering something real, and he
+thinks he's being a great friend. That's what makes it devastating:
+
+- It solves **nothing** for the floor. Clyde is one of many
+- It's **charity instead of action** — it turns a man with forty years of earned
+  retirement into a houseguest
+- **It's Bill's only move.** He solves everything by buying it. Same as trying to
+  buy the barista, same as the gold digger, same as every scheme in Act One.
+  Money is the only tool he has left, so he reaches for it here too
+- And it's **condescension wearing kindness as a costume**, and he cannot see it
+
+Clyde turning it down is the second time in the movie he refuses Bill's money.
+The first was *"I got mine coming."*
+
+---
+
+## ⚠️ STAGING — LET THE PARTY BE THE ANTAGONIST
+
+Bill should be **constantly pulled away** during this. Photos. Someone wanting
+"the face on three." Music. Somebody yelling his name — the wrong name, possibly.
+
+That does three things:
+1. It forces Clyde to escalate, which is why he ends up saying it flat out
+2. It means **the most important sentence of Clyde's life gets said over a bass
+   drop**, which is humiliating for him and infuriating for the audience
+3. It makes Bill's inattention *environmental* rather than villainous — he isn't
+   choosing to ignore Clyde, he's just somewhere that makes ignoring people easy.
+   Which is worse
+
+**Then kill the noise for the confrontation.** Move them where the music is
+muffled, or just let it drop out. Clyde stops competing with the party and says
+it plainly. That contrast is the whole scene.
+
+## The exit
+
+**Bill walks away first.** Back to the party. Clyde stands there a second, then
+leaves.
+
+> **Last image: Clyde walking out through a room full of people who don't look at
+> him either.**
+
+---
+
+## What Bill says to brush it off — options
+
+- **"I don't even work there anymore, man."** ⭐ Cruellest and most honest. It's
+  *true*, and it's exactly the point — he got out, and he's saying it to a man
+  who can't
+- "Come by Monday, we'll figure it out." (It never happens)
+- "You'll be alright. You're always alright."
+- "That's not really my world anymore"
+
+---
+
+## ⚠️ BIG QUESTION — IS THIS THE "BOB" PARTY?
+
+**Strong option: yes.** Make it all one night.
+
+  Clyde asks → Bill refuses → the barista warns him → he calls it jealousy →
+  she crashes out → the rapper says **"BOB"** → a thousand strangers scream a
+  name that isn't his.
+
+**One party where he loses every real person in his life and gets crowned by
+strangers in the same evening.** As a midpoint sequence that is enormous, and the
+"Bob" moment lands on a man who has just thrown away everything that mattered
+minutes earlier.
+
+**The risk:** it's a lot for one sequence, and either the Clyde beat or the
+barista beat could get crowded. If it feels overloaded, split it — Clyde at an
+*earlier* party, the barista and "Bob" at the anniversary party.
+
+**Recommendation: write it as one night first.** It's easier to pull apart later
+than to push together.
+
+> **Bonus if it's the sponsored anniversary party:** there's Life Alert branding
+> in the room. Clyde says **"I would've died"** standing under a banner with
+> Bill's face on it, advertising a device for people who fall and can't get up.
