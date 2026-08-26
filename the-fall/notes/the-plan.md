@@ -455,3 +455,95 @@ who's waiting for him, what he wanted.
 - Is he at the wedding? *(Recommend: yes. That tiny courthouse room should hold
   the mom, Clyde, and almost nobody else.)*
 - Does Bill get the whole workforce reinstated, or just the pensions?
+
+---
+
+# ADDITION — THE SHOPPING MONTAGE ("CAN I HELP YOU, SIR?")
+
+**Placement: right after the first money lands, BEFORE the cars and the "I QUIT"
+burnout.** Clothes are the cheapest purchase and the fastest, so they come first.
+Escalation ladder for the act: **clothes → cars → house.** And he shows up to
+quit in the new fit *and* the new car, so the boss gets the whole transformation
+in one shot.
+
+## The beat
+
+Bill in his dingy, ordinary clothes walks into a store he has no business being
+in. The staff clock him instantly. *"Can I help you… sir?"* — polite, and
+completely condescending.
+
+**He pulls out a stack of cash.**
+
+Cut to montage: him getting dressed up, piling on everything, walking out a
+different-looking man.
+
+---
+
+## ⚠️ THE FREE UPGRADE — MAKE IT THE SAME STORE, THREE TIMES
+
+You now have one location doing a complete arc across the whole movie:
+
+1. **They look down on him** — this scene
+2. **They fawn over him** — the "special treatment when he shops" beat already
+   in Bucket 3
+3. **They hand the card back** — the gold digger's decline in Act Two-B
+
+Same store. Same staff. Three visits, three temperatures. That's an entire
+three-act structure inside a single set, and it costs nothing.
+
+---
+
+## ⚠️ CROSSING THE STREET
+
+Your Payless detail is better than a throwaway. Use it as the frame:
+
+**He's walking toward Payless — his actual budget — stops, looks across the
+street at the designer store, and crosses.**
+
+That crossing is the whole decision of Act Two in one wide shot. And when he's
+broke, **he crosses back.** Nobody has to say a word about it either time.
+
+---
+
+## ⚠️ THIS IS THE COSTUME THREAD PAYING OFF
+
+Already flagged in Bucket 1: the hoodie he wears to sell drugs is a costume. So
+is this. **He is always dressing as whoever he thinks he needs to be** — dealer,
+then rich guy — and the end of the movie is the first time he isn't in one.
+
+Which means the montage should be **funny because it's wrong.** He has no taste
+and he's fifty. He isn't buying clothes, he's buying "rich."
+
+## Designer or hypebeast?
+
+**Call: both, and that's the joke.** He hits the designer store because that's
+what he thinks rich means, and walks out looking like a fifty-year-old man
+cosplaying a twenty-two-year-old. Chain, Jordans, designer everything, all at
+once, no coherent taste anywhere.
+
+That's the exact comedy engine the movie already runs on — a middle-aged man
+living out a rich teenager's fantasy. The outfit should tell you that before he
+opens his mouth.
+
+- The chain: yes
+- Earrings: already in Bucket 3, they belong in this montage
+- What he ends up in: _________________________________________
+
+---
+
+## ⚠️ THE CASH STACK — JUSTIFY IT AND IT GETS FUNNIER
+
+Nobody pays for a designer fit in cash, and brand deals pay by wire. Don't drop
+the image — **explain it in one beat instead:**
+
+**He went to the bank and withdrew cash on purpose, because he wanted the movie
+moment.** He is staging a scene he's seen in a film.
+
+That's completely in character, it makes the implausibility a joke instead of a
+hole, and it's one more version of the same behavior: **he's performing.**
+
+## Small stuff
+
+- Does he film it, or does someone else? He's an addict now — he probably films
+  it himself, which is sadder
+- Nobody at the store recognizes him yet. Later they will. That's the whole point
