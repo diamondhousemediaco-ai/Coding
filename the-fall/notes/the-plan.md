@@ -961,3 +961,146 @@ Anything beyond those three is a subplot the movie doesn't have room for.
 - Does anyone else on the floor believe Clyde before Bill shows up?
 - Does the boss ever clock Bill as a threat, or does he never see him coming?
   *(Recommend: never sees him coming. Consistent with everything above.)*
+
+---
+
+# MAJOR — CLYDE ASKS FOR HELP, AND BILL SAYS NO
+
+*This is the bridge, and it's the moral bottom of the movie.*
+
+## The beat
+
+**While Bill is rich and at peak arrogance**, Clyde comes to him. The floor is
+being lined up for layoffs. He tells Bill what's happening. **He asks for help.**
+
+And Bill doesn't care. Distracted, dismissive, generous in the worst way —
+half-listening, checking his phone, maybe offering money instead of attention.
+
+  CLYDE:  You let the money change you.
+          Not everybody can fall off a one-wheel and get rich like you.
+          If I fell, I'd be dead.
+          ...I thought you'd be able to help.
+
+*(Preserved close to as dictated — the rhythm is right, don't smooth it.)*
+
+---
+
+## ⚠️ THE IRONY YOU JUST BUILT WITHOUT MEANING TO
+
+**Bill's face is on a Life Alert commercial.** *"Have you fallen and can't get
+up?"*
+
+And an older man is standing in front of him saying **"if I fell, I'd be dead"**
+— and Bill walks away.
+
+**He is the national spokesman for help arriving after a fall, and he will not
+help the one man who actually fell.**
+
+That is the best irony available in this entire story. It costs nothing — both
+pieces already exist. Just make sure the commercial has played before this scene.
+
+---
+
+## ⚠️ THE WORST THING THAT CAN HAPPEN — AND YOU'RE HALF RIGHT
+
+You're right that the worst thing has to happen. But for **this** character,
+losing money isn't it. He was broke when the movie started. **He knows how to be
+broke.**
+
+The worst thing that can happen to Bill is this:
+
+> ### HE BECOMES THE THING THAT RUINED HIS LIFE.
+>
+> He spent fifty years being overlooked by people who didn't have time for him.
+> And then a man he loves asks him for help — **and Bill overlooks him.**
+>
+> He becomes his own boss. He does to Clyde exactly what the world did to him.
+
+That's worse than losing his friends, because it isn't something that happens to
+him. **It's something he does.** And it's the only thing the movie could not
+forgive him for without earning it back.
+
+Losing the friends is the *consequence*. This is the crime.
+
+---
+
+## ⚠️ AND IT BUILDS ACT THREE'S ENGINE FOR FREE
+
+Look at the sequence this creates:
+
+1. **He has money, and won't help.**
+2. **He loses everything.**
+3. **The layoffs actually land — and now he wants to help and has nothing.**
+
+**He can't fix it with money. The only thing he has left is himself.**
+
+Which is the entire movie, arriving as plot instead of as a lesson. This is why
+Act Three works: not because he becomes brave, but because bravery is the only
+currency he has left.
+
+> **Timing note:** the layoffs are *threatened* in Act Two (Clyde's ask) and
+> *executed* in Act Three, while Bill is falling apart. So he's already broke
+> when it actually happens.
+
+---
+
+## ⚠️ THE LADDER — HE LOSES ALL FOUR REAL PEOPLE, BY HIS OWN HAND
+
+Act Two-B should be structured as him dismissing every genuine relationship in
+his life, one at a time, each one his own doing. Then the money goes. Then the
+stock.
+
+  1. **THE BARISTA** — she warns him about the gold digger, he calls it jealousy
+  2. **CLYDE** — asks for help, gets brushed off
+  3. **MOM** — the phone buzzing at the party. "Mom." Declined
+  4. **THE KIDS** — *(see below)*
+
+  → then the money
+  → then the stock
+  → then the breakdown
+
+**By the time he's alone, there is nobody left to call — and every single one of
+those absences is something he did.** The crash out lands ten times harder,
+because it isn't bad luck. It's a bill coming due.
+
+### The kids — the missing fourth
+
+They need a version of this too. Options:
+- He blows them off for the party crowd. *"Not tonight."* And then again
+- They see him being cruel to someone and go quiet
+- He's embarrassed by them in front of the gold digger
+- ⚠️ **Recommended: he ghosts them without noticing.** He just... stops logging
+  on. No scene, no fight. One line later from a kid: *"You stopped playing."*
+
+---
+
+## ⚠️ THE ARROGANCE ARC — TRACK IT DELIBERATELY
+
+You want his demeanor to change as the money comes. Chart it so it's gradual and
+nobody can point to the scene where he "turned":
+
+  humble → thrilled → confident → showy → arrogant → careless → dismissive
+
+**The best device: repeat the same interaction at different stages.** The way he
+greets Clyde in Act One versus how he greets him here. Same two men, same
+hallway, same hello — and the audience watches the temperature drop.
+
+Do it with three things and you never need a line about him changing:
+- How he says hello to Clyde
+- How he orders his coffee
+- How he answers his mother
+
+---
+
+## OPEN
+
+- Does Bill offer Clyde **money** instead of help? *(Recommend: yes. It's more
+  damning, it's in character — money is the only tool he understands now — and
+  Clyde refusing it is the second time he's turned Bill's money down.)*
+- Does Bill actually **have the power to help** at this point? *(Recommend: yes,
+  clearly. He has money, a public profile, and people who'd take his call. He
+  could have made noise. That's the tragedy — not that he couldn't, that he
+  didn't.)*
+- Where does the conversation happen? *(A rich man's environment is best — the
+  mansion, a set, a party. Clyde standing somewhere he doesn't belong, having
+  come a long way to ask.)*
