@@ -1249,3 +1249,127 @@ than to push together.
 > **Bonus if it's the sponsored anniversary party:** there's Life Alert branding
 > in the room. Clyde says **"I would've died"** standing under a banner with
 > Bill's face on it, advertising a device for people who fall and can't get up.
+
+---
+
+# THE CREW
+
+**Four people. Do not add a fifth.** Each one has to bring something nobody else
+can, and each one has to be risking something. Otherwise they're just standing in
+the room.
+
+> ⚠️ **They should not be competent.** This is a movie about nobodies. The crew is
+> visibly under-qualified and it should look like it's barely going to work,
+> right up until it does.
+
+---
+
+## 1. BILL — the knowledge, and the invisibility
+
+- **Nineteen years of the boss's work.** He's the only person alive who can look
+  at a page and say *"I didn't write that — and I wrote everything."*
+- **He can walk onto the top floor because nobody looks at him.** The thing that
+  ruined his life is the way in
+
+**What he risks:** his last shot at a job, and his dignity — he has to walk back
+into the building he burned rubber quitting.
+
+## 2. CLYDE — the access, and the credibility
+
+- **He's still inside** (until the layoffs). Badge, floor, legitimacy
+- **He's been watching for months** and knows who can be trusted
+- ⚠️ **The function nobody else can cover: they will believe Clyde.**
+  Bill is a *meme.* He is a national punchline who did burnouts in the parking
+  lot. **Nobody would take Bill seriously alone** — that's the price of Act Two,
+  and it's still being paid in Act Three. Clyde is the one person in that room
+  with forty unblemished years behind him
+
+**What he risks:** everything, faster. He's weeks out. If this goes wrong he
+doesn't limp to the finish, he loses it now.
+
+## 3. THE BARISTA — and this is where you fix her
+
+> ⚠️ **You asked whether she's even a barista at this point. That question is the
+> solution to the biggest hole in the treatment.** She has never had a want of
+> her own. Give her one here and she stops being a function.
+
+### ▶ Recommendation: she's trying to buy the coffee shop.
+
+She's been working there for years and **she does the books.** She wants to own
+it. She's been saving, negotiating, getting turned down by a bank — *possibly
+that bank.*
+
+That single choice gives you four things at once:
+
+1. **A want that has nothing to do with Bill**, which is what the character has
+   been missing since page one
+2. **A real skill for the crew.** She can read a set of books. She's the one who
+   can look at what Bill drags out of that office and say *what it means* — Bill
+   knows the handwriting, **she knows what the numbers do**
+3. **A base of operations.** The shop, after close. Private, free, and it's the
+   movie's home location — the same room the film opens and ends in
+4. ⚠️ **The thematic spine of the whole movie.** She has spent the entire story
+   quietly building one small real thing while he chased an enormous fake one.
+   **She wants one shop. He wanted everything, got it, and lost it.**
+
+And it gives Act Three a way to *measure* him: **he notices what she wants.**
+That's the growth, and now it's visible instead of asserted.
+
+**What she risks:** her savings, the shop, and letting Bill back in.
+
+## 4. ONE KID — the hands
+
+**Pick one.** Three adults and four children is chaos; one kid is a character.
+Take the sharpest of the squad.
+
+- Digitizes and sorts the stack
+- Builds the boardroom deck *(which is why it's terrible)*
+- Finds corroboration, screen-records what might disappear
+- ⚠️ Plant his competence back in the mansion hangout — he fixes something Bill
+  can't, no comment on it
+
+**What he risks:** he's a kid, and the adults know it.
+
+> ### ⚠️ THE BEAT THIS BUYS YOU: BILL TELLS HIM NO.
+>
+> At some point the kid offers to do something that's a step too far. And **Bill
+> says no** — the first time in the movie he protects someone instead of using
+> them.
+>
+> The man who took career advice from twelve-year-olds finally acts like the
+> adult in the room. That's his arc completing in four seconds of dialogue, and
+> it's inside the climax where it costs nothing.
+
+---
+
+## HOW THE FOUR FIT TOGETHER
+
+  BILL      knows the handwriting     → proves WHO
+  BARISTA   reads the books           → proves WHAT
+  CLYDE     is believed               → proves IT MATTERS
+  THE KID   makes it presentable      → makes it SHOWABLE
+
+**No two of them can do it without the other two.** That's what makes it a crew
+and not an errand.
+
+---
+
+## RULES FOR WRITING THEM
+
+- **Everyone gets one moment where the whole thing rests on them alone**
+- **Everyone has something to lose**, and it's different for each of them
+- **Nobody is good at this.** They're a bank clerk, a man weeks from retirement, a
+  woman who runs a coffee shop, and a child
+- **The base is the coffee shop after close** — cheap to shoot, warm, and it's
+  where the movie began
+- ⚠️ **Keep the kid legal.** They organize what Bill lawfully has. No breaking in,
+  no hacking. A fifty-year-old man must not appear to be using children to commit
+  crimes
+
+## OPEN
+
+- Is she still working the counter, or already running it?
+- Was she turned down by **this** bank? *(Tempting and a little neat. Use only if
+  it doesn't feel engineered.)*
+- Does the mom have any role, or is she just the kitchen table they work at?
+- Does the agent ever turn up again? *(Recommend: no. He just stops calling.)*
