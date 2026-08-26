@@ -1373,3 +1373,56 @@ and not an errand.
   it doesn't feel engineered.)*
 - Does the mom have any role, or is she just the kitchen table they work at?
 - Does the agent ever turn up again? *(Recommend: no. He just stops calling.)*
+
+---
+
+# UPDATE — THE KID IS A HACKER
+
+Replaces "the kid who's good with computers." He's a genuine, self-described
+hacker, and he is twelve.
+
+**Immediately funnier:** the crew's technical asset is a child who says things
+like *"say less"* and has to be picked up by his mother.
+
+## ⚠️ BUT THIS CREATES A REAL PROBLEM — AND THE FIX IS YOUR BEST BEAT
+
+Three things break if a kid actually hacks the bank for Bill:
+
+1. **Evidence obtained that way is worthless.** A board and a regulator can't act
+   on it, so your climax collapses on contact with reality
+2. **Bill becomes a man who used a child to commit federal crimes.** That is not
+   a guy you hand a company to in the final act
+3. **It lets Bill off.** If a laptop wins the movie, the nineteen years of
+   invisible work don't
+
+### ▶ THE FIX: HE OFFERS. BILL SAYS NO.
+
+The kid absolutely *can* do it, and he offers — casually, like it's nothing,
+because to him it is.
+
+**And Bill tells him no.**
+
+> ⚠️ That's the beat I flagged earlier, and making him an actual hacker gives it
+> real teeth. It's no longer a vague "too far" — it's a specific, easy,
+> tempting shortcut to everything Bill wants, offered for free.
+>
+> **He turns down the shortcut.** The man whose entire life has been shortcuts —
+> lottery, stocks, MLM, insurance fraud, selling drugs, going viral — **finally
+> refuses one, to protect a kid.**
+>
+> That's his whole arc, in one word, inside the climax. And it means the win comes
+> from the stack of paper. From the nineteen years. From him.
+
+### What he does instead — all legal, all still impressive
+
+- Digitizes and indexes the stack overnight
+- **Builds the deck** *(which is why it's terrible)*
+- Public records, filings, archived pages, the boss's own public footprint
+- Screen-records things before they can vanish
+- Recovers a document from Bill's own old machine — **Bill's files, Bill's
+  property, Bill's right**
+- Cross-references what Bill and the barista hand him, at a speed no adult in the
+  room can follow
+
+*(If you decide you want the hack to actually happen: it has to be Bill's account,
+Bill's files, and Bill's authorization — and even then, expect notes on it.)*
