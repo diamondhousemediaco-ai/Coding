@@ -16,8 +16,9 @@ hands him everything he ever asked for — money, fame, strangers screaming his 
 (the wrong name). He leases a millionaire's life, burns every cent chasing the feeling,
 and loses it all, including the woman who's known him since they were kids. At the
 bottom, broke and living with his mother, he does the first honest thing in the movie:
-he blows up his own last chance to expose the man who's been stealing from the company
-he gave nineteen years to. Nobody films it. **And that's the thing that finally gets him
+he blows up his own last chance to expose the man who's been stealing the pensions from
+the company he gave nineteen years to — including the pension of the one friend who told
+him to save his money. Nobody films it. **And that's the thing that finally gets him
 seen.**
 
 ---
@@ -313,3 +314,144 @@ She's **thirty weeks pregnant.** He tells her. **He picks her up and kisses her.
 - The unfilmed-rescue beat — in or out
 - What happens to the narration in Act Two *(recommend: it stops when he gets famous,
   because he's performing now instead of confiding, and returns at the very end)*
+
+---
+
+# MAJOR ADDITION — CLYDE, AND THE STOLEN PENSIONS
+
+*Added after the first full pass. This changes Act Three fundamentally and
+retroactively charges most of Act One.*
+
+## Who he is
+
+**CLYDE** *(placeholder name)* — an older Black gentleman who works with Bill.
+He is **the voice of reason.** He's been telling Bill to save his money and be
+smart with it for years, and Bill has never once listened.
+
+**He's retiring in a couple of months.**
+
+## What happens
+
+The boss's fraud isn't abstract. **He's been stealing the pensions.** When it
+comes apart, **everybody gets laid off**, and the retirement money everyone spent
+their working lives building is gone.
+
+Including Clyde's. Weeks before he was supposed to be free.
+
+---
+
+## ⚠️ WHY THIS IS THE BIGGEST FIX IN THE DOCUMENT
+
+### 1. It gives Bill something to fight FOR
+
+Before this, the boardroom climax was Bill doing an honest thing on principle,
+and the only thing at risk was his own job. Honorable, but thin.
+
+Now the fraud has **victims with faces.** Bill isn't defending an abstraction —
+he's fighting for a man who spent forty years doing everything right. That's the
+*Free Guy* "saving the island" beat the movie was missing.
+
+### 2. It fixes the CEO ending completely
+
+The old problem: the movie spends two hours proving status is empty, then hands
+Bill the biggest status prize in the film. Even reframed as recognition, it
+scraped against the theme.
+
+**Now the promotion isn't a reward. It's the tool.**
+
+He becomes CEO because it's **the only position from which he can put the pension
+money back.** He doesn't want the title, he needs the authority. That's not a man
+being handed a prize — that's a man taking a job because there's work to do.
+
+### 3. Clyde is the anti-Bill, and the movie gets brutal about it
+
+- Bill wants everything now. Clyde saved patiently for forty years
+- **Bill blows a fortune and gets his life back. Clyde does everything right and
+  loses his.**
+- That's the world's unfairness stated as character, and it's the deepest possible
+  reading of *"nothing ever goes my way"* — it turns out that was never really
+  about Bill
+
+### 4. It retroactively charges Act One
+
+Every scene where Clyde says *"save your money"* and Bill waves him off becomes a
+plant. Nothing needs to be added — those scenes just start meaning something.
+
+### 5. It answers an open question
+
+**"What is the boss's fraud?"** — the pensions. Concrete, comprehensible in one
+line, and genuinely devastating.
+
+---
+
+## ⚠️ CRAFT WARNING — DO NOT LET CLYDE BE A MARTYR
+
+The wise older Black mentor who suffers so the white lead can grow is a
+well-worn and badly-regarded trope. The story is one small decision away from it
+and one small decision away from avoiding it entirely.
+
+**The fix: Clyde noticed first.**
+
+He's been suspicious for months. He tried to raise it and **nobody listened to
+him either** — he's the other invisible man in that building. He isn't rescued by
+Bill; **they do it together**, and each brings the half the other lacks:
+
+- **Clyde** has been watching, and knows something is wrong
+- **Bill** has nineteen years of doing the boss's actual work, so he's the only
+  one who can prove *what* is wrong
+
+**Two invisible men who between them know everything.** Clyde should be in the
+boardroom. He should act, not be avenged.
+
+He also needs a life outside this: what he was going to do with that retirement,
+who's waiting for him, what he wanted.
+
+---
+
+## WHERE HE GOES — BEAT INSERTIONS
+
+**ACT ONE**
+- **Beat 3 (The Office).** Introduce him. He's the one person at work who talks to
+  Bill like a person. *"Save your money."* Bill doesn't. Mention the retirement —
+  a countdown on a whiteboard, a calendar, something visual
+- **Beat 5 area.** Clyde and Bill's friendship established as real. He's the only
+  adult in Bill's life besides his mother
+
+**ACT TWO**
+- **Beat 14 ("I QUIT").** Clyde is at the window too. **He isn't celebrating
+  either.** Him and the mom, the only two
+- **New beat, during the fame: Bill offers Clyde money. Clyde won't take it.**
+  *"I got mine coming."*
+  > ⚠️ **The single most devastating line available in this movie**, because of
+  > what we find out later. Plant it lightly. Do not underline it.
+- Optional: Bill invites Clyde to a party and it goes badly — Clyde doesn't
+  belong there, and worse, Bill can see that he's better than the room
+
+**ACT THREE**
+- **Beat 32 (He goes back to beg).** He walks in and **the building is being
+  emptied.** Layoffs. Boxes. Everyone gone or going
+- **New beat: he finds Clyde.** Forty years, weeks from retirement, pension gone.
+  **And Clyde already suspected.** He tried to tell people
+  > Bill has to face the man who told him to save his money — as the guy who
+  > burned a fortune and has nothing to offer
+- **Beat 33-34 (He sees it / the choice).** Now the choice has weight. Staying
+  quiet doesn't just protect his job, it abandons Clyde
+- **Beat 35 (The Boardroom).** **They do it together.** Bill brings the stack,
+  Clyde brings what he's been watching. Bill is still terrible at it
+- **Beat 40 (Two years later / the promotion).** He takes the CEO job **because
+  it's the only way to put the money back.** That's the line that makes the whole
+  ending work
+
+---
+
+## NEW OPEN QUESTIONS
+
+- Clyde's real name, and his family — who was that retirement for?
+- What was he going to do with it? *(Make it specific and modest. A truck, a
+  fishing boat, a house near a grandchild. It should be small enough to be
+  heartbreaking.)*
+- Does he get his money back at the end? **Recommend: yes, and show it.** The
+  audience will not forgive the movie otherwise
+- Is he at the wedding? *(Recommend: yes. That tiny courthouse room should hold
+  the mom, Clyde, and almost nobody else.)*
+- Does Bill get the whole workforce reinstated, or just the pensions?
