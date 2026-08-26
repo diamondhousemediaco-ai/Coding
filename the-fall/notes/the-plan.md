@@ -645,3 +645,89 @@ Memes to consider *(fill in — expect to replace these late)*:
 - _______________________________________________________________
 - _______________________________________________________________
 - _______________________________________________________________
+
+---
+
+# ADDITION — THE KIDS: VENTING, AND THE HANGOUT
+
+## A) Bill vents to the kids about his boss
+
+**Act One, on the headset.** Bill is complaining about his boss, his job, his
+life — to a squad of twelve-year-olds. They give him advice with total
+confidence, and it is terrible.
+
+*"Bro. Show him who's boss."*
+
+The comedy is the mismatch: a fifty-year-old man taking career counsel from
+children who cannot drive. Play his side completely sincere — **he's actually
+listening.** That's what makes it funny and what makes it sad.
+
+### ⚠️ THIS IS A PLANT, AND IT'S A GOOD ONE
+
+**The "I QUIT" burnout is a twelve-year-old's idea of quitting a job — because a
+twelve-year-old gave it to him.**
+
+He takes their advice. Literally. That's why he doesn't hand in a notice, doesn't
+have a conversation, doesn't do anything an adult would do: he gets the boss to
+the window and burns rubber, because that's what the kids told him to do.
+
+It also feeds the movie's engine perfectly — a man in his fifties living out a
+teenager's fantasy. Now we know exactly where he got the script.
+
+- Nothing needs to be added at the burnout. It just retroactively means something
+- **Bonus:** the kids see the video afterward. *"Yooo, he actually did it."*
+  First time in the movie anyone is impressed by him
+
+---
+
+## B) He invites the kids over
+
+**Act Two, once he has the mansion.** He finally has the ultimate hangout and
+these are, by his own admission, his closest friends. So he brings them over.
+
+**And it's genuinely fun.** This should be a warm, funny, high-energy sequence —
+not a sad scene with a joke on top.
+
+### ⚠️ THE SHOT THAT ENDS IT
+
+**Their parents come to pick them up.** It's a school night.
+
+And Bill is alone in a mansion.
+
+> That's the beat. It's the in-person version of the Fortnite drop from Act One —
+> online they abandon him the second he dies, in person they leave when their
+> mom texts. Same wound, bigger house.
+
+### What they actually do — ideas
+
+- **The joke worth building on: they're unimpressed by everything expensive.** He
+  shows them the cars, the yacht, the theater — and they want to sit on a couch
+  and play the exact same game they always play. **The money changed nothing
+  about the one real relationship he has, and he can't see that's the point**
+- They're deeply impressed by something stupid and cheap instead — the ice maker,
+  a shower with two heads, a doorbell camera
+- The pool. Obviously. Chaos
+- He lets them sit in the Lamborghini and one of them touches something
+- They eat literally everything in the house
+- They meet the gold digger and are extremely strange about it
+- ⚠️ **These kids are the only people who ever come to that house who aren't
+  there for the money.** They'd have hung out with him for free. He doesn't
+  value it, because they're children
+
+### One more option
+
+Do they know his name? The twelve-year-olds might only ever have known his
+gamertag. *(Careful — it's a strong idea but it risks stepping on "Bob." Probably
+keep the name confusion exclusive to the party.)*
+
+---
+
+## C) The return — bring them back at the bottom
+
+After the crash out, when everything's gone: **he's on the headset again. Same
+game, same kids, same headset.**
+
+Nothing changed for them. They never knew, or they knew and didn't care. It's the
+one thing he still has and the one thing that cost him nothing.
+
+Warm and quietly devastating, and it costs a single scene.
