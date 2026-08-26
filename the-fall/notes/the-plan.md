@@ -747,3 +747,98 @@ Nothing changed for them. They never knew, or they knew and didn't care. It's th
 one thing he still has and the one thing that cost him nothing.
 
 Warm and quietly devastating, and it costs a single scene.
+
+---
+
+# ADDITION — THE KIDS, CONTINUED
+
+## D) "Yo, you see this guy?" — the night he goes viral
+
+**Right after the ding scene.** He's danced around the apartment alone, and then
+he hops on the game.
+
+> ⚠️ **The first person he wants to tell is a twelve-year-old.** Not his mother.
+> Not the barista. That single choice tells the audience the entire shape of his
+> life, and it costs nothing to make.
+
+  KID:   Yo Bill — you see this guy? It's going crazy right now.
+  BILL:  ...Yeah. Unfortunately, that's me.
+  KID:   Bro, stop lying.
+  BILL:  I'm actually not joking.
+
+**They don't believe him.** That's the joke — and it's the theme. Even his own
+friends cannot picture Bill being somebody.
+
+Then it lands, and they immediately roast him. *"Bro. Bro. This is what you look
+like—"* and one of them does the fall. Over and over. In the car. The face.
+
+**And then it comes down.** One of them, genuinely: *"That's actually crazy
+though."*
+
+> ⚠️ **That's the first real validation he gets in the entire movie from a person
+> who actually knows him** — and it comes from a child, in a headset, after
+> being mocked for two minutes. He'll spend the next hour of screen time chasing
+> a worse version of that feeling from strangers.
+
+- Whether he tries to tell the barista first and can't is worth deciding.
+  Recommend: **he starts to text her, doesn't send it, and gets on the game
+  instead.** One beat, no dialogue
+
+---
+
+## E) The kids help him pull it off in Act Three
+
+**They're on his side. Make them useful.**
+
+Bill's evidence is nineteen years of paper — the stack. What he needs is it
+organized, digitized, searchable, and put into something he can show a boardroom.
+**He has no idea how to do any of that. They can do it in an afternoon.**
+
+### ⚠️ THE JOKE THIS UNLOCKS
+
+**The boardroom presentation was made by twelve-year-olds.**
+
+That's why the slides are strange. That's why the projector fights him. That's
+why there's a transition nobody has used since 2009 and a font that shouldn't
+exist. **And it's why he has any presentation at all.**
+
+It gives the climax comedy without weakening it — he's still right, he's still
+brave, and the room still has to listen. The material is just visibly the work of
+children who were extremely excited to help.
+
+### Plant it in the hangout scene
+
+For this to land, establish them as capable earlier. In the mansion sequence, one
+of them casually does something technical Bill can't — fixes his TV, sets
+something up, finds something online in nine seconds while he's still typing.
+**No comment on it. Just let the audience see it.**
+
+### What they might actually do
+
+- Digitize and sort the stack
+- Build the deck
+- Find something public that corroborates it
+- Screen-record something before it disappears
+- One of them knows something about the software the company uses, because of
+  course he does
+
+### ⚠️ Keep them out of legal danger
+
+They should help him **prepare**, not commit anything. No hacking, no breaking in,
+nothing that makes a fifty-year-old man look like he used kids to do crimes. They
+organize what Bill already lawfully has. That keeps it funny and keeps him
+sympathetic.
+
+---
+
+## WHY THIS MAKES THE ENDING BETTER
+
+Look at who's actually in that boardroom fight now:
+
+- **Bill** — nineteen years of invisible work
+- **Clyde** — the man who noticed and was ignored
+- **The kids** — who made the deck
+
+**Nobody in that room is somebody.** The three least-regarded parties in the
+entire story take down the man everybody listened to. That's the movie's whole
+argument, staged as a heist crew of nobodies.
