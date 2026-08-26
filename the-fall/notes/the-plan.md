@@ -842,3 +842,122 @@ Look at who's actually in that boardroom fight now:
 **Nobody in that room is somebody.** The three least-regarded parties in the
 entire story take down the man everybody listened to. That's the movie's whole
 argument, staged as a heist crew of nobodies.
+
+---
+
+# MAJOR DEVELOPMENT — THE BANK, AND THE FRAME-UP
+
+*This supersedes the earlier "insurance back office" option and refines the
+pension idea into one cleaner mechanism.*
+
+## The setup
+
+**Bill works at a bank.** He's in a department downstairs with **Clyde** and the
+rest of his coworkers. **The antagonist runs the top floor.**
+
+**The boss is stealing.** And to cover the shortfall, he's making it look like
+**Bill's floor is the one underperforming.** The money isn't missing — on paper,
+a department simply isn't producing what it should.
+
+So he takes it to corporate: *that department isn't carrying its weight.*
+**Lay them off.**
+
+## ⚠️ WHY HE PICKED THAT FLOOR — THIS IS THE WHOLE MOVIE
+
+**He chose Bill's department precisely because nobody there matters.**
+
+Overlooked people are the safest people to frame. Nobody checks their numbers,
+nobody asks them questions, nobody would believe them over him. **The villain's
+crime is an expression of the exact thing the film is about** — he weaponized
+their invisibility, the same invisibility that has defined Bill's entire life.
+
+Say it once, quietly, and never again.
+
+## What it fixes
+
+- **Group stakes.** It isn't only Clyde now — it's the whole floor, everyone Bill
+  spent nineteen years beside
+- **Clyde's pension has one clean mechanism.** He doesn't get robbed in a separate
+  scheme — **he gets laid off weeks before he retires**, and the retirement goes
+  with the job. Simpler and more brutal
+- **Act Three becomes a mission with a goal**, not a moral position: *get the
+  proof*
+- **The location list already fits** — "Studio Bank" was on your scout
+
+---
+
+# ⚠️ HOW HE GETS IN — DO NOT MAKE THIS A HEIST
+
+The instinct to have him get onto the top floor is right. The execution is where
+this could go wrong: the second it becomes a caper — vents, timers, a crew, a
+plan — it's a different movie and it will strangle the emotional ending.
+
+**The answer is already in your story:**
+
+> ### HIS INVISIBILITY IS HOW HE GETS IN.
+>
+> He doesn't outsmart anybody. He doesn't sneak. **He walks onto that floor and
+> nobody looks at him**, because nobody ever has. Nineteen years of being furniture,
+> and it turns out furniture goes anywhere.
+>
+> Maybe his badge still works because nobody bothered to deactivate a nobody.
+> Maybe someone holds the door. Maybe he says he's there to drop something off and
+> that's the end of the conversation.
+
+**The thing that ruined his life is the thing that wins.** That's the movie
+paying off its own thesis with no action beats, no cleverness, and no tonal
+break. It should be almost unbearably easy — and a little sad that it is.
+
+---
+
+# ⚠️ THE REALIZATION — MAKE IT HANDWRITING
+
+You asked for the moment Bill *knows*. Play it quiet, and make it physical rather
+than technical, so the audience gets it instantly:
+
+**Bill did all of the boss's work for nineteen years. So every real figure in
+that building is in Bill's handwriting.**
+
+**The only numbers that aren't in his hand are the ones the boss wrote himself.**
+
+That's the proof. He doesn't need to be an accountant or a hacker. He just needs
+to be the one man alive who can look at a page and say: *I didn't write that. And
+I wrote everything.*
+
+- It's visual, it's instant, and an audience understands it with no exposition
+- **It's THE STACK again** — the same stack the boss dropped on his desk in Act
+  One, the same stack he carries into the boardroom
+- It makes his nineteen wasted years the literal instrument of the win
+
+**Where he realizes it:** ideally not on the top floor. He should figure it out
+somewhere ordinary — his mother's kitchen table, the coffee shop — and *then* go
+get what he needs. Realization and action as two separate moves.
+
+---
+
+# KEEP IT LEAN
+
+The film is a character comedy, not a procedural. Corporate-crime plotting will
+eat pages fast. **Three moves, no more:**
+
+1. **He realizes** (handwriting)
+2. **He gets it** (walks in unseen)
+3. **He shows it** (the boardroom, with Clyde, with the kids' terrible deck)
+
+Anything beyond those three is a subplot the movie doesn't have room for.
+
+---
+
+# NEW OPEN QUESTIONS
+
+- What exactly is Bill's department? *(Needs to be somewhere the boss's
+  work would plausibly land on him for nineteen years.)*
+- How is the boss actually moving the money? *(Keep it one sentence. The audience
+  needs to believe it, not audit it.)*
+- Why now — what makes him escalate to layoffs at this moment?
+- Bill quit in Act Two, so he's not an employee when this breaks. **Confirm: he
+  comes back to beg for his job and walks into the layoffs happening.** That's
+  how he finds out
+- Does anyone else on the floor believe Clyde before Bill shows up?
+- Does the boss ever clock Bill as a threat, or does he never see him coming?
+  *(Recommend: never sees him coming. Consistent with everything above.)*
