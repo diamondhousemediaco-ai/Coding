@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>THE FALL — Scene Board</title>
+<style>
+  :root{
+    --bg:#0d0d13; --board:#12121a; --col:#16161f; --card:#1c1c27; --card2:#22222f;
+    --ink:#eeedf3; --muted:#9695ae; --line:#2c2c3c;
+    --accent:#e3604a; --gold:#f0b86e; --cool:#6fa8c7; --green:#7fc99a;
+  }
+  :root[data-theme="light"]{
+    --bg:#f2efe9; --board:#ece8e0; --col:#e4dfd5; --card:#fffdf9; --card2:#fbf8f2;
+    --ink:#22201d; --muted:#6f6a61; --line:#d6cfc2;
+    --accent:#c2452f; --gold:#b07d23; --cool:#3d7593; --green:#3f7d57;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);overflow:hidden;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column}
+
+  /* ---- top bar ---- */
+  header{flex:0 0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:12px 16px;border-bottom:1px solid var(--line);background:var(--board)}
+  .logo{font-weight:900;letter-spacing:2.5px;font-size:14px;white-space:nowrap}
+  .logo span{color:var(--accent)}
+  .sub{color:var(--muted);font-size:11.5px;letter-spacing:1px;text-transform:uppercase}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px;min-width:150px}
+  .bar{flex:1;height:6px;border-radius:4px;background:var(--col);border:1px solid var(--line);overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .3s}
+  .pn{font-size:11.5px;color:var(--muted);font-weight:700;white-space:nowrap}
+  button.tool{background:var(--card);color:var(--ink);border:1px solid var(--line);
+    border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:600;cursor:pointer;
+    font-family:inherit;white-space:nowrap}
+  button.tool:hover{border-color:var(--accent)}
+
+  /* ---- board ---- */
+  .board{flex:1;display:flex;gap:14px;padding:14px;overflow-x:auto;overflow-y:hidden;
+    align-items:flex-start;scroll-snap-type:x proximity}
+  .colwrap{flex:0 0 300px;max-width:300px;height:100%;display:flex;flex-direction:column;
+    background:var(--col);border:1px solid var(--line);border-radius:14px;
+    scroll-snap-align:start;overflow:hidden}
+  @media(max-width:520px){.colwrap{flex:0 0 86vw;max-width:86vw}}
+  .colhead{padding:13px 14px 11px;border-bottom:1px solid var(--line);flex:0 0 auto}
+  .colhead .t{font-weight:800;font-size:14.5px;letter-spacing:.3px}
+  .colhead .m{color:var(--muted);font-size:11px;margin-top:3px;letter-spacing:.5px}
+  .colhead .rule{height:3px;border-radius:3px;margin-bottom:9px;width:34px}
+  .cards{flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:9px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:11px;
+    padding:11px 12px;cursor:pointer;transition:.18s;position:relative}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card .n{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:1.2px}
+  .card .ti{font-weight:700;font-size:13.5px;margin-top:2px;line-height:1.3}
+  .card .sd{color:var(--muted);font-size:11.5px;margin-top:5px;line-height:1.4}
+  .dot{position:absolute;top:11px;right:11px;width:8px;height:8px;border-radius:50%;
+    background:var(--line)}
+  .dot.part{background:var(--gold)}
+  .dot.done{background:var(--green)}
+  .addbtn{background:transparent;border:1px dashed var(--line);color:var(--muted);
+    border-radius:11px;padding:9px;font-size:12px;cursor:pointer;font-family:inherit}
+  .addbtn:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---- editor ---- */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);
+    z-index:40;display:none}
+  .scrim.on{display:block}
+  .panel{position:fixed;z-index:50;background:var(--board);border:1px solid var(--line);
+    display:none;flex-direction:column}
+  .panel.on{display:flex}
+  @media(min-width:760px){
+    .panel{top:0;right:0;bottom:0;width:min(620px,92vw);border-radius:16px 0 0 16px;
+      box-shadow:-18px 0 60px rgba(0,0,0,.45)}
+  }
+  @media(max-width:759px){
+    .panel{inset:0;border-radius:0}
+  }
+  .phead{flex:0 0 auto;padding:15px 16px;border-bottom:1px solid var(--line);
+    display:flex;align-items:flex-start;gap:10px}
+  .phead .meta{flex:1;min-width:0}
+  .phead .ac{font-size:10px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--accent);font-weight:800}
+  .phead input.title{width:100%;background:transparent;border:0;color:var(--ink);
+    font-size:19px;font-weight:800;font-family:inherit;padding:3px 0;margin-top:2px}
+  .phead input.title:focus{outline:none;border-bottom:1px solid var(--accent)}
+  .x{background:var(--card);border:1px solid var(--line);color:var(--ink);
+    border-radius:9px;width:34px;height:34px;font-size:17px;cursor:pointer;flex:0 0 auto;
+    font-family:inherit;line-height:1}
+  .pbody{flex:1;overflow-y:auto;padding:16px}
+
+  .seed{background:var(--card2);border-left:3px solid var(--cool);border-radius:0 9px 9px 0;
+    padding:11px 13px;margin-bottom:18px}
+  .seed .h{font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;
+    color:var(--cool);font-weight:800;margin-bottom:5px}
+  .seed p{color:var(--muted);font-size:13px;line-height:1.55}
+
+  .fld{margin-bottom:17px}
+  .fld .lab{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:800;
+    margin-bottom:3px}
+  .fld .hint{color:var(--muted);font-size:11.5px;margin-bottom:7px;font-style:italic}
+  .fld.b .lab{color:var(--cool)}
+  .fld.c .lab{color:var(--accent)}
+  .fld.s .lab{color:var(--gold)}
+  .fld.n .lab{color:var(--muted)}
+  textarea{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);
+    border-radius:10px;padding:11px 12px;font-size:15px;font-family:inherit;
+    line-height:1.6;resize:vertical;min-height:96px}
+  textarea:focus{outline:none;border-color:var(--accent)}
+  textarea.filled{border-color:rgba(127,201,154,.45)}
+
+  .pfoot{flex:0 0 auto;padding:11px 16px;border-top:1px solid var(--line);
+    display:flex;gap:9px;align-items:center}
+  .saved{color:var(--muted);font-size:11.5px;flex:1}
+  .nav{background:var(--card);border:1px solid var(--line);color:var(--ink);
+    border-radius:9px;padding:8px 13px;font-size:12.5px;cursor:pointer;font-family:inherit;
+    font-weight:600}
+  .nav:hover{border-color:var(--accent)}
+  .nav[disabled]{opacity:.35;cursor:default}
+
+  /* export */
+  .exp{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;
+    flex-direction:column;padding:16px}
+  .exp.on{display:flex}
+  .exp h3{font-size:14px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+  .exp textarea{flex:1;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace;
+    line-height:1.5}
+  .exp .row{display:flex;gap:9px;margin-top:11px}
+  .toast{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:22px;
+    background:var(--gold);color:#1a1206;padding:11px 20px;border-radius:24px;
+    font-weight:800;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:80}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  ::selection{background:var(--accent);color:#fff}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">THE<span>·</span>FALL</div>
+    <div class="sub">Scene Board</div>
+  </div>
+  <div class="grow"></div>
+  <div class="prog"><div class="bar"><i id="fill"></i></div><div class="pn" id="pn">0 / 0</div></div>
+  <button class="tool" id="themeBtn">Light</button>
+  <button class="tool" id="expBtn">Export</button>
+</header>
+
+<div class="board" id="board"></div>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="panel" id="panel">
+  <div class="phead">
+    <div class="meta">
+      <div class="ac" id="pAct"></div>
+      <input class="title" id="pTitle" placeholder="Scene title">
+    </div>
+    <button class="x" id="closeBtn">&times;</button>
+  </div>
+  <div class="pbody">
+    <div class="seed" id="pSeed"><div class="h">What we know</div><p id="pSeedTxt"></p></div>
+
+    <div class="fld b">
+      <div class="lab">Beginning</div>
+      <div class="hint">Where we come in. Who wants what, and what's in the way.</div>
+      <textarea id="fB" placeholder="How the scene opens…"></textarea>
+    </div>
+
+    <div class="fld c">
+      <div class="lab">Climax</div>
+      <div class="hint">The moment it tips. The biggest laugh, or the worst second.</div>
+      <textarea id="fC" placeholder="The turn…"></textarea>
+    </div>
+
+    <div class="fld s">
+      <div class="lab">Solution</div>
+      <div class="hint">How it lands and what's different on the way out.</div>
+      <textarea id="fS" placeholder="How it resolves…"></textarea>
+    </div>
+
+    <div class="fld n">
+      <div class="lab">Notes</div>
+      <div class="hint">Lines, images, anything loose.</div>
+      <textarea id="fN" placeholder="Anything else…"></textarea>
+    </div>
+  </div>
+  <div class="pfoot">
+    <div class="saved" id="savedTxt">Saves as you type</div>
+    <button class="nav" id="prevBtn">Prev</button>
+    <button class="nav" id="nextBtn">Next</button>
+  </div>
+</div>
+
+<div class="exp" id="exp">
+  <h3>Everything you've written</h3>
+  <textarea id="expBox" readonly></textarea>
+  <div class="row">
+    <button class="tool" id="copyBtn" style="flex:1;padding:13px">Copy all</button>
+    <button class="tool" id="expClose" style="flex:1;padding:13px">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+/* ================= DATA ================= */
+const ACTS = [
+  {key:"a1", name:"ACT ONE — The Want",    meta:"He's nobody, and he wants out",        color:"var(--accent)"},
+  {key:"a2", name:"ACT TWO-A — The Have",  meta:"The funniest stretch of the film",     color:"var(--gold)"},
+  {key:"mp", name:"MIDPOINT — The Party",  meta:"He loses everyone in one night",       color:"var(--accent)"},
+  {key:"a3", name:"ACT TWO-B — The Lose",  meta:"The laughs thin out on purpose",       color:"var(--cool)"},
+  {key:"a4", name:"ACT THREE — The Truth", meta:"He earns this act",                    color:"var(--green)"}
+];
+
+const SCENES = [
+ ["a1","The Coffee Shop","She's already making his drink. Coffee down his shirt. Narration starts — childhood friends, thirty years, never said it."],
+ ["a1","The Scheme Montage","Stock, lottery & the older lady, MLM boxes, failed viral attempts, the drug deal, life insurance, the rear-end scam."],
+ ["a1","The Bank — Bill's Floor","Nineteen years. Clyde. The boss drops his own work on Bill's desk. The company photo where you can't see his face."],
+ ["a1","The Kids","Dies to fall damage, they drop him. \"Some of the closest friends I've had.\" \"How's your coffee girl?\""],
+ ["a1","Mom","She calls. She's proud. She got him that job twenty years ago. He's embarrassed."],
+ ["a1","The Date","It's going WELL — and he pitches her a life insurance policy."],
+ ["a1","THE FALL","One-wheel, downtown. The twins. \"Should I post it?\" — \"Definitely post it.\""],
+
+ ["a2","The Office, Next Morning","The video's already viral. A colleague plays it out loud. He leaves early."],
+ ["a2","Home Alone — THE DING","Notifications stacking. Music up. He dances alone. THESIS SHOT."],
+ ["a2","\"Yo, You See This Guy?\"","He tells the kids first. They don't believe him. Then they roast him. Then: \"that's actually crazy though.\""],
+ ["a2","The Swagger","\"You're the guy!\" Selfies. Struts into the coffee shop. She notices. First crack."],
+ ["a2","The Desk, One Last Time","The boss drops the stack again. Nothing here cares that he's famous."],
+ ["a2","The Agent Calls","Enter the agent. Warm, funny, needs Bill to stay a spectacle."],
+ ["a2","The Commercials","Fell. Neokay. And Life Alert — \"Have you fallen and can't get up?\""],
+ ["a2","He Vents to the Kids","Money's coming in and he's still at that desk. \"Bro. Show him who's boss.\""],
+ ["a2","The Shopping Montage","Dingy clothes, \"can I help you, sir?\", the cash he withdrew on purpose. He crosses the street from Payless."],
+ ["a2","The Cars","Lamborghinis, Ferraris. Leased, not bought."],
+ ["a2","\"I QUIT\"","The horn. The boss at the window. Donuts. Tire marks. Never says a word."],
+ ["a2","The Signing","Mansion, yacht, cards. Signs everything without reading. He's renting a life."],
+ ["a2","The Rise","Parties, cannonball, peak comedy. A fifty-year-old living a teenager's fantasy."],
+ ["a2","The Gold Digger Arrives","The agent puts it in his ear. She's exactly what he ordered."],
+ ["a2","The Kids Come Over","Fun, loud, warm — until their parents come to get them. School night."],
+ ["a2","The Face on Three","Strangers making him do the face. Funny, then grating, then humiliating."],
+
+ ["mp","Clyde at the Party","Baseball cap. \"I've invited you to ten of these.\" \"Bill, I need to talk to you.\""],
+ ["mp","Bill Brushes Him Off","\"You can just move in with me.\" Then: \"You let them change you… I would've died.\""],
+ ["mp","The Barista's Warning","She tells him what the gold digger is. He calls it jealousy. She crashes out."],
+ ["mp","\"BOB\"","The hired rapper. A thousand strangers scream a name that isn't his."],
+
+ ["a3","The Comedown","Parties bigger, Bill smaller. The dings are oppressive now."],
+ ["a3","He Stops Calling Mom","Phone buzzes at a party. \"Mom.\" Declined. One shot."],
+ ["a3","He Ghosts the Kids","No fight, no scene. He just stops logging on. Later: \"You stopped playing.\""],
+ ["a3","The Money Slows","Deals don't renew. A newer, younger viral guy. The agent takes longer to call back."],
+ ["a3","The Spending Doesn't","He's buying what she gave him for free."],
+ ["a3","The Declined Card","Same boutique, same staff. Her card declines. Mask off. Cut to his phone."],
+ ["a3","The Repossessions","Cars taken one at a time. Eviction. Nothing sold — everything taken."],
+ ["a3","The Silence","The phone stops. The last notification is spam."],
+ ["a3","He Never Owned Anything","He does the math. He rented a life for a year and gave it back."],
+ ["a3","THE CRASH OUT","Last $10,000 into a stock. The identical shot from the montage, stripped bare. The catchphrase fails him."],
+ ["a3","Home to Mom","Fifty years old, moving back in. The MLM boxes are still in the hallway. She never says I told you so."],
+
+ ["a4","Bankruptcy Court","The judge. On the record. Remember this room."],
+ ["a4","He Goes Back to Beg","To the bank. For his old desk. The one he burned rubber quitting."],
+ ["a4","The Layoffs / Finding Clyde","The floor is being emptied. Forty years, weeks out, pension gone. And Clyde already suspected."],
+ ["a4","The Realization","Handwriting. Every real figure in that building is in Bill's hand. The only ones that aren't are the boss's."],
+ ["a4","Assembling the Crew","Bill, Clyde, her, the kid. The coffee shop after close."],
+ ["a4","The Top Floor","He walks on and nobody looks at him. Because nobody ever has."],
+ ["a4","The Kid Offers / Bill Says No","The hacker offers the shortcut. Bill turns it down. First time in his life."],
+ ["a4","THE BOARDROOM","He's terrible at it. He carries the stack. He's completely right. No camera, no crowd, no upside."],
+ ["a4","He Goes to Her","He walks in with nothing and asks. She does not rescue him."],
+ ["a4","The Rebuild / Carnival","He can't win her a prize and he's furious. She thinks it's the cutest thing she's ever seen."],
+ ["a4","The Courthouse Wedding","Same room, same judge. Mom is there. She says his real name. He marries her broke."],
+ ["a4","The Bike","She buys him a bike. He eats it. They both laugh. Nobody films it."],
+ ["a4","Two Years Later — CEO","He takes the job because it's the only way to put the money back."],
+ ["a4","He Races Home","Thirty weeks pregnant. He tells her. He picks her up."],
+ ["a4","FINAL IMAGE","The new company photo. And this time you can see his face."]
+];
+
+/* ================= STATE ================= */
+const KEY='thefall_board_v1';
+let DB={};
+try{ DB=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ DB={}; }
+let items=[];      // {id, act, title, seed}
+let cur=null;
+
+function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(DB)); }catch(e){} }
+function rec(id){ if(!DB[id]) DB[id]={b:'',c:'',s:'',n:''}; return DB[id]; }
+function filled(id){
+  const r=DB[id]; if(!r) return 0;
+  const n=['b','c','s'].filter(k=>(r[k]||'').trim()).length;
+  return n===3?2:(n>0?1:0);
+}
+
+/* build item list: base scenes + any user-added */
+function buildItems(){
+  items = SCENES.map((s,i)=>({id:'s'+i, act:s[0], title:(DB['s'+i]&&DB['s'+i].title)||s[1], seed:s[2]}));
+  Object.keys(DB).forEach(k=>{
+    if(k.indexOf('x')===0 && DB[k]) items.push({id:k, act:DB[k].act, title:DB[k].title||'Untitled scene', seed:''});
+  });
+}
+
+/* ================= RENDER ================= */
+const board=document.getElementById('board');
+function render(){
+  buildItems();
+  board.innerHTML='';
+  ACTS.forEach(a=>{
+    const mine=items.filter(s=>s.act===a.key);
+    const col=document.createElement('div');
+    col.className='colwrap';
+    col.innerHTML=`<div class="colhead">
+        <div class="rule" style="background:${a.color}"></div>
+        <div class="t">${a.name}</div>
+        <div class="m">${a.meta} · ${mine.length} scenes</div>
+      </div><div class="cards"></div>`;
+    const holder=col.querySelector('.cards');
+    mine.forEach((s,idx)=>{
+      const f=filled(s.id);
+      const el=document.createElement('div');
+      el.className='card';
+      el.innerHTML=`<span class="dot ${f===2?'done':(f===1?'part':'')}"></span>
+        <div class="n">SCENE ${idx+1}</div>
+        <div class="ti">${esc(s.title)}</div>
+        ${s.seed?`<div class="sd">${esc(s.seed)}</div>`:''}`;
+      el.addEventListener('click',()=>open(s.id));
+      holder.appendChild(el);
+    });
+    const add=document.createElement('button');
+    add.className='addbtn'; add.textContent='+ Add scene';
+    add.addEventListener('click',()=>{
+      const id='x'+Date.now();
+      DB[id]={b:'',c:'',s:'',n:'',act:a.key,title:'New scene'};
+      persist(); render(); open(id);
+    });
+    holder.appendChild(add);
+    board.appendChild(col);
+  });
+  updateProgress();
+}
+function esc(t){ return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function updateProgress(){
+  const done=items.filter(s=>filled(s.id)===2).length;
+  const pct=items.length?done/items.length*100:0;
+  document.getElementById('fill').style.width=pct+'%';
+  document.getElementById('pn').textContent=done+' / '+items.length;
+}
+
+/* ================= EDITOR ================= */
+const panel=document.getElementById('panel'), scrim=document.getElementById('scrim');
+const fB=document.getElementById('fB'), fC=document.getElementById('fC'),
+      fS=document.getElementById('fS'), fN=document.getElementById('fN'),
+      pTitle=document.getElementById('pTitle');
+
+function open(id){
+  cur=id;
+  const it=items.find(s=>s.id===id) || {act:(DB[id]&&DB[id].act)||'a1',title:'New scene',seed:''};
+  const act=ACTS.find(a=>a.key===it.act);
+  document.getElementById('pAct').textContent=act?act.name:'';
+  pTitle.value=it.title;
+  const seedBox=document.getElementById('pSeed');
+  if(it.seed){ seedBox.style.display='block'; document.getElementById('pSeedTxt').textContent=it.seed; }
+  else seedBox.style.display='none';
+  const r=rec(id);
+  fB.value=r.b||''; fC.value=r.c||''; fS.value=r.s||''; fN.value=r.n||'';
+  [fB,fC,fS,fN].forEach(t=>t.classList.toggle('filled',!!t.value.trim()));
+  const i=items.findIndex(s=>s.id===id);
+  document.getElementById('prevBtn').disabled = i<=0;
+  document.getElementById('nextBtn').disabled = i>=items.length-1;
+  panel.classList.add('on'); scrim.classList.add('on');
+  document.getElementById('savedTxt').textContent='Saves as you type';
+}
+function close(){ panel.classList.remove('on'); scrim.classList.remove('on'); cur=null; render(); }
+
+function save(){
+  if(!cur) return;
+  const r=rec(cur);
+  r.b=fB.value; r.c=fC.value; r.s=fS.value; r.n=fN.value;
+  const base=SCENES[parseInt(String(cur).replace('s',''),10)];
+  if(String(cur).indexOf('x')===0){ r.title=pTitle.value; }
+  else if(base && pTitle.value!==base[1]){ r.title=pTitle.value; }
+  persist();
+  [fB,fC,fS,fN].forEach(t=>t.classList.toggle('filled',!!t.value.trim()));
+  document.getElementById('savedTxt').textContent='Saved';
+}
+[fB,fC,fS,fN,pTitle].forEach(el=>el.addEventListener('input',save));
+document.getElementById('closeBtn').addEventListener('click',close);
+scrim.addEventListener('click',close);
+document.getElementById('prevBtn').addEventListener('click',()=>{
+  const i=items.findIndex(s=>s.id===cur); if(i>0) open(items[i-1].id);
+});
+document.getElementById('nextBtn').addEventListener('click',()=>{
+  const i=items.findIndex(s=>s.id===cur); if(i<items.length-1) open(items[i+1].id);
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&cur) close(); });
+
+/* ================= EXPORT ================= */
+function buildExport(){
+  buildItems();
+  let out='THE FALL — SCENE BOARD\n'+'='.repeat(40)+'\n';
+  ACTS.forEach(a=>{
+    const mine=items.filter(s=>s.act===a.key);
+    if(!mine.length) return;
+    out+='\n\n'+a.name+'\n'+'-'.repeat(40)+'\n';
+    mine.forEach((s,i)=>{
+      const r=DB[s.id]||{};
+      out+='\nSCENE '+(i+1)+' — '+s.title.toUpperCase()+'\n';
+      if(s.seed) out+='('+s.seed+')\n';
+      out+='\n  BEGINNING: '+((r.b||'').trim()||'—')+'\n';
+      out+='  CLIMAX:    '+((r.c||'').trim()||'—')+'\n';
+      out+='  SOLUTION:  '+((r.s||'').trim()||'—')+'\n';
+      if((r.n||'').trim()) out+='  NOTES:     '+r.n.trim()+'\n';
+      out+='\n';
+    });
+  });
+  return out;
+}
+const exp=document.getElementById('exp');
+document.getElementById('expBtn').addEventListener('click',()=>{
+  document.getElementById('expBox').value=buildExport(); exp.classList.add('on');
+});
+document.getElementById('expClose').addEventListener('click',()=>exp.classList.remove('on'));
+document.getElementById('copyBtn').addEventListener('click',async()=>{
+  const t=document.getElementById('expBox');
+  try{ await navigator.clipboard.writeText(t.value); toast('Copied'); }
+  catch(e){ t.select(); toast('Select all and copy'); }
+});
+function toast(m){
+  const t=document.getElementById('toast'); t.textContent=m; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),1800);
+}
+
+/* ================= THEME ================= */
+const tb=document.getElementById('themeBtn');
+let theme='dark';
+try{ theme=localStorage.getItem('thefall_theme')||'dark'; }catch(e){}
+function applyTheme(){
+  if(theme==='light') document.documentElement.setAttribute('data-theme','light');
+  else document.documentElement.removeAttribute('data-theme');
+  tb.textContent = theme==='light' ? 'Dark' : 'Light';
+}
+tb.addEventListener('click',()=>{
+  theme = theme==='light'?'dark':'light';
+  try{ localStorage.setItem('thefall_theme',theme); }catch(e){}
+  applyTheme();
+});
+applyTheme();
+
+render();
+</script>
+</body>
+</html>
