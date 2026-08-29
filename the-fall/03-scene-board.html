@@ -176,9 +176,9 @@
     </div>
 
     <div class="fld s">
-      <div class="lab">Solution</div>
-      <div class="hint">How it lands and what's different on the way out.</div>
-      <textarea id="fS" placeholder="How it resolves…"></textarea>
+      <div class="lab">End</div>
+      <div class="hint">Where it lands, and what's different on the way out.</div>
+      <textarea id="fS" placeholder="How it ends…"></textarea>
     </div>
 
     <div class="fld n">
@@ -407,7 +407,7 @@ function buildExport(){
       if(s.seed) out+='('+s.seed+')\n';
       out+='\n  BEGINNING: '+((r.b||'').trim()||'—')+'\n';
       out+='  CLIMAX:    '+((r.c||'').trim()||'—')+'\n';
-      out+='  SOLUTION:  '+((r.s||'').trim()||'—')+'\n';
+      out+='  END:       '+((r.s||'').trim()||'—')+'\n';
       if((r.n||'').trim()) out+='  NOTES:     '+r.n.trim()+'\n';
       out+='\n';
     });
